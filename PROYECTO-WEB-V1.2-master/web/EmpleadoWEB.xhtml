@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:growl id="msj" autoUpdate="true" />
+        <h:form>
+            <p:panelGrid columns="4">
+                <p:outputLabel for="txtDNI" value="DNI" />
+                <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" />
+                <p:outputLabel for="txtNombre" value="Nombre" />
+                <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}" />
+                <p:outputLabel for="txtApellido" value="Apellido" />
+                <p:inputText id="txtApellido" value="#{empleadoC.empleado.apel}" />
+                <p:outputLabel for="txtTelefono" value="Telefono" />
+                <p:inputText id="txtTelefono" value="#{empleadoC.empleado.telf}"/>
+                <p:outputLabel for="txtRUC" value="RUC" />
+                <p:inputText id="txtRUC" value="#{empleadoC.empleado.RUC}" />
+                <p:outputLabel for="txtFechaDeNacimiento" value="Fecha de Nacimiento" />
+                <p:inputText id="txtFechaDeNacimiento" value="#{empleadoC.empleado.fecNac}" />
+                <p:outputLabel for="txtLugarDeNacimiento" value="Lugar de Nacimiento" />
+                <p:inputText id="txtLugarDeNacimiento" value="#{empleadoC.empleado.lugNac}"/>
+                <p:outputLabel for="txtCorreoElectronico" value="Correo Electronico" />
+                <p:inputText id="txtCorreoElectronico" value="#{empleadoC.empleado.email}" />
+                <p:outputLabel for="txtCelular" value="Celular" />
+                <p:inputText id="txtCelular" value="#{empleadoC.empleado.cel}" />
+
+                <p:outputLabel value="Grupo Sanguineo" />
+                <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItem itemLabel="O-" itemValue="O-" />
+                    <f:selectItem itemLabel="O+" itemValue="O+" />
+                    <f:selectItem itemLabel="A-" itemValue="A-" />
+                    <f:selectItem itemLabel="A+" itemValue="A+" />
+                    <f:selectItem itemLabel="B-" itemValue="B-" />
+                    <f:selectItem itemLabel="B+" itemValue="B+" />
+                    <f:selectItem itemLabel="AB-" itemValue="AB-" />
+                    <f:selectItem itemLabel="AB+" itemValue="AB+"  />
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Estado Civil" />
+                <p:selectOneMenu id="EstadoCivil" value="#{empleadoC.empleado.estCiv}">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+                    <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                    <f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
+                    <f:selectItem itemLabel="Viudo" itemValue="Viudo" />
+                </p:selectOneMenu> 
+
+                <p:outputLabel value="Condición Laboral" />
+                <p:selectOneMenu id="CondicionLaboral" value="#{empleadoC.empleado.conLab}">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItem itemLabel="CAS" itemValue="CAS"/>
+                    <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
+                    <f:selectItem itemLabel="Cesante" itemValue="Cesante" /> 
+                </p:selectOneMenu>
+
+                <p:outputLabel for="txtDireccion" value="Dirección" />
+                <p:inputText id="txtDireccion" value="#{empleadoC.empleado.dir}" />
+
+                <p:outputLabel for="txtDialecto" value="Dialecto" />
+                <p:inputText id="txtDialecto" value="#{empleadoC.empleado.dialec}" />
+                <p:outputLabel for="txtLee" value="Lee" />
+                <p:inputText id="txtLee" value="#{empleadoC.empleado.lee}" />
+                <p:outputLabel for="txtHabla" value="Habla" />
+                <p:inputText id="txtHabla" value="#{empleadoC.empleado.habl}" />
+                <p:outputLabel for="txtEscribe" value="Escribe" />
+                <p:inputText id="txtEscribe" value="#{empleadoC.empleado.escr}" />
+
+
+                <p:outputLabel for="txtDesde" value="Desde" />
+                <p:inputText id="txtDesde" value="#{empleadoC.empleado.desd}" />
+                <p:outputLabel for="txtHasta" value="Hasta" />
+                <p:inputText id="txtHasta" value="#{empleadoC.empleado.has}" />
+                <p:outputLabel for="txtFechadeIngreso" value="Fecha de Ingreso" />
+                <p:inputText id="txtFechadeIngreso" value="#{empleadoC.empleado.fecIng}" />
+
+                <p:outputLabel value="Estado" />
+                <p:selectOneMenu id="Estado" value="#{empleadoC.empleado.est}">
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <p:commandButton value="Registrar" action="#{empleadoC.registrar()}"/>
+            <p:commandButton value="Eliminar" action="#{empleadoC.eliminar}"/>
+            <p:commandButton value="Modificar" action="#{empleadoC.modificar}"/>
+            <p:commandButton value="Listar" action="#{empleadoC.listar()}" update="Emple"/>
+
+          
+            <p:dataTable id="Emple" value="#{empleadoC.listaEmp}" var="Empleados">
+                    <p:column headerText="DNI"> 
+                        <p:outputLabel value="#{Empleados.DNI}"/>
+                    </p:column>
+                    <p:column headerText="Nombre"> 
+                        <p:outputLabel value="#{Empleados.nom}"/>
+                    </p:column>
+                    <p:column headerText="Apellido"> 
+                        <p:outputLabel value="#{Empleados.apel}"/>
+                    </p:column>
+                    <p:column headerText="Telefono"> 
+                        <p:outputLabel value="#{Empleados.telf}"/>
+                    </p:column>
+                    <p:column headerText="Grupo Sanguineo"> 
+                        <p:outputLabel value="#{Empleados.grupSang}"/>
+                    </p:column>
+                    <p:column headerText="RUC"> 
+                        <p:outputLabel value="#{Empleados.RUC}"/>
+                    </p:column>
+                    <p:column headerText="Fecha de Nacimiento"> 
+                        <p:outputLabel value="#{Empleados.fecNac}"/>
+                    </p:column>
+                    <p:column headerText="Email"> 
+                        <p:outputLabel value="#{Empleados.email}"/>
+                    </p:column>
+                    <p:column headerText="Lugar de Nacimiento"> 
+                        <p:outputLabel value="#{Empleados.lugNac}"/>
+                    </p:column>
+                    <p:column headerText="Dirección"> 
+                        <p:outputLabel value="#{Empleados.dir}"/>
+                    </p:column>
+                    <p:column headerText="Celular"> 
+                        <p:outputLabel value="#{Empleados.cel}"/>
+                    </p:column>
+                    <p:column headerText="Estado Civil"> 
+                        <p:outputLabel value="#{Empleados.estCiv}"/>
+                    </p:column>
+                    <p:column headerText="Condicion Laboral"> 
+                        <p:outputLabel value="#{Empleados.conLab}"/>
+                    </p:column>
+                    <p:column headerText="Dialecto"> 
+                        <p:outputLabel value="#{Empleados.dialec}"/>
+                    </p:column>
+                    <p:column headerText="Lee"> 
+                        <p:outputLabel value="#{Empleados.lee}"/>
+                    </p:column>
+                    <p:column headerText="Habla"> 
+                        <p:outputLabel value="#{Empleados.habl}"/>
+                    </p:column>
+                    <p:column headerText="Escribe"> 
+                        <p:outputLabel value="#{Empleados.has}"/>
+                    </p:column>
+                    <p:column headerText="Fecha de Naciemiento"> 
+                        <p:outputLabel value="#{Empleados.fecNac}"/>
+                    </p:column>
+                    <p:column headerText="Desde"> 
+                        <p:outputLabel value="#{Empleados.desd}"/>
+                    </p:column>
+                    <p:column headerText="Hasta"> 
+                        <p:outputLabel value="#{Empleados.has}"/>
+                    </p:column>
+                    <p:column headerText="Fecha de Ingreso"> 
+                        <p:outputLabel value="#{Empleados.fecIng}"/>
+                    </p:column>
+                    <p:column headerText="Estado">
+                        <p:outputLabel value="#{Empleados.est}"/>
+                    </p:column> 
+                </p:dataTable>
+           
+        </h:form>
+    </h:body>
+</html>
+
