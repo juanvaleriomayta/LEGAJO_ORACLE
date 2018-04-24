@@ -1,53 +1,60 @@
 package modelo;
 
-import java.sql.Date;
+
 
 
 public class Empleado {
-    private int codigo;
-    private String Nom, Apel, Telf, GrupSang, RUC,Email, LugNac, Dir,Cel,EstCiv,ConLab,
+    private int idEmpl;
+    private String DNI, Nom, Apel, Telf, GrupSang, RUC,Email, LugNac, Dir,Cel,EstCiv,ConLab,
             Dialec,Lee,Habl,Escr,Est;
-    private Date fecNac, desd, has, fecIng;
+    private String fecNac, desd, has, fecIng;
 
-    public int getCodigo() {
-        return codigo;
+    public int getIdEmpl() {
+        return idEmpl;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setIdEmpl(int idEmpl) {
+        this.idEmpl = idEmpl;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
     }
 
     public String getNom() {
         return Nom;
     }
 
-    public void setNom(String nom) {
-        this.
-                Nom = nom;
+    public void setNom(String Nom) {
+        this.Nom = Nom;
     }
 
     public String getApel() {
         return Apel;
     }
 
-    public void setApel(String apel) {
-        this.Apel = apel;
+    public void setApel(String Apel) {
+        this.Apel = Apel;
     }
 
     public String getTelf() {
         return Telf;
     }
 
-    public void setTelf(String telf) {
-        this.Telf = telf;
+    public void setTelf(String Telf) {
+        this.Telf = Telf;
     }
 
     public String getGrupSang() {
         return GrupSang;
     }
 
-    public void setGrupSang(String grupSang) {
-        this.GrupSang = grupSang;
+    public void setGrupSang(String GrupSang) {
+        this.GrupSang = GrupSang;
     }
 
     public String getRUC() {
@@ -146,41 +153,39 @@ public class Empleado {
         this.Est = Est;
     }
 
-    public Date getFecNac() {
+    public String getFecNac() {
         return fecNac;
     }
 
-    public void setFecNac(Date fecNac) {
+    public void setFecNac(String fecNac) {
         this.fecNac = fecNac;
     }
 
-    public Date getDesd() {
+    public String getDesd() {
         return desd;
     }
 
-    public void setDesd(Date desd) {
+    public void setDesd(String desd) {
         this.desd = desd;
     }
 
-    public Date getHas() {
+    public String getHas() {
         return has;
     }
 
-    public void setHas(Date has) {
+    public void setHas(String has) {
         this.has = has;
     }
 
-    public Date getFecIng() {
+    public String getFecIng() {
         return fecIng;
     }
 
-    public void setFecIng(Date fecIng) {
+    public void setFecIng(String fecIng) {
         this.fecIng = fecIng;
     }
 
-    public void add(Empleado empleado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+  
+
+ 
 }

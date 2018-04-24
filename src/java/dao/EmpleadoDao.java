@@ -3,177 +3,136 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Empleado;
 
-public class EmpleadoDao extends Conexion implements IEmpleado {
+public class EmpleadoDao extends Conexion {
 
-    @Override
-    public void guardar(Empleado empleado) throws Exception {
+    public void Registrar(Empleado empl) throws Exception {
         try {
-            String query = "insert into Empleado (Nom, Apel, Telf, GrupSang, RUC,Email, LugNac, Dir,Cel"
-                    + "EstCiv,ConLab, Dialec,Lee,Habl,Escr,Est,FecNac, Desd, Has, FecIng) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement ps = this.conectar().prepareStatement(query);
-            ps.setString(1, empleado.getNom());
-            ps.setString(2, empleado.getApel());
-            ps.setString(3, empleado.getTelf());
-            ps.setString(4, empleado.getGrupSang());
-            ps.setString(5, empleado.getRUC());
-            ps.setString(6, empleado.getEmail());
-            ps.setString(7, empleado.getLugNac());
-            ps.setString(8, empleado.getDir());
-            ps.setString(9, empleado.getCel());
-            ps.setString(10, empleado.getEstCiv());
-            ps.setString(11, empleado.getConLab());
-            ps.setString(12, empleado.getDialec());
-            ps.setString(13, empleado.getLee());
-            ps.setString(14, empleado.getHabl());
-            ps.setString(15, empleado.getEscr());
-            ps.setString(16, empleado.getEst());
-            ps.setDate(17, empleado.getFecNac());
-            ps.setDate(18, empleado.getDesd());
-            ps.setDate(19, empleado.getHas());
-            ps.setDate(20, empleado.getFecIng());
-            ps.executeUpdate();
-            ps.close();
+            this.Conexion();
+            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI, Nom, Apel, Telf, GrupSang, RUC,Email, LugNac, Dir,Cel,EstCiv,ConLab, Dialec,Lee,Habl,Escr,Est,FecNac, Desd, Has, FecIng) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )");
+            st.setString(1, empl.getDNI());
+            st.setString(2, empl.getNom());
+            st.setString(3, empl.getApel());
+            st.setString(4, empl.getTelf());
+            st.setString(5, empl.getGrupSang());
+            st.setString(6, empl.getRUC());
+            st.setString(7, empl.getEmail());
+            st.setString(8, empl.getLugNac());
+            st.setString(9, empl.getDir());
+            st.setString(10, empl.getCel());
+            st.setString(11, empl.getEstCiv());
+            st.setString(12, empl.getConLab());
+            st.setString(13, empl.getDialec());
+            st.setString(14, empl.getLee());
+            st.setString(15, empl.getHabl());
+            st.setString(16, empl.getEscr());
+            st.setString(17, empl.getEst());
+            st.setString(18, empl.getFecNac());
+            st.setString(19, empl.getDesd());
+            st.setString(20, empl.getHas());
+            st.setString(21, empl.getFecIng());
+            st.executeUpdate();
         } catch (SQLException e) {
-            e.getStackTrace();
+            throw e;
         } finally {
             this.Cerrar();
         }
     }
 
-    @Override
-    public void modificar(Empleado empleado) throws Exception {
+    public void Eliminar(Empleado emp) throws Exception {
         try {
-            String query = "update empleado set Nom=?, Apel=?, Telf=?, GrupSang=?, RUC=?,Email=?, LugNac=?, Dir=?,Cel=? "
-                    + "EstCiv=?,ConLab=?, Dialec=?,Lee=?,Habl=?,Escr=?,Est=?,FecNac=?, Desd=?, Has=?, FecIng=? WHERE CodEmpleado=?";
-            PreparedStatement ps = this.conectar().prepareStatement(query);
-            ps.setString(1, empleado.getNom());
-            ps.setString(2, empleado.getApel());
-            ps.setString(3, empleado.getTelf());
-            ps.setString(4, empleado.getGrupSang());
-            ps.setString(5, empleado.getRUC());
-            ps.setString(6, empleado.getEmail());
-            ps.setString(7, empleado.getLugNac());
-            ps.setString(8, empleado.getDir());
-            ps.setString(9, empleado.getCel());
-            ps.setString(10, empleado.getEstCiv());
-            ps.setString(11, empleado.getConLab());
-            ps.setString(12, empleado.getDialec());
-            ps.setString(13, empleado.getLee());
-            ps.setString(14, empleado.getHabl());
-            ps.setString(15, empleado.getEscr());
-            ps.setString(16, empleado.getEst());
-            ps.setDate(17, empleado.getFecNac());
-            ps.setDate(18, empleado.getDesd());
-            ps.setDate(19, empleado.getHas());
-            ps.setDate(20, empleado.getFecIng());
-            ps.setInt(21, empleado.getCodigo());
-            ps.executeUpdate();
-            ps.close();
-        } catch (Exception e) {
-            e.getStackTrace();
+            this.Conexion();
+            PreparedStatement st = this.getCn().prepareStatement("DELETE from Empleado where idEmpl=?");
+            st.setInt(1, emp.getIdEmpl());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+
         }
     }
 
-    /*public void eliminar(int Cod_Empleado) throws Exception {
+    public void Modificar(Empleado emp) throws Exception {
+        this.Conexion();
         try {
-            String query ="delete from empleado where numpac=?";
-            PreparedStatement ps=cx.prepareStatement(query);
-            ps.setInt(1, Cod_Empleado);
-        } catch (Exception e) {
-            e.getStackTrace();
+            String sql = "update Empleado set DNI=?, Nom=?, Apel=?, Telf=?, GrupSang=?, RUC=?,Email=?, LugNac=?, Dir=?,Cel=?,EstCiv=?,ConLab=?, Dialec=?,Lee=?,Habl=?,Escr=?,Est=?,FecNac=?, Desd=?, Has=?, FecIng=? where idEmpl=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
+            st.setString(1, emp.getDNI());
+            st.setString(2, emp.getNom());
+            st.setString(3, emp.getApel());
+            st.setString(4, emp.getTelf());
+            st.setString(5, emp.getGrupSang());
+            st.setString(6, emp.getRUC());
+            st.setString(7, emp.getEmail());
+            st.setString(8, emp.getLugNac());
+            st.setString(9, emp.getDir());
+            st.setString(10, emp.getCel());
+            st.setString(11, emp.getEstCiv());
+            st.setString(12, emp.getConLab());
+            st.setString(13, emp.getDialec());
+            st.setString(14, emp.getLee());
+            st.setString(15, emp.getHabl());
+            st.setString(16, emp.getEscr());
+            st.setString(17, emp.getEst());
+            st.setString(18, emp.getFecNac());
+            st.setString(19, emp.getDesd());
+            st.setString(20, emp.getHas());
+            st.setString(21, emp.getFecIng());
+            st.setInt(22, emp.getIdEmpl());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
         }
-    }*/
-    @Override
-    public List<Empleado> listarTodos() throws Exception {
-        List<Empleado> empleados = new ArrayList<>();
+    }
+
+    public List<Empleado> listarEmp() throws Exception {
+        this.Conexion();
+        List<Empleado> lista;
+        ResultSet rs;
         try {
             String sql = "select * from Empleado";
-            Statement st = this.conectar().createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement st = this.getCn().prepareCall(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            Empleado model;
             while (rs.next()) {
-                Empleado empleado = new Empleado();
-                empleado.setNom(rs.getString("Nom"));
-                empleado.setApel(rs.getString("Apel"));
-                empleado.setTelf(rs.getString("Telf"));
-                empleado.setGrupSang(rs.getString("GrupSang"));
-                empleado.setRUC(rs.getString("RUC"));
-                empleado.setEmail(rs.getString("Email"));
-                empleado.setLugNac(rs.getString("LugNac"));
-                empleado.setDir(rs.getString("Dir"));
-                empleado.setCel(rs.getString("Cel"));
-                empleado.setEstCiv(rs.getString("EstCiv"));
-                empleado.setConLab(rs.getString("ConLab"));
-                empleado.setDialec(rs.getString("Dialec"));
-                empleado.setLee(rs.getString("Lee"));
-                empleado.setHabl(rs.getString("Habl"));
-                empleado.setEscr(rs.getString("Escr"));
-                empleado.setEst(rs.getString("Est"));
-                empleado.setFecNac(rs.getDate("FecNac"));
-                empleado.setDesd(rs.getDate("Desd"));
-                empleado.setHas(rs.getDate("Has"));
-                empleado.setFecIng(rs.getDate("FecIng"));
-                empleado.add(empleado);
+                model = new Empleado();
+                model.setDNI(rs.getString("DNI"));
+                model.setNom(rs.getString("Nom"));
+                model.setApel(rs.getString("Apel"));
+                model.setTelf(rs.getString("Telf"));
+                model.setGrupSang(rs.getString("GrupSang"));
+                model.setRUC(rs.getString("RUC"));
+                model.setFecNac(rs.getString("FecNac"));
+                model.setEmail(rs.getString("Email"));
+                model.setLugNac(rs.getString("LugNac"));
+                model.setDir(rs.getString("Dir"));
+                model.setCel(rs.getString("Cel"));
+                model.setEstCiv(rs.getString("EstCiv"));
+                model.setConLab(rs.getString("ConLab"));
+                model.setFecIng(rs.getString("FecIng"));
+                model.setDesd(rs.getString("Desd"));
+                model.setHas(rs.getString("Has"));
+                model.setDialec(rs.getString("Dialec"));
+                model.setLee(rs.getString("Lee"));
+                model.setHabl(rs.getString("Habl"));
+                model.setEscr(rs.getString("Escr"));
+                model.setEst(rs.getString("Est"));
+                lista.add(model);
             }
-            st.close();
-            rs.close();
-
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public Empleado listarPorCod(int Cod_Empelado) throws Exception {
-        Empleado empleado = new Empleado();
-        try {
-            String Cod_Empleado = null;
-            String sql = "select * from empleado where numpac=" + Cod_Empleado;
-            Statement st = this.conectar().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                empleado.setNom(rs.getString("Nom"));
-                empleado.setApel(rs.getString("Apel"));
-                empleado.setTelf(rs.getString("Telf"));
-                empleado.setGrupSang(rs.getString("GrupSang"));
-                empleado.setRUC(rs.getString("RUC"));
-                empleado.setEmail(rs.getString("Email"));
-                empleado.setLugNac(rs.getString("LugNac"));
-                empleado.setDir(rs.getString("Dir"));
-                empleado.setCel(rs.getString("Cel"));
-                empleado.setEstCiv(rs.getString("EstCiv"));
-                empleado.setConLab(rs.getString("ConLab"));
-                empleado.setDialec(rs.getString("Dialec"));
-                empleado.setLee(rs.getString("Lee"));
-                empleado.setHabl(rs.getString("Habl"));
-                empleado.setEscr(rs.getString("Escr"));
-                empleado.setEst(rs.getString("Est"));
-                empleado.setFecNac(rs.getDate("FecNac"));
-                empleado.setDesd(rs.getDate("Desd"));
-                empleado.setHas(rs.getDate("Has"));
-                empleado.setFecIng(rs.getDate("FecIng"));
-            }
-            st.close();
-            rs.close();
+            return lista;
         } catch (SQLException e) {
-            e.getStackTrace();
+            throw e;
+        }finally{
+            this.Cerrar();
         }
-        return null;
+
     }
 
-    @Override
-    public void eliminar(int empleado) throws Exception {
-        try {
-            String query = "delete from empleado where numpac=?";
-            PreparedStatement ps = this.conectar().prepareStatement(query);
-            ps.setInt(1, empleado);
-        } catch (SQLException e) {
-            e.getStackTrace();
-        }
-    }
 }
