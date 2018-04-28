@@ -4,38 +4,46 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Control De Legajos</title>
     </h:head>
     <h:body>
         <p:growl id="msj" autoUpdate="true" />
         <h:form id="form">
-            <h1>DATOS PERSONALES</h1>
+            <h3>DATOS PERSONALES</h3>
             <p:panelGrid columns="4">
                 <p:outputLabel for="txtDNI" value="DNI" />
                 <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8"/>
-                
+
                 <p:outputLabel for="txtNombre" value="Nombre" />
                 <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}" required="true" requiredMessage="Ingrese tu Nombre" maxlength="50"/>
-                
+
                 <p:outputLabel for="txtApellido" value="Apellido" />
                 <p:inputText id="txtApellido" value="#{empleadoC.empleado.apel}" required="true" requiredMessage="Ingrese tu Apellido" maxlength="50"/>
+
                 <p:outputLabel for="txtTelefono" value="Telefono" />
-                <p:inputText id="txtTelefono" value="#{empleadoC.empleado.telf}"/>
+                <p:inputText id="txtTelefono" value="#{empleadoC.empleado.telf}" required="true" requiredMessage="Ingrese su Telefono" maxlength="7">
+                    <p:keyFilter regEx="/[\d\-]/"/>
+                </p:inputText>
+
                 <p:outputLabel for="txtRUC" value="RUC" />
-                <p:inputText id="txtRUC" value="#{empleadoC.empleado.RUC}" />
+                <p:inputText id="txtRUC" value="#{empleadoC.empleado.RUC}" required="true" requiredMessage="Ingrese su Numero de RUC" maxlength="11"/>
                 <p:outputLabel for="txtFechaDeNacimiento" value="Fecha de Nacimiento" />
-                <p:inputText id="txtFechaDeNacimiento" value="#{empleadoC.empleado.fecNac}" />
-                <p:outputLabel for="txtLugarDeNacimiento" value="Lugar de Nacimiento" />
-                <p:inputText id="txtLugarDeNacimiento" value="#{empleadoC.empleado.lugNac}"/>
-                <p:outputLabel for="txtCorreoElectronico" value="Correo Electronico" />
-                <p:inputText id="txtCorreoElectronico" value="#{empleadoC.empleado.email}" />
+                <p:inputText id="txtFechaDeNacimiento" value="#{empleadoC.empleado.fecNac}" required="true" requiredMessage="Ingrese su Fecha de Nacimiento"  />
+                <p:outputLabel for="txtLugarDeNacimiento" value="Lugar de Nacimiento"/>
+                <p:inputText id="txtLugarDeNacimiento" value="#{empleadoC.empleado.lugNac}" required="true" requiredMessage="Ingrese su Lugar de Nacimiento"/>
+                <p:outputLabel for="txtCorreoElectronico" value="Correo Electronico"/> 
+                <p:inputText id="txtCorreoElectronico" value="#{empleadoC.empleado.email}" maxlength="50"/>
+
                 <p:outputLabel for="txtCelular" value="Celular" />
-                <p:inputText id="txtCelular" value="#{empleadoC.empleado.cel}" />
+                <p:inputText id="txtCelular" value="#{empleadoC.empleado.cel}" required="true" requiredMessage="Ingrese su N° Celular" maxlength="9" >
+                    <p:keyFilter regEx="/[\d\-]/"/>
+                </p:inputText>
 
                 <p:outputLabel value="Grupo Sanguineo" />
-                <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}">
+                <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}" required="true" requiredMessage="Seleccione el Tipo de Sangre ">
                     <f:selectItem itemLabel="Seleccione" itemValue=""/>
                     <f:selectItem itemLabel="O-" itemValue="O-" />
                     <f:selectItem itemLabel="O+" itemValue="O+" />
@@ -46,55 +54,83 @@
                     <f:selectItem itemLabel="AB-" itemValue="AB-" />
                     <f:selectItem itemLabel="AB+" itemValue="AB+"  />
                 </p:selectOneMenu>
+            </p:panelGrid>
+            <h3>ESTADO CIVIL Y/O CONYUGAL</h3>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20">
 
-                <p:outputLabel value="Estado Civil" />
-                <p:selectOneMenu id="EstadoCivil" value="#{empleadoC.empleado.estCiv}">
-                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                <p:outputLabel value="Estado Civil:"  />
+
+                <p:selectOneRadio id="EstadoCivil" value="#{empleadoC.empleado.estCiv}" required="true" requiredMessage="Seleccione su Estado Civil">
+
                     <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
                     <f:selectItem itemLabel="Casado" itemValue="Casado"/>
                     <f:selectItem itemLabel="Divorciado" itemValue="Divorciado" />
                     <f:selectItem itemLabel="Viudo" itemValue="Viudo" />
-                </p:selectOneMenu> 
+                </p:selectOneRadio>
 
-                <p:outputLabel value="Condición Laboral" />
-                <p:selectOneMenu id="CondicionLaboral" value="#{empleadoC.empleado.conLab}">
-                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+            </h:panelGrid>
+            <h3>CONDICION LABORAL</h3>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20">
+
+                <p:outputLabel value="Condición Laboral:"   />
+
+                <p:selectOneRadio id="CondicionLaboral" value="#{empleadoC.empleado.conLab}" required="true" requiredMessage="Seleccione su Condición Laboral">
+
                     <f:selectItem itemLabel="CAS" itemValue="CAS"/>
                     <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
                     <f:selectItem itemLabel="Cesante" itemValue="Cesante" /> 
-                </p:selectOneMenu>
+                </p:selectOneRadio>
 
+            </h:panelGrid>
+
+            <h3>DOMICILIO ACTUAL</h3>
+            <p:panelGrid columns="2">
                 <p:outputLabel for="txtDireccion" value="Dirección" />
-                <p:inputText id="txtDireccion" value="#{empleadoC.empleado.dir}" />
+                <p:inputText id="txtDireccion" value="#{empleadoC.empleado.dir}" required="true" requiredMessage="Ingrese su Dirección"/>
 
-                <p:outputLabel for="txtDialecto" value="Dialecto" />
-                <p:inputText id="txtDialecto" value="#{empleadoC.empleado.dialec}" />
-                <p:outputLabel for="txtLee" value="Lee" />
-                <p:inputText id="txtLee" value="#{empleadoC.empleado.lee}" />
-                <p:outputLabel for="txtHabla" value="Habla" />
-                <p:inputText id="txtHabla" value="#{empleadoC.empleado.habl}" />
-                <p:outputLabel for="txtEscribe" value="Escribe" />
-                <p:inputText id="txtEscribe" value="#{empleadoC.empleado.escr}" />
-
-
-                <p:outputLabel for="txtDesde" value="Desde" />
-                <p:inputText id="txtDesde" value="#{empleadoC.empleado.desd}" />
-                <p:outputLabel for="txtHasta" value="Hasta" />
-                <p:inputText id="txtHasta" value="#{empleadoC.empleado.has}" />
-                <p:outputLabel for="txtFechadeIngreso" value="Fecha de Ingreso" />
-                <p:inputText id="txtFechadeIngreso" value="#{empleadoC.empleado.fecIng}" />
-
-                <p:outputLabel value="Estado" />
-                <p:selectOneMenu id="Estado" value="#{empleadoC.empleado.est}">
-                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
-                    <f:selectItem itemLabel="Activo" itemValue="Activo"/>
-                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
-                </p:selectOneMenu>
             </p:panelGrid>
 
+            <h3>CONOCIMIENTO DE IDIOMAS Y/O DIALECTO</h3>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="txtDialecto" value="Dialecto" />
+                <p:inputText id="txtDialecto" value="#{empleadoC.empleado.dialec}" required="true" requiredMessage="Ingrese su Dialecto"  />
+                <p:outputLabel for="txtLee" value="Lee" />
+                <p:inputText id="txtLee" value="#{empleadoC.empleado.lee}" required="true" requiredMessage="Ingrese el Campo" maxlength="2" />
+                <p:outputLabel for="txtHabla" value="Habla" />
+                <p:inputText id="txtHabla" value="#{empleadoC.empleado.habl}" required="true" requiredMessage="Ingrese el Campo" maxlength="2" />
+                <p:outputLabel for="txtEscribe" value="Escribe" />
+                <p:inputText id="txtEscribe" value="#{empleadoC.empleado.escr}" required="true" requiredMessage="Ingrese el Campo" maxlength="2" />
+            </p:panelGrid>
+
+            <h3>DATOS DE ESTUDIO</h3> 
+            <p:panelGrid columns="2">
+                <p:outputLabel for="txtDesde" value="Desde" />
+                <p:inputText id="txtDesde" value="#{empleadoC.empleado.desd}" required="true" requiredMessage="Ingrese el Campo"/>
+                <p:outputLabel for="txtHasta" value="Hasta" />
+                <p:inputText id="txtHasta" value="#{empleadoC.empleado.has}" required="true" requiredMessage="Ingrese el Campo"/>
+            </p:panelGrid>
+
+            <h3>FECHA DE INGRESO AL SBS</h3>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="txtFechadeIngreso" value="Fecha de Ingreso"/>
+                <p:inputText id="txtFechadeIngreso" value="#{empleadoC.empleado.fecIng}" required="true" requiredMessage="Ingrese el Campo"/>
+            </p:panelGrid>
+            
+            <h3>ESTADO LABORAL</h3>
+
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20" >
+                <p:outputLabel value="Estado:"   />
+                <p:selectOneRadio id="Estado" value="#{empleadoC.empleado.est}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                    <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+                </p:selectOneRadio>
+            </h:panelGrid>
+
+
             <p:commandButton value="Registrar" action="#{empleadoC.registrar()}" update="form"/>
-            <p:commandButton value="Eliminar" action="#{empleadoC.eliminar()}"/>
-            <p:commandButton value="Modificar" action="#{empleadoC.modificar()}"/>
+
+
             <p:commandButton value="Listar" action="#{empleadoC.listar()}" update="Emple" />               
 
             <p:dataTable id="Emple"
@@ -189,9 +225,22 @@
                     <p:outputLabel value="#{Empleados.est}"/>
                 </p:column> 
 
+
+                <p:column headerText="Eliminar">
+                    <p:commandButton value="Eliminar" action="#{empleadoC.eliminar(Empleados)}" update="form" />
+
+                </p:column> 
+                <p:column headerText="Modificar">
+                    <p:commandButton value="Modificar" action="#{empleadoC.modificar(empleado)}"/>
+                </p:column> 
+
+
+
+
+
+
             </p:dataTable>
 
         </h:form>
     </h:body>
 </html>
-
