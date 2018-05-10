@@ -12,17 +12,7 @@
         <p:growl id="msj" autoUpdate="true" />
         <h:form id="frm">
             <h3>DATOS PERSONALES</h3>
-            <!-- <p:outputLabel for="txtDNI" value="DNI" />
-             <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" />
- 
-             <p:outputLabel for="txtNombre" value="Nombre" />
-             <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}" />
- 
-             <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno" />
-             <p:inputText id="txtApellidoPaterno" value="#{empleadoC.empleado.apelPate}" />
- 
-             <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno" />
-             <p:inputText id="txtApellidoMaterno" value="#{empleadoC.empleado.apelMate}" /> --> 
+
 
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
             <p:commandButton value="Registrar" actionListener="#{empleadoC.registrar()}"/>
@@ -31,6 +21,10 @@
 
 
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado">
+                <p:column style="width:16px">
+                    <p:rowToggler />
+                </p:column>
+                
                 <p:column headerText="DNI" >
                     <p:outputLabel value="#{empleado.DNI}" />
                 </p:column>
@@ -44,85 +38,21 @@
                     <p:outputLabel value="#{empleado.apelMate}"/>
                 </p:column>
 
-                <p:column headerText="RUC" >
-                    <p:outputLabel value="#{empleado.RUC}"/>
-                </p:column>
+                <p:rowExpansion>
+                    <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
 
-                <p:column headerText="Celular" >
-                    <p:outputLabel value="#{empleado.cel}"/>
-                </p:column>
+                        <h:outputText value="RUC" />
+                        <h:outputText value="#{empleado.RUC}" />
+                        
+                        <h:outputText value="Telefono" />
+                        <h:outputText value="#{empleado.telf}" />
+                        
+                        <h:outputText value="celular" />
+                        <h:outputText value="#{empleado.cel}" />
 
-                <p:column headerText="Telefono" >
-                    <p:outputLabel value="#{empleado.telf}"/>
-                </p:column>
 
-                <p:column headerText="Correo ELectronico" >
-                    <p:outputLabel value="#{empleado.email}"/>
-                </p:column>
-
-                <p:column headerText="Carnet Asegurado" >
-                    <p:outputLabel value="#{empleado.carnAseg}"/>
-                </p:column>
-
-                <p:column headerText="Referencia" >
-                    <p:outputLabel value="#{empleado.refe}"/>
-                </p:column>
-
-                <p:column headerText="Leyes" >
-                    <p:outputLabel value="#{empleado.leye}"/>
-                </p:column>
-
-                <p:column headerText="Datos del Conyugue" >
-                    <p:outputLabel value="#{empleado.datCony}"/>
-                </p:column>
-
-                <p:column headerText="Dirección" >
-                    <p:outputLabel value="#{empleado.ubigActu}"/>
-                </p:column>
-
-                <p:column headerText="Lugar de Nacimiento" >
-                    <p:outputLabel value="#{empleado.ubigOrig}"/>
-                </p:column>
-
-                <p:column headerText="Fecha de Nacimiento" >
-                    <p:outputLabel value="#{empleado.fecNac}"/>
-                </p:column>
-
-                <p:column headerText="Fecha de Ingreso SBS" >
-                    <p:outputLabel value="#{empleado.fecIng}"/>
-                </p:column>
-
-                <p:column headerText="Fecha de Nombramiento" >
-                    <p:outputLabel value="#{empleado.fecNom}"/>
-                </p:column>
-
-                <p:column headerText="Lee" >
-                    <p:outputLabel value="#{empleado.lee}"/>
-                </p:column>
-
-                <p:column headerText="Habla" >
-                    <p:outputLabel value="#{empleado.habl}"/>
-                </p:column>
-
-                <p:column headerText="Escribe" >
-                    <p:outputLabel value="#{empleado.escr}"/>
-                </p:column>
-
-                <p:column headerText="Grupo Sanguineo" >
-                    <p:outputLabel value="#{empleado.grupSang}"/>
-                </p:column>
-
-                <p:column headerText="Condicion Laboral" >
-                    <p:outputLabel value="#{empleado.conLab}"/>
-                </p:column>
-
-                <p:column headerText="Estado civil" >
-                    <p:outputLabel value="#{empleado.estCiv}"/>
-                </p:column>
-
-                <p:column headerText="Estado Laboral" >
-                    <p:outputLabel value="#{empleado.est}"/>
-                </p:column>
+                    </p:panelGrid>
+                </p:rowExpansion>
 
                 <p:column headerText="Modificar" >
                     <p:commandLink value="Modificar" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />

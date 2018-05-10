@@ -54,8 +54,7 @@ public class EmpleadoDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Telf,GrupSang,FecNac,Email"
-                    + "Cel,EstCiv,ConLab,FecIng,Lee,Habl,Escr,Est,CarnAseg,Refe,Leye,FecNom,DatCony,UbigActu,UbigOrig  FROM Empleado");
+            PreparedStatement st = this.getCn().prepareCall("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Telf,GrupSang,FecNac,Email,Cel,EstCiv,ConLab,FecIng,Lee,Habl,Escr,Est,CarnAseg,Refe,Leye,FecNom,DatCony,UbigActu,UbigOrig  FROM Empleado");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
