@@ -5,31 +5,54 @@ package modelo;
 
 public class Empleado {
     private int idEmpl;
-    private String DNI, Nom, ApelMate,ApelPate, RUC,Telf,GrupSang,FecNac,Email;
-    private String Cel,EstCiv,ConLab,FecIng,Lee,Habl,Escr,Est,CarnAseg,Refe,Leye,FecNom,DatCony,UbigActu,UbigOrig;
+    private String DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,Est;
 
-    public String getTelf() {
-        return Telf;
+    public int getIdEmpl() {
+        return idEmpl;
     }
 
-    public void setTelf(String Telf) {
-        this.Telf = Telf;
+    public void setIdEmpl(int idEmpl) {
+        this.idEmpl = idEmpl;
     }
 
-    public String getGrupSang() {
-        return GrupSang;
+    public String getDNI() {
+        return DNI;
     }
 
-    public void setGrupSang(String GrupSang) {
-        this.GrupSang = GrupSang;
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
     }
 
-    public String getFecNac() {
-        return FecNac;
+    public String getNom() {
+        return Nom;
     }
 
-    public void setFecNac(String FecNac) {
-        this.FecNac = FecNac;
+    public void setNom(String Nom) {
+        this.Nom = Nom;
+    }
+
+    public String getApelPate() {
+        return ApelPate;
+    }
+
+    public void setApelPate(String ApelPate) {
+        this.ApelPate = ApelPate;
+    }
+
+    public String getApelMate() {
+        return ApelMate;
+    }
+
+    public void setApelMate(String ApelMate) {
+        this.ApelMate = ApelMate;
+    }
+
+    public String getRUC() {
+        return RUC;
+    }
+
+    public void setRUC(String RUC) {
+        this.RUC = RUC;
     }
 
     public String getEmail() {
@@ -40,12 +63,36 @@ public class Empleado {
         this.Email = Email;
     }
 
+    public String getTelf() {
+        return Telf;
+    }
+
+    public void setTelf(String Telf) {
+        this.Telf = Telf;
+    }
+
     public String getCel() {
         return Cel;
     }
 
     public void setCel(String Cel) {
         this.Cel = Cel;
+    }
+
+    public String getFecNac() {
+        return FecNac;
+    }
+
+    public void setFecNac(String FecNac) {
+        this.FecNac = FecNac;
+    }
+
+    public String getGrupSang() {
+        return GrupSang;
+    }
+
+    public void setGrupSang(String GrupSang) {
+        this.GrupSang = GrupSang;
     }
 
     public String getEstCiv() {
@@ -62,46 +109,6 @@ public class Empleado {
 
     public void setConLab(String ConLab) {
         this.ConLab = ConLab;
-    }
-
-    public String getFecIng() {
-        return FecIng;
-    }
-
-    public void setFecIng(String FecIng) {
-        this.FecIng = FecIng;
-    }
-
-    public String getLee() {
-        return Lee;
-    }
-
-    public void setLee(String Lee) {
-        this.Lee = Lee;
-    }
-
-    public String getHabl() {
-        return Habl;
-    }
-
-    public void setHabl(String Habl) {
-        this.Habl = Habl;
-    }
-
-    public String getEscr() {
-        return Escr;
-    }
-
-    public void setEscr(String Escr) {
-        this.Escr = Escr;
-    }
-
-    public String getEst() {
-        return Est;
-    }
-
-    public void setEst(String Est) {
-        this.Est = Est;
     }
 
     public String getCarnAseg() {
@@ -128,6 +135,14 @@ public class Empleado {
         this.Leye = Leye;
     }
 
+    public String getFecIng() {
+        return FecIng;
+    }
+
+    public void setFecIng(String FecIng) {
+        this.FecIng = FecIng;
+    }
+
     public String getFecNom() {
         return FecNom;
     }
@@ -152,62 +167,12 @@ public class Empleado {
         this.UbigActu = UbigActu;
     }
 
-    public String getUbigOrig() {
-        return UbigOrig;
+    public String getEst() {
+        return Est;
     }
 
-    public void setUbigOrig(String UbigOrig) {
-        this.UbigOrig = UbigOrig;
+    public void setEst(String Est) {
+        this.Est = Est;
     }
-
-    public String getRUC() {
-        return RUC;
-    }
-
-    public void setRUC(String RUC) {
-        this.RUC = RUC;
-    }
-
-    public int getIdEmpl() {
-        return idEmpl;
-    }
-
-    public void setIdEmpl(int idEmpl) {
-        this.idEmpl = idEmpl;
-    }
-
-    public String getDNI() {
-        return DNI;
-    }
-
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
-    }
-
-    public String getNom() {
-        return Nom;
-    }
-
-    public void setNom(String Nom) {
-        this.Nom = Nom;
-    }
-
-    public String getApelMate() {
-        return ApelMate;
-    }
-
-    public void setApelMate(String ApelMate) {
-        this.ApelMate = ApelMate;
-    }
-
-    public String getApelPate() {
-        return ApelPate;
-    }
-
-    public void setApelPate(String ApelPate) {
-        this.ApelPate = ApelPate;
-    }
-
-    
     
 }

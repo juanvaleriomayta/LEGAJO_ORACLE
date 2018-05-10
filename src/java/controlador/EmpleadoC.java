@@ -66,9 +66,6 @@ public class EmpleadoC {
         this.empleado.setEstCiv("");
         this.empleado.setConLab("");
         this.empleado.setFecIng("");
-        this.empleado.setHabl("");
-        this.empleado.setLee("");
-        this.empleado.setEscr("");
         this.empleado.setEst("");
         this.empleado.setCarnAseg("");
         this.empleado.setRefe("");
@@ -76,8 +73,7 @@ public class EmpleadoC {
         this.empleado.setFecNom("");
         this.empleado.setDatCony("");
         this.empleado.setUbigActu("");
-        this.empleado.setUbigOrig("");
-
+        
     }
 
     public void registrar() throws Exception {
