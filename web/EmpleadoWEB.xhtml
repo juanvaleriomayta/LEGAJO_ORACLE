@@ -14,7 +14,7 @@
 
 
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
-            <p:commandButton value="Registrar" actionListener="#{empleadoC.registrar()}"/>
+            
             <p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>
 
 
@@ -36,8 +36,16 @@
                     <h:outputText value="#{empleado.apelMate}"/>
                 </p:column>
                 
+                 <p:column headerText="Modificar" >
+                <p:commandLink value="Modificar" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandLink value="Eliminar" actionListener="#{empleadoC.eliminar(empleado )}" update="data" />
+                </p:column>
+                
+                
                 <p:rowExpansion>
-                    <p:panelGrid columns="2" columnClasses="label,value" style="width:300px " >
+                    <p:panelGrid columns="2" columnClasses="label,value" style="width:2000px " >
                         <h:outputText value="Telefono"/>
                         <h:outputText value="#{empleado.telf}"/>
                         <h:outputText value="Grupo Sanguineo"/>
@@ -71,7 +79,7 @@
                         <h:outputText value="Dirección"/>
                         <h:outputText value="#{empleado.ubigActu}"/>
                         <h:outputText value="Lugar de Nacimiento"/>
-                        <h:outputText value="#{empleado.ubigOrig}"/>
+                        <h:outputText value="#{empleado.ubigActu}"/>
                     </p:panelGrid>
                                 
                 </p:rowExpansion>
@@ -139,6 +147,10 @@
 
                     <p:outputLabel for="txtUbigActu" value="Dirección"/>
                     <p:inputText id="txtUbigActu" value="#{empleadoC.empleado.ubigActu}">
+                    </p:inputText>
+                    
+                    <p:outputLabel for="txtUbigOrig" value="Lugar de Nacimiento"/>
+                    <p:inputText id="txtUbigOrig" value="#{empleadoC.empleado.ubigActu}">
                     </p:inputText>
 
                     

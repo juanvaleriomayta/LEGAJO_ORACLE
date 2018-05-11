@@ -83,6 +83,7 @@ public class EmpleadoC {
             dao = new EmpleadoDao();
             dao.registrar(empleado);
             this.listar();
+            this.limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
         } catch (Exception e) {
             throw e;
