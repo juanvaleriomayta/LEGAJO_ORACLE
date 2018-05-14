@@ -7,6 +7,7 @@ public class Empleado {
     private int idEmpl;
     private String DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est;
 
+
     public String getUbigOrig() {
         return UbigOrig;
     }
@@ -14,6 +15,7 @@ public class Empleado {
     public void setUbigOrig(String UbigOrig) {
         this.UbigOrig = UbigOrig;
     }
+
 
     public int getIdEmpl() {
         return idEmpl;
