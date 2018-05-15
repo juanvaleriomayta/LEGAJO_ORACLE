@@ -13,7 +13,9 @@ public class DAO {
             if (cn == null) {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
               //  cn = DriverManager.getConnection("jdbc:sqlserver://35.229.54.77:1433;database=Legajo", "root", "root");
+
                 cn = DriverManager.getConnection("jdbc:sqlserver://valerius.database.windows.net:1433;database=Legajo", "jvalerio", "pa$$word2018");
+
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error: " + e);

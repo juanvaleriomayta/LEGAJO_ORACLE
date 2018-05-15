@@ -1,15 +1,15 @@
-package controlador;
+package bean;
 
 import dao.EmpleadoDao;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import modelo.Empleado;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class EmpleadoC {
 
     private Empleado empleado = new Empleado();
@@ -21,6 +21,7 @@ public class EmpleadoC {
     }
 
     public void setAccion(String accion) {
+        this.limpiar();
         this.accion = accion;
     }
 
@@ -37,6 +38,7 @@ public class EmpleadoC {
     }
 
     public void setEmpleado(Empleado empleado) {
+
         this.empleado = empleado;
     }
 
@@ -77,14 +79,14 @@ public class EmpleadoC {
 
     }
 
-    public void registrar() throws Exception {
+    private void registrar() throws Exception {
         EmpleadoDao dao;
 
         try {
             dao = new EmpleadoDao();
             dao.registrar(empleado);
+
             this.listar();
-            this.limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
         } catch (Exception e) {
             throw e;
@@ -121,13 +123,14 @@ public class EmpleadoC {
         }
     }
 
-    public void modificar() throws Exception {
+    private void modificar() throws Exception {
         EmpleadoDao dao;
 
         try {
             dao = new EmpleadoDao();
             dao.modificar(empleado);
             this.listar();
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Modificado con Exito"));
         } catch (Exception e) {
             throw e;

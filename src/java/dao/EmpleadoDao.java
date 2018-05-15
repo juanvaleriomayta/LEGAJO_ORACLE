@@ -12,6 +12,7 @@ public class EmpleadoDao extends DAO {
     public void registrar(Empleado emp) throws Exception {
         try {
             this.Conexion();
+
             PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -156,7 +157,6 @@ public class EmpleadoDao extends DAO {
             st.setString(20, emp.getUbigOrig());
             st.setString(21, emp.getEst());
             st.setInt(22, emp.getIdEmpl());
-            st.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {

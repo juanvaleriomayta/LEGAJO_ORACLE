@@ -14,7 +14,7 @@
 
 
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
-            
+
             <p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>
 
 
@@ -35,15 +35,10 @@
                 <p:column headerText="Apellido Materno">
                     <h:outputText value="#{empleado.apelMate}"/>
                 </p:column>
+
                 
-                 <p:column headerText="Modificar" >
-                <p:commandLink value="Modificar" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
-                </p:column>
-                <p:column headerText="Eliminar" >
-                    <p:commandLink value="Eliminar" actionListener="#{empleadoC.eliminar(empleado )}" update="data" />
-                </p:column>
-                
-                
+
+
                 <p:rowExpansion>
                     <p:panelGrid columns="2" columnClasses="label,value" style="width:500px " >
                         <h:outputText value="Telefono"/>
@@ -81,8 +76,15 @@
                         <h:outputText value="Lugar de Nacimiento"/>
                         <h:outputText value="#{empleado.ubigOrig}"/>
                     </p:panelGrid>
-                                
+
                 </p:rowExpansion>
+                
+                <p:column headerText="Modificar" >
+                    <p:commandLink value="Modificar" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandLink value="Eliminar" actionListener="#{empleadoC.eliminar(empleado)}" update="data" />
+                </p:column>
             </p:dataTable>
         </h:form>
 
@@ -148,12 +150,12 @@
                     <p:outputLabel for="txtUbigActu" value="Dirección"/>
                     <p:inputText id="txtUbigActu" value="#{empleadoC.empleado.ubigActu}">
                     </p:inputText>
-                    
+
                     <p:outputLabel for="txtUbigOrig" value="Lugar de Nacimiento"/>
                     <p:inputText id="txtUbigOrig" value="#{empleadoC.empleado.ubigOrig}">
                     </p:inputText>
 
-                    
+
                     <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
                     <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
 
@@ -165,11 +167,11 @@
                     <p:inputMask id="txtFecNom" value="#{empleadoC.empleado.fecNom}" mask="99/99/9999"/>
 
 
-                  
+
 
 
                     <p:outputLabel value="Grupo Sanguineo" />
-                    <p:selectOneMenu>
+                    <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}" required="true" requiredMessage="Seleccione el Tipo de Sangre ">
                         <f:selectItem itemLabel="Seleccione"/>
                         <f:selectItem itemLabel="O-" itemValue="O-" />
                         <f:selectItem itemLabel="O+" itemValue="O+" />
@@ -183,7 +185,7 @@
 
                     <p:outputLabel value="Condición Laboral:"   />
 
-                    <p:selectOneRadio >
+                    <p:selectOneRadio id="CondicionLaboral" value="#{empleadoC.empleado.conLab}" required="true" requiredMessage="Seleccione su Estado Laboral">
 
                         <f:selectItem itemLabel="CAS" itemValue="CAS"/>
                         <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
@@ -192,7 +194,7 @@
 
                     <p:outputLabel value="Estado civil"/>
 
-                    <p:selectOneRadio>                        
+                    <p:selectOneRadio id="Estado" value="#{empleadoC.empleado.estCiv}" required="true" requiredMessage="Seleccione su Estado Laboral">                        
 
                         <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
                         <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
@@ -205,7 +207,7 @@
 
                     <p:outputLabel value="Estado Laboral" />
 
-                    <p:selectOneRadio>
+                    <p:selectOneRadio id="EstadoLaboral" value="#{empleadoC.empleado.est}" required="true" requiredMessage="Seleccione su Estado Laboral">
 
                         <f:selectItem itemLabel="Activo" itemValue="Activo"/>
                         <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
