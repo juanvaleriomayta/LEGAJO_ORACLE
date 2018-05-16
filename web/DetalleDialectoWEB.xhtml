@@ -9,50 +9,47 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <p:growl id="msj" autoUpdate="true"/>
-        <h:form id="frm">
+           <p:growl id="msj" autoUpdate="true"/>
+                <h:form id="frm">
 
-            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();"  actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
-            <p:commandButton value="Listar" actionListener="#{detalleDialectoC.listar()}"   update="data"/>
+                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
+                    <p:commandButton value="Listar" actionListener="#{detalleDialectoC.listar()}" update="data"/>
 
-            <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detalledialecto">                                              
-                <p:column headerText="Lee">
-                    <h:outputText value="#{detalledialecto.lee}"/>
-                </p:column>
-                <p:column headerText="Habla">
-                    <h:outputText value="#{detalledialecto.hab}"/>
-                </p:column>
-                <p:column headerText="Escribe">
-                    <h:outputText value="#{detalledialecto.escri}"/>
-                </p:column>
-                <p:column headerText="Modificar" >
-                    <p:commandLink value="Modificar" actionListener="#{detalleDialectoC.leerID(detalledialecto)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
-                </p:column>
-                <p:column headerText="Eliminar" >
-                    <p:commandLink value="Eliminar" actionListener="#{detalleDialectoC.eliminar(detalledialecto)}" update="data" />
-                </p:column>
-            </p:dataTable>
-            </h:form>
-            
-            <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
-                <h:form>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel for="txtLee" value="Lee"/>
-                        <p:inputText id="txtLee" value="#{detalleDialectoC.detalleDialecto.lee}" maxlength="2"/>
-                        <p:outputLabel for="txtHab" value="Habla"/>
-                        <p:inputText id="txtHab" value="#{detalleDialectoC.detalleDialecto.hab}" maxlength="2"/>
-                        <p:outputLabel for="txtEscri" value="Escribe"/>
-                        <p:inputText id="txtEscri" value="#{detalleDialectoC.detalleDialecto.escri}" maxlength="2"/>
+                    <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detalledialecto">
+                        <p:column headerText="Lee" >
+                            <p:outputLabel value="#{detalledialecto.lee}"/>
+                        </p:column>
+                        <p:column headerText="Habla" >
+                            <p:outputLabel value="#{detalledialecto.habla}" />
+                        </p:column>
+                        <p:column headerText="Escribe" >
+                            <p:outputLabel value="#{detalledialecto.escribe}"/>
+                        </p:column>
+                        <p:column headerText="Modificar" >
+                            <p:commandLink value="Modificar" actionListener="#{detalleDialectoC.leerID(detalledialecto)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        </p:column>
+                        <p:column headerText="Eliminar" >
+                            <p:commandLink value="Eliminar" actionListener="#{detalleDialectoC.eliminar(detalledialecto)}" update="data" />
+                        </p:column>
+                    </p:dataTable>               
+                </h:form>
+
+                <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+                    <h:form>
+                        <p:outputLabel value="Lee" />
+                        <p:inputText value="#{detalleDialectoC.detalleDialecto.lee}" />
+
+                        <p:outputLabel value="Habla" />
+                        <p:inputText value="#{detalleDialectoC.detalleDialecto.habla}" />
+                        
+                        <p:outputLabel value="Escribe" />
+                        <p:inputText value="#{detalleDialectoC.detalleDialecto.escribe}" />
 
                         <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                         <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
-                    </p:panelGrid>
-                </h:form>
-            </p:dialog>
 
+                    </h:form>
 
-
-
-      
+                </p:dialog>  
     </h:body>
 </html>
