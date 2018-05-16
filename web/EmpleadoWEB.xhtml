@@ -131,8 +131,8 @@
                     </p:inputText>
 
                     <p:outputLabel for="txtCarnAseg" value="Carnet Asegurado"/>
-                    <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" >
-                        <p:keyFilter regEx="/[\d\-]/"/>
+                    <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15" >
+                        
                     </p:inputText>
 
                     <p:outputLabel for="txtRefe" value="Referencia"/>
@@ -140,7 +140,7 @@
                     </p:inputText>
 
                     <p:outputLabel for="txtLeye" value="Leyes"/>
-                    <p:inputText id="txtLeye" value="#{empleadoC.empleado.leye}">
+                    <p:inputText id="txtLeye" value="#{empleadoC.empleado.leye}" maxlength="10">
                     </p:inputText>                    
 
                     <p:outputLabel for="txtDatCony" value="Datos del Conyugue"/>

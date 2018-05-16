@@ -2,7 +2,7 @@ package modelo;
 
 public class DetalleDialecto {
     private int idDetDial;
-    private String Lee,Hab,Escri;
+    private String Lee,Habla,Escribe;
 
     public int getIdDetDial() {
         return idDetDial;
@@ -20,19 +20,20 @@ public class DetalleDialecto {
         this.Lee = Lee;
     }
 
-    public String getHab() {
-        return Hab;
+    public String getHabla() {
+        return Habla;
     }
 
-    public void setHab(String Hab) {
-        this.Hab = Hab;
+    public void setHabla(String Habla) {
+        this.Habla = Habla;
     }
 
-    public String getEscri() {
-        return Escri;
+    public String getEscribe() {
+        return Escribe;
     }
 
-    public void setEscri(String Escri) {
-        this.Escri = Escri;
+    public void setEscribe(String Escribe) {
+        this.Escribe = Escribe;
     }
+
 }

@@ -11,7 +11,7 @@ import modelo.DetalleDialecto;
 
 @ManagedBean
 @SessionScoped
-public class DetalleDialectoC implements Serializable{
+public class DetalleDialectoC implements Serializable {
 
     private DetalleDialecto detalleDialecto = new DetalleDialecto();
     private List<DetalleDialecto> lstDetalleDialecto;
@@ -56,9 +56,8 @@ public class DetalleDialectoC implements Serializable{
     public void limpiar() {
         this.detalleDialecto.setIdDetDial(0);
         this.detalleDialecto.setLee("");
-        this.detalleDialecto.setHab("");
-        this.detalleDialecto.setEscri("");
-
+        this.detalleDialecto.setHabla("");
+        this.detalleDialecto.setEscribe("");
     }
 
     private void registrar() throws Exception {
@@ -69,9 +68,9 @@ public class DetalleDialectoC implements Serializable{
             dao.registrar(detalleDialecto);
             this.listar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
+
         } catch (Exception e) {
             throw e;
-
         }
     }
 
@@ -106,12 +105,10 @@ public class DetalleDialectoC implements Serializable{
 
     private void modificar() throws Exception {
         DetalleDialectoDao dao;
-
         try {
             dao = new DetalleDialectoDao();
             dao.modificar(detalleDialecto);
             this.listar();
-
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Modificado con Exito"));
         } catch (Exception e) {
             throw e;
@@ -120,7 +117,6 @@ public class DetalleDialectoC implements Serializable{
 
     public void eliminar(DetalleDialecto detdia) throws Exception {
         DetalleDialectoDao dao;
-
         try {
             dao = new DetalleDialectoDao();
             dao.eliminar(detdia);

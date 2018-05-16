@@ -7,18 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.DetalleDialecto;
 
+public class DetalleDialectoDao extends DAO {
 
-
-public class DetalleDialectoDao extends DAO{
-    
     public void registrar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-
             PreparedStatement st = this.getCn().prepareStatement("INSERT INTO DetDial (Lee,Hab,Escri) values(?,?,?)");
             st.setString(1, detdia.getLee());
-            st.setString(2, detdia.getHab());
-            st.setString(3, detdia.getEscri());
+            st.setString(2, detdia.getHabla());
+            st.setString(3, detdia.getEscribe());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -31,7 +28,6 @@ public class DetalleDialectoDao extends DAO{
     public List<DetalleDialecto> listar() throws Exception {
         List<DetalleDialecto> lista;
         ResultSet rs;
-
         try {
             this.Conexion();
             PreparedStatement st = this.getCn().prepareCall("SELECT idDetDial, Lee,Hab,Escri FROM DetDial");
@@ -41,8 +37,8 @@ public class DetalleDialectoDao extends DAO{
                 DetalleDialecto detdia = new DetalleDialecto();
                 detdia.setIdDetDial(rs.getInt("idDetDial"));
                 detdia.setLee(rs.getString("Lee"));
-                detdia.setHab(rs.getString("Hab"));
-                detdia.setEscri(rs.getString("Escri"));
+                detdia.setHabla(rs.getString("Hab"));
+                detdia.setEscribe(rs.getString("Escri"));
                 lista.add(detdia);
             }
         } catch (SQLException e) {
@@ -54,6 +50,7 @@ public class DetalleDialectoDao extends DAO{
     }
 
     public DetalleDialecto leerID(DetalleDialecto detdia) throws Exception {
+
         DetalleDialecto detdial = null;
         ResultSet rs;
 
@@ -66,8 +63,8 @@ public class DetalleDialectoDao extends DAO{
                 detdial = new DetalleDialecto();
                 detdial.setIdDetDial(rs.getInt("idDetDial"));
                 detdial.setLee(rs.getString("Lee"));
-                detdial.setHab(rs.getString("Hab"));
-                detdial.setEscri(rs.getString("Escri"));
+                detdial.setHabla(rs.getString("Hab"));
+                detdial.setEscribe(rs.getString("Escri"));
             }
         } catch (SQLException e) {
             throw e;
@@ -82,9 +79,10 @@ public class DetalleDialectoDao extends DAO{
             this.Conexion();
             PreparedStatement st = this.getCn().prepareStatement("UPDATE DetDial SET Lee = ?, Hab = ?, Escri = ? WHERE idDetDial = ?");
             st.setString(1, detdia.getLee());
-            st.setString(2, detdia.getHab());
-            st.setString(3, detdia.getEscri());                  
+            st.setString(2, detdia.getHabla());
+            st.setString(3, detdia.getEscribe());
             st.setInt(4, detdia.getIdDetDial());
+            st.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {

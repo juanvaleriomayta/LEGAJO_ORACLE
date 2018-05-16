@@ -10,53 +10,56 @@
     </h:head>
     <h:body>
         <p:growl id="msj" autoUpdate="true"/>
-            <h:form id="frm">
+        <h:form id="frm">
 
-                <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{contactosC.setAccion('Registrar')}" update=":dlgDatos"/>
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{contactosC.setAccion('Registrar')}" update=":dlgDatos"/>
 
-                <p:commandButton value="Listar" actionListener="#{contactosC.listar()}" update="data"/>
+            <p:commandButton value="Listar" actionListener="#{contactosC.listar()}" update="data"/>
 
-                <p:dataTable id="data" value="#{contactosC.lstContactos}" var="contactos">
-                    <p:column headerText="Tipos de Familiares" >
-                        <p:outputLabel value="#{contactos.tipDeFami}"/>
-                    </p:column>
-                    <p:column headerText="Nombre" >
-                        <p:outputLabel value="#{contactos.nom}"/>
-                    </p:column>
-                    <p:column headerText="Apellido" >
-                        <p:outputLabel value="#{contactos.ape}"/>
-                    </p:column>
-                    <p:column headerText="Parentesco" >
-                        <p:outputLabel value="#{contactos.par}"/>
-                    </p:column>
-                    <p:column headerText="Ocupacion" >
-                        <p:outputLabel value="#{contactos.ocu}"/>
-                    </p:column>
-                    <p:column headerText="Fecha de Nacimiento" >
-                        <p:outputLabel value="#{contactos.fecNac}"/>
-                    </p:column>
-                    <p:column headerText="Telefono" >
-                        <p:outputLabel value="#{contactos.tel}"/>
-                    </p:column>
-                    <p:column headerText="Celular" >
-                        <p:outputLabel value="#{contactos.cel}"/>
-                    </p:column>
-                    <p:column headerText="Estado Civil" >
-                        <p:outputLabel value="#{contactos.estCiv}"/>
-                    </p:column>
-                    <p:column headerText="Vive" >
-                        <p:outputLabel value="#{contactos.vive}"/>
-                    </p:column>
-                    <p:column headerText="Modificar" >
-                        <p:commandLink value="Modificar" actionListener="#{contactosC.leerID(contactos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
-                    </p:column>
-                    <p:column headerText="Eliminar" >
-                        <p:commandLink value="Eliminar" actionListener="#{contactosC.eliminar(contactos)}" update="data" />
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-            <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
-                <h:form>
+            <p:dataTable id="data" value="#{contactosC.lstContactos}" var="contactos">
+
+                <p:column headerText="Tipos de Familiares" >
+                    <p:outputLabel value="#{contactos.tipDeFami}"/>
+                </p:column>
+                <p:column headerText="Nombre" >
+                    <p:outputLabel value="#{contactos.nom}"/>
+                </p:column>
+                <p:column headerText="Apellido" >
+                    <p:outputLabel value="#{contactos.ape}"/>
+                </p:column>
+                <p:column headerText="Parentesco" >
+                    <p:outputLabel value="#{contactos.par}"/>
+                </p:column>
+                <p:column headerText="Ocupacion" >
+                    <p:outputLabel value="#{contactos.ocu}"/>
+                </p:column>
+                <p:column headerText="Fecha de Nacimiento" >
+                    <p:outputLabel value="#{contactos.fecNac}"/>
+                </p:column>
+                <p:column headerText="Telefono" >
+                    <p:outputLabel value="#{contactos.tel}"/>
+                </p:column>
+                <p:column headerText="Celular" >
+                    <p:outputLabel value="#{contactos.cel}"/>
+                </p:column>
+                <p:column headerText="Estado Civil" >
+                    <p:outputLabel value="#{contactos.estCiv}"/>
+                </p:column>
+                <p:column headerText="Vive" >
+                    <p:outputLabel value="#{contactos.vive}"/>
+                </p:column>
+                <p:column headerText="Modificar" >
+                    <p:commandLink value="Modificar" actionListener="#{contactosC.leerID(contactos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandLink value="Eliminar" actionListener="#{contactosC.eliminar(contactos)}" update="data" />
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+        <p:dialog  header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="2">
                     <p:outputLabel value="Tipo de Familiares" />
                     <p:inputText value="#{contactosC.contactos.tipDeFami}" />
 
@@ -65,7 +68,7 @@
 
                     <p:outputLabel value="Apellido" />
                     <p:inputText value="#{contactosC.contactos.ape}" />
-                    
+
                     <p:outputLabel value="Parentesco" />
                     <p:inputText value="#{contactosC.contactos.par}" />
 
@@ -74,7 +77,7 @@
 
                     <p:outputLabel value="Fecha de Nacimiento" />
                     <p:inputText value="#{contactosC.contactos.fecNac}" />
-                    
+
                     <p:outputLabel value="Telefono" />
                     <p:inputText value="#{contactosC.contactos.tel}" />
 
@@ -86,13 +89,13 @@
 
                     <p:outputLabel value="Vive" />
                     <p:inputText value="#{contactosC.contactos.vive}" />
-                    
+
                     <p:commandButton value="#{contactosC.accion}" actionListener="#{contactosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                     <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+            </h:form>
 
-                </h:form>
-
-            </p:dialog>
+        </p:dialog>
     </h:body>
 </html>
 

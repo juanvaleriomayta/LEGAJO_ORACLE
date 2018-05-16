@@ -9,50 +9,70 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <p:growl id="msj" autoUpdate="true"/>
-        <h:form id="frm">
+        <h3>Dialecto</h3>
+        <p:panelGrid style="margin-top:20px">
+            <f:facet name="header">
+                <p:row>
+                    <p:column colspan="7">CONOCIMIENTOS DE IDIOMAS Y/O DIALECTO</p:column>
+                </p:row>
+                <p:row>
+                    <p:column>IDIOMA Y/O DIALECTO</p:column>
+                    <p:column colspan="2">LEE</p:column>
+                    <p:column colspan="2">HABLA</p:column>
+                    <p:column colspan="2">ESCRIBE</p:column>
 
-            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();"  actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
-            <p:commandButton value="Listar" actionListener="#{detalleDialectoC.listar()}"   update="data"/>
+                </p:row>
 
-            <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detalledialecto">                                              
-                <p:column headerText="Lee">
-                    <h:outputText value="#{detalledialecto.lee}"/>
-                </p:column>
-                <p:column headerText="Habla">
-                    <h:outputText value="#{detalledialecto.hab}"/>
-                </p:column>
-                <p:column headerText="Escribe">
-                    <h:outputText value="#{detalledialecto.escri}"/>
-                </p:column>
-                <p:column headerText="Modificar" >
-                    <p:commandLink value="Modificar" actionListener="#{detalleDialectoC.leerID(detalledialecto)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
-                </p:column>
-                <p:column headerText="Eliminar" >
-                    <p:commandLink value="Eliminar" actionListener="#{detalleDialectoC.eliminar(detalledialecto)}" update="data" />
-                </p:column>
-            </p:dataTable>
-            </h:form>
-            
-            <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
-                <h:form>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel for="txtLee" value="Lee"/>
-                        <p:inputText id="txtLee" value="#{detalleDialectoC.detalleDialecto.lee}" maxlength="2"/>
-                        <p:outputLabel for="txtHab" value="Habla"/>
-                        <p:inputText id="txtHab" value="#{detalleDialectoC.detalleDialecto.hab}" maxlength="2"/>
-                        <p:outputLabel for="txtEscri" value="Escribe"/>
-                        <p:inputText id="txtEscri" value="#{detalleDialectoC.detalleDialecto.escri}" maxlength="2"/>
 
-                        <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
-                    </p:panelGrid>
-                </h:form>
-            </p:dialog>
+            </f:facet>
+
+
+            <p:row>
+
+                <p:column style="font-weight: bold;">IDIOMA Y/O DIALECTO</p:column>
+                <p:column style="font-weight: bold;">Con Facilidad</p:column>
+                <p:column style="font-weight: bold;">Sin Facilidad</p:column>
+                <p:column style="font-weight: bold;">Con Facilidad</p:column>
+                <p:column style="font-weight: bold;">Sin Facilidad</p:column>
+                <p:column style="font-weight: bold;">Con Facilidad</p:column>
+                <p:column style="font-weight: bold;">Sin Facilidad</p:column>
 
 
 
 
-      
+            </p:row>
+
+            <p:row>
+                <p:column></p:column>
+                <p:column></p:column>
+                <p:column></p:column>
+                <p:column></p:column>
+                <p:column></p:column>
+                <p:column></p:column>
+                <p:column>0</p:column>
+            </p:row>
+
+
+            <p:row>
+                <p:column style="font-weight: bold;"></p:column>
+                <p:column style="font-weight: bold;"></p:column>
+                <p:column style="font-weight: bold;"></p:column>
+                <p:column style="font-weight: bold;"></p:column>
+                <p:column style="font-weight: bold;"></p:column>
+                <p:column style="font-weight: bold;"></p:column>
+                <p:column style="font-weight: bold;">0</p:column>
+
+
+            </p:row>
+
+
+
+
+
+
+        </p:panelGrid>
+        <p:commandButton value="Modificar" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Modificar')}" />
+
     </h:body>
 </html>
+
