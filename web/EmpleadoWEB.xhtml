@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -10,13 +11,14 @@
 
         <p:growl id="msj" autoUpdate="true" />
         <h:form id="frm">
-            <h3>DATOS PERSONALES</h3>
+            <h3 align="center">DATOS PERSONALES</h3>
 
-
+            <!--<p:commandButton value="redirect" action="index.xhtml?faces-redirect=true"/>-->
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
             <p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>
 
+           
 
 
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado">
@@ -36,7 +38,11 @@
                     <h:outputText value="#{empleado.apelMate}"/>
                 </p:column>
 
-                
+                <style>
+                    .label{
+                        background-color: red
+                    }
+                </style>
 
 
                 <p:rowExpansion>
@@ -78,19 +84,28 @@
                     </p:panelGrid>
 
                 </p:rowExpansion>
-                
+
                 <p:column headerText="Modificar" >
-                    <p:commandLink value="Modificar" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                    <p:commandButton value="Modificar" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 <p:column headerText="Eliminar" >
-                    <p:commandLink value="Eliminar" actionListener="#{empleadoC.eliminar(empleado)}" update="data" />
+                    <p:growl id="message" showDetail="true" />
+
+                    <p:commandButton value="Eliminar" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
                 </p:column>
             </p:dataTable>
         </h:form>
 
         <p:dialog  header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
-                <p:panelGrid columns="2">
+                <p:panelGrid columns="4">
                     <p:outputLabel for="txtDNI" value="DNI" />
                     <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
                         <p:keyFilter regEx="/[\d\-]/"/>
@@ -131,9 +146,7 @@
                     </p:inputText>
 
                     <p:outputLabel for="txtCarnAseg" value="Carnet Asegurado"/>
-                    <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15" >
-                        
-                    </p:inputText>
+                    <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15"/>
 
                     <p:outputLabel for="txtRefe" value="Referencia"/>
                     <p:inputText id="txtRefe" value="#{empleadoC.empleado.refe}">
@@ -151,10 +164,11 @@
                     <p:inputText id="txtUbigActu" value="#{empleadoC.empleado.ubigActu}">
                     </p:inputText>
 
-                    <p:outputLabel for="txtUbigOrig" value="Lugar de Nacimiento"/>
-                    <p:inputText id="txtUbigOrig" value="#{empleadoC.empleado.ubigOrig}">
-                    </p:inputText>
-
+                    <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
+                    <p:selectOneMenu value="#{empleadoC.empleado.ubigOrig}" converter="omnifaces.SelectItemsConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                        <f:selectItems value="#{ubigeoBean.lstUbigeo}" var="per" itemLabel="#{per.distrito}/#{per.provincia}/#{per.departamenmto}" itemValue="#{per.distrito}/#{per.provincia}/#{per.departamenmto}"/>
+                    </p:selectOneMenu>
 
                     <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
                     <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
@@ -221,6 +235,10 @@
             </h:form>
 
         </p:dialog>
+
+
+
+
     </h:body>
 </html>
 

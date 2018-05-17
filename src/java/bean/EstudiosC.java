@@ -13,9 +13,42 @@ import modelo.Estudios;
 public class EstudiosC {
 
     private Estudios estudios = new Estudios();
+    private Estudios superiores = new Estudios();
     private List<Estudios> lstEstudios;
     private String accion;
 
+    public void registrarSecundarios() throws Exception {
+        EstudiosDao dao;
+        try {
+            dao = new EstudiosDao();
+            dao.registrarEstudios(estudios, "SE");
+            this.listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void registrarSuperiores() throws Exception {
+        EstudiosDao dao;
+        try {
+            dao = new EstudiosDao();
+            dao.registrarEstudios(superiores, "SU");
+            this.listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Estudios getSuperiores() {
+        return superiores;
+    }
+
+    public void setSuperiores(Estudios superiores) {
+        this.superiores = superiores;
+    }
+       
     public Estudios getEstudios() {
         return estudios;
     }

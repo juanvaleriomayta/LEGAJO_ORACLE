@@ -7,9 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Estudios;
 
+public class EstudiosDao extends DAO {
 
-
-public class EstudiosDao extends DAO{
+    public void registrarEstudios(Estudios estu, String tipo) throws Exception {
+        this.Conexion();
+        try {
+            String sql = "INSERT INTO Estudios  (DatSuper,TipGraAca,Desd,Has,Carre) values(?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
+            st.setString(1, estu.getDatSuper());
+            st.setString(2, estu.getTipGraAca());
+            st.setString(3, estu.getDesd());
+            st.setString(4, estu.getHas());
+            st.setString(5, estu.getCarre());
+            st.setString(6, tipo);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
 
     public void registrar(Estudios estu) throws Exception {
         try {

@@ -1,24 +1,37 @@
 package bean;
 
 import dao.ContactosDao;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import modelo.Contactos;
 
-@ManagedBean
+@Named(value = "contactoController")
 @SessionScoped
-public class ContactosC implements Serializable {
+public class ContactoController implements Serializable {
 
     private Contactos contactos = new Contactos();
     private Contactos familiar = new Contactos();
     private List<Contactos> lstContactos;
     private String accion;
 
-    public void registrarContacto() throws Exception {
+    public void operar() throws Exception {
+        switch (accion) {
+            case "Registrar":
+                this.registrar();
+                break;
+            case "Modificar":
+                this.modificar();
+                break;
+        }
+    }
+
+    private void addContacto() throws Exception {
         ContactosDao dao;
         try {
             dao = new ContactosDao();
@@ -30,7 +43,7 @@ public class ContactosC implements Serializable {
         }
     }
 
-    public void registrarFamiliar() throws Exception {
+    private void addFamiliar() throws Exception {
         ContactosDao dao;
         try {
             dao = new ContactosDao();
@@ -42,15 +55,8 @@ public class ContactosC implements Serializable {
         }
     }
 
-    public void operar() throws Exception {
-        switch (accion) {
-            case "Registrar":
-                this.registrar();
-                break;
-            case "Modificar":
-                this.modificar();
-                break;
-        }
+    public void ingresarContacto() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ingresando Contacto"));
     }
 
     public void limpiar() {
@@ -132,17 +138,8 @@ public class ContactosC implements Serializable {
 
     /**
      * Getter and Setter
-     *
-     * @return
+
      */
-    public Contactos getFamiliar() {
-        return familiar;
-    }
-
-    public void setFamiliar(Contactos familiar) {
-        this.familiar = familiar;
-    }
-
     public Contactos getContactos() {
         return contactos;
     }
@@ -165,6 +162,14 @@ public class ContactosC implements Serializable {
 
     public void setAccion(String accion) {
         this.accion = accion;
+    }
+
+    public Contactos getFamiliar() {
+        return familiar;
+    }
+
+    public void setFamiliar(Contactos familiar) {
+        this.familiar = familiar;
     }
 
 }

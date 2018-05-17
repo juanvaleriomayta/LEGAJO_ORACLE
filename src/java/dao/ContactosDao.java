@@ -11,6 +11,29 @@ import modelo.Contactos;
 
 
 public class ContactosDao extends DAO {
+    
+    public void registrarContacto(Contactos cont, String tipo) throws Exception {
+        this.Conexion();
+        try {
+            String sql = "INSERT INTO Contactos  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive,TipDeFami) values(?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
+            st.setString(1, cont.getNom());
+            st.setString(2, cont.getApe());
+            st.setString(3, cont.getPar());
+            st.setString(4, cont.getOcu());
+            st.setString(5, cont.getFecNac());
+            st.setString(6, cont.getTel());
+            st.setString(7, cont.getCel());
+            st.setString(8, cont.getEstCiv());
+            st.setString(9, cont.getVive());
+            st.setString(10, tipo);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
 
     public void registrar(Contactos  cont) throws Exception{
         try {

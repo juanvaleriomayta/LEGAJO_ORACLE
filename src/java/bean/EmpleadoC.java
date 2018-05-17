@@ -1,8 +1,11 @@
 package bean;
 
 import dao.EmpleadoDao;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -17,6 +20,20 @@ public class EmpleadoC implements Serializable{
     private List<Empleado> lstEmpleado;
     private String accion;
 
+    
+    
+     public void redireccion(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(EmpleadoC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void ingresarEmpleado(){
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ingresando Empleado"));
+    }
+    
     public String getAccion() {
         return accion;
     }

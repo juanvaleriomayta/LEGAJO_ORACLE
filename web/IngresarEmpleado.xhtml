@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:fieldset legend="Empleado">
+                <p:panelGrid style="border: none" columns="4">
+                    <p:outputLabel value="DNI"/>
+                    <p:inputText value="#{empleadoC.empleado.DNI}"/>
+                    <p:outputLabel value="Nombre"/>
+                    <p:inputText value="#{empleadoC.empleado.nom}"/>
+                    <p:outputLabel value="Apellido Paterno"/>
+                    <p:inputText value="#{empleadoC.empleado.apelPate}"/>
+                    <p:outputLabel value="Apellido Materno"/>
+                    <p:inputText value="#{empleadoC.empleado.apelMate}"/>
+                </p:panelGrid>
+            </p:fieldset>
+            <p:fieldset legend="Contacto">
+                <p:panelGrid style="border: none" columns="4">
+                    <p:outputLabel value="Tipo de Familiar"/>
+                    <p:inputText value="#{contactosC.contactos.tipDeFami}"/>
+                    <p:outputLabel value="Nombres"/>
+                    <p:inputText value="#{contactosC.familiar.nom}"/>
+                    <p:outputLabel value="Apellidos"/>
+                    <p:inputText value="#{contactosC.familiar.ape}"/>
+                    
+                </p:panelGrid>
+            </p:fieldset>
+
+            <p:fieldset legend="Familiar">
+                <p:panelGrid style="border: none" columns="4">
+                    <p:outputLabel value="Tipo de Familiar"/>
+                    <p:inputText value="#{contactosC.familiar.tipDeFami}"/>
+                    <p:outputLabel value="Nombres"/>
+                    <p:inputText value="#{contactosC.familiar.nom}"/>
+                    <p:outputLabel value="Apellidos"/>
+                    <p:inputText value="#{contactosC.familiar.ape}"/>
+                    
+                </p:panelGrid>
+            </p:fieldset>
+
+            <p:fieldset legend="Datos Secundarios">
+                <p:panelGrid style="border: none" columns="4">
+                    <p:outputLabel value="Datos Sescundarios"/>
+                    <p:inputText value="#{estudiosC.estudios.datSuper}"/>
+                    <p:outputLabel value="Tipo de Graduacion Academica"/>
+                    <p:inputText value="#{estudiosC.estudios.tipGraAca}"/>
+                    <p:outputLabel value="Desde"/>
+                    <p:inputText value="#{estudiosC.estudios.desd}"/>
+                    <p:outputLabel value="Hasta"/>
+                    <p:inputText value="#{estudiosC.estudios.has}"/>
+                    <p:outputLabel value="Carrera"/>
+                    <p:inputText value="#{estudiosC.estudios.carre}"/>
+                </p:panelGrid>
+            </p:fieldset>
+
+            <p:fieldset legend="Datos Superiores">
+                <p:panelGrid style="border: none" columns="4">
+                    <p:outputLabel value="Datos Superiores"/>
+                    <p:inputText value="#{estudiosC.estudios.datSuper}"/>
+                    <p:outputLabel value="Tipo de Graduacion Academica"/>
+                    <p:inputText value="#{estudiosC.estudios.tipGraAca}"/>
+                    <p:outputLabel value="Desde"/>
+                    <p:inputText value="#{estudiosC.estudios.desd}"/>
+                    <p:outputLabel value="Hasta"/>
+                    <p:inputText value="#{estudiosC.estudios.has}"/>
+                    <p:outputLabel value="Carrera"/>
+                    <p:inputText value="#{estudiosC.estudios.carre}"/>
+                </p:panelGrid>
+            </p:fieldset>
+
+
+            <p:growl id="msg" autoUpdate="true"/>
+            <p:commandButton value="ingresar" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="ingresarContacto();ingresarFamiliar();ingresarDatosSecundarios();ingresarDatosSuperiores();" />
+            <p:remoteCommand name="ingresarContacto" actionListener="#{contactosC.registrarContacto()}" />
+            <p:remoteCommand name="ingresarFamiliar" actionListener="#{contactosC.registrarFamiliar()}" />
+            <p:remoteCommand name="ingresarDatosSecundarios" actionListener="#{estudiosC.registrarSecundarios()}" />
+            <p:remoteCommand name="ingresarDatosSuperiores" actionListener="#{estudiosC.registrarSuperiores()}" />
+        </h:form>
+    </h:body>
+</html>
+
