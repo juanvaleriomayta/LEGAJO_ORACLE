@@ -17,8 +17,8 @@
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
             <p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>
+            <p:commandButton value="Actualizar Ubigeo" actionListener="#{ubigeoBean.listar()}" update="data"/>
 
-           
 
 
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado">
@@ -92,7 +92,7 @@
                     <p:growl id="message" showDetail="true" />
 
                     <p:commandButton value="Eliminar" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
-                        <p:confirm header="Confirmation" message="Deseas Eliminar? " icon="ui-icon-alert" />
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>
 
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

@@ -1,16 +1,17 @@
 package bean;
 
 import dao.EstudiosDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import modelo.Estudios;
 
 @ManagedBean
-@ViewScoped
-public class EstudiosC {
+@SessionScoped
+public class EstudiosC implements Serializable{
 
     private Estudios estudios = new Estudios();
     private Estudios superiores = new Estudios();
@@ -23,7 +24,7 @@ public class EstudiosC {
             dao = new EstudiosDao();
             dao.registrarEstudios(estudios, "SE");
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado Estudios SE con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -33,9 +34,9 @@ public class EstudiosC {
         EstudiosDao dao;
         try {
             dao = new EstudiosDao();
-            dao.registrarEstudios(superiores, "SU");
+            dao.registrarSuperiores(superiores, "SU");
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado Estudios SU con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -70,6 +71,7 @@ public class EstudiosC {
     }
 
     public void setAccion(String accion) {
+        this.limpiar();
         this.accion = accion;
     }
 

@@ -10,49 +10,58 @@
     </h:head>
     <h:body>
 
-            <p:growl id="msj" autoUpdate="true"/>
-            <h:form id="frm">
+        <p:growl id="msj" autoUpdate="true"/>
+        <h:form id="frm">
 
-                <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{ubigeoBean.setAccion('Registrar')}" update=":dlgDatos"/>
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{ubigeoBean.setAccion('Registrar')}" update=":dlgDatos"/>
 
-                <p:commandButton value="Listar" actionListener="#{ubigeoBean.listar()}" update="data"/>
+            <p:commandButton value="Listar" actionListener="#{ubigeoBean.listar()}" update="data"/>
 
-                <p:dataTable id="data" value="#{ubigeoBean.lstUbigeo}" var="ubigeo">
-                    <p:column headerText="Departamento" >
-                        <p:outputLabel value="#{ubigeo.departamenmto}"/>
-                    </p:column>
-                    <p:column headerText="Provincia" >
-                        <p:outputLabel value="#{ubigeo.provincia}"/>
-                    </p:column>
-                    <p:column headerText="Distrito" >
-                        <p:outputLabel value="#{ubigeo.distrito}"/>
-                    </p:column>
-                    <p:column headerText="Modificar" >
-                        <p:commandLink value="Modificar" actionListener="#{ubigeoBean.leerID(ubigeo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
-                    </p:column>
-                    <p:column headerText="Eliminar" >
-                        <p:commandLink value="Eliminar" actionListener="#{ubigeoBean.eliminar(ubigeo)}" update="data" />
-                    </p:column>
-                </p:dataTable>
+            <p:dataTable id="data" value="#{ubigeoBean.lstUbigeo}" var="ubigeo">
+                <p:column headerText="Departamento" >
+                    <p:outputLabel value="#{ubigeo.departamenmto}"/>
+                </p:column>
+                <p:column headerText="Provincia" >
+                    <p:outputLabel value="#{ubigeo.provincia}"/>
+                </p:column>
+                <p:column headerText="Distrito" >
+                    <p:outputLabel value="#{ubigeo.distrito}"/>
+                </p:column>
+                <p:column headerText="Modificar" >
+                    <p:commandButton value="Modificar" actionListener="#{ubigeoBean.leerID(ubigeo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:growl id="message" showDetail="true" />
+
+                    <p:commandButton value="Eliminar" actionListener="#{ubigeoBean.eliminar(ubigeo)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:outputLabel value="Departamento" />
+                <p:inputText value="#{ubigeoBean.ubigeo.departamenmto}" />
+
+                <p:outputLabel value="Provincia" />
+                <p:inputText value="#{ubigeoBean.ubigeo.provincia}" />
+
+                <p:outputLabel value="Distrito" />
+                <p:inputText value="#{ubigeoBean.ubigeo.distrito}" />
+
+                <p:commandButton value="#{ubigeoBean.accion}" actionListener="#{ubigeoBean.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+
             </h:form>
-            <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
-                <h:form>
-                    <p:outputLabel value="Departamento" />
-                    <p:inputText value="#{ubigeoBean.ubigeo.departamenmto}" />
 
-                    <p:outputLabel value="Provincia" />
-                    <p:inputText value="#{ubigeoBean.ubigeo.provincia}" />
+        </p:dialog>
 
-                    <p:outputLabel value="Distrito" />
-                    <p:inputText value="#{ubigeoBean.ubigeo.distrito}" />
-
-                    <p:commandButton value="#{ubigeoBean.accion}" actionListener="#{ubigeoBean.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
-
-                </h:form>
-
-            </p:dialog>
-        
     </h:body>
 </html>
 

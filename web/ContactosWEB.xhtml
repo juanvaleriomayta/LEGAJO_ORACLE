@@ -52,9 +52,15 @@
                     <p:commandLink value="Modificar" actionListener="#{contactosC.leerID(contactos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 <p:column headerText="Eliminar" >
-                    <p:commandLink value="Eliminar" actionListener="#{contactosC.eliminar(contactos)}" update="data" />
-                </p:column>
+                    <p:commandButton value="Eliminar" actionListener="#{contactosC.eliminar(contactos)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
 
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
             </p:dataTable>
         </h:form>
         <p:dialog  header="Datos" widgetVar="wdlgDatos" id="dlgDatos">

@@ -11,50 +11,223 @@
         <h:form>
             <p:fieldset legend="Empleado">
                 <p:panelGrid style="border: none" columns="4">
-                    <p:outputLabel value="DNI"/>
-                    <p:inputText value="#{empleadoC.empleado.DNI}"/>
-                    <p:outputLabel value="Nombre"/>
-                    <p:inputText value="#{empleadoC.empleado.nom}"/>
-                    <p:outputLabel value="Apellido Paterno"/>
-                    <p:inputText value="#{empleadoC.empleado.apelPate}"/>
-                    <p:outputLabel value="Apellido Materno"/>
-                    <p:inputText value="#{empleadoC.empleado.apelMate}"/>
+                    <p:outputLabel for="txtDNI" value="DNI" />
+                    <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
+                        <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtNombre" value="Nombre" />
+                    <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}"  requiredMessage="Ingresar Nombre" required="true">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno" />
+                    <p:inputText id="txtApellidoPaterno" value="#{empleadoC.empleado.apelPate}" required="true" requiredMessage="Ingresar Apellido Paterno">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno" />
+                    <p:inputText id="txtApellidoMaterno" value="#{empleadoC.empleado.apelMate}" required="true" requiredMessage="Ingresar Apellido Materno">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtRUC" value="RUC" />
+                    <p:inputText id="txtRUC" value="#{empleadoC.empleado.RUC}" maxlength="11">
+                        <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtCel" value="Celular"/>
+                    <p:inputText id="txtCel" value="#{empleadoC.empleado.cel}" maxlength="9">
+                        <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtTelf" value="Telefono"/>
+                    <p:inputText id="txtTelf" value="#{empleadoC.empleado.telf}" maxlength="7">
+                        <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtEmail" value="Correo Electronico"/>
+                    <p:inputText id="txtEmail" value="#{empleadoC.empleado.email}"  >                  
+                    </p:inputText>
+
+                    <p:outputLabel for="txtCarnAseg" value="Carnet Asegurado"/>
+                    <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15"/>
+
+                    <p:outputLabel for="txtRefe" value="Referencia"/>
+                    <p:inputText id="txtRefe" value="#{empleadoC.empleado.refe}">
+                    </p:inputText>
+
+                    <p:outputLabel for="txtLeye" value="Leyes"/>
+                    <p:inputText id="txtLeye" value="#{empleadoC.empleado.leye}" maxlength="10">
+                    </p:inputText>                    
+
+                    <p:outputLabel for="txtDatCony" value="Datos del Conyugue"/>
+                    <p:inputText id="txtDatCony" value="#{empleadoC.empleado.datCony}">
+                    </p:inputText>
+
+                    <p:outputLabel for="txtUbigActu" value="Dirección"/>
+                    <p:inputText id="txtUbigActu" value="#{empleadoC.empleado.ubigActu}">
+                    </p:inputText>
+
+                    <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
+                    <p:selectOneMenu value="#{empleadoC.empleado.ubigOrig}" converter="omnifaces.SelectItemsConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                        <f:selectItems value="#{ubigeoBean.lstUbigeo}" var="per" itemLabel="#{per.distrito}/#{per.provincia}/#{per.departamenmto}" itemValue="#{per.distrito}/#{per.provincia}/#{per.departamenmto}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
+                    <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
+
+                    <p:outputLabel for="txtFecIng" value="Fecha De Ingreso SBS"/>
+                    <p:inputMask id="txtFecIng" value="#{empleadoC.empleado.fecIng}" mask="99/99/9999"/>
+
+
+                    <p:outputLabel for="txtFecNom" value="Fecha de Nombramineto: " />
+                    <p:inputMask id="txtFecNom" value="#{empleadoC.empleado.fecNom}" mask="99/99/9999"/>
+
+
+
+
+
+                    <p:outputLabel value="Grupo Sanguineo" />
+                    <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}" required="true" requiredMessage="Seleccione el Tipo de Sangre ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="O-" itemValue="O-" />
+                        <f:selectItem itemLabel="O+" itemValue="O+" />
+                        <f:selectItem itemLabel="A-" itemValue="A-" />
+                        <f:selectItem itemLabel="A+" itemValue="A+" />
+                        <f:selectItem itemLabel="B-" itemValue="B-" />
+                        <f:selectItem itemLabel="B-" itemValue="B+" />
+                        <f:selectItem itemLabel="AB-" itemValue="AB-" />
+                        <f:selectItem itemLabel="AB+" itemValue="AB+" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Condición Laboral:"   />
+
+                    <p:selectOneRadio id="CondicionLaboral" value="#{empleadoC.empleado.conLab}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="CAS" itemValue="CAS"/>
+                        <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
+                        <f:selectItem itemLabel="Cesante" itemValue="Cesante" /> 
+                    </p:selectOneRadio>
+
+                    <p:outputLabel value="Estado civil"/>
+
+                    <p:selectOneRadio id="Estado" value="#{empleadoC.empleado.estCiv}" required="true" requiredMessage="Seleccione su Estado c">                        
+
+                        <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
+                        <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
+                        <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                        <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+
+                    </p:selectOneRadio>
+
+
+
+                    <p:outputLabel value="Estado Laboral" />
+
+                    <p:selectOneRadio id="EstadoLaboral" value="#{empleadoC.empleado.est}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+
+                    </p:selectOneRadio>
                 </p:panelGrid>
             </p:fieldset>
             <p:fieldset legend="Contacto">
                 <p:panelGrid style="border: none" columns="4">
-                    <p:outputLabel value="Tipo de Familiar"/>
-                    <p:inputText value="#{contactosC.contactos.tipDeFami}"/>
-                    <p:outputLabel value="Nombres"/>
-                    <p:inputText value="#{contactosC.familiar.nom}"/>
-                    <p:outputLabel value="Apellidos"/>
-                    <p:inputText value="#{contactosC.familiar.ape}"/>
-                    
+
+                    <p:outputLabel value="Nombre" />
+                    <p:inputText value="#{contactosC.contactos.nom}" />
+
+                    <p:outputLabel value="Apellido" />
+                    <p:inputText value="#{contactosC.contactos.ape}" />
+
+                    <p:outputLabel value="Parentesco" />
+                    <p:inputText value="#{contactosC.contactos.par}" />
+
+                    <p:outputLabel value="Ocupacion" />
+                    <p:inputText value="#{contactosC.contactos.ocu}" />
+
+                    <p:outputLabel for="txtFechaNacimiento" value="Fecha de Nacimiento"/>
+                    <p:inputMask id="txtFechaNacimiento" value="#{contactosC.contactos.fecNac}" mask="99/99/9999"/>
+
+                    <p:outputLabel value="Telefono" />
+                    <p:inputText value="#{contactosC.contactos.tel}" />
+
+                    <p:outputLabel value="Celular" />
+                    <p:inputText value="#{contactosC.contactos.cel}" />
+
+                    <p:outputLabel value="Estado civil"/>
+
+                     <p:selectOneRadio id="Estad" value="#{contactosC.contactos.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
+
+                        <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
+                        <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
+                        <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                        <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+
+                    </p:selectOneRadio>
+
+                    <p:outputLabel value="Vive" />
+                    <p:inputText value="#{contactosC.contactos.vive}" />
+
                 </p:panelGrid>
             </p:fieldset>
 
             <p:fieldset legend="Familiar">
                 <p:panelGrid style="border: none" columns="4">
-                    <p:outputLabel value="Tipo de Familiar"/>
-                    <p:inputText value="#{contactosC.familiar.tipDeFami}"/>
-                    <p:outputLabel value="Nombres"/>
-                    <p:inputText value="#{contactosC.familiar.nom}"/>
-                    <p:outputLabel value="Apellidos"/>
-                    <p:inputText value="#{contactosC.familiar.ape}"/>
-                    
+
+                    <p:outputLabel value="Nombre" />
+                    <p:inputText value="#{contactosC.familiar.nom}" />
+
+                    <p:outputLabel value="Apellido" />
+                    <p:inputText value="#{contactosC.familiar.ape}" />
+
+                    <p:outputLabel value="Parentesco" />
+                    <p:inputText value="#{contactosC.familiar.par}" />
+
+                    <p:outputLabel value="Ocupacion" />
+                    <p:inputText value="#{contactosC.familiar.ocu}" />
+
+                    <p:outputLabel for="txtFecNacimiento" value="Fecha de Nacimiento"/>
+                    <p:inputMask id="txtFecNacimiento" value="#{contactosC.familiar.fecNac}" mask="99/99/9999"/>
+
+                    <p:outputLabel value="Telefono" />
+                    <p:inputText value="#{contactosC.familiar.tel}" />
+
+                    <p:outputLabel value="Celular" />
+                    <p:inputText value="#{contactosC.familiar.cel}" />
+
+                     <p:outputLabel value="Estado civil"/>
+
+                     <p:selectOneRadio id="Estados" value="#{contactosC.familiar.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
+
+                        <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
+                        <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
+                        <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                        <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+
+                    </p:selectOneRadio>
+
+                    <p:outputLabel value="Vive" />
+                    <p:inputText value="#{contactosC.familiar.vive}" />
+
                 </p:panelGrid>
             </p:fieldset>
 
             <p:fieldset legend="Datos Secundarios">
                 <p:panelGrid style="border: none" columns="4">
-                    <p:outputLabel value="Datos Sescundarios"/>
-                    <p:inputText value="#{estudiosC.estudios.datSuper}"/>
-                    <p:outputLabel value="Tipo de Graduacion Academica"/>
-                    <p:inputText value="#{estudiosC.estudios.tipGraAca}"/>
-                    <p:outputLabel value="Desde"/>
-                    <p:inputText value="#{estudiosC.estudios.desd}"/>
-                    <p:outputLabel value="Hasta"/>
-                    <p:inputText value="#{estudiosC.estudios.has}"/>
+                    <p:outputLabel value="Estudios" />
+                    <p:selectOneMenu id="Estudios" value="#{estudiosC.estudios.datSuper}" required="true" requiredMessage="Seleccione Estudios ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="Completa" itemValue="Completa" />
+                        <f:selectItem itemLabel="Incompleta" itemValue="Incompleta" />
+                    </p:selectOneMenu>
+                    <p:outputLabel for="txtDes" value="Desde"/>
+                    <p:inputMask id="txtDes" value="#{estudiosC.estudios.desd}" mask="99/99/9999"/>
+                    <p:outputLabel for="txtHas" value="Hasta"/>
+                    <p:inputMask id="txtHas" value="#{estudiosC.estudios.has}" mask="99/99/9999"/>
                     <p:outputLabel value="Carrera"/>
                     <p:inputText value="#{estudiosC.estudios.carre}"/>
                 </p:panelGrid>
@@ -62,16 +235,22 @@
 
             <p:fieldset legend="Datos Superiores">
                 <p:panelGrid style="border: none" columns="4">
-                    <p:outputLabel value="Datos Superiores"/>
-                    <p:inputText value="#{estudiosC.estudios.datSuper}"/>
-                    <p:outputLabel value="Tipo de Graduacion Academica"/>
-                    <p:inputText value="#{estudiosC.estudios.tipGraAca}"/>
-                    <p:outputLabel value="Desde"/>
-                    <p:inputText value="#{estudiosC.estudios.desd}"/>
-                    <p:outputLabel value="Hasta"/>
-                    <p:inputText value="#{estudiosC.estudios.has}"/>
+                    <p:outputLabel value="Educacion Superior" />
+                    <p:selectOneMenu id="EducacionSuperior" value="#{estudiosC.superiores.datSuper}" required="true" requiredMessage="Seleccione Educacion Superior ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="Instituto Superior" itemValue="Instituto Superior" />
+                        <f:selectItem itemLabel="Universitario" itemValue="Universitario" />
+                        <f:selectItem itemLabel="Especialista" itemValue="Especialista" />
+                        <f:selectItem itemLabel="SubEspecialidad" itemValue="SubEspecialidad" />
+                        <f:selectItem itemLabel="Maestria" itemValue="Maestria" />
+                        <f:selectItem itemLabel="Doctorado" itemValue="Doctorado" />
+                    </p:selectOneMenu>
+                    <p:outputLabel for="txtDesde" value="Desde"/>
+                    <p:inputMask id="txtDesde" value="#{estudiosC.superiores.desd}" mask="99/99/9999"/>
+                    <p:outputLabel for="txtHasta" value="Hasta"/>
+                    <p:inputMask id="txtHasta" value="#{estudiosC.superiores.has}" mask="99/99/9999"/>
                     <p:outputLabel value="Carrera"/>
-                    <p:inputText value="#{estudiosC.estudios.carre}"/>
+                    <p:inputText value="#{estudiosC.superiores.carre}"/>
                 </p:panelGrid>
             </p:fieldset>
 

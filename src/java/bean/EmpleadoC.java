@@ -14,26 +14,33 @@ import modelo.Empleado;
 
 @ManagedBean
 @SessionScoped
-public class EmpleadoC implements Serializable{
+public class EmpleadoC implements Serializable {
 
     private Empleado empleado = new Empleado();
     private List<Empleado> lstEmpleado;
     private String accion;
 
-    
-    
-     public void redireccion(){
+    public void redireccion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(EmpleadoC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void ingresarEmpleado(){
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ingresando Empleado"));
+
+    public void ingresarEmpleado() throws Exception {
+        EmpleadoDao dao;
+        try {
+            dao = new EmpleadoDao();
+            dao.registrarEmpleado(empleado);
+            this.limpiar();
+            this.listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
+        } catch (Exception e) {
+            throw e;
+        }
     }
-    
+
     public String getAccion() {
         return accion;
     }

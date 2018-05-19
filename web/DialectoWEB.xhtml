@@ -9,7 +9,46 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-       
+        <p:growl id="msj" autoUpdate="true"/>
+        <h:form id="frm">
+
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{dialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
+            <p:commandButton value="Listar" actionListener="#{dialectoC.listar()}" update="data"/>
+
+            <p:dataTable id="data" value="#{dialectoC.lstDialecto}" var="dialecto">
+                <p:column headerText="Nombre" >
+                    <p:outputLabel value="#{dialecto.nomDial}"/>
+                </p:column>
+
+                <p:column headerText="Modificar" >
+                    <p:commandButton value="Modificar" actionListener="#{dialectoC.leerID(dialecto)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton value="Eliminar" actionListener="#{dialectoC.eliminar(dialecto)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>               
+        </h:form>
+
+        <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Dialecto" />
+                    <p:inputText value="#{dialectoC.dialecto.nomDial}" />
+
+
+                    <p:commandButton value="#{dialectoC.accion}" actionListener="#{dialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
     </h:body>
 </html>
 

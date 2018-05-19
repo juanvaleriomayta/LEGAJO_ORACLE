@@ -9,7 +9,67 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-      
+        <p:growl id="msj" autoUpdate="true"/>
+        <h:form id="frm">
+
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosC.setAccion('Registrar')}" update=":dlgDatos"/>
+            <p:commandButton value="Listar" actionListener="#{estudiosC.listar()}" update="data"/>
+
+            <p:dataTable id="data" value="#{estudiosC.lstEstudios}" var="estudios">
+                <p:column headerText="Tipo de Graduacion Academica" >
+                    <p:outputLabel value="#{estudios.tipGraAca}"/>
+                </p:column>
+                <p:column headerText="Datos Superiores" >
+                    <p:outputLabel value="#{estudios.datSuper}"/>
+                </p:column>
+                <p:column headerText="Desde" >
+                    <p:outputLabel value="#{estudios.desd}"/>
+                </p:column>
+                <p:column headerText="Hasta" >
+                    <p:outputLabel value="#{estudios.has}"/>
+                </p:column>
+                <p:column headerText="Carrera" >
+                    <p:outputLabel value="#{estudios.carre}"/>
+                </p:column>
+                <p:column headerText="Modificar" >
+                    <p:commandButton value="Modificar" actionListener="#{estudiosC.leerID(estudios)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton value="Eliminar" actionListener="#{estudiosC.eliminar(estudios)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>               
+        </h:form>
+
+        <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Tipo de Graduacion Academica" />
+                    <p:selectOneMenu id="TipodeGraduacionAcademica" value="#{estudiosC.estudios.tipGraAca}" required="true" requiredMessage="Seleccione el Tipo Academico ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="SE" itemValue="SE" />
+                        <f:selectItem itemLabel="SU" itemValue="SU" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Datos Superiores" />
+                    <p:inputText value="#{estudiosC.estudios.datSuper}" required="true" requiredMessage="Ingrese Dato Superior "/>
+                    <p:outputLabel for="txtDesde" value="Desde"/>
+                    <p:inputMask id="txtDesde" value="#{estudiosC.estudios.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha Desde"/>
+                    <p:outputLabel for="txtHasta" value="Hasta"/>
+                    <p:inputMask id="txtHasta" value="#{estudiosC.estudios.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha Hasta"/>
+                    <p:outputLabel value="Carrera" />
+                    <p:inputText value="#{estudiosC.estudios.carre}" required="true" requiredMessage="Ingrese La Carrera" />
+
+                    <p:commandButton value="#{estudiosC.accion}" actionListener="#{estudiosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
     </h:body>
 </html>
 

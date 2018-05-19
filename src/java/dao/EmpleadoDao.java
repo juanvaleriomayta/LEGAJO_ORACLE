@@ -8,6 +8,43 @@ import java.util.List;
 import modelo.Empleado;
 
 public class EmpleadoDao extends DAO {
+    
+    
+    public void registrarEmpleado(Empleado emp) throws Exception {
+        try {
+            this.Conexion();
+
+            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
+            st.setString(1, emp.getDNI());
+            st.setString(2, emp.getNom());
+            st.setString(3, emp.getApelPate());
+            st.setString(4, emp.getApelMate());
+            st.setString(5, emp.getRUC());
+            st.setString(6, emp.getEmail());
+            st.setString(7, emp.getTelf());
+            st.setString(8, emp.getCel());
+            st.setString(9, emp.getFecNac());
+            st.setString(10, emp.getGrupSang());
+            st.setString(11, emp.getEstCiv());
+            st.setString(12, emp.getConLab());
+            st.setString(13, emp.getCarnAseg());
+            st.setString(14, emp.getRefe());
+            st.setString(15, emp.getLeye());
+            st.setString(16, emp.getFecIng());
+            st.setString(17, emp.getFecNom());
+            st.setString(18, emp.getDatCony());
+            st.setString(19, emp.getUbigActu());
+            st.setString(20, emp.getUbigOrig());
+            st.setString(21, emp.getEst());
+
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+
+    }
 
     public void registrar(Empleado emp) throws Exception {
         try {
@@ -51,7 +88,7 @@ public class EmpleadoDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado");
+            PreparedStatement st = this.getCn().prepareCall("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
