@@ -2,6 +2,7 @@ package bean;
 
 import dao.UbigeoDao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +18,11 @@ public class UbigeoBean implements Serializable{
     private Ubigeo ubigeo = new Ubigeo();
     private List<Ubigeo> lstUbigeo;
     private String accion;
+    
+    public List<String> completeText(String query) throws SQLException {               
+        UbigeoDao dao = new UbigeoDao();
+        return dao.autocompleteUbigeo(query);
+    }
 
     public Ubigeo getUbigeo() {
         return ubigeo;

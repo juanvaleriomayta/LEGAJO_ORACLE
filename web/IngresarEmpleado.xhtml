@@ -70,10 +70,9 @@
                     </p:inputText>
 
                     <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
-                    <p:selectOneMenu value="#{empleadoC.empleado.ubigOrig}" converter="omnifaces.SelectItemsConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                        <f:selectItems value="#{ubigeoBean.lstUbigeo}" var="per" itemLabel="#{per.distrito}/#{per.provincia}/#{per.departamenmto}" itemValue="#{per.distrito}/#{per.provincia}/#{per.departamenmto}"/>
-                    </p:selectOneMenu>
+                    
+                    <p:autoComplete value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
+                    </p:autoComplete>
 
                     <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
                     <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
@@ -160,7 +159,7 @@
 
                     <p:outputLabel value="Estado civil"/>
 
-                     <p:selectOneRadio id="Estad" value="#{contactosC.contactos.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
+                    <p:selectOneRadio id="Estad" value="#{contactosC.contactos.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
 
                         <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
                         <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
@@ -170,7 +169,12 @@
                     </p:selectOneRadio>
 
                     <p:outputLabel value="Vive" />
-                    <p:inputText value="#{contactosC.contactos.vive}" />
+                    <p:selectOneRadio id="viv" value="#{contactosC.contactos.vive}" required="true" requiredMessage="Seleccione si vive o no">                        
+
+                        <f:selectItem itemLabel="Si" itemValue="Si"/>
+                        <f:selectItem itemLabel="No" itemValue="No"/> 
+
+                    </p:selectOneRadio>
 
                 </p:panelGrid>
             </p:fieldset>
@@ -199,9 +203,9 @@
                     <p:outputLabel value="Celular" />
                     <p:inputText value="#{contactosC.familiar.cel}" />
 
-                     <p:outputLabel value="Estado civil"/>
+                    <p:outputLabel value="Estado civil"/>
 
-                     <p:selectOneRadio id="Estados" value="#{contactosC.familiar.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
+                    <p:selectOneRadio id="Estados" value="#{contactosC.familiar.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
 
                         <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
                         <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
@@ -211,7 +215,12 @@
                     </p:selectOneRadio>
 
                     <p:outputLabel value="Vive" />
-                    <p:inputText value="#{contactosC.familiar.vive}" />
+                    <p:selectOneRadio id="vive" value="#{contactosC.familiar.vive}" required="true" requiredMessage="Seleccione si vive o no">                        
+
+                        <f:selectItem itemLabel="Si" itemValue="Si"/>
+                        <f:selectItem itemLabel="No" itemValue="No"/> 
+
+                    </p:selectOneRadio>
 
                 </p:panelGrid>
             </p:fieldset>

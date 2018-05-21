@@ -1,6 +1,7 @@
 package bean;
 
 import dao.EmpleadoDao;
+import dao.UbigeoDao;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -30,8 +31,11 @@ public class EmpleadoC implements Serializable {
 
     public void ingresarEmpleado() throws Exception {
         EmpleadoDao dao;
+        UbigeoDao dao2;
         try {
             dao = new EmpleadoDao();
+            dao2 = new UbigeoDao();
+            empleado.setUbigOrig(dao2.obtenerCodigoUbigeo(empleado.getUbigOrig()));
             dao.registrarEmpleado(empleado);
             this.limpiar();
             this.listar();
@@ -106,11 +110,12 @@ public class EmpleadoC implements Serializable {
 
     private void registrar() throws Exception {
         EmpleadoDao dao;
-
+        UbigeoDao dao2;
         try {
             dao = new EmpleadoDao();
+            dao2 = new UbigeoDao();
+            empleado.setUbigOrig(dao2.obtenerCodigoUbigeo(empleado.getUbigOrig()));
             dao.registrar(empleado);
-
             this.listar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
         } catch (Exception e) {

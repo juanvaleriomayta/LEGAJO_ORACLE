@@ -8,6 +8,43 @@ import java.util.List;
 import modelo.Ubigeo;
 
 public class UbigeoDao extends DAO {
+    
+    public String obtenerCodigoUbigeo (String Ubigeo) throws SQLException{
+        this.Conexion();
+        ResultSet rs;
+        try {
+            String sql="select CodUbi from Ubigeo where concat(Dep,',',Pro,',',Dis) like ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, Ubigeo);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                return rs.getString("CodUbi");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
+    public List<String> autocompleteUbigeo(String Consulta) throws SQLException{
+        this.Conexion();
+        ResultSet rs;
+        List<String> Lista;
+        try {
+            String sql="select concat(Dep,',',Pro,',',Dis) AS distrito from ubigeo where Dis like upper(?)";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, "%" + Consulta + "%");
+            Lista = new ArrayList<>();
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                
+                Lista.add(rs.getString("distrito"));
+            }
+            return Lista;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 
     public void registrar(Ubigeo ubi) throws Exception {
         try {
