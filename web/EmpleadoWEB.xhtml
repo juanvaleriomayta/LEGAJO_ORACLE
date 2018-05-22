@@ -17,7 +17,6 @@
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
             <p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>
-            <p:commandButton value="Actualizar Ubigeo" actionListener="#{ubigeoBean.listar()}" update="data"/>
             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>
@@ -96,12 +95,12 @@
                 </p:rowExpansion>
 
                 <p:column headerText="Modificar" >
-                    <p:commandButton value="Modificar" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                    <p:commandButton  icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 <p:column headerText="Eliminar" >
                     <p:growl id="message" showDetail="true" />
 
-                    <p:commandButton value="Eliminar" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
+                    <p:commandButton icon="ui-icon-circle-close" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>
 
@@ -113,7 +112,8 @@
             </p:dataTable>
         </h:form>
 
-        <p:dialog  header="Datos" widgetVar="wdlgDatos" id="dlgDatos" showEffect="Explode" hideEffect="Explode" >
+        
+        <p:dialog showEffect="explode" modal="true" hideEffect="bounce" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
                 <p:panelGrid columns="4">
                     <p:outputLabel for="txtDNI" value="DNI" />
@@ -176,7 +176,7 @@
 
                     <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
                     <p:autoComplete value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true"/>
-                    
+
 
                     <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
                     <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>

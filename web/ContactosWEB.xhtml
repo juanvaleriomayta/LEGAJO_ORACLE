@@ -60,10 +60,10 @@
                     <p:outputLabel value="#{contactos.vive}"/>
                 </p:column>
                 <p:column headerText="Modificar" >
-                    <p:commandButton value="Modificar" actionListener="#{contactosC.leerID(contactos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                    <p:commandButton icon="ui-icon-pencil" actionListener="#{contactosC.leerID(contactos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 <p:column headerText="Eliminar" >
-                    <p:commandButton value="Eliminar" actionListener="#{contactosC.eliminar(contactos)}" update="data" style="background-color:red;color:red;">
+                    <p:commandButton icon="ui-icon-circle-close" actionListener="#{contactosC.eliminar(contactos)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>
 
@@ -74,7 +74,7 @@
                 </p:column>
             </p:dataTable>
         </h:form>
-        <p:dialog  header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+        <p:dialog  showEffect="explode" modal="true" hideEffect="bounce" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Tipo de Familiares" />

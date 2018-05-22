@@ -68,10 +68,12 @@
 
                     <p:outputLabel for="txtDatCony" value="Datos del Conyugue"/>
                     <p:inputText id="txtDatCony" value="#{empleadoC.empleado.datCony}">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtUbigActu" value="Dirección"/>
                     <p:inputText id="txtUbigActu" value="#{empleadoC.empleado.ubigActu}">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
@@ -139,19 +141,29 @@
                 <p:panelGrid style="border: none" columns="4">
 
                     <p:outputLabel value="Nombre" />
-                    <p:inputText value="#{contactosC.contactos.nom}" />
+                    <p:inputText value="#{contactosC.contactos.nom}" >
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Apellido" />
-                    <p:inputText value="#{contactosC.contactos.ape}" />
+                    <p:inputText value="#{contactosC.contactos.ape}" >
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Parentesco" />
-                    <p:inputText value="#{contactosC.contactos.par}" />
+                    <p:inputText value="#{contactosC.contactos.par}" >
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Telefono" />
-                    <p:inputText value="#{contactosC.contactos.tel}" />
+                    <p:inputText value="#{contactosC.contactos.tel}" maxlength="7">
+                    <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Celular" />
-                    <p:inputText value="#{contactosC.contactos.cel}" />
+                    <p:inputText value="#{contactosC.contactos.cel}" maxlength="9">
+                    <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
 
 
                 </p:panelGrid>
@@ -161,25 +173,37 @@
                 <p:panelGrid style="border: none" columns="4">
 
                     <p:outputLabel value="Nombre" />
-                    <p:inputText value="#{contactosC.familiar.nom}" />
+                    <p:inputText value="#{contactosC.familiar.nom}" >
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Apellido" />
-                    <p:inputText value="#{contactosC.familiar.ape}" />
+                    <p:inputText value="#{contactosC.familiar.ape}" >
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Parentesco" />
-                    <p:inputText value="#{contactosC.familiar.par}" />
+                    <p:inputText value="#{contactosC.familiar.par}" >
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Ocupacion" />
-                    <p:inputText value="#{contactosC.familiar.ocu}" />
+                    <p:inputText value="#{contactosC.familiar.ocu}" >
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
                     <p:outputLabel for="txtFecNacimiento" value="Fecha de Nacimiento"/>
                     <p:inputMask id="txtFecNacimiento" value="#{contactosC.familiar.fecNac}" mask="99/99/9999"/>
 
                     <p:outputLabel value="Telefono" />
-                    <p:inputText value="#{contactosC.familiar.tel}" />
+                    <p:inputText value="#{contactosC.familiar.tel}" maxlength="7">
+                    <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Celular" />
-                    <p:inputText value="#{contactosC.familiar.cel}" />
+                    <p:inputText value="#{contactosC.familiar.cel}" maxlength="9">
+                    <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Estado civil"/>
 
@@ -216,7 +240,9 @@
                     <p:outputLabel for="txtHas" value="Hasta"/>
                     <p:inputMask id="txtHas" value="#{estudiosC.estudios.has}" mask="99/99/9999"/>
                     <p:outputLabel value="Carrera"/>
-                    <p:inputText value="#{estudiosC.estudios.carre}"/>
+                    <p:inputText value="#{estudiosC.estudios.carre}">
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
                 </p:panelGrid>
             </p:fieldset>
 
@@ -237,7 +263,9 @@
                     <p:outputLabel for="txtHasta" value="Hasta"/>
                     <p:inputMask id="txtHasta" value="#{estudiosC.superiores.has}" mask="99/99/9999"/>
                     <p:outputLabel value="Carrera"/>
-                    <p:inputText value="#{estudiosC.superiores.carre}"/>
+                    <p:inputText value="#{estudiosC.superiores.carre}">
+                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
                 </p:panelGrid>
             </p:fieldset>
 
