@@ -21,7 +21,15 @@
 
 
 
-            <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado">
+            <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    <h1>Empleado</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
                 <p:column style="width:16px">
                     <p:rowToggler/>
                 </p:column>

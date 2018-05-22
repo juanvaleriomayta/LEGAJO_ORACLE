@@ -15,7 +15,15 @@
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{dialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
             <p:commandButton value="Listar" actionListener="#{dialectoC.listar()}" update="data"/>
 
-            <p:dataTable id="data" value="#{dialectoC.lstDialecto}" var="dialecto">
+            <p:dataTable id="data" value="#{dialectoC.lstDialecto}" var="dialecto" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    <h1>Dialecto</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
                 <p:column headerText="Nombre" >
                     <p:outputLabel value="#{dialecto.nomDial}"/>
                 </p:column>

@@ -16,7 +16,15 @@
 
             <p:commandButton value="Listar" actionListener="#{contactosC.listar()}" update="data"/>
 
-            <p:dataTable id="data" value="#{contactosC.lstContactos}" var="contactos">
+            <p:dataTable id="data" value="#{contactosC.lstContactos}" var="contactos" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    <h1>Contactos del Empleado</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
 
                 <p:column headerText="Tipos de Familiares" >
                     <p:outputLabel value="#{contactos.tipDeFami}"/>
@@ -49,7 +57,7 @@
                     <p:outputLabel value="#{contactos.vive}"/>
                 </p:column>
                 <p:column headerText="Modificar" >
-                    <p:commandLink value="Modificar" actionListener="#{contactosC.leerID(contactos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                    <p:commandButton value="Modificar" actionListener="#{contactosC.leerID(contactos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 <p:column headerText="Eliminar" >
                     <p:commandButton value="Eliminar" actionListener="#{contactosC.eliminar(contactos)}" update="data" style="background-color:red;color:red;">
