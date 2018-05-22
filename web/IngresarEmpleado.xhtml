@@ -9,6 +9,11 @@
     </h:head>
     <h:body>
         <h:form>
+            <H1 align="center">UNIDAD DE RECURSOS HUMANOS</H1>
+            <H2 align="center">Sección Registros</H2>
+            <H1 align="center">FICHA DE DATOS PERSONALES DEL TRABAJADOR</H1>
+
+            <H2>DATOS PERSONALES</H2>
             <p:fieldset legend="Empleado">
                 <p:panelGrid style="border: none" columns="4">
                     <p:outputLabel for="txtDNI" value="DNI" />
@@ -70,7 +75,7 @@
                     </p:inputText>
 
                     <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
-                    
+
                     <p:autoComplete value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
                     </p:autoComplete>
 
@@ -83,10 +88,6 @@
 
                     <p:outputLabel for="txtFecNom" value="Fecha de Nombramineto: " />
                     <p:inputMask id="txtFecNom" value="#{empleadoC.empleado.fecNom}" mask="99/99/9999"/>
-
-
-
-
 
                     <p:outputLabel value="Grupo Sanguineo" />
                     <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}" required="true" requiredMessage="Seleccione el Tipo de Sangre ">
@@ -133,6 +134,7 @@
                     </p:selectOneRadio>
                 </p:panelGrid>
             </p:fieldset>
+            <H2>DATOS EN CASO DE EMERGENCIAS</H2>
             <p:fieldset legend="Contacto">
                 <p:panelGrid style="border: none" columns="4">
 
@@ -145,40 +147,16 @@
                     <p:outputLabel value="Parentesco" />
                     <p:inputText value="#{contactosC.contactos.par}" />
 
-                    <p:outputLabel value="Ocupacion" />
-                    <p:inputText value="#{contactosC.contactos.ocu}" />
-
-                    <p:outputLabel for="txtFechaNacimiento" value="Fecha de Nacimiento"/>
-                    <p:inputMask id="txtFechaNacimiento" value="#{contactosC.contactos.fecNac}" mask="99/99/9999"/>
-
                     <p:outputLabel value="Telefono" />
                     <p:inputText value="#{contactosC.contactos.tel}" />
 
                     <p:outputLabel value="Celular" />
                     <p:inputText value="#{contactosC.contactos.cel}" />
 
-                    <p:outputLabel value="Estado civil"/>
-
-                    <p:selectOneRadio id="Estad" value="#{contactosC.contactos.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
-
-                        <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
-                        <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
-                        <f:selectItem itemLabel="Casado" itemValue="Casado"/>
-                        <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
-
-                    </p:selectOneRadio>
-
-                    <p:outputLabel value="Vive" />
-                    <p:selectOneRadio id="viv" value="#{contactosC.contactos.vive}" required="true" requiredMessage="Seleccione si vive o no">                        
-
-                        <f:selectItem itemLabel="Si" itemValue="Si"/>
-                        <f:selectItem itemLabel="No" itemValue="No"/> 
-
-                    </p:selectOneRadio>
 
                 </p:panelGrid>
             </p:fieldset>
-
+            <H2>DATOS REFRENTES A LOS PADRES E HIJOS DEL TRABAJADOR</H2>
             <p:fieldset legend="Familiar">
                 <p:panelGrid style="border: none" columns="4">
 
@@ -224,7 +202,7 @@
 
                 </p:panelGrid>
             </p:fieldset>
-
+            <H2>DATOS DE ESTUDIO</H2>
             <p:fieldset legend="Datos Secundarios">
                 <p:panelGrid style="border: none" columns="4">
                     <p:outputLabel value="Estudios" />

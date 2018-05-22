@@ -3,10 +3,18 @@ package modelo;
 
 public class Estudios {
     private int IdEstuGenEmpl;
-    private String DatSuper,tipGraAca,Desd,Has,Carre;
+    private String DatSuper,tipGraAca,Desd,Has,Carre,CentEstuSecun;
 
     public int getIdEstuGenEmpl() {
         return IdEstuGenEmpl;
+    }
+
+    public String getCentEstuSecun() {
+        return CentEstuSecun;
+    }
+
+    public void setCentEstuSecun(String CentEstuSecun) {
+        this.CentEstuSecun = CentEstuSecun;
     }
 
     public void setIdEstuGenEmpl(int IdEstuGenEmpl) {
