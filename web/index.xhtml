@@ -5,10 +5,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Legajo</title>
     </h:head>
     <h:body>
-        
+
         <H1 align="center"> SISTEMA DE CONTROL LEGAJO </H1>
 
         <p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:10px">
@@ -16,12 +16,11 @@
 
                 <p:column>
                     <p:submenu label="SECCIONES">
-                        <p:menuitem value="Datos" outcome="DatosWEB" />
+
                         <p:menuitem value="Empleado" outcome="EmpleadoWEB" />
                         <p:menuitem value="Estudios" outcome="EstudiosWEB" />
                         <p:menuitem value="Dialecto" outcome="DialectoWEB" />
                         <p:menuitem value="Contactos del Empleado" outcome="ContactosWEB" />
-                        <p:menuitem value="Detalle Dialecto" outcome="DetalleDialectoWEB" />
                         <p:menuitem value="Ingresar Empleado" outcome="IngresarEmpleado" />
                         <p:menuitem value="Ubigeo" outcome="UbigeoWEB" />                                                   
                     </p:submenu>

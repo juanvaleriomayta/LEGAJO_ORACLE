@@ -15,6 +15,9 @@
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{contactosC.setAccion('Registrar')}" update=":dlgDatos"/>
 
             <p:commandButton value="Listar" actionListener="#{contactosC.listar()}" update="data"/>
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
 
             <p:dataTable id="data" value="#{contactosC.lstContactos}" var="contactos" rows="10"
                          paginator="true"
@@ -107,6 +110,7 @@
                     <p:commandButton value="#{contactosC.accion}" actionListener="#{contactosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                     <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                 </p:panelGrid>
+
             </h:form>
 
         </p:dialog>
