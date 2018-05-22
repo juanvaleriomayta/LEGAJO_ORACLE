@@ -18,7 +18,9 @@
 
             <p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>
             <p:commandButton value="Actualizar Ubigeo" actionListener="#{ubigeoBean.listar()}" update="data"/>
-
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
 
 
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"

@@ -270,6 +270,9 @@
             <p:remoteCommand name="ingresarFamiliar" actionListener="#{contactosC.registrarFamiliar()}" />
             <p:remoteCommand name="ingresarDatosSecundarios" actionListener="#{estudiosC.registrarSecundarios()}" />
             <p:remoteCommand name="ingresarDatosSuperiores" actionListener="#{estudiosC.registrarSuperiores()}" />
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
         </h:form>
     </h:body>
 </html>

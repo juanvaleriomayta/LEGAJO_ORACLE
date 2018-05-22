@@ -14,6 +14,10 @@
 
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosC.setAccion('Registrar')}" update=":dlgDatos"/>
             <p:commandButton value="Listar" actionListener="#{estudiosC.listar()}" update="data"/>
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
+
 
             <p:dataTable id="data"  value="#{estudiosC.lstEstudios}" var="estudios" rows="10"
                          paginator="true"
