@@ -123,14 +123,14 @@ public class EstudiosDao extends DAO {
     public void modificar(Estudios estu) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Estudios SET DatSuper = ?, TipGraAca = ?, Desd = ?, Has = ?,Carre = ?   WHERE IdEstuGenEmpl = ?");
+            PreparedStatement st = this.getCn().prepareStatement("UPDATE Estudios SET DatSuper = ?, TipGraAca = ?, Desd = convert(date, ?, 103), Has = convert(date, ?, 103),Carre = ?   WHERE IdEstuGenEmpl = ?");
             st.setString(1, estu.getDatSuper());
             st.setString(2, estu.getTipGraAca());
             st.setString(3, estu.getDesd());
             st.setString(4, estu.getHas());
             st.setString(5, estu.getCarre());
-
             st.setInt(7, estu.getIdEstuGenEmpl());
+            st.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {

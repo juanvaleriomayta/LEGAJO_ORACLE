@@ -59,14 +59,14 @@
             </p:dataTable>               
         </h:form>
 
-        <p:dialog showEffect="explode" modal="true" hideEffect="bounce" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+        <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Tipo de Graduacion Academica" />
                     <p:selectOneMenu id="TipodeGraduacionAcademica" value="#{estudiosC.estudios.tipGraAca}" required="true" requiredMessage="Seleccione el Tipo Academico ">
                         <f:selectItem itemLabel="Seleccione"/>
-                        <f:selectItem itemLabel="SE" itemValue="SE" />
-                        <f:selectItem itemLabel="SU" itemValue="SU" />
+                        <f:selectItem itemLabel="Secundaria" itemValue="SE" />
+                        <f:selectItem itemLabel="Superior" itemValue="SU" />
                     </p:selectOneMenu>
                     <p:outputLabel value="Datos Superiores" />
                     <p:inputText value="#{estudiosC.estudios.datSuper}" required="true" requiredMessage="Ingrese Dato Superior ">

@@ -19,10 +19,23 @@
                 <f:param name="productId" value="50" />
             </p:button>
 
+            <style>
+                .familiar{
+                    background: #4292ED;
+                    color: #E32470;
+                }
+
+                .contacto{
+                    background: transparent;
+                    color: blue;
+                }
+            </style>
+
             <p:dataTable id="data" value="#{contactosC.lstContactos}" var="contactos" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15"
+                         rowStyleClass="#{contactos.tipDeFami == 'F' ? 'familiar':'contacto'}">
                 <f:facet name="header">
                     <h1>Contactos del Empleado</h1> 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -74,14 +87,14 @@
                 </p:column>
             </p:dataTable>
         </h:form>
-        <p:dialog  showEffect="explode" modal="true" hideEffect="bounce" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+        <p:dialog  showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Tipo de Contactos" />
                     <p:selectOneMenu id="TipoFamiliar" value="#{contactosC.contactos.tipDeFami}">
                         <f:selectItem itemLabel="Seleccione"/>
-                        <f:selectItem itemLabel="Familiar" itemValue="Familiar"/>
-                        <f:selectItem itemLabel="Emergencia" itemValue="Emergencia"/>
+                        <f:selectItem itemLabel="Familiar" itemValue="F"/>
+                        <f:selectItem itemLabel="Contacto" itemValue="C"/>
                     </p:selectOneMenu>              
 
                     <p:outputLabel value="Nombre" />

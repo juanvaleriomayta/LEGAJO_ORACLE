@@ -44,13 +44,12 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-    public String getAccion() {
-        return accion;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
     public List<Empleado> getLstEmpleado() {
@@ -61,13 +60,13 @@ public class EmpleadoC implements Serializable {
         this.lstEmpleado = lstEmpleado;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public String getAccion() {
+        return accion;
     }
 
-    public void setEmpleado(Empleado empleado) {
-
-        this.empleado = empleado;
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
     }
 
     public void operar() throws Exception {
@@ -159,7 +158,6 @@ public class EmpleadoC implements Serializable {
             dao = new EmpleadoDao();
             dao.modificar(empleado);
             this.listar();
-
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Modificado con Exito"));
         } catch (Exception e) {
             throw e;
