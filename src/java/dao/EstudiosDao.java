@@ -12,14 +12,14 @@ public class EstudiosDao extends DAO {
     public void registrarEstudios(Estudios estu, String tipo) throws Exception {
         this.Conexion();
         try {
-            String sql = "INSERT INTO Estudios  (DatSuper,Desd,Has,Carre,CentEstuSecun,TipGraAca) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO Estudios  (DatSuper,Desd,Has,Carre,CentEstuSecun,TipGraAca) values(?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, estu.getDatSuper());
             st.setString(2, estu.getDesd());
             st.setString(3, estu.getHas());
             st.setString(4, estu.getCarre());
-            st.setString(5, estu.getCentEstuSecun());
-            st.setString(6, tipo);
+            
+            st.setString(5, tipo);
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -31,14 +31,14 @@ public class EstudiosDao extends DAO {
     public void registrarSuperiores(Estudios estu, String tipo) throws Exception {
         this.Conexion();
         try {
-            String sql = "INSERT INTO Estudios  (DatSuper,Desd,Has,Carre,,CentEstuSecun,TipGraAca) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO Estudios  (DatSuper,Desd,Has,Carre,TipGraAca) values(?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, estu.getDatSuper());
             st.setString(2, estu.getDesd());
             st.setString(3, estu.getHas());
             st.setString(4, estu.getCarre());
-            st.setString(5, estu.getCentEstuSecun());
-            st.setString(6, tipo);
+            
+            st.setString(5, tipo);
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -51,13 +51,13 @@ public class EstudiosDao extends DAO {
         try {
             this.Conexion();
 
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Estudios (DatSuper,TipGraAca,Desd,Has,Carre,CentEstuSecun) values(?,?,?,?,?)");
+            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Estudios (DatSuper,TipGraAca,Desd,Has,Carre) values(?,?,?,?,?)");
             st.setString(1, estu.getDatSuper());
             st.setString(2, estu.getTipGraAca());
             st.setString(3, estu.getDesd());
             st.setString(4, estu.getHas());
             st.setString(5, estu.getCarre());
-            st.setString(6, estu.getCentEstuSecun());
+            
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -73,7 +73,7 @@ public class EstudiosDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT IdEstuGenEmpl,CentEstuSecun, DatSuper,TipGraAca,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Has,'dd/MM/yyyy') as Has,Carre FROM Estudios");
+            PreparedStatement st = this.getCn().prepareCall("SELECT IdEstuGenEmpl, DatSuper,TipGraAca,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Has,'dd/MM/yyyy') as Has,Carre FROM Estudios");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -84,7 +84,7 @@ public class EstudiosDao extends DAO {
                 estu.setDesd(rs.getString("Desd"));
                 estu.setHas(rs.getString("Has"));
                 estu.setCarre(rs.getString("Carre"));
-                estu.setCentEstuSecun(rs.getString("CentEstuSecun"));
+                
                 lista.add(estu);
             }
         } catch (SQLException e) {
@@ -112,7 +112,7 @@ public class EstudiosDao extends DAO {
                 estud.setDesd(rs.getString("Desd"));
                 estud.setHas(rs.getString("Has"));
                 estud.setCarre(rs.getString("Carre"));
-                estud.setCentEstuSecun(rs.getString("CentEstuSecun"));
+                
             }
         } catch (SQLException e) {
             throw e;
@@ -125,13 +125,13 @@ public class EstudiosDao extends DAO {
     public void modificar(Estudios estu) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Estudios SET DatSuper = ?, TipGraAca = ?,CentEstuSecun=? Desd = ?, Has = ?,Carre = ?   WHERE IdEstuGenEmpl = ?");
+            PreparedStatement st = this.getCn().prepareStatement("UPDATE Estudios SET DatSuper = ?, TipGraAca = ?, Desd = ?, Has = ?,Carre = ?   WHERE IdEstuGenEmpl = ?");
             st.setString(1, estu.getDatSuper());
             st.setString(2, estu.getTipGraAca());
             st.setString(3, estu.getDesd());
             st.setString(4, estu.getHas());
             st.setString(5, estu.getCarre());
-            st.setString(6, estu.getCentEstuSecun());
+            
             st.setInt(7, estu.getIdEstuGenEmpl());
         } catch (SQLException e) {
             throw e;
