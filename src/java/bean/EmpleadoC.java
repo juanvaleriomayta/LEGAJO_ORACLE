@@ -39,7 +39,6 @@ public class EmpleadoC implements Serializable {
             dao.registrarEmpleado(empleado);
             this.limpiar();
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
         } catch (Exception e) {
             throw e;
         }

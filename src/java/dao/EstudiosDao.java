@@ -12,13 +12,12 @@ public class EstudiosDao extends DAO {
     public void registrarEstudios(Estudios estu, String tipo) throws Exception {
         this.Conexion();
         try {
-            String sql = "INSERT INTO Estudios  (DatSuper,Desd,Has,Carre,CentEstuSecun,TipGraAca) values(?,?,?,?,?)";
+            String sql = "INSERT INTO Estudios  (DatSuper,Desd,Has,Carre,TipGraAca) values(?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, estu.getDatSuper());
             st.setString(2, estu.getDesd());
             st.setString(3, estu.getHas());
             st.setString(4, estu.getCarre());
-            
             st.setString(5, tipo);
             st.executeUpdate();
         } catch (SQLException e) {
@@ -37,7 +36,6 @@ public class EstudiosDao extends DAO {
             st.setString(2, estu.getDesd());
             st.setString(3, estu.getHas());
             st.setString(4, estu.getCarre());
-            
             st.setString(5, tipo);
             st.executeUpdate();
         } catch (SQLException e) {
@@ -57,7 +55,7 @@ public class EstudiosDao extends DAO {
             st.setString(3, estu.getDesd());
             st.setString(4, estu.getHas());
             st.setString(5, estu.getCarre());
-            
+
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -84,7 +82,7 @@ public class EstudiosDao extends DAO {
                 estu.setDesd(rs.getString("Desd"));
                 estu.setHas(rs.getString("Has"));
                 estu.setCarre(rs.getString("Carre"));
-                
+
                 lista.add(estu);
             }
         } catch (SQLException e) {
@@ -112,7 +110,7 @@ public class EstudiosDao extends DAO {
                 estud.setDesd(rs.getString("Desd"));
                 estud.setHas(rs.getString("Has"));
                 estud.setCarre(rs.getString("Carre"));
-                
+
             }
         } catch (SQLException e) {
             throw e;
@@ -131,7 +129,7 @@ public class EstudiosDao extends DAO {
             st.setString(3, estu.getDesd());
             st.setString(4, estu.getHas());
             st.setString(5, estu.getCarre());
-            
+
             st.setInt(7, estu.getIdEstuGenEmpl());
         } catch (SQLException e) {
             throw e;

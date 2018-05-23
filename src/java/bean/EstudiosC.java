@@ -24,7 +24,6 @@ public class EstudiosC implements Serializable{
             dao = new EstudiosDao();
             dao.registrarEstudios(estudios, "SE");
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado Estudios SE con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -36,7 +35,6 @@ public class EstudiosC implements Serializable{
             dao = new EstudiosDao();
             dao.registrarSuperiores(superiores, "SU");
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado Estudios SU con Exito"));
         } catch (Exception e) {
             throw e;
         }

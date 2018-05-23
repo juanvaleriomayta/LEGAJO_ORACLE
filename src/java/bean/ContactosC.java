@@ -24,7 +24,6 @@ public class ContactosC implements Serializable {
             dao = new ContactosDao();
             dao.registrarContacto(contactos, "C");
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito  (C)"));
         } catch (Exception e) {
             throw e;
         }
@@ -36,7 +35,6 @@ public class ContactosC implements Serializable {
             dao = new ContactosDao();
             dao.registrarFamiliar(familiar, "F");
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito (F)"));
         } catch (Exception e) {
             throw e;
         }
