@@ -36,7 +36,6 @@ public class EmpleadoDao extends DAO {
             st.setString(19, emp.getUbigActu());
             st.setString(20, emp.getUbigOrig());
             st.setString(21, emp.getEst());
-
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
