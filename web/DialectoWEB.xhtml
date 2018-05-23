@@ -38,7 +38,9 @@
             <h:form>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Dialecto" />
-                    <p:inputText value="#{dialectoC.dialecto.nomDial}" />
+                    <p:inputText value="#{dialectoC.dialecto.nomDial}" >
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
 
 
                     <p:commandButton value="#{dialectoC.accion}" actionListener="#{dialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>

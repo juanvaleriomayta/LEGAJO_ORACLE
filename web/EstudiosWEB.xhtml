@@ -69,11 +69,16 @@
                         <f:selectItem itemLabel="SU" itemValue="SU" />
                     </p:selectOneMenu>
                     <p:outputLabel value="Datos Superiores" />
-                    <p:inputText value="#{estudiosC.estudios.datSuper}" required="true" requiredMessage="Ingrese Dato Superior "/>
+                    <p:inputText value="#{estudiosC.estudios.datSuper}" required="true" requiredMessage="Ingrese Dato Superior ">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
                     <p:outputLabel for="txtDesde" value="Desde"/>
                     <p:inputMask id="txtDesde" value="#{estudiosC.estudios.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha Desde"/>
+
                     <p:outputLabel for="txtHasta" value="Hasta"/>
                     <p:inputMask id="txtHasta" value="#{estudiosC.estudios.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha Hasta"/>
+
                     <p:outputLabel value="Carrera" />
                     <p:inputText value="#{estudiosC.estudios.carre}" required="true" requiredMessage="Ingrese La Carrera" />
 
