@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -115,7 +114,6 @@ public class EmpleadoC implements Serializable {
             empleado.setUbigOrig(dao2.obtenerCodigoUbigeo(empleado.getUbigOrig()));
             dao.registrar(empleado);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
         } catch (Exception e) {
             throw e;
 
@@ -128,7 +126,6 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             lstEmpleado = dao.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Listado con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -158,7 +155,6 @@ public class EmpleadoC implements Serializable {
             dao = new EmpleadoDao();
             dao.modificar(empleado);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Modificado con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -171,7 +167,6 @@ public class EmpleadoC implements Serializable {
             dao = new EmpleadoDao();
             dao.eliminar(emp);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Eliminado con Exito"));
         } catch (Exception e) {
             throw e;
         }

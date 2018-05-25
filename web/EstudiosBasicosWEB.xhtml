@@ -12,43 +12,43 @@
         <p:growl id="msj" autoUpdate="true"/>
         <h:form id="frm">
 
-            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosC.setAccion('Registrar')}" update=":dlgDatos"/>
-            <p:commandButton value="Listar" actionListener="#{estudiosC.listar()}" update="data"/>
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosBasicosC.setAccion('Registrar')}" update=":dlgDatos"/>
+            <p:commandButton value="Listar" actionListener="#{estudiosBasicosC.listar()}" update="data"/>
             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>
 
 
-            <p:dataTable id="data"  value="#{estudiosC.lstEstudios}" var="estudios" rows="10"
+            <p:dataTable id="data"  value="#{estudiosBasicosC.lstEstudiosBasicos}" var="basicos" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                 <f:facet name="header">
-                    <h1>Estudios Academicos del Empleado</h1> 
+                    <h1>Estudios Basicos del Empleado</h1> 
 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                     <p:columnToggler datasource="data" trigger="toggler" />
                 </f:facet>
-                <p:column headerText="Tipo de Graduacion Academica" >
-                    <p:outputLabel value="#{estudios.tipGraAca}"/>
+                <p:column headerText="Educacion" >
+                    <p:outputLabel value="#{basicos.educ}"/>
                 </p:column>
-                <p:column headerText="Datos Superiores" >
-                    <p:outputLabel value="#{estudios.datSuper}"/>
+                <p:column headerText="Culminacion" >
+                    <p:outputLabel value="#{basicos.culmi}"/>
+                </p:column>
+                <p:column headerText="Centro de Estudios" >
+                    <p:outputLabel value="#{basicos.centrEstu}"/>
                 </p:column>
                 <p:column headerText="Desde" >
-                    <p:outputLabel value="#{estudios.desd}"/>
+                    <p:outputLabel value="#{basicos.desd}"/>
                 </p:column>
                 <p:column headerText="Hasta" >
-                    <p:outputLabel value="#{estudios.has}"/>
-                </p:column>
-                <p:column headerText="Carrera" >
-                    <p:outputLabel value="#{estudios.carre}"/>
+                    <p:outputLabel value="#{basicos.has}"/>
                 </p:column>
                 <p:column headerText="Modificar" >
-                    <p:commandButton value="Modificar" actionListener="#{estudiosC.leerID(estudios)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                    <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 <p:column headerText="Eliminar" >
-                    <p:commandButton value="Eliminar" actionListener="#{estudiosC.eliminar(estudios)}" update="data" style="background-color:red;color:red;">
+                    <p:commandButton value="Eliminar" actionListener="#{estudiosBasicosC.eliminar(basicos)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -62,27 +62,29 @@
         <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Tipo de Graduacion Academica" />
-                    <p:selectOneMenu id="TipodeGraduacionAcademica" value="#{estudiosC.estudios.tipGraAca}" required="true" requiredMessage="Seleccione el Tipo Academico ">
+                    <p:outputLabel value="Educacion" />
+                    <p:selectOneMenu id="Educacion" value="#{estudiosBasicosC.estudiosBasicos.educ}" required="true" requiredMessage="Seleccione la Educacion ">
                         <f:selectItem itemLabel="Seleccione"/>
                         <f:selectItem itemLabel="Secundaria" itemValue="SE" />
                         <f:selectItem itemLabel="Superior" itemValue="SU" />
                     </p:selectOneMenu>
-                    <p:outputLabel value="Datos Superiores" />
-                    <p:inputText value="#{estudiosC.estudios.datSuper}" required="true" requiredMessage="Ingrese Dato Superior ">
+                    <p:outputLabel value="Culminacion" />
+                    <p:inputText value="#{estudiosBasicosC.estudiosBasicos.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtCentroEstudios" value="Centro de Estudios"/>
+                    <p:inputText id="txtCentroEstudios" value="#{estudiosBasicosC.estudiosBasicos.centrEstu}" required="true" requiredMessage="Ingrese Centro de Estudios">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtDesde" value="Desde"/>
-                    <p:inputMask id="txtDesde" value="#{estudiosC.estudios.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha Desde"/>
+                    <p:inputMask id="txtDesde" value="#{estudiosBasicosC.estudiosBasicos.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>
 
-                    <p:outputLabel for="txtHasta" value="Hasta"/>
-                    <p:inputMask id="txtHasta" value="#{estudiosC.estudios.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha Hasta"/>
+                    <p:outputLabel value="Hasta" />
+                    <p:inputMask id="Hasta" value="#{estudiosBasicosC.estudiosBasicos.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
 
-                    <p:outputLabel value="Carrera" />
-                    <p:inputText value="#{estudiosC.estudios.carre}" required="true" requiredMessage="Ingrese La Carrera" />
-
-                    <p:commandButton value="#{estudiosC.accion}" actionListener="#{estudiosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="#{estudiosBasicosC.accion}" actionListener="#{estudiosBasicosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                     <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                 </p:panelGrid>
             </h:form>

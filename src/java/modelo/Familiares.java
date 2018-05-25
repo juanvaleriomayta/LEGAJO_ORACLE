@@ -1,24 +1,16 @@
 package modelo;
 
-public class Contactos {
+public class Familiares {
   
-    private int CodConEmp;
-    private String TipDeFami,Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive;
+    private int CodFami;
+    private String Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive;
 
-    public int getCodConEmp() {
-        return CodConEmp;
+    public int getCodFami() {
+        return CodFami;
     }
 
-    public void setCodConEmp(int CodConEmp) {
-        this.CodConEmp = CodConEmp;
-    }
-
-    public String getTipDeFami() {
-        return TipDeFami;
-    }
-
-    public void setTipDeFami(String TipDeFami) {
-        this.TipDeFami = TipDeFami;
+    public void setCodFami(int CodFami) {
+        this.CodFami = CodFami;
     }
 
     public String getNom() {
@@ -92,4 +84,6 @@ public class Contactos {
     public void setVive(String vive) {
         this.vive = vive;
     }
+
+
 }
