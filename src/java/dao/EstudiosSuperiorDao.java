@@ -13,12 +13,12 @@ public class EstudiosSuperiorDao extends DAO {
         try {
             this.Conexion();
 
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Has,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)");
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
             st.setString(3, sup.getCentrEstu());
             st.setString(4, sup.getDesd());
-            st.setString(5, sup.getHas());
+            st.setString(5, sup.getHast());
             st.setString(6, sup.getCulmi());
             st.setString(7, sup.getGradAcadObte());
             st.executeUpdate();
@@ -36,7 +36,7 @@ public class EstudiosSuperiorDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT IdEstuSuper, EduSuper,Culmi,Espe,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Has,'dd/MM/yyyy') as Has,Culmi,GradAcadObte FROM EstudiosSuperiores");
+            PreparedStatement st = this.getCn().prepareCall("SELECT IdEstuSuper, EduSuper,Culmi,Espe,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Hast,'dd/MM/yyyy') as Hast,Culmi,GradAcadObte FROM EstudiosSuperiores");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -46,7 +46,7 @@ public class EstudiosSuperiorDao extends DAO {
                 sup.setEspe(rs.getString("Espe"));
                 sup.setCentrEstu(rs.getString("CentrEstu"));
                 sup.setDesd(rs.getString("Desd"));
-                sup.setHas(rs.getString("Has"));
+                sup.setHast(rs.getString("Hast"));
                 sup.setCulmi(rs.getString("Culmi"));
                 sup.setGradAcadObte(rs.getString("GradAcadObte"));
 
@@ -66,7 +66,7 @@ public class EstudiosSuperiorDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT IdEstuSuper ,EduSuper,Espe,CentrEstu,Desd,Has,Culmi,GradAcadObte FROM EstudiosSuperiores WHERE IdEstuSuper=?");
+            PreparedStatement st = this.getCn().prepareStatement("SELECT IdEstuSuper ,EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte FROM EstudiosSuperiores WHERE IdEstuSuper=?");
             st.setInt(1, sup.getIdEstuSuper());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -76,7 +76,7 @@ public class EstudiosSuperiorDao extends DAO {
                 supe.setEspe(rs.getString("Espe"));
                 supe.setCentrEstu(rs.getString("CentrEstu"));
                 supe.setDesd(rs.getString("Desd"));
-                supe.setHas(rs.getString("Has"));
+                supe.setHast(rs.getString("Hast"));
                 supe.setCulmi(rs.getString("Culmi"));
                 supe.setGradAcadObte(rs.getString("GradAcadObte"));
 
@@ -92,12 +92,12 @@ public class EstudiosSuperiorDao extends DAO {
     public void modificar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE EstudiosSuperiores SET EduSuper, Espe,CentrEstu , Desd = convert(date, ?, 103),= ?, Has, = convert(date, ?, 103),Culmi,GradAcadObte  WHERE IdEstuSuper = ?");
+            PreparedStatement st = this.getCn().prepareStatement("UPDATE EstudiosSuperiores SET EduSuper, Espe,CentrEstu , Desd = convert(date, ?, 103),= ?, Hast, = convert(date, ?, 103),Culmi,GradAcadObte  WHERE IdEstuSuper = ?");
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
             st.setString(3, sup.getCentrEstu());
             st.setString(4, sup.getDesd());
-            st.setString(5, sup.getHas());
+            st.setString(5, sup.getHast());
             st.setString(6, sup.getCulmi());
             st.setString(7, sup.getGradAcadObte());
             st.setInt(8, sup.getIdEstuSuper());

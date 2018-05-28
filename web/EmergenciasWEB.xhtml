@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:growl id="msj" autoUpdate="true"/>
+        <h:form id="frm">
+
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{emergenciaC.setAccion('Registrar')}" update=":dlgDatos"/>
+
+            <p:commandButton value="Listar" actionListener="#{emergenciaC.listar()}" update="data"/>
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
+
+            <style>
+                .familiar{
+                    background: #4292ED;
+                    color: #E32470;
+                }
+
+                .contacto{
+                    background: transparent;
+                    color: blue;
+                }
+            </style>
+
+                <p:dataTable id="data" value="#{emergenciaC.lstEmergencia}" var="emergencias" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+
+                <f:facet name="header">
+                    <h1>Datos Emergentes</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
+
+
+                <p:column headerText="Nombre" >
+                    <p:outputLabel value="#{emergencias.nom}"/>
+                </p:column>
+                <p:column headerText="Apellido" >
+                    <p:outputLabel value="#{emergencias.ape}"/>
+                </p:column>
+                <p:column headerText="Parentesco" >
+                    <p:outputLabel value="#{emergencias.paren}"/>
+                </p:column>                
+                <p:column headerText="Telefono" >
+                    <p:outputLabel value="#{emergencias.tel}"/>
+                </p:column>
+                <p:column headerText="Celular" >
+                    <p:outputLabel value="#{emergencias.cel}"/>
+                </p:column>
+                
+                <p:column headerText="Modificar" >
+                    <p:commandButton icon="ui-icon-pencil" actionListener="#{emergenciaC.leerID(emergencias)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton icon="ui-icon-circle-close" actionListener="#{emergenciaC.eliminar(emergencias)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <p:dialog  showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel value="Nombre" />
+                    <p:inputText value="#{emergenciaC.emergencia.nom}" >
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Apellido" />
+                    <p:inputText value="#{emergenciaC.emergencia.ape}" >
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Parentesco" />
+                    <p:inputText value="#{emergenciaC.emergencia.paren}" >
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>           
+                    
+                    <p:outputLabel value="Telefono" />
+                    <p:inputText value="#{emergenciaC.emergencia.tel}" maxlength="7" >
+                        <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Celular" />
+                    <p:inputText value="#{emergenciaC.emergencia.cel}" maxlength="9">
+                        <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText>                 
+                   
+                    <p:commandButton value="#{emergenciaC.accion}" actionListener="#{emergenciaC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+
+            </h:form>
+
+        </p:dialog>
+    </h:body>
+</html>
+

@@ -4,7 +4,7 @@ package modelo;
 public class EstudiosSuperior {
     
     private int IdEstuSuper;
-    private String EduSuper,Espe,CentrEstu,Desd,Has,Culmi,GradAcadObte;
+    private String EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte;
 
     public int getIdEstuSuper() {
         return IdEstuSuper;
@@ -46,12 +46,12 @@ public class EstudiosSuperior {
         this.Desd = Desd;
     }
 
-    public String getHas() {
-        return Has;
+    public String getHast() {
+        return Hast;
     }
 
-    public void setHas(String Has) {
-        this.Has = Has;
+    public void setHast(String Has) {
+        this.Hast = Has;
     }
 
     public String getCulmi() {

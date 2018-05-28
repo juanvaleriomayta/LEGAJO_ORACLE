@@ -32,7 +32,7 @@ public class EmergenciaDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT Nom, Ape,Paren,Tel,Cel FROM Emergencia");
+            PreparedStatement st = this.getCn().prepareCall("SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel FROM Emergencia");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -44,6 +44,7 @@ public class EmergenciaDao extends DAO {
                 eme.setTel(rs.getString("Tel"));
                 eme.setCel(rs.getString("Cel"));
                 lista.add(eme);
+                
             }
         } catch (SQLException e) {
             throw e;

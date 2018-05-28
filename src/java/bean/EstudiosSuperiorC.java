@@ -57,7 +57,7 @@ public class EstudiosSuperiorC implements Serializable {
         this.estudiosSuperior.setEspe("");
         this.estudiosSuperior.setCentrEstu("");
         this.estudiosSuperior.setDesd("");
-        this.estudiosSuperior.setHas("");
+        this.estudiosSuperior.setHast("");
         this.estudiosSuperior.setCulmi("");
         this.estudiosSuperior.setGradAcadObte("");
 
