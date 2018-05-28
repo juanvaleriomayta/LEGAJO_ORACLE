@@ -23,7 +23,7 @@ public class FamiliaresDao extends DAO {
             st.setString(7, fam.getCel());
             st.setString(8, fam.getEstCiv());
             st.setString(9, fam.getVive());
-            st.setString(10, tipo);
+            
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
