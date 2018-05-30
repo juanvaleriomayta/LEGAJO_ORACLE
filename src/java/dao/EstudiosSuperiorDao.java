@@ -92,7 +92,7 @@ public class EstudiosSuperiorDao extends DAO {
     public void modificar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE EstudiosSuperiores SET EduSuper, Espe,CentrEstu , Desd = convert(date, ?, 103),= ?, Hast, = convert(date, ?, 103),Culmi,GradAcadObte  WHERE IdEstuSuper = ?");
+            PreparedStatement st = this.getCn().prepareStatement("UPDATE EstudiosSuperiores SET EduSuper = ?, Espe=?,CentrEstu =?, Desd = convert(date, ?, 103), Hast = convert(date, ?, 103),Culmi=?,GradAcadObte=?  WHERE IdEstuSuper = ?");
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
             st.setString(3, sup.getCentrEstu());
