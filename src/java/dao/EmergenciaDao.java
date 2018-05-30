@@ -8,6 +8,24 @@ import java.util.List;
 import modelo.Emergencia;
 
 public class EmergenciaDao extends DAO {
+    
+    
+    public void registrarEmergencia(Emergencia eme) throws Exception {
+        try {
+            this.Conexion();
+            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Emergencia (Nom, Ape,Paren,Tel,Cel) values(?,?,?,?,?)");
+            st.setString(1, eme.getNom());
+            st.setString(2, eme.getApe());
+            st.setString(3, eme.getParen());
+            st.setString(4, eme.getTel());
+            st.setString(5, eme.getCel());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
 
     public void registrar(Emergencia eme) throws Exception {
         try {

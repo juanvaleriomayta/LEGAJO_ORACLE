@@ -15,6 +15,24 @@ public class EstudiosBasicosC implements Serializable {
     private List<EstudiosBasicos> lstEstudiosBasicos;
     private String accion;
 
+    
+    
+    
+    public void registrarEstudiosBasicos() throws Exception {
+        EstudiosBasicosDao dao;
+
+        try {
+            dao = new EstudiosBasicosDao();
+            dao.registrarEstudiosBasicos(estudiosBasicos);
+            this.limpiar();
+            this.listar();
+        } catch (Exception e) {
+            throw e;
+
+        }
+    }
+    
+    
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":

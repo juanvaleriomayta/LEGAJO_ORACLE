@@ -15,31 +15,23 @@ public class EstudiosSuperiorC implements Serializable {
     private List<EstudiosSuperior> lstEstudiosSuperior;
     private String accion;
 
-    public EstudiosSuperior getEstudiosSuperior() {
-        return estudiosSuperior;
-    }
+    
+    
+        public void registrarEstudiosSuperiores() throws Exception {
+        EstudiosSuperiorDao dao;
 
-    public void setEstudiosSuperior(EstudiosSuperior estudiosSuperior) {
-        this.estudiosSuperior = estudiosSuperior;
-    }
+        try {
+            dao = new EstudiosSuperiorDao();
+            dao.registrarEstudiosSuperiores(estudiosSuperior);
+            this.limpiar();
+            this.listar();
+        } catch (Exception e) {
+            throw e;
 
-    public List<EstudiosSuperior> getLstEstudiosSuperior() {
-        return lstEstudiosSuperior;
+        }
     }
-
-    public void setLstEstudiosSuperior(List<EstudiosSuperior> lstEstudiosSuperior) {
-        this.lstEstudiosSuperior = lstEstudiosSuperior;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
-    }
-
+    
+    
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -127,4 +119,41 @@ public class EstudiosSuperiorC implements Serializable {
             throw e;
         }
     }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
+    }
+
+    public EstudiosSuperior getEstudiosSuperior() {
+        return estudiosSuperior;
+    }
+
+    public void setEstudiosSuperior(EstudiosSuperior estudiosSuperior) {
+        this.estudiosSuperior = estudiosSuperior;
+    }
+
+    public List<EstudiosSuperior> getLstEstudiosSuperior() {
+        return lstEstudiosSuperior;
+    }
+
+    public void setLstEstudiosSuperior(List<EstudiosSuperior> lstEstudiosSuperior) {
+        this.lstEstudiosSuperior = lstEstudiosSuperior;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
 }

@@ -17,9 +17,11 @@ public class FamiliaresC implements Serializable {
 
     public void registrarFamiliar() throws Exception {
         FamiliaresDao dao;
+        
         try {
             dao = new FamiliaresDao();
-            dao.registrarFamiliar(familiar, "F");
+            dao.registrarFamiliar(familiar);
+            this.limpiar();
             this.listar();
         } catch (Exception e) {
             throw e;
