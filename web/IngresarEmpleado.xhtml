@@ -141,27 +141,27 @@
                 <p:panelGrid style="border: none" columns="4">
 
                     <p:outputLabel value="Nombre" />
-                    <p:inputText value="#{familiaresC.contactos.nom}" >
+                    <p:inputText value="#{emergenciaC.emergencia.nom}" >
                     <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Apellido" />
-                    <p:inputText value="#{familiaresC.contactos.ape}" >
+                    <p:inputText value="#{emergenciaC.emergencia.ape}" >
                     <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Parentesco" />
-                    <p:inputText value="#{familiaresC.contactos.par}" >
+                    <p:inputText value="#{emergenciaC.emergencia.paren}" >
                     <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Telefono" />
-                    <p:inputText value="#{familiaresC.contactos.tel}" maxlength="7">
+                    <p:inputText value="#{emergenciaC.emergencia.tel}" maxlength="7">
                     <p:keyFilter regEx="/[\d\-]/"/>
                     </p:inputText>
 
                     <p:outputLabel value="Celular" />
-                    <p:inputText value="#{familiaresC.contactos.cel}" maxlength="9">
+                    <p:inputText value="#{emergenciaC.emergencia.cel}" maxlength="9">
                     <p:keyFilter regEx="/[\d\-]/"/>
                     </p:inputText>
 
@@ -230,19 +230,20 @@
             <p:fieldset legend="Datos Secundarios">
                 <p:panelGrid style="border: none" columns="4">
                     <p:outputLabel value="Estudios" />
-                    <p:selectOneMenu id="Estudios" value="#{estudiosBasicosC.estudios.datSuper}" required="true" requiredMessage="Seleccione Estudios ">
+                    <p:selectOneMenu id="Estudios" value="#{estudiosBasicosC.estudiosBasicos.centrEstu}" required="true" requiredMessage="Seleccione Estudios ">
                         <f:selectItem itemLabel="Seleccione"/>
                         <f:selectItem itemLabel="Completa" itemValue="Completa" />
                         <f:selectItem itemLabel="Incompleta" itemValue="Incompleta" />
                     </p:selectOneMenu>
-                    <p:outputLabel for="txtDes" value="Desde"/>
-                    <p:inputMask id="txtDes" value="#{estudiosBasicosC.estudios.desd}" mask="99/99/9999"/>
-                    <p:outputLabel for="txtHas" value="Hasta"/>
-                    <p:inputMask id="txtHas" value="#{estudiosBasicosC.estudios.has}" mask="99/99/9999"/>
                     <p:outputLabel value="Carrera"/>
-                    <p:inputText value="#{estudiosBasicosC.estudios.carre}">
+                    <p:inputText value="#{estudiosBasicosC.estudiosBasicos.culmi}">
                     <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
+                    <p:outputLabel for="txtDes" value="Desde"/>
+                    <p:inputMask id="txtDes" value="#{estudiosBasicosC.estudiosBasicos.desd}" mask="99/99/9999"/>
+                    <p:outputLabel for="txtHas" value="Hasta"/>
+                    <p:inputMask id="txtHas" value="#{estudiosBasicosC.estudiosBasicos.has}" mask="99/99/9999"/>
+                    
                 </p:panelGrid>
             </p:fieldset>
 

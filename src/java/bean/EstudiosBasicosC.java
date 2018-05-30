@@ -15,31 +15,6 @@ public class EstudiosBasicosC implements Serializable {
     private List<EstudiosBasicos> lstEstudiosBasicos;
     private String accion;
 
-    public EstudiosBasicos getEstudiosBasicos() {
-        return estudiosBasicos;
-    }
-
-    public void setEstudiosBasicos(EstudiosBasicos estudiosBasicos) {
-        this.estudiosBasicos = estudiosBasicos;
-    }
-
-    public List<EstudiosBasicos> getLstEstudiosBasicos() {
-        return lstEstudiosBasicos;
-    }
-
-    public void setLstEstudiosBasicos(List<EstudiosBasicos> lstEstudiosBasicos) {
-        this.lstEstudiosBasicos = lstEstudiosBasicos;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
-    }
-
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -124,5 +99,30 @@ public class EstudiosBasicosC implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public EstudiosBasicos getEstudiosBasicos() {
+        return estudiosBasicos;
+    }
+
+    public void setEstudiosBasicos(EstudiosBasicos estudiosBasicos) {
+        this.estudiosBasicos = estudiosBasicos;
+    }
+
+    public List<EstudiosBasicos> getLstEstudiosBasicos() {
+        return lstEstudiosBasicos;
+    }
+
+    public void setLstEstudiosBasicos(List<EstudiosBasicos> lstEstudiosBasicos) {
+        this.lstEstudiosBasicos = lstEstudiosBasicos;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
     }
 }
