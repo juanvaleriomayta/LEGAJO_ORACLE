@@ -42,7 +42,7 @@
                     <p:outputLabel value="#{superior.desd}"/>
                 </p:column>
                 <p:column headerText="Hasta" >
-                    <p:outputLabel value="#{superior.has}"/>
+                    <p:outputLabel value="#{superior.hast}"/>
                 </p:column>
                 <p:column headerText="Culminación" >
                     <p:outputLabel value="#{superior.culmi}"/>
@@ -69,7 +69,7 @@
             <h:form>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Educacion Superior" />
-                    <p:selectOneMenu id="Educacion" value="#{estudiosSuperiorC.estudiosSuperior.centrEstu}" required="true" requiredMessage="Seleccione la Educacion ">
+                    <p:selectOneMenu value="#{estudiosSuperiorC.estudiosSuperior.centrEstu}" required="true" requiredMessage="Seleccione la Educacion ">
                         <f:selectItem itemLabel="Seleccione"/>
                         <f:selectItem itemLabel="Instituto Superior" itemValue="Instituto Superior" />
                         <f:selectItem itemLabel="Universitarios" itemValue="Universitarios" />
@@ -93,7 +93,7 @@
                     <p:inputMask id="txtDesde" value="#{estudiosSuperiorC.estudiosSuperior.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>
 
                     <p:outputLabel value="Hasta" />
-                    <p:inputMask id="Hasta" value="#{estudiosSuperiorC.estudiosSuperior.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
+                    <p:inputMask id="Hasta" value="#{estudiosSuperiorC.estudiosSuperior.hast}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
 
                     <p:outputLabel value="Culminacion" />
                     <p:selectOneRadio id="Culminacion" value="#{estudiosSuperiorC.estudiosSuperior.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
