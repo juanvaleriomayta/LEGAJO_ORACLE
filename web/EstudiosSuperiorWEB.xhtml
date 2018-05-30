@@ -51,10 +51,10 @@
                     <p:outputLabel value="#{superior.gradAcadObte}"/>
                 </p:column>
                 <p:column headerText="Modificar" >
-                    <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                    <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 <p:column headerText="Eliminar" >
-                    <p:commandButton value="Eliminar" actionListener="#{estudiosBasicosC.eliminar(basicos)}" update="data" style="background-color:red;color:red;">
+                    <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
