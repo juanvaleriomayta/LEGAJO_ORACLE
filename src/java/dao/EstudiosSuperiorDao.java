@@ -9,6 +9,28 @@ import modelo.EstudiosSuperior;
 
 public class EstudiosSuperiorDao extends DAO {
 
+    public void registrarEstudiosSuperiores(EstudiosSuperior sup) throws Exception {
+        try {
+            this.Conexion();
+
+            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)");
+            st.setString(1, sup.getEduSuper());
+            st.setString(2, sup.getEspe());
+            st.setString(3, sup.getCentrEstu());
+            st.setString(4, sup.getDesd());
+            st.setString(5, sup.getHast());
+            st.setString(6, sup.getCulmi());
+            st.setString(7, sup.getGradAcadObte());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+
+    }
+    
+    
     public void registrar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();

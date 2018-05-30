@@ -9,7 +9,7 @@ import modelo.Familiares;
 
 public class FamiliaresDao extends DAO {
 
-    public void registrarFamiliar(Familiares fam, String tipo) throws Exception {
+    public void registrarFamiliar(Familiares fam) throws Exception {
         this.Conexion();
         try {
             String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";

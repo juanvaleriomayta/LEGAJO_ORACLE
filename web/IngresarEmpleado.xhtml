@@ -135,6 +135,15 @@
 
                     </p:selectOneRadio>
                 </p:panelGrid>
+
+
+
+
+
+
+
+
+
             </p:fieldset>
             <H2>DATOS EN CASO DE EMERGENCIAS</H2>
             <p:fieldset legend="Contacto">
@@ -142,141 +151,189 @@
 
                     <p:outputLabel value="Nombre" />
                     <p:inputText value="#{emergenciaC.emergencia.nom}" >
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Apellido" />
                     <p:inputText value="#{emergenciaC.emergencia.ape}" >
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Parentesco" />
                     <p:inputText value="#{emergenciaC.emergencia.paren}" >
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                    </p:inputText>
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>           
 
                     <p:outputLabel value="Telefono" />
-                    <p:inputText value="#{emergenciaC.emergencia.tel}" maxlength="7">
-                    <p:keyFilter regEx="/[\d\-]/"/>
+                    <p:inputText value="#{emergenciaC.emergencia.tel}" maxlength="7" >
+                        <p:keyFilter regEx="/[\d\-]/"/>
                     </p:inputText>
 
                     <p:outputLabel value="Celular" />
                     <p:inputText value="#{emergenciaC.emergencia.cel}" maxlength="9">
-                    <p:keyFilter regEx="/[\d\-]/"/>
-                    </p:inputText>
-
-
+                        <p:keyFilter regEx="/[\d\-]/"/>
+                    </p:inputText> 
                 </p:panelGrid>
+                        
             </p:fieldset>
+            
+            
+            
+            
+            
+            
+            
             <H2>DATOS REFRENTES A LOS PADRES E HIJOS DEL TRABAJADOR</H2>
             <p:fieldset legend="Familiar">
                 <p:panelGrid style="border: none" columns="4">
 
                     <p:outputLabel value="Nombre" />
                     <p:inputText value="#{familiaresC.familiar.nom}" >
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Apellido" />
                     <p:inputText value="#{familiaresC.familiar.ape}" >
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Parentesco" />
                     <p:inputText value="#{familiaresC.familiar.par}" >
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
                     <p:outputLabel value="Ocupacion" />
                     <p:inputText value="#{familiaresC.familiar.ocu}" >
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
-                    <p:outputLabel for="txtFecNacimiento" value="Fecha de Nacimiento"/>
-                    <p:inputMask id="txtFecNacimiento" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999"/>
+                    <p:outputLabel value="Fecha de Nacimiento" />
+                    <p:inputMask id="txtFecNac" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999"/>
 
                     <p:outputLabel value="Telefono" />
-                    <p:inputText value="#{familiaresC.familiar.tel}" maxlength="7">
-                    <p:keyFilter regEx="/[\d\-]/"/>
+                    <p:inputText value="#{familiaresC.familiar.tel}" maxlength="7" >
+                        <p:keyFilter regEx="/[\d\-]/"/>
                     </p:inputText>
 
                     <p:outputLabel value="Celular" />
                     <p:inputText value="#{familiaresC.familiar.cel}" maxlength="9">
-                    <p:keyFilter regEx="/[\d\-]/"/>
+                        <p:keyFilter regEx="/[\d\-]/"/>
                     </p:inputText>
 
-                    <p:outputLabel value="Estado civil"/>
-
-                    <p:selectOneRadio id="Estados" value="#{familiaresC.familiar.estCiv}" required="true" requiredMessage="Seleccione su Estado familiar">                        
-
-                        <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
-                        <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
+                    <p:outputLabel value="Estado Civil" />              
+                    <p:selectOneMenu id="EstadoCivil" value="#{familiaresC.familiar.estCiv}">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="Soltero" itemValue="Soltero"/>
                         <f:selectItem itemLabel="Casado" itemValue="Casado"/>
-                        <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
-
-                    </p:selectOneRadio>
+                        <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
+                        <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
+                    </p:selectOneMenu>   
 
                     <p:outputLabel value="Vive" />
-                    <p:selectOneRadio id="vive" value="#{familiaresC.familiar.vive}" required="true" requiredMessage="Seleccione si vive o no">                        
-
+                    <p:selectOneRadio id="Vive" value="#{familiaresC.familiar.vive}" >                      
                         <f:selectItem itemLabel="Si" itemValue="Si"/>
-                        <f:selectItem itemLabel="No" itemValue="No"/> 
-
+                        <f:selectItem itemLabel="No" itemValue="No"/>                                          
                     </p:selectOneRadio>
-
-                </p:panelGrid>
+                </p:panelGrid>                               
             </p:fieldset>
-            <H2>DATOS DE ESTUDIO</H2>
+
+            
+
+            
+
+
+
+       
+            <H2>DATOS DE ESTUDIOS BASICOS</H2>
             <p:fieldset legend="Datos Secundarios">
                 <p:panelGrid style="border: none" columns="4">
-                    <p:outputLabel value="Estudios" />
-                    <p:selectOneMenu id="Estudios" value="#{estudiosBasicosC.estudiosBasicos.centrEstu}" required="true" requiredMessage="Seleccione Estudios ">
+                    <p:outputLabel value="Educacion" />
+                    <p:selectOneMenu id="Educacion" value="#{estudiosBasicosC.estudiosBasicos.educ}" required="true" requiredMessage="Seleccione la Educacion ">
                         <f:selectItem itemLabel="Seleccione"/>
-                        <f:selectItem itemLabel="Completa" itemValue="Completa" />
-                        <f:selectItem itemLabel="Incompleta" itemValue="Incompleta" />
+                        <f:selectItem itemLabel="Secundaria" itemValue="S" />
+                        <f:selectItem itemLabel="Primaria" itemValue="P" />
                     </p:selectOneMenu>
-                    <p:outputLabel value="Carrera"/>
-                    <p:inputText value="#{estudiosBasicosC.estudiosBasicos.culmi}">
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    <p:outputLabel value="Culminacion" />
+                    <p:inputText value="#{estudiosBasicosC.estudiosBasicos.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
-                    <p:outputLabel for="txtDes" value="Desde"/>
-                    <p:inputMask id="txtDes" value="#{estudiosBasicosC.estudiosBasicos.desd}" mask="99/99/9999"/>
-                    <p:outputLabel for="txtHas" value="Hasta"/>
-                    <p:inputMask id="txtHas" value="#{estudiosBasicosC.estudiosBasicos.has}" mask="99/99/9999"/>
-                    
+
+                    <p:outputLabel for="txtCentroEstudios" value="Centro de Estudios"/>
+                    <p:inputText id="txtCentroEstudios" value="#{estudiosBasicosC.estudiosBasicos.centrEstu}" required="true" requiredMessage="Ingrese Centro de Estudios">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtDesde" value="Desde"/>
+                    <p:inputMask id="txtDesde" value="#{estudiosBasicosC.estudiosBasicos.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>
+
+                    <p:outputLabel value="Hasta" />
+                    <p:inputMask id="Hasta" value="#{estudiosBasicosC.estudiosBasicos.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
+
                 </p:panelGrid>
             </p:fieldset>
 
+
+
+
+
+
+
             <p:fieldset legend="Datos Superiores">
+                <H2>DATOS DE ESTUDIO SUPERIORES</H2>
                 <p:panelGrid style="border: none" columns="4">
-                    <p:outputLabel value="Educacion Superior" />
-                    <p:selectOneMenu id="EducacionSuperior" value="#{estudiosBasicosC.superiores.datSuper}" required="true" requiredMessage="Seleccione Educacion Superior ">
+                   <p:outputLabel value="Educacion Superior" />
+                    <p:selectOneMenu id="EducacionSuperior" value="#{estudiosSuperiorC.estudiosSuperior.eduSuper}" required="true" requiredMessage="Seleccione la Educacion ">
                         <f:selectItem itemLabel="Seleccione"/>
                         <f:selectItem itemLabel="Instituto Superior" itemValue="Instituto Superior" />
-                        <f:selectItem itemLabel="Universitario" itemValue="Universitario" />
+                        <f:selectItem itemLabel="Universitarios" itemValue="Universitarios" />
                         <f:selectItem itemLabel="Especialista" itemValue="Especialista" />
                         <f:selectItem itemLabel="SubEspecialidad" itemValue="SubEspecialidad" />
                         <f:selectItem itemLabel="Maestria" itemValue="Maestria" />
                         <f:selectItem itemLabel="Doctorado" itemValue="Doctorado" />
                     </p:selectOneMenu>
+
+                    <p:outputLabel value="Especialidad" />
+                    <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.espe}" required="true" requiredMessage="Ingrese la Especialidad">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtCentroEstudios" value="Centro de Estudios"/>
+                    <p:inputText id="txtCentroEstudios" value="#{estudiosSuperiorC.estudiosSuperior.centrEstu}" required="true" requiredMessage="Ingrese Centro de Estudios">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
                     <p:outputLabel for="txtDesde" value="Desde"/>
-                    <p:inputMask id="txtDesde" value="#{estudiosBasicosC.superiores.desd}" mask="99/99/9999"/>
-                    <p:outputLabel for="txtHasta" value="Hasta"/>
-                    <p:inputMask id="txtHasta" value="#{estudiosBasicosC.superiores.has}" mask="99/99/9999"/>
-                    <p:outputLabel value="Carrera"/>
-                    <p:inputText value="#{estudiosBasicosC.superiores.carre}">
-                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    <p:inputMask id="txtDesde" value="#{estudiosSuperiorC.estudiosSuperior.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>
+
+                    <p:outputLabel value="Hasta" />
+                    <p:inputMask id="Hasta" value="#{estudiosSuperiorC.estudiosSuperior.hast}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
+
+                    <p:outputLabel value="Culminacion" />
+                    <p:selectOneRadio id="Culminacion" value="#{estudiosSuperiorC.estudiosSuperior.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
+                         <f:selectItem itemLabel="Completa" itemValue="C"/>
+                        <f:selectItem itemLabel="Incompleta" itemValue="I" /> 
+                    </p:selectOneRadio>
+                    
+                    <p:outputLabel value="Graduacion Academica Obtenida" />
+                    <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.gradAcadObte}" required="true" requiredMessage="Ingrese la Graduacion Academica Obtenida">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
                 </p:panelGrid>
             </p:fieldset>
 
+            
+            
+            
+            
+            
+            
 
             <p:growl id="msg" autoUpdate="true"/>
-            <p:commandButton value="ingresar" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="ingresarContacto();ingresarFamiliar();ingresarDatosSecundarios();ingresarDatosSuperiores();" />
-            <p:remoteCommand name="ingresarContacto" actionListener="#{familiaresC.registrarContacto()}" />
-            <p:remoteCommand name="ingresarFamiliar" actionListener="#{familiaresC.registrarFamiliar()}" />
-            <p:remoteCommand name="ingresarDatosSecundarios" actionListener="#{estudiosBasicosC.registrarSecundarios()}" />
-            <p:remoteCommand name="ingresarDatosSuperiores" actionListener="#{estudiosBasicosC.registrarSuperiores()}" />
+            <p:commandButton value="ingresar" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();" />
+            <p:remoteCommand name="registrarEmergencia" actionListener="#{emergenciaC.registrarEmergencia()}" />
+            <p:remoteCommand name="registrarFamiliar" actionListener="#{familiaresC.registrarFamiliar()}" />
+            <p:remoteCommand name="registrarEstudiosBasicos" actionListener="#{estudiosBasicosC.registrarEstudiosBasicos()}" />
+            <p:remoteCommand name="registrarEstudiosSuperiores" actionListener="#{estudiosSuperiorC.registrarEstudiosSuperiores()}" />
             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>

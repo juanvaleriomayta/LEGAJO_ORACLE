@@ -17,29 +17,16 @@ public class EmergenciaC implements Serializable {
     private List<Emergencia> lstEmergencia;
     private String accion;
 
-    public String getAccion() {
-        return accion;
-    }
+    public void registrarEmergencia() throws Exception {
+        EmergenciaDao dao;
 
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
-    }
-
-    public Emergencia getEmergencia() {
-        return emergencia;
-    }
-
-    public void setEmergencia(Emergencia emergencia) {
-        this.emergencia = emergencia;
-    }
-
-    public List<Emergencia> getLstEmergencia() {
-        return lstEmergencia;
-    }
-
-    public void setLstEmergencia(List<Emergencia> lstEmergencia) {
-        this.lstEmergencia = lstEmergencia;
+        try {
+            dao = new EmergenciaDao();
+            dao.registrarEmergencia(emergencia);
+            this.listar();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     public void operar() throws Exception {
@@ -128,5 +115,31 @@ public class EmergenciaC implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+    
+    
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
+    }
+
+    public Emergencia getEmergencia() {
+        return emergencia;
+    }
+
+    public void setEmergencia(Emergencia emergencia) {
+        this.emergencia = emergencia;
+    }
+
+    public List<Emergencia> getLstEmergencia() {
+        return lstEmergencia;
+    }
+
+    public void setLstEmergencia(List<Emergencia> lstEmergencia) {
+        this.lstEmergencia = lstEmergencia;
     }
 }
