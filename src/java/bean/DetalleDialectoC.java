@@ -21,18 +21,6 @@ public class DetalleDialectoC implements Serializable {
         return detalleDialecto;
     }
 
-    public void setDetalleDialecto(DetalleDialecto detalleDialecto) {
-        this.detalleDialecto = detalleDialecto;
-    }
-
-    public List<DetalleDialecto> getLstDetalleDialecto() {
-        return lstDetalleDialecto;
-    }
-
-    public void setLstDetalleDialecto(List<DetalleDialecto> lstDetalleDialecto) {
-        this.lstDetalleDialecto = lstDetalleDialecto;
-    }
-
     public String getAccion() {
         return accion;
     }
@@ -125,5 +113,17 @@ public class DetalleDialectoC implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+    
+    public void setDetalleDialecto(DetalleDialecto detalleDialecto) {
+        this.detalleDialecto = detalleDialecto;
+    }
+
+    public List<DetalleDialecto> getLstDetalleDialecto() {
+        return lstDetalleDialecto;
+    }
+
+    public void setLstDetalleDialecto(List<DetalleDialecto> lstDetalleDialecto) {
+        this.lstDetalleDialecto = lstDetalleDialecto;
     }
 }
