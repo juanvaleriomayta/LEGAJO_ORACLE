@@ -1,5 +1,7 @@
 package dao;
 
+
+import dao.interaces.EstudiosSuperiorI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.EstudiosSuperior;
 
-public class EstudiosSuperiorDao extends DAO {
-
+public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
+    
+    @Override
     public void registrarEstudiosSuperiores(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
@@ -31,6 +34,7 @@ public class EstudiosSuperiorDao extends DAO {
     }
     
     
+    @Override
     public void registrar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
@@ -52,6 +56,7 @@ public class EstudiosSuperiorDao extends DAO {
 
     }
 
+    @Override
     public List<EstudiosSuperior> listar() throws Exception {
         List<EstudiosSuperior> lista;
         ResultSet rs;
@@ -82,6 +87,7 @@ public class EstudiosSuperiorDao extends DAO {
         return lista;
     }
 
+    @Override
     public EstudiosSuperior leerID(EstudiosSuperior sup) throws Exception {
         EstudiosSuperior supe = null;
         ResultSet rs;
@@ -111,6 +117,7 @@ public class EstudiosSuperiorDao extends DAO {
         return supe;
     }
 
+    @Override
     public void modificar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
@@ -131,6 +138,7 @@ public class EstudiosSuperiorDao extends DAO {
         }
     }
 
+    @Override
     public void eliminar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();

@@ -1,5 +1,6 @@
 package dao;
 
+import dao.interaces.FamiliaresI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Familiares;
 
-public class FamiliaresDao extends DAO {
+public class FamiliaresDao extends DAO implements FamiliaresI{
 
+    @Override
     public void registrarFamiliar(Familiares fam) throws Exception {
         this.Conexion();
         try {
@@ -32,6 +34,7 @@ public class FamiliaresDao extends DAO {
         }
     }
 
+    @Override
     public void registrar(Familiares fam) throws Exception {
         try {
             this.Conexion();
@@ -53,6 +56,7 @@ public class FamiliaresDao extends DAO {
         }
     }
 
+    @Override
     public List<Familiares> listar() throws Exception {
         List<Familiares> lista;
         ResultSet rs;
@@ -84,6 +88,7 @@ public class FamiliaresDao extends DAO {
         return lista;
     }
 
+    @Override
     public Familiares leerID(Familiares fam) throws Exception {
         Familiares fami = null;
         ResultSet rs;
@@ -114,6 +119,7 @@ public class FamiliaresDao extends DAO {
         return fami;
     }
 
+    @Override
     public void modificar(Familiares fam) throws Exception {
         try {
             this.Conexion();
@@ -136,6 +142,7 @@ public class FamiliaresDao extends DAO {
         }
     }
 
+    @Override
     public void eliminar(Familiares fam) throws Exception {
         try {
             this.Conexion();

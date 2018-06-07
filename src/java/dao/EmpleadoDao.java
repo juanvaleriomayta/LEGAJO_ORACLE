@@ -1,5 +1,6 @@
 package dao;
 
+import dao.interaces.EmpleadoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,14 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Empleado;
 
-public class EmpleadoDao extends DAO {
+public class EmpleadoDao extends DAO implements EmpleadoI{
     
     
+    @Override
     public void registrarEmpleado(Empleado emp) throws Exception {
         try {
             this.Conexion();
 
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
             st.setString(3, emp.getApelPate());
@@ -45,6 +47,7 @@ public class EmpleadoDao extends DAO {
 
     }
 
+    @Override
     public void registrar(Empleado emp) throws Exception {
         try {
             this.Conexion();
@@ -81,6 +84,7 @@ public class EmpleadoDao extends DAO {
 
     }
 
+    @Override
     public List<Empleado> listar() throws Exception {
         List<Empleado> lista;
         ResultSet rs;
@@ -125,6 +129,7 @@ public class EmpleadoDao extends DAO {
         return lista;
     }
 
+    @Override
     public Empleado leerID(Empleado emp) throws Exception {
         Empleado emple = null;
         ResultSet rs;
@@ -167,6 +172,7 @@ public class EmpleadoDao extends DAO {
         return emple;
     }
 
+    @Override
     public void modificar(Empleado emp) throws Exception {
         try {
             this.Conexion();
@@ -201,6 +207,7 @@ public class EmpleadoDao extends DAO {
         }
     }
 
+    @Override
     public void eliminar(Empleado emp) throws Exception {
         try {
             this.Conexion();

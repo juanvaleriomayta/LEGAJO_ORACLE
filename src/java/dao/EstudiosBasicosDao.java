@@ -1,5 +1,6 @@
 package dao;
 
+import dao.interaces.EstudiosBasicosI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.EstudiosBasicos;
 
-public class EstudiosBasicosDao extends DAO {
+public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI{
 
+    @Override
     public void registrarEstudiosBasicos(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
@@ -30,6 +32,7 @@ public class EstudiosBasicosDao extends DAO {
     }
     
     
+    @Override
     public void registrar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
@@ -50,6 +53,7 @@ public class EstudiosBasicosDao extends DAO {
 
     }
 
+    @Override
     public List<EstudiosBasicos> listar() throws Exception {
         List<EstudiosBasicos> lista;
         ResultSet rs;
@@ -78,6 +82,7 @@ public class EstudiosBasicosDao extends DAO {
         return lista;
     }
 
+    @Override
     public EstudiosBasicos leerID(EstudiosBasicos bas) throws Exception {
         EstudiosBasicos basi = null;
         ResultSet rs;
@@ -105,6 +110,7 @@ public class EstudiosBasicosDao extends DAO {
         return basi;
     }
 
+    @Override
     public void modificar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
@@ -123,6 +129,7 @@ public class EstudiosBasicosDao extends DAO {
         }
     }
 
+    @Override
     public void eliminar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();

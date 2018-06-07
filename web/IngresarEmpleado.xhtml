@@ -19,26 +19,26 @@
                     <p:outputLabel for="txtDNI" value="DNI" />
                     <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
                         <p:keyFilter regEx="/[\d\-]/"/>
-                        <p:ajax event="blur" update="txtDNI"/>
+                        <p:ajax event="blur" update="txtDNI" immediate="true"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtNombre" value="Nombre" />
-                    <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}"  requiredMessage="Ingresar Nombre" required="true">
+                    <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}" style="text-transform: uppercase" requiredMessage="Ingresar Nombre" required="true">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtNombre"/>
+                        <p:ajax event="blur" update="txtNombre" immediate="true"/>
 
                     </p:inputText>
 
                     <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno" />
                     <p:inputText id="txtApellidoPaterno" value="#{empleadoC.empleado.apelPate}" required="true" requiredMessage="Ingresar Apellido Paterno">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtApellidoPaterno"/>
+                        <p:ajax event="blur" update="txtApellidoPaterno" immediate="true"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno" />
                     <p:inputText id="txtApellidoMaterno" value="#{empleadoC.empleado.apelMate}" required="true" requiredMessage="Ingresar Apellido Materno">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtApellidoMaterno"/>
+                        <p:ajax event="blur" update="txtApellidoMaterno" immediate="true"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtRUC" value="RUC" />
@@ -93,7 +93,7 @@
 
                     <p:outputLabel for="LugardeNacimiento" value="Lugar de Nacimiento(Ubigeo)"/>
                     <p:autoComplete id="LugardeNacimiento" value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
-                        
+                        <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="form" />
                     </p:autoComplete>
 
                     <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>

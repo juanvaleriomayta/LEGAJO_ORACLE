@@ -16,7 +16,7 @@
             <!--<p:commandButton value="redirect" action="index.xhtml?faces-redirect=true"/>-->
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
-            <p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>
+            <!--<p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>-->
             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>
@@ -175,7 +175,9 @@
                     </p:inputText>
 
                     <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
-                    <p:autoComplete value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true"/>
+                    <p:autoComplete value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
+                    <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
+                    </p:autoComplete>
 
 
                     <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>

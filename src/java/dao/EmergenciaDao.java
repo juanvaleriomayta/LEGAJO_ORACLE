@@ -1,5 +1,6 @@
 package dao;
 
+import dao.interaces.EmergenciasI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Emergencia;
 
-public class EmergenciaDao extends DAO {
+public class EmergenciaDao extends DAO implements EmergenciasI{
     
     
+    @Override
     public void registrarEmergencia(Emergencia eme) throws Exception {
         try {
             this.Conexion();
@@ -27,6 +29,7 @@ public class EmergenciaDao extends DAO {
         }
     }
 
+    @Override
     public void registrar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
@@ -44,6 +47,7 @@ public class EmergenciaDao extends DAO {
         }
     }
 
+    @Override
     public List<Emergencia> listar() throws Exception {
         List<Emergencia> lista;
         ResultSet rs;
@@ -72,6 +76,7 @@ public class EmergenciaDao extends DAO {
         return lista;
     }
 
+    @Override
     public Emergencia leerID(Emergencia eme) throws Exception {
         Emergencia emer = null;
         ResultSet rs;
@@ -98,6 +103,7 @@ public class EmergenciaDao extends DAO {
         return emer;
     }
 
+    @Override
     public void modificar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
@@ -116,6 +122,7 @@ public class EmergenciaDao extends DAO {
         }
     }
 
+    @Override
     public void eliminar(Emergencia eme) throws Exception {
         try {
             this.Conexion();

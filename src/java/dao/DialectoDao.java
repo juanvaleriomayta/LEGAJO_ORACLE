@@ -1,5 +1,6 @@
 package dao;
 
+import dao.interaces.DialectoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,8 +9,9 @@ import java.util.List;
 import modelo.Dialecto;
 
 
-public class DialectoDao extends DAO {
+public class DialectoDao extends DAO implements DialectoI{
 
+    @Override
     public void registrar(Dialecto dia) throws Exception {
         try {
             this.Conexion();
@@ -26,6 +28,7 @@ public class DialectoDao extends DAO {
 
     }
 
+    @Override
     public List<Dialecto> listar() throws Exception {
         List<Dialecto> lista;
         ResultSet rs;
@@ -50,6 +53,7 @@ public class DialectoDao extends DAO {
         return lista;
     }
 
+    @Override
     public Dialecto leerID(Dialecto dia) throws Exception {
         Dialecto dial = null;
         ResultSet rs;
@@ -72,6 +76,7 @@ public class DialectoDao extends DAO {
         return dial;
     }
 
+    @Override
     public void modificar(Dialecto dia) throws Exception {
         try {
             this.Conexion();
@@ -85,6 +90,7 @@ public class DialectoDao extends DAO {
         }
     }
 
+    @Override
     public void eliminar(Dialecto dia) throws Exception {
         try {
             this.Conexion();
