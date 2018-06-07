@@ -11,6 +11,7 @@ import modelo.Familiares;
 @SessionScoped
 public class FamiliaresC implements Serializable {
 
+    //Comentario
     private Familiares familiar = new Familiares();
     private List<Familiares> lstFamiliares;
     private String accion;
