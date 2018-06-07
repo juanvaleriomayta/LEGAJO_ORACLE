@@ -15,9 +15,6 @@ public class EstudiosBasicosC implements Serializable {
     private List<EstudiosBasicos> lstEstudiosBasicos;
     private String accion;
 
-    
-    
-    
     public void registrarEstudiosBasicos() throws Exception {
         EstudiosBasicosDao dao;
 

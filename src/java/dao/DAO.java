@@ -12,7 +12,7 @@ public class DAO {
         try {
             if (cn == null) {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-              //  cn = DriverManager.getConnection("jdbc:sqlserver://35.229.54.77:1433;database=Legajo", "root", "root");
+                //  cn = DriverManager.getConnection("jdbc:sqlserver://35.229.54.77:1433;database=Legajo", "root", "root");
 
                 cn = DriverManager.getConnection("jdbc:sqlserver://35.229.54.77:1433;database=Legajo", "root", "root");
 
@@ -41,9 +41,9 @@ public class DAO {
     public static void main(String[] args) {
         DAO dao = new DAO();
         dao.Conexion();
-        if (dao.getCn()!= null) {
+        if (dao.getCn() != null) {
             System.out.println("Conectado");
-        }else{
+        } else {
             System.out.println("No hay Conexion");
         }
     }

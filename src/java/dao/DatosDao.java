@@ -13,8 +13,8 @@ public class DatosDao extends DAO {
     public void registrar(Datos dat) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Datos (Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam) values(?,?,?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO Datos (Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam) values(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, dat.getCon());
             st.setString(2, dat.getApreCali());
             st.setString(3, dat.getSerPre());

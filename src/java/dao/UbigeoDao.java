@@ -1,5 +1,6 @@
 package dao;
 
+import dao.interaces.UbigeoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Ubigeo;
 
-public class UbigeoDao extends DAO {
+public class UbigeoDao extends DAO implements UbigeoI{
     
+    @Override
     public String obtenerCodigoUbigeo (String Ubigeo) throws SQLException{
         this.Conexion();
         ResultSet rs;
@@ -26,6 +28,7 @@ public class UbigeoDao extends DAO {
         }
     }
     
+    @Override
     public List<String> autocompleteUbigeo(String Consulta) throws SQLException{
         this.Conexion();
         ResultSet rs;
@@ -46,6 +49,7 @@ public class UbigeoDao extends DAO {
         }
     }
 
+    @Override
     public void registrar(Ubigeo ubi) throws Exception {
         try {
             this.Conexion();
@@ -63,6 +67,7 @@ public class UbigeoDao extends DAO {
 
     }
 
+    @Override
     public List<Ubigeo> listar() throws Exception {
         List<Ubigeo> lista;
         ResultSet rs;
@@ -88,6 +93,7 @@ public class UbigeoDao extends DAO {
         return lista;
     }
 
+    @Override
     public Ubigeo leerID(Ubigeo ubi) throws Exception {
         Ubigeo ubig = null;
         ResultSet rs;
@@ -112,6 +118,7 @@ public class UbigeoDao extends DAO {
         return ubig;
     }
 
+    @Override
     public void modificar(Ubigeo ubi) throws Exception {
         try {
             this.Conexion();
@@ -127,6 +134,7 @@ public class UbigeoDao extends DAO {
         }
     }
 
+    @Override
     public void eliminar(Ubigeo ubi) throws Exception {
         try {
             this.Conexion();
@@ -139,4 +147,5 @@ public class UbigeoDao extends DAO {
             this.Cerrar();
         }
     }
+
 }
