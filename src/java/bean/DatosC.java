@@ -17,30 +17,6 @@ public class DatosC implements Serializable{
     private List<Datos> lstDatos;
     private String accion;
 
-    public List<Datos> getLstDatos() {
-        return lstDatos;
-    }
-
-    public void setLstDatos(List<Datos> lstDatos) {
-        this.lstDatos = lstDatos;
-    }
-
-    public Datos getDatos() {
-        return datos;
-    }
-
-    public void setDatos(Datos datos) {
-        this.datos = datos;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.accion = accion;
-    }
-
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -134,5 +110,30 @@ public class DatosC implements Serializable{
         } catch (Exception e) {
             throw e;
         }
+    }
+    
+    
+    public List<Datos> getLstDatos() {
+        return lstDatos;
+    }
+
+    public void setLstDatos(List<Datos> lstDatos) {
+        this.lstDatos = lstDatos;
+    }
+
+    public Datos getDatos() {
+        return datos;
+    }
+
+    public void setDatos(Datos datos) {
+        this.datos = datos;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
     }
 }
