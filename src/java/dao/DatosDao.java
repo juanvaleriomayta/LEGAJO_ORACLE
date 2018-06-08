@@ -38,7 +38,8 @@ public class DatosDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT IdLegajo, Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam FROM Datos");
+            String sql = "SELECT IdLegajo, Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam FROM Datos";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -68,7 +69,8 @@ public class DatosDao extends DAO {
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT IdLegajo,Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam  FROM Datos WHERE IdLegajo=?");
+            String sql = "SELECT IdLegajo,Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam  FROM Datos WHERE IdLegajo=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, dat.getIdLegajo());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -94,7 +96,8 @@ public class DatosDao extends DAO {
     public void modificar(Datos dat) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Datos SET Con = ?, ApreCali = ?, SerPre = ?,IntProCapPerf = ?, RefPer = ?, BonPer = ?,ComInfTper = ?, BonFam = ? WHERE IdLegajo = ?");
+            String sql = "UPDATE Datos SET Con = ?, ApreCali = ?, SerPre = ?,IntProCapPerf = ?, RefPer = ?, BonPer = ?,ComInfTper = ?, BonFam = ? WHERE IdLegajo = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, dat.getCon());
             st.setString(2, dat.getApreCali());
             st.setString(3, dat.getSerPre());
@@ -114,7 +117,8 @@ public class DatosDao extends DAO {
     public void eliminar(Datos dat) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM Datos WHERE IdLegajo = ?");
+            String sql = "DELETE FROM Datos WHERE IdLegajo = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, dat.getIdLegajo());
             st.executeUpdate();
         } catch (SQLException e) {

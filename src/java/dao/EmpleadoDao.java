@@ -15,8 +15,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     public void registrarEmpleado(Empleado emp) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
             st.setString(3, emp.getApelPate());
@@ -51,8 +51,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     public void registrar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
             st.setString(3, emp.getApelPate());
@@ -91,7 +91,10 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado");
+          //  String sql = "SELECT Nombre, if(estado = 0, 'Activo', 'Inactivo') FROM Empleado  ";
+          // String sql = " select * from Empleado where ACTIVO = true" ;
+           String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -136,7 +139,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado WHERE idEmpl=?");
+            String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado WHERE idEmpl=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, emp.getIdEmpl());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -176,7 +180,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     public void modificar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Empleado SET DNI = ?, Nom = ?, ApelPate = ?, ApelMate = ?,RUC = ?, Email = ?,Telf = ?,Cel = ?,FecNac = convert(date, ?, 103),GrupSang = ?,EstCiv = ?,ConLab = ?,CarnAseg = ?,Refe = ?,Leye = ?,FecIng = convert(date, ?, 103),FecNom = convert(date, ?, 103),DatCony = ?,UbigActu = ?,UbigOrig = ?,Est = ? WHERE idEmpl = ?");
+            String sql = "UPDATE Empleado SET DNI = ?, Nom = ?, ApelPate = ?, ApelMate = ?,RUC = ?, Email = ?,Telf = ?,Cel = ?,FecNac = convert(date, ?, 103),GrupSang = ?,EstCiv = ?,ConLab = ?,CarnAseg = ?,Refe = ?,Leye = ?,FecIng = convert(date, ?, 103),FecNom = convert(date, ?, 103),DatCony = ?,UbigActu = ?,UbigOrig = ?,Est = ? WHERE idEmpl = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
             st.setString(3, emp.getApelPate());
@@ -211,7 +216,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     public void eliminar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM Empleado WHERE idEmpl = ?");
+            String sql = "DELETE FROM Empleado WHERE idEmpl = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, emp.getIdEmpl());
             st.executeUpdate();
         } catch (SQLException e) {

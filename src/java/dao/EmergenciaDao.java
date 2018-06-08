@@ -15,7 +15,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
     public void registrarEmergencia(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Emergencia (Nom, Ape,Paren,Tel,Cel) values(?,?,?,?,?)");
+            String sql = "INSERT INTO Emergencia (Nom, Ape,Paren,Tel,Cel) values(?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, eme.getNom());
             st.setString(2, eme.getApe());
             st.setString(3, eme.getParen());
@@ -33,7 +34,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
     public void registrar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Emergencia (Nom, Ape,Paren,Tel,Cel) values(?,?,?,?,?)");
+            String sql = "INSERT INTO Emergencia (Nom, Ape,Paren,Tel,Cel) values(?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, eme.getNom());
             st.setString(2, eme.getApe());
             st.setString(3, eme.getParen());
@@ -54,7 +56,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel FROM Emergencia");
+            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel FROM Emergencia";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -83,7 +86,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel FROM Emergencia WHERE IdEmerg=?");
+            String sql = "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel FROM Emergencia WHERE IdEmerg=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, eme.getIdEmerg());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -107,7 +111,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
     public void modificar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Emergencia SET Nom=?, Ape=?,Paren=?,Tel=?,Cel=? WHERE IdEmerg = ?");
+            String sql = "UPDATE Emergencia SET Nom=?, Ape=?,Paren=?,Tel=?,Cel=? WHERE IdEmerg = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, eme.getNom());
             st.setString(2, eme.getApe());
             st.setString(3, eme.getParen());
@@ -126,7 +131,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
     public void eliminar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM Emergencia WHERE IdEmerg = ?");
+            String sql = "DELETE FROM Emergencia WHERE IdEmerg = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, eme.getIdEmerg());
             st.executeUpdate();
         } catch (SQLException e) {

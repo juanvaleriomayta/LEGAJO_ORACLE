@@ -43,31 +43,6 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
-
-    public List<Empleado> getLstEmpleado() {
-        return lstEmpleado;
-    }
-
-    public void setLstEmpleado(List<Empleado> lstEmpleado) {
-        this.lstEmpleado = lstEmpleado;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
-    }
-
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -170,5 +145,32 @@ public class EmpleadoC implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    //Getter and Setter
+    
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public List<Empleado> getLstEmpleado() {
+        return lstEmpleado;
+    }
+
+    public void setLstEmpleado(List<Empleado> lstEmpleado) {
+        this.lstEmpleado = lstEmpleado;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
     }
 }

@@ -17,18 +17,7 @@ public class DetalleDialectoC implements Serializable {
     private List<DetalleDialecto> lstDetalleDialecto;
     private String accion;
 
-    public DetalleDialecto getDetalleDialecto() {
-        return detalleDialecto;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
-    }
+  
 
     public void operar() throws Exception {
         switch (accion) {
@@ -113,6 +102,19 @@ public class DetalleDialectoC implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+    //Getter and Setter
+      public DetalleDialecto getDetalleDialecto() {
+        return detalleDialecto;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
     }
     
     public void setDetalleDialecto(DetalleDialecto detalleDialecto) {

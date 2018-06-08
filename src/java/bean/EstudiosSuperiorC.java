@@ -15,9 +15,7 @@ public class EstudiosSuperiorC implements Serializable {
     private List<EstudiosSuperior> lstEstudiosSuperior;
     private String accion;
 
-    
-    
-        public void registrarEstudiosSuperiores() throws Exception {
+    public void registrarEstudiosSuperiores() throws Exception {
         EstudiosSuperiorDao dao;
 
         try {
@@ -30,8 +28,7 @@ public class EstudiosSuperiorC implements Serializable {
 
         }
     }
-    
-    
+
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -120,17 +117,7 @@ public class EstudiosSuperiorC implements Serializable {
         }
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    //Getter and Setter
     public void setAccion(String accion) {
         this.limpiar();
         this.accion = accion;

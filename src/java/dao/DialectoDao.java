@@ -15,8 +15,8 @@ public class DialectoDao extends DAO implements DialectoI{
     public void registrar(Dialecto dia) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Dialecto (NomDial) values(?)");
+            String sql = "INSERT INTO Dialecto (NomDial) values(?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, dia.getNomDial());
 
             st.executeUpdate();
@@ -35,7 +35,8 @@ public class DialectoDao extends DAO implements DialectoI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT IdDial, NomDial FROM Dialecto");
+            String sql = "SELECT IdDial, NomDial FROM Dialecto";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -60,7 +61,8 @@ public class DialectoDao extends DAO implements DialectoI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT IdDial,NomDial  FROM Dialecto WHERE IdDial=?");
+            String sql = "SELECT IdDial,NomDial  FROM Dialecto WHERE IdDial=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, dia.getIdDial());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -80,7 +82,8 @@ public class DialectoDao extends DAO implements DialectoI{
     public void modificar(Dialecto dia) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Dialecto SET NomDial = ? WHERE IdDial = ?");
+            String sql = "UPDATE Dialecto SET NomDial = ? WHERE IdDial = ?"; 
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, dia.getNomDial());
             st.setInt(2, dia.getIdDial());
         } catch (SQLException e) {
@@ -94,7 +97,8 @@ public class DialectoDao extends DAO implements DialectoI{
     public void eliminar(Dialecto dia) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM Dialecto WHERE IdDial = ?");
+            String sql = "DELETE FROM Dialecto WHERE IdDial = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, dia.getIdDial());
             st.executeUpdate();
         } catch (SQLException e) {
