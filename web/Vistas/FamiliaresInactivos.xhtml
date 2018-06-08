@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="frm">
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
+            <p:dataTable id="data" value="#{familiaresC.lstFamiliares}" var="familiar" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         rowStyleClass="#{contactos.tipDeFami == 'F' ? 'familiar':'contacto'}">
+                <f:facet name="header">
+                    <h1>Familiares del Empleado</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
+
+
+                <p:column headerText="Nombre" >
+                    <p:outputLabel value="#{familiar.nom}"/>
+                </p:column>
+                <p:column headerText="Apellido" >
+                    <p:outputLabel value="#{familiar.ape}"/>
+                </p:column>
+                <p:column headerText="Parentesco" >
+                    <p:outputLabel value="#{familiar.par}"/>
+                </p:column>
+                <p:column headerText="Ocupacion" >
+                    <p:outputLabel value="#{familiar.ocu}"/>
+                </p:column>
+                <p:column headerText="Fecha de Nacimiento" >
+                    <p:outputLabel value="#{familiar.fecNac}"/>
+                </p:column>
+                <p:column headerText="Telefono" >
+                    <p:outputLabel value="#{familiar.tel}"/>
+                </p:column>
+                <p:column headerText="Celular" >
+                    <p:outputLabel value="#{familiar.cel}"/>
+                </p:column>
+                <p:column headerText="Estado Civil" >
+                    <p:outputLabel value="#{familiar.estCiv}"/>
+                </p:column>
+                <p:column headerText="Vive" >
+                    <p:outputLabel value="#{familiar.vive}"/>
+                </p:column>
+                <p:column headerText="Estado" >
+                    <p:outputLabel value="#{familiar.estado}"/>
+                </p:column>
+                <p:column headerText="Modificar" >
+                    <p:commandButton icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton icon="ui-icon-circle-close" actionListener="#{familiaresC.eliminar(familiar)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

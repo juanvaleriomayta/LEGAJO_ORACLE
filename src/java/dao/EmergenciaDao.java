@@ -59,7 +59,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
         try {
             this.Conexion();
             //select * from vw_Emergencia
-            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia";
+            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia Where Estado like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -137,7 +137,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
     public void eliminar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "DELETE FROM Emergencia WHERE IdEmerg = ?";
+            String sql = "Update Emergencia set Estado = 'Inactivo' where IdEmerg=?";
+            //String sql = "DELETE FROM Emergencia WHERE IdEmerg = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, eme.getIdEmerg());
             st.executeUpdate();

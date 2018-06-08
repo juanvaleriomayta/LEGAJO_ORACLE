@@ -64,7 +64,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
 
         try {
             this.Conexion();
-            String sql = "SELECT CodFami, Nom,Ape,Par,Ocu,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,Tel,Cel,EstCiv,vive FROM Familiares";
+            String sql = "SELECT CodFami, Nom,Ape,Par,Ocu,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,Tel,Cel,EstCiv,vive FROM Familiares Where Estado like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -150,7 +150,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void eliminar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            String sql = "DELETE FROM Familiares WHERE CodFami = ?";
+            String sql = "Update Familiares set Estado = 'Inactivo' Where CodFami = ?";
+            //String sql = "DELETE FROM Familiares WHERE CodFami = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, fam.getCodFami());
             st.executeUpdate();

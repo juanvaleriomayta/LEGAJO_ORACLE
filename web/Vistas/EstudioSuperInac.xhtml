@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="frm" >
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
+
+            <p:dataTable id="data"  value="#{estudiosSuperiorC.lstEstudiosSuperior}" var="superior" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    <h1>Estudios Basicos del Empleado</h1> 
+
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
+                <p:column headerText="Educacion Superior" >
+                    <p:outputLabel value="#{superior.eduSuper}"/>
+                </p:column>
+                <p:column headerText="Especialidad" >
+                    <p:outputLabel value="#{superior.espe}"/>
+                </p:column>
+                <p:column headerText="Centro de Estudios" >
+                    <p:outputLabel value="#{superior.centrEstu}"/>
+                </p:column>
+                <p:column headerText="Desde" >
+                    <p:outputLabel value="#{superior.desd}"/>
+                </p:column>
+                <p:column headerText="Hasta" >
+                    <p:outputLabel value="#{superior.hast}"/>
+                </p:column>
+                <p:column headerText="Culminación" >
+                    <p:outputLabel value="#{superior.culmi}"/>
+                </p:column>
+                <p:column headerText="Graduacion Academica Obtenida" >
+                    <p:outputLabel value="#{superior.gradAcadObte}"/>
+                </p:column>
+                <p:column headerText="Estado Laboral" >
+                    <p:outputLabel value="#{superior.estado}"/>
+                </p:column>
+
+                <p:column headerText="Modificar" >
+                    <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>   
+        </h:form>
+    </h:body>
+</html>
+

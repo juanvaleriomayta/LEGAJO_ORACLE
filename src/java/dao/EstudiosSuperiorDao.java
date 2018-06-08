@@ -63,7 +63,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
 
         try {
             this.Conexion();
-            String sql = "SELECT IdEstuSuper, EduSuper,Culmi,Espe,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Hast,'dd/MM/yyyy') as Hast,Culmi,GradAcadObte FROM EstudiosSuperiores";
+            String sql = "SELECT IdEstuSuper, EduSuper,Culmi,Espe,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Hast,'dd/MM/yyyy') as Hast,Culmi,GradAcadObte FROM EstudiosSuperiores Where Estado like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -145,7 +145,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void eliminar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = "DELETE FROM EstudiosSuperiores WHERE IdEstuSuper = ?";
+            String sql = " Update EstudiosSuperiores set Estado = 'Inactivo' Where IdEstuSuper =? ";
+            //String sql = "DELETE FROM EstudiosSuperiores WHERE IdEstuSuper = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, sup.getIdEstuSuper());
             st.executeUpdate();

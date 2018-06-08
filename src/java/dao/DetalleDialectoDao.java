@@ -32,8 +32,8 @@ public class DetalleDialectoDao extends DAO {
         ResultSet rs;
         try {
             this.Conexion();
-           // String sql = "select * from vw_DetalleDialecto";
-            String sql = "SELECT idDetDial, Lee,Hab,Escri FROM DetDial";
+            String sql = "select * from vw_DetalleDialecto";
+            // String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetDial ";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -102,7 +102,8 @@ public class DetalleDialectoDao extends DAO {
     public void eliminar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-            String sql = "DELETE FROM DetDial WHERE idDetDial = ?";
+             String sql = "Update DetalleDialecto set Estado = 'Inactivo' WHERE idDetDial = ?";
+            //String sql = "DELETE FROM DetDial WHERE idDetDial = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, detdia.getIdDetDial());
             st.executeUpdate();
