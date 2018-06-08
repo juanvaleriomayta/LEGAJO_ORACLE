@@ -157,11 +157,10 @@ public class EmpleadoC implements Serializable {
         }
     }
 
+    //Getter and Setter
     public Empleado getEmpleado() {
         return empleado;
     }
-
-    //Getter and Setter
     
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;

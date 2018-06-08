@@ -14,7 +14,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void registrarEstudiosBasicos(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd,Hasm,Estado) values(?,?,?,?,?)";
+            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd,Hasm,Estado) values(?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());
