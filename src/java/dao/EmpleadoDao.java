@@ -93,7 +93,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             //  String sql = "SELECT Nombre, if(estado = 0, 'Activo', 'Inactivo') FROM Empleado  ";
             // String sql = " select * from Empleado where ACTIVO = true" ;
             String sql = "select * from vw_Empleado";
-            // String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado";
+//             String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado Where Est like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -266,7 +266,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void eliminar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "DELETE FROM Empleado WHERE idEmpl = ?";
+//            String sql = "DELETE FROM Empleado WHERE idEmpl = ?";
+            String sql = "Update Empleado set Est = 'Inactivo' WHERE idEmpl = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, emp.getIdEmpl());
             st.executeUpdate();
