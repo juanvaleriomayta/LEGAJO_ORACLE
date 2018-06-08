@@ -14,7 +14,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void registrarEstudiosBasicos(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd,Hasm,Estado) values(?,?,?,?,?)";
+            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd,Hasm,Estado) values(?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());
@@ -36,7 +36,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void registrar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd,Has,Estado) values(?,?,?,?,?)";
+            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd,Has,Estado) values(?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());
@@ -62,7 +62,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
         try {
             this.Conexion();
             //select * from vw_EstudioBasico
-            String sql = "SELECT IdEstuBasi, Educ,Culmi,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Has,'dd/MM/yyyy') as Has FROM EstudiosBasicos";
+            String sql = "SELECT IdEstuBasi, Educ,Culmi,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Has,'dd/MM/yyyy') as Has,Estado FROM EstudiosBasicos";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
