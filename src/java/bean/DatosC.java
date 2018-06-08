@@ -11,7 +11,7 @@ import modelo.Datos;
 
 @ManagedBean
 @SessionScoped
-public class DatosC implements Serializable{
+public class DatosC implements Serializable {
 
     private Datos datos = new Datos();
     private List<Datos> lstDatos;
@@ -111,8 +111,8 @@ public class DatosC implements Serializable{
             throw e;
         }
     }
-    
-    
+
+    //Getter and Setter
     public List<Datos> getLstDatos() {
         return lstDatos;
     }

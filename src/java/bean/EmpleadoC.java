@@ -37,35 +37,10 @@ public class EmpleadoC implements Serializable {
             empleado.setUbigOrig(dao2.obtenerCodigoUbigeo(empleado.getUbigOrig()));
             dao.registrarEmpleado(empleado);
             this.limpiar();
-            this.listar();
+            this.listarActivos();
         } catch (Exception e) {
             throw e;
         }
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
-
-    public List<Empleado> getLstEmpleado() {
-        return lstEmpleado;
-    }
-
-    public void setLstEmpleado(List<Empleado> lstEmpleado) {
-        this.lstEmpleado = lstEmpleado;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
     }
 
     public void operar() throws Exception {
@@ -113,19 +88,29 @@ public class EmpleadoC implements Serializable {
             dao2 = new UbigeoDao();
             empleado.setUbigOrig(dao2.obtenerCodigoUbigeo(empleado.getUbigOrig()));
             dao.registrar(empleado);
-            this.listar();
+            this.listarActivos();
         } catch (Exception e) {
             throw e;
 
         }
     }
 
-    public void listar() throws Exception {
+    public void listarActivos() throws Exception {
         EmpleadoDao dao;
 
         try {
             dao = new EmpleadoDao();
-            lstEmpleado = dao.listar();
+            lstEmpleado = dao.listarActivos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+     public void listarInactivos() throws Exception {
+        EmpleadoDao dao;
+
+        try {
+            dao = new EmpleadoDao();
+            lstEmpleado = dao.listarInactivos();
         } catch (Exception e) {
             throw e;
         }
@@ -154,7 +139,7 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.modificar(empleado);
-            this.listar();
+            this.listarActivos();
         } catch (Exception e) {
             throw e;
         }
@@ -166,9 +151,36 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.eliminar(emp);
-            this.listar();
+            this.listarActivos();
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    //Getter and Setter
+    
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public List<Empleado> getLstEmpleado() {
+        return lstEmpleado;
+    }
+
+    public void setLstEmpleado(List<Empleado> lstEmpleado) {
+        this.lstEmpleado = lstEmpleado;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
     }
 }

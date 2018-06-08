@@ -116,8 +116,8 @@ public class EmergenciaC implements Serializable {
             throw e;
         }
     }
-    
-    
+
+    //Getter and Setter
     public String getAccion() {
         return accion;
     }

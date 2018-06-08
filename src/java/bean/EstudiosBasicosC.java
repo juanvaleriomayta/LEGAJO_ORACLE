@@ -28,8 +28,7 @@ public class EstudiosBasicosC implements Serializable {
 
         }
     }
-    
-    
+
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -116,6 +115,7 @@ public class EstudiosBasicosC implements Serializable {
         }
     }
 
+    //Getter and Setter
     public EstudiosBasicos getEstudiosBasicos() {
         return estudiosBasicos;
     }

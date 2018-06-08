@@ -15,30 +15,7 @@ public class DialectoC {
     private Dialecto dialecto = new Dialecto();
     private List<Dialecto> lstDialecto;
 
-    public List<Dialecto> getLstDialecto() {
-        return lstDialecto;
-    }
-
-    public void setLstDialecto(List<Dialecto> lstDialecto) {
-        this.lstDialecto = lstDialecto;
-    }
     private String accion;
-
-    public Dialecto getDialecto() {
-        return dialecto;
-    }
-
-    public void setDialecto(Dialecto dialecto) {
-        this.dialecto = dialecto;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.accion = accion;
-    }
 
     public void operar() throws Exception {
         switch (accion) {
@@ -126,5 +103,30 @@ public class DialectoC {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    //Getter ans Setter
+    public List<Dialecto> getLstDialecto() {
+        return lstDialecto;
+    }
+
+    public void setLstDialecto(List<Dialecto> lstDialecto) {
+        this.lstDialecto = lstDialecto;
+    }
+
+    public Dialecto getDialecto() {
+        return dialecto;
+    }
+
+    public void setDialecto(Dialecto dialecto) {
+        this.dialecto = dialecto;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
     }
 }

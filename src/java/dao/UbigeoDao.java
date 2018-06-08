@@ -53,8 +53,8 @@ public class UbigeoDao extends DAO implements UbigeoI{
     public void registrar(Ubigeo ubi) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Ubigeo (Dep,Pro,Dis) values(?,?,?)");
+            String sql = "INSERT INTO Ubigeo (Dep,Pro,Dis) values(?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, ubi.getDepartamenmto());
             st.setString(2, ubi.getProvincia());
             st.setString(3, ubi.getDistrito());
@@ -74,7 +74,8 @@ public class UbigeoDao extends DAO implements UbigeoI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT CodUbi, Dep,Pro,Dis FROM Ubigeo");
+            String sql = "SELECT CodUbi, Dep,Pro,Dis FROM Ubigeo";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -100,7 +101,8 @@ public class UbigeoDao extends DAO implements UbigeoI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT CodUbi,Dep,Pro,Dis  FROM Ubigeo WHERE CodUbi=?");
+            String sql = "SELECT CodUbi,Dep,Pro,Dis  FROM Ubigeo WHERE CodUbi=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, ubi.getCodigoUbigeo());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -122,7 +124,8 @@ public class UbigeoDao extends DAO implements UbigeoI{
     public void modificar(Ubigeo ubi) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Ubigeo SET Dep = ?, Pro = ?, Dis = ? WHERE CodUbi = ?");
+            String sql = "UPDATE Ubigeo SET Dep = ?, Pro = ?, Dis = ? WHERE CodUbi = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, ubi.getDepartamenmto());
             st.setString(2, ubi.getProvincia());
             st.setString(3, ubi.getDistrito());                    
@@ -138,7 +141,8 @@ public class UbigeoDao extends DAO implements UbigeoI{
     public void eliminar(Ubigeo ubi) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM Ubigeo WHERE CodUbi = ?");
+            String sql = "DELETE FROM Ubigeo WHERE CodUbi = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, ubi.getCodigoUbigeo());
             st.executeUpdate();
         } catch (SQLException e) {

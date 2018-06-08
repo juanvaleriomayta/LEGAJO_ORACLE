@@ -24,32 +24,7 @@ public class UbigeoBean implements Serializable{
         return dao.autocompleteUbigeo(query);
     }
 
-    public Ubigeo getUbigeo() {
-        return ubigeo;
-    }
-
-    public void setUbigeo(Ubigeo ubigeo) {
-        this.ubigeo = ubigeo;
-    }
-
-    public List<Ubigeo> getLstUbigeo() {
-        return lstUbigeo;
-    }
-
-    public void setLstUbigeo(List<Ubigeo> lstUbigeo) {
-        this.lstUbigeo = lstUbigeo;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
-    }
-
-    public void operar() throws Exception {
+     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
                 this.registrar();
@@ -136,5 +111,30 @@ public class UbigeoBean implements Serializable{
         } catch (Exception e) {
             throw e;
         }
+    }
+    //Getter and Setter
+       public Ubigeo getUbigeo() {
+        return ubigeo;
+    }
+
+    public void setUbigeo(Ubigeo ubigeo) {
+        this.ubigeo = ubigeo;
+    }
+
+    public List<Ubigeo> getLstUbigeo() {
+        return lstUbigeo;
+    }
+
+    public void setLstUbigeo(List<Ubigeo> lstUbigeo) {
+        this.lstUbigeo = lstUbigeo;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.limpiar();
+        this.accion = accion;
     }
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Empleados Inactivos</title>
+    </h:head>
+    <h:body>
+        <f:event type="preRenderView" listener="#{empleadoC.listarInactivos()}"/>
+        <h:form id="frm">
+             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"  emptyMessage="No estas la Lista">
+                <f:facet name="header">
+                    <h1>Empleado</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
+                <p:column style="width:16px">
+                    <p:rowToggler/>
+                </p:column>
+                <p:column headerText="DNI" >
+                    <h:outputText value="#{empleado.DNI}"/>
+                </p:column>
+                <p:column headerText="Nombre" >
+                    <h:outputText value="#{empleado.nom}"/>
+                </p:column>
+                <p:column headerText="Apellido Paterno">
+                    <h:outputText value="#{empleado.apelPate}"/>
+                </p:column>
+                <p:column headerText="Apellido Materno">
+                    <h:outputText value="#{empleado.apelMate}"/>
+                </p:column>
+
+                <style>
+                    .label{
+                        background-color: red
+                    }
+                </style>
+
+
+                <p:rowExpansion>
+                    <p:panelGrid columns="2" columnClasses="label,value" style="width:500px " >
+                        <h:outputText value="Telefono"/>
+                        <h:outputText value="#{empleado.telf}"/>
+                        <h:outputText value="Grupo Sanguineo"/>
+                        <h:outputText value="#{empleado.grupSang}"/>
+                        <h:outputText value="RUC"/>
+                        <h:outputText value="#{empleado.RUC}"/>
+                        <h:outputText value="Fecha de Nacimiento"/>
+                        <h:outputText value="#{empleado.fecNac}"/>
+                        <h:outputText value="Correo ELectronico"/>
+                        <h:outputText value="#{empleado.email}"/>
+                        <h:outputText value="Celular"/>
+                        <h:outputText value="#{empleado.cel}"/>
+                        <h:outputText value="Estado Civil"/>
+                        <h:outputText value="#{empleado.estCiv}"/>
+                        <h:outputText value="Condición Laboral"/>
+                        <h:outputText value="#{empleado.conLab}"/>
+                        <h:outputText value="Fecha de Ingreso"/>
+                        <h:outputText value="#{empleado.fecIng}"/>
+                        <h:outputText value="Estado"/>
+                        <h:outputText value="#{empleado.est}"/>
+                        <h:outputText value="Carnet Asegurado"/>
+                        <h:outputText value="#{empleado.carnAseg}"/>
+                        <h:outputText value="Referencia"/>
+                        <h:outputText value="#{empleado.refe}"/>
+                        <h:outputText value="Leyes"/>
+                        <h:outputText value="#{empleado.leye}"/>
+                        <h:outputText value="Fecha de Nombramiento"/>
+                        <h:outputText value="#{empleado.fecNom}"/>
+                        <h:outputText value="Datos del Conyugue"/>
+                        <h:outputText value="#{empleado.datCony}"/>
+                        <h:outputText value="Dirección"/>
+                        <h:outputText value="#{empleado.ubigActu}"/>
+                        <h:outputText value="Lugar de Nacimiento"/>
+                        <h:outputText value="#{empleado.ubigOrig}"/>
+                    </p:panelGrid>
+
+                </p:rowExpansion>
+                 </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

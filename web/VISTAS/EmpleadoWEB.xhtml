@@ -8,7 +8,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:event type="preRenderView" listener="#{empleadoC.listar()}" />
+        <f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />
         <p:growl autoUpdate="true" />
         <h:form id="frm">
             <h3 align="center">DATOS PERSONALES</h3>
@@ -16,7 +16,7 @@
             <!--<p:commandButton value="redirect" action="index.xhtml?faces-redirect=true"/>-->
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
-            <!--<p:commandButton value="Listar" actionListener="#{empleadoC.listar()}" update="data"/>-->
+            <!--<p:commandButton value="Listar" actionListener="#{empleadoC.listarActivos()}" update="data"/>-->
             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>

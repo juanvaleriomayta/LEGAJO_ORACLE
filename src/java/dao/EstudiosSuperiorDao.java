@@ -15,8 +15,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void registrarEstudiosSuperiores(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
             st.setString(3, sup.getCentrEstu());
@@ -38,8 +38,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void registrar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
             st.setString(3, sup.getCentrEstu());
@@ -63,7 +63,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT IdEstuSuper, EduSuper,Culmi,Espe,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Hast,'dd/MM/yyyy') as Hast,Culmi,GradAcadObte FROM EstudiosSuperiores");
+            String sql = "SELECT IdEstuSuper, EduSuper,Culmi,Espe,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Hast,'dd/MM/yyyy') as Hast,Culmi,GradAcadObte FROM EstudiosSuperiores";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -94,7 +95,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT IdEstuSuper ,EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte FROM EstudiosSuperiores WHERE IdEstuSuper=?");
+            String sql = "SELECT IdEstuSuper ,EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte FROM EstudiosSuperiores WHERE IdEstuSuper=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, sup.getIdEstuSuper());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -121,7 +123,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void modificar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE EstudiosSuperiores SET EduSuper = ?, Espe=?,CentrEstu =?, Desd = convert(date, ?, 103), Hast = convert(date, ?, 103),Culmi=?,GradAcadObte=?  WHERE IdEstuSuper = ?");
+            String sql = "UPDATE EstudiosSuperiores SET EduSuper = ?, Espe=?,CentrEstu =?, Desd = convert(date, ?, 103), Hast = convert(date, ?, 103),Culmi=?,GradAcadObte=?  WHERE IdEstuSuper = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
             st.setString(3, sup.getCentrEstu());
@@ -142,7 +145,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void eliminar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM EstudiosSuperiores WHERE IdEstuSuper = ?");
+            String sql = "DELETE FROM EstudiosSuperiores WHERE IdEstuSuper = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, sup.getIdEstuSuper());
             st.executeUpdate();
         } catch (SQLException e) {

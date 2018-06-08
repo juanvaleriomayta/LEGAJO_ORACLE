@@ -8,15 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Empleado;
 
-public class EmpleadoDao extends DAO implements EmpleadoI{
-    
-    
+public class EmpleadoDao extends DAO implements EmpleadoI {
+
     @Override
     public void registrarEmpleado(Empleado emp) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
             st.setString(3, emp.getApelPate());
@@ -51,8 +50,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     public void registrar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
             st.setString(3, emp.getApelPate());
@@ -85,13 +84,17 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     }
 
     @Override
-    public List<Empleado> listar() throws Exception {
+    public List<Empleado> listarActivos() throws Exception {
         List<Empleado> lista;
         ResultSet rs;
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado");
+            //  String sql = "SELECT Nombre, if(estado = 0, 'Activo', 'Inactivo') FROM Empleado  ";
+            // String sql = " select * from Empleado where ACTIVO = true" ;
+            String sql = "select * from vw_Empleado";
+            // String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -103,7 +106,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
                 emp.setApelMate(rs.getString("ApelMate"));
                 emp.setRUC(rs.getString("RUC"));
                 emp.setEmail(rs.getString("Email"));
-                emp.setTelf(rs.getString("Telf"));
                 emp.setCel(rs.getString("Cel"));
                 emp.setFecNac(rs.getString("FecNac"));
                 emp.setGrupSang(rs.getString("GrupSang"));
@@ -117,6 +119,57 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
                 emp.setDatCony(rs.getString("DatCony"));
                 emp.setUbigActu(rs.getString("UbigActu"));
                 emp.setUbigOrig(rs.getString("UbigOrig"));
+                emp.setTelf(rs.getString("Telf"));
+
+                emp.setEst(rs.getString("Est"));
+
+                lista.add(emp);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Empleado> listarInactivos() throws Exception {
+        List<Empleado> lista;
+        ResultSet rs;
+
+        try {
+            this.Conexion();
+
+            String sql = "select * from vw_EmpleadoInactivo";
+
+            PreparedStatement st = this.getCn().prepareCall(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Empleado emp = new Empleado();
+                emp.setIdEmpl(rs.getInt("idEmpl"));
+                emp.setDNI(rs.getString("DNI"));
+                emp.setNom(rs.getString("Nom"));
+                emp.setApelPate(rs.getString("ApelPate"));
+                emp.setApelMate(rs.getString("ApelMate"));
+                emp.setRUC(rs.getString("RUC"));
+                emp.setEmail(rs.getString("Email"));
+                emp.setCel(rs.getString("Cel"));
+                emp.setFecNac(rs.getString("FecNac"));
+                emp.setGrupSang(rs.getString("GrupSang"));
+                emp.setEstCiv(rs.getString("EstCiv"));
+                emp.setConLab(rs.getString("ConLab"));
+                emp.setCarnAseg(rs.getString("CarnAseg"));
+                emp.setRefe(rs.getString("Refe"));
+                emp.setLeye(rs.getString("Leye"));
+                emp.setFecIng(rs.getString("FecIng"));
+                emp.setFecNom(rs.getString("FecNom"));
+                emp.setDatCony(rs.getString("DatCony"));
+                emp.setUbigActu(rs.getString("UbigActu"));
+                emp.setUbigOrig(rs.getString("UbigOrig"));
+                emp.setTelf(rs.getString("Telf"));
+
                 emp.setEst(rs.getString("Est"));
 
                 lista.add(emp);
@@ -136,7 +189,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado WHERE idEmpl=?");
+            String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado WHERE idEmpl=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, emp.getIdEmpl());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -176,7 +230,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     public void modificar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Empleado SET DNI = ?, Nom = ?, ApelPate = ?, ApelMate = ?,RUC = ?, Email = ?,Telf = ?,Cel = ?,FecNac = convert(date, ?, 103),GrupSang = ?,EstCiv = ?,ConLab = ?,CarnAseg = ?,Refe = ?,Leye = ?,FecIng = convert(date, ?, 103),FecNom = convert(date, ?, 103),DatCony = ?,UbigActu = ?,UbigOrig = ?,Est = ? WHERE idEmpl = ?");
+            String sql = "UPDATE Empleado SET DNI = ?, Nom = ?, ApelPate = ?, ApelMate = ?,RUC = ?, Email = ?,Telf = ?,Cel = ?,FecNac = convert(date, ?, 103),GrupSang = ?,EstCiv = ?,ConLab = ?,CarnAseg = ?,Refe = ?,Leye = ?,FecIng = convert(date, ?, 103),FecNom = convert(date, ?, 103),DatCony = ?,UbigActu = ?,UbigOrig = ?,Est = ? WHERE idEmpl = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
             st.setString(3, emp.getApelPate());
@@ -211,7 +266,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI{
     public void eliminar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM Empleado WHERE idEmpl = ?");
+            String sql = "DELETE FROM Empleado WHERE idEmpl = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, emp.getIdEmpl());
             st.executeUpdate();
         } catch (SQLException e) {

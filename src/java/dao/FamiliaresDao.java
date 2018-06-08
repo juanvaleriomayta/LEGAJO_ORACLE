@@ -38,7 +38,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void registrar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)");
+            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getNom());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
@@ -63,7 +64,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareCall("SELECT CodFami, Nom,Ape,Par,Ocu,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,Tel,Cel,EstCiv,vive FROM Familiares");
+            String sql = "SELECT CodFami, Nom,Ape,Par,Ocu,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,Tel,Cel,EstCiv,vive FROM Familiares";
+            PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -95,7 +97,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
 
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("SELECT CodFami,Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive  FROM Familiares WHERE CodFami=?");
+            String sql = "SELECT CodFami,Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive  FROM Familiares WHERE CodFami=?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, fam.getCodFami());
             rs = st.executeQuery();
             while (rs.next()) {
@@ -123,7 +126,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void modificar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("UPDATE Familiares SET  Nom = ?, Ape = ?,Par = ?, Ocu = ?, FecNac = convert(date, ?, 103),Tel = ?, Cel = ?, EstCiv = ?, vive = ? WHERE CodFami = ?");
+            String sql = "UPDATE Familiares SET  Nom = ?, Ape = ?,Par = ?, Ocu = ?, FecNac = convert(date, ?, 103),Tel = ?, Cel = ?, EstCiv = ?, vive = ? WHERE CodFami = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getNom());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
@@ -146,7 +150,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void eliminar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            PreparedStatement st = this.getCn().prepareStatement("DELETE FROM Familiares WHERE CodFami = ?");
+            String sql = "DELETE FROM Familiares WHERE CodFami = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, fam.getCodFami());
             st.executeUpdate();
         } catch (SQLException e) {
