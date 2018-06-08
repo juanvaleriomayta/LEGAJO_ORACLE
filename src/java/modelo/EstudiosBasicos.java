@@ -3,7 +3,15 @@ package modelo;
 
 public class EstudiosBasicos {
     private int IdEstuBasi;
-    private String Educ,Culmi,CentrEstu,Desd,Has;
+    private String Educ,Culmi,CentrEstu,Desd,Has,Estado;
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
 
     public int getIdEstuBasi() {
         return IdEstuBasi;

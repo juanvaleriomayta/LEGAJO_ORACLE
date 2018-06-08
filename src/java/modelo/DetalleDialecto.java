@@ -2,7 +2,15 @@ package modelo;
 
 public class DetalleDialecto {
     private int idDetDial;
-    private String Lee,Habla,Escribe;
+    private String Lee,Habla,Escribe,Estado;
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
 
     public int getIdDetDial() {
         return idDetDial;

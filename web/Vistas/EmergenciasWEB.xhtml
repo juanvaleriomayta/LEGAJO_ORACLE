@@ -33,7 +33,7 @@
                 }
             </style>
 
-                <p:dataTable id="data" value="#{emergenciaC.lstEmergencia}" var="emergencias" rows="10"
+            <p:dataTable id="data" value="#{emergenciaC.lstEmergencia}" var="emergencias" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
@@ -60,7 +60,12 @@
                 <p:column headerText="Celular" >
                     <p:outputLabel value="#{emergencias.cel}"/>
                 </p:column>
-                
+                <p:column headerText="Esatdo" >
+                    <p:outputLabel value="#{emergencias.estado}"/>
+                </p:column>
+              
+
+
                 <p:column headerText="Modificar" >
                     <p:commandButton icon="ui-icon-pencil" actionListener="#{emergenciaC.leerID(emergencias)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
@@ -94,7 +99,7 @@
                     <p:inputText value="#{emergenciaC.emergencia.paren}" >
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>           
-                    
+
                     <p:outputLabel value="Telefono" />
                     <p:inputText value="#{emergenciaC.emergencia.tel}" maxlength="7" >
                         <p:keyFilter regEx="/[\d\-]/"/>
@@ -103,8 +108,17 @@
                     <p:outputLabel value="Celular" />
                     <p:inputText value="#{emergenciaC.emergencia.cel}" maxlength="9">
                         <p:keyFilter regEx="/[\d\-]/"/>
-                    </p:inputText>                 
-                   
+
+                    </p:inputText>            
+                     <p:outputLabel value="Estado Laboral" />
+
+                     <p:selectOneRadio id="EstadoLaboral" value="#{emergenciaC.emergencia.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+
+                    </p:selectOneRadio>
+
                     <p:commandButton value="#{emergenciaC.accion}" actionListener="#{emergenciaC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                     <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                 </p:panelGrid>

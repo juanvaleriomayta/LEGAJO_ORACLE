@@ -46,6 +46,11 @@
                 <p:column headerText="Hasta" >
                     <p:outputLabel value="#{basicos.has}"/>
                 </p:column>
+                
+                <p:column headerText="Estado" >
+                    <p:outputLabel value="#{basicos.estado}"/>
+                </p:column>
+                
                 <p:column headerText="Modificar" >
                     <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
@@ -79,6 +84,15 @@
                     <p:inputText id="txtCentroEstudios" value="#{estudiosBasicosC.estudiosBasicos.centrEstu}" required="true" requiredMessage="Ingrese Centro de Estudios">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
+                    
+                     <p:outputLabel value="Estado Laboral" />
+
+                     <p:selectOneRadio id="EstadoLaboral" value="#{estudiosBasicosC.estudiosBasicos.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+
+                    </p:selectOneRadio>
 
                     <p:outputLabel for="txtDesde" value="Desde"/>
                     <p:inputMask id="txtDesde" value="#{estudiosBasicosC.estudiosBasicos.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>

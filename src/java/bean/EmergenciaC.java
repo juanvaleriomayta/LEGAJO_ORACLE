@@ -47,6 +47,7 @@ public class EmergenciaC implements Serializable {
         this.emergencia.setParen("");
         this.emergencia.setTel("");
         this.emergencia.setCel("");
+      
     }
 
     private void registrar() throws Exception {

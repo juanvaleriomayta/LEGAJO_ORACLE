@@ -72,6 +72,9 @@
                 <p:column headerText="Vive" >
                     <p:outputLabel value="#{familiar.vive}"/>
                 </p:column>
+                <p:column headerText="Estado" >
+                    <p:outputLabel value="#{familiar.estado}"/>
+                </p:column>
                 <p:column headerText="Modificar" >
                     <p:commandButton icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
@@ -137,6 +140,15 @@
                     <p:selectOneRadio id="Vive" value="#{familiaresC.familiar.vive}" >                      
                         <f:selectItem itemLabel="Si" itemValue="Si"/>
                         <f:selectItem itemLabel="No" itemValue="No"/>                                          
+                    </p:selectOneRadio>
+                    
+                     <p:outputLabel value="Estado Laboral" />
+
+                     <p:selectOneRadio id="EstadoLaboral" value="#{familiaresC.familiar.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+
                     </p:selectOneRadio>
 
 
