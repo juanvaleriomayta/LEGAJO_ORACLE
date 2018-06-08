@@ -3,10 +3,8 @@ package bean;
 import dao.DetalleDialectoDao;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import modelo.DetalleDialecto;
 
 @ManagedBean
@@ -31,10 +29,7 @@ public class DetalleDialectoC implements Serializable {
     }
 
     public void limpiar() {
-        this.detalleDialecto.setIdDetDial(0);
-        this.detalleDialecto.setLee("");
-        this.detalleDialecto.setHabla("");
-        this.detalleDialecto.setEscribe("");
+        detalleDialecto = new DetalleDialecto();
     }
 
     private void registrar() throws Exception {
@@ -44,7 +39,6 @@ public class DetalleDialectoC implements Serializable {
             dao = new DetalleDialectoDao();
             dao.registrar(detalleDialecto);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
 
         } catch (Exception e) {
             throw e;
@@ -57,7 +51,6 @@ public class DetalleDialectoC implements Serializable {
         try {
             dao = new DetalleDialectoDao();
             lstDetalleDialecto = dao.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Listado con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -86,7 +79,6 @@ public class DetalleDialectoC implements Serializable {
             dao = new DetalleDialectoDao();
             dao.modificar(detalleDialecto);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Modificado con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -98,7 +90,6 @@ public class DetalleDialectoC implements Serializable {
             dao = new DetalleDialectoDao();
             dao.eliminar(detdia);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Eliminado con Exito"));
         } catch (Exception e) {
             throw e;
         }

@@ -9,70 +9,96 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h3>Dialecto</h3>
-        <p:panelGrid style="margin-top:20px">
-            <f:facet name="header">
-                <p:row>
-                    <p:column colspan="7">CONOCIMIENTOS DE IDIOMAS Y/O DIALECTO</p:column>
-                </p:row>
-                <p:row>
-                    <p:column>IDIOMA Y/O DIALECTO</p:column>
-                    <p:column colspan="2">LEE</p:column>
-                    <p:column colspan="2">HABLA</p:column>
-                    <p:column colspan="2">ESCRIBE</p:column>
-
-                </p:row>
+        <f:event type="preRenderView" listener="#{detalleDialectoC.listar()}" />
 
 
-            </f:facet>
+        <p:growl id="msj" autoUpdate="true"/>
+        <h:form id="frm">
 
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
-            <p:row>
+            <p:commandButton value="Listar" actionListener="#{detalleDialectoC.listar()}" update="data"/>
 
-                <p:column style="font-weight: bold;">IDIOMA Y/O DIALECTO</p:column>
-                <p:column style="font-weight: bold;">Con Facilidad</p:column>
-                <p:column style="font-weight: bold;">Sin Facilidad</p:column>
-                <p:column style="font-weight: bold;">Con Facilidad</p:column>
-                <p:column style="font-weight: bold;">Sin Facilidad</p:column>
-                <p:column style="font-weight: bold;">Con Facilidad</p:column>
-                <p:column style="font-weight: bold;">Sin Facilidad</p:column>
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
 
+            <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detdial" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    <h1>DETALLE DIALECTO</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
+                <p:column headerText="Lee" >
+                    <p:outputLabel value="#{detdial.lee}"/>
+                </p:column>
+                <p:column headerText="Habla" >
+                    <p:outputLabel value="#{detdial.habla}"/>
+                </p:column>
+                <p:column headerText="Escribe" >
+                    <p:outputLabel value="#{detdial.escribe}"/>
+                </p:column>
+                <p:column headerText="Estado" >
+                    <p:outputLabel value="#{detdial.estado}"/>
+                </p:column>
 
+                <p:column headerText="Modificar" >
+                    <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:growl id="message" showDetail="true" />
 
+                    <p:commandButton icon="ui-icon-circle-close" actionListener="#{detalleDialectoC.eliminar(detdial)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
 
-            </p:row>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="Lee" />
+                    <p:selectOneMenu id="Lee" value="#{detalleDialectoC.detalleDialecto.lee}" required="true" requiredMessage="Seleccione ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
+                        <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
+                    </p:selectOneMenu>
 
-            <p:row>
-                <p:column></p:column>
-                <p:column></p:column>
-                <p:column></p:column>
-                <p:column></p:column>
-                <p:column></p:column>
-                <p:column></p:column>
-                <p:column>0</p:column>
-            </p:row>
+                    <p:outputLabel value="Habla" />
+                    <p:selectOneMenu id="Habla" value="#{detalleDialectoC.detalleDialecto.habla}" required="true" requiredMessage="Seleccione ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
+                        <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
+                    </p:selectOneMenu>
 
+                    <p:outputLabel value="Escribe" />
+                    <p:selectOneMenu id="Escribe" value="#{detalleDialectoC.detalleDialecto.escribe}" required="true" requiredMessage="Seleccione ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
+                        <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
+                    </p:selectOneMenu>
 
-            <p:row>
-                <p:column style="font-weight: bold;"></p:column>
-                <p:column style="font-weight: bold;"></p:column>
-                <p:column style="font-weight: bold;"></p:column>
-                <p:column style="font-weight: bold;"></p:column>
-                <p:column style="font-weight: bold;"></p:column>
-                <p:column style="font-weight: bold;"></p:column>
-                <p:column style="font-weight: bold;">0</p:column>
+                    <p:outputLabel value="Estado" />
+                    <p:selectOneRadio id="CondicionLaboral" value="#{detalleDialectoC.detalleDialecto.estado}" required="true" requiredMessage="Seleccione su Estado">
 
+                        <f:selectItem itemLabel="Activo" itemValue="A"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="I" /> 
+                    </p:selectOneRadio>
 
-            </p:row>
+                    <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+            </h:form>
 
-
-
-
-
-
-        </p:panelGrid>
-        <p:commandButton value="Modificar" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Modificar')}" />
-
+        </p:dialog>
     </h:body>
 </html>
 
