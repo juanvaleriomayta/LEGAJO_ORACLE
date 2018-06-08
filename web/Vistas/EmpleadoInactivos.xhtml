@@ -10,18 +10,21 @@
     <h:body>
         <f:event type="preRenderView" listener="#{empleadoC.listarInactivos()}"/>
         <h:form id="frm">
-             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>
+
+
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15"  emptyMessage="No estas la Lista">
                 <f:facet name="header">
-                    <h1>Empleados Inactivos</h1> 
+                    <h1>Empleado</h1> 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                     <p:columnToggler datasource="data" trigger="toggler" />
                 </f:facet>
+
                 <p:column style="width:16px">
                     <p:rowToggler/>
                 </p:column>
@@ -84,8 +87,35 @@
                     </p:panelGrid>
 
                 </p:rowExpansion>
+
+                <p:column headerText="Activar" >
+                    <p:commandButton  icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+
             </p:dataTable>
         </h:form>
+
+
+        <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="4">
+
+                    <p:outputLabel value="Estado Laboral" />
+
+                    <p:selectOneRadio id="EstadoLaboral" value="#{empleadoC.empleado.est}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+
+                    </p:selectOneRadio>
+
+                    <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
     </h:body>
 </html>
 

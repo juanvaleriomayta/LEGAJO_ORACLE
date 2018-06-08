@@ -49,20 +49,31 @@
                     <p:outputLabel value="#{superior.estado}"/>
                 </p:column>
 
-                <p:column headerText="Modificar" >
+                <p:column headerText="Activar" >
                     <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
-                <p:column headerText="Eliminar" >
-                    <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
-                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
-                    </p:commandButton>
-                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                    </p:confirmDialog>
-                </p:column>
-            </p:dataTable>   
+
+            </p:dataTable>               
         </h:form>
+
+        <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Estado Laboral" />
+
+                    <p:selectOneRadio id="EstadoLaboral" value="#{estudiosSuperiorC.estudiosSuperior.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+
+                    </p:selectOneRadio>
+
+                    <p:commandButton value="#{estudiosSuperiorC.accion}" actionListener="#{estudiosSuperiorC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
     </h:body>
 </html>
 
