@@ -4,7 +4,15 @@ package modelo;
 public class Emergencia {
     
     private int IdEmerg;
-    private String Nom,Ape,Paren,Tel,Cel;
+    private String Nom,Ape,Paren,Tel,Cel,Estado;
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
 
     public int getIdEmerg() {
         return IdEmerg;

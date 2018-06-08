@@ -4,7 +4,15 @@ package modelo;
 public class EstudiosSuperior {
     
     private int IdEstuSuper;
-    private String EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte;
+    private String EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte,Estado;
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
 
     public int getIdEstuSuper() {
         return IdEstuSuper;

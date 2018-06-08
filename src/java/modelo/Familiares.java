@@ -3,7 +3,15 @@ package modelo;
 public class Familiares {
   
     private int CodFami;
-    private String Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive;
+    private String Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive,Estado;
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
 
     public int getCodFami() {
         return CodFami;
