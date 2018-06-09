@@ -15,7 +15,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void registrarEmpleado(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(DATE,FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(DATE,FecIng,103) AS FecIng,CONVERT(DATE,FecNom,103) AS FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -50,7 +50,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void registrar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(DATE,FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(DATE,FecIng,103) AS FecIng,CONVERT(DATE,FecNom,103) AS FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
