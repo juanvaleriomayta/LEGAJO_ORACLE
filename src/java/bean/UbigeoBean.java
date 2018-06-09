@@ -37,7 +37,7 @@ public class UbigeoBean implements Serializable{
 
     public void limpiar() {
         this.ubigeo.setCodigoUbigeo(0);
-        this.ubigeo.setDepartamenmto("");
+        this.ubigeo.setDepartamento("");
         this.ubigeo.setProvincia("");
         this.ubigeo.setDistrito("");
 

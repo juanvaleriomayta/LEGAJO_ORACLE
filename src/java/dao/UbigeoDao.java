@@ -55,7 +55,7 @@ public class UbigeoDao extends DAO implements UbigeoI{
             this.Conexion();
             String sql = "INSERT INTO Ubigeo (Dep,Pro,Dis) values(?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, ubi.getDepartamenmto());
+            st.setString(1, ubi.getDepartamento());
             st.setString(2, ubi.getProvincia());
             st.setString(3, ubi.getDistrito());
             st.executeUpdate();
@@ -81,7 +81,7 @@ public class UbigeoDao extends DAO implements UbigeoI{
             while (rs.next()) {
                 Ubigeo ubi = new Ubigeo();
                 ubi.setCodigoUbigeo(rs.getInt("CodUbi"));
-                ubi.setDepartamenmto(rs.getString("Dep"));
+                ubi.setDepartamento(rs.getString("Dep"));
                 ubi.setProvincia(rs.getString("Pro"));
                 ubi.setDistrito(rs.getString("Dis"));
                 lista.add(ubi);
@@ -108,7 +108,7 @@ public class UbigeoDao extends DAO implements UbigeoI{
             while (rs.next()) {
                 ubig = new Ubigeo();
                 ubig.setCodigoUbigeo(rs.getInt("CodUbi"));
-                ubig.setDepartamenmto(rs.getString("Dep"));
+                ubig.setDepartamento(rs.getString("Dep"));
                 ubig.setProvincia(rs.getString("Pro"));
                 ubig.setDistrito(rs.getString("Dis"));
             }
@@ -126,7 +126,7 @@ public class UbigeoDao extends DAO implements UbigeoI{
             this.Conexion();
             String sql = "UPDATE Ubigeo SET Dep = ?, Pro = ?, Dis = ? WHERE CodUbi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, ubi.getDepartamenmto());
+            st.setString(1, ubi.getDepartamento());
             st.setString(2, ubi.getProvincia());
             st.setString(3, ubi.getDistrito());                    
             st.setInt(4, ubi.getCodigoUbigeo());

@@ -46,6 +46,12 @@
                 <p:column headerText="Apellido Materno">
                     <h:outputText value="#{empleado.apelMate}"/>
                 </p:column>
+                <p:column headerText="Distrito de Origen">
+                    <h:outputText value="#{empleado.ubigeoOrigen.distrito}"/>
+                </p:column>
+                <p:column headerText="Distrito Actual">
+                    <h:outputText value="#{empleado.ubigeoActual.distrito}"/>
+                </p:column>
 
                 <style>
                     .label{

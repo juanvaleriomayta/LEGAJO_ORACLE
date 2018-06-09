@@ -10,8 +10,10 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import lombok.Data;
 import modelo.Empleado;
 
+@Data
 @ManagedBean
 @SessionScoped
 public class EmpleadoC implements Serializable {
@@ -54,7 +56,6 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-   
     public void registrar() throws Exception {
         EmpleadoDao dao;
         UbigeoDao dao2;
@@ -80,7 +81,8 @@ public class EmpleadoC implements Serializable {
             throw e;
         }
     }
-     public void listarInactivos() throws Exception {
+
+    public void listarInactivos() throws Exception {
         EmpleadoDao dao;
 
         try {
@@ -131,56 +133,9 @@ public class EmpleadoC implements Serializable {
             throw e;
         }
     }
-     public void limpiar() {
-        this.empleado.setIdEmpl(0);
-        this.empleado.setDNI("");
-        this.empleado.setNom("");
-        this.empleado.setApelPate("");
-        this.empleado.setApelMate("");
-        this.empleado.setRUC("");
-        this.empleado.setEmail("");
-        this.empleado.setTelf("");
-        this.empleado.setCel("");
-        this.empleado.setFecNac("");
-        this.empleado.setGrupSang("");
-        this.empleado.setEstCiv("");
-        this.empleado.setConLab("");
-        this.empleado.setCarnAseg("");
-        this.empleado.setRefe("");
-        this.empleado.setLeye("");
-        this.empleado.setFecIng("");
-        this.empleado.setFecNom("");
-        this.empleado.setDatCony("");
-        this.empleado.setUbigActu("");
-        this.empleado.setUbigOrig("");
-        this.empleado.setEst("");
 
+    public void limpiar() {
+        empleado = new Empleado();
     }
 
-
-    //Getter and Setter
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-    
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
-
-    public List<Empleado> getLstEmpleado() {
-        return lstEmpleado;
-    }
-
-    public void setLstEmpleado(List<Empleado> lstEmpleado) {
-        this.lstEmpleado = lstEmpleado;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public void setAccion(String accion) {
-        this.limpiar();
-        this.accion = accion;
-    }
 }

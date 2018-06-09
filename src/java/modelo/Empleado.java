@@ -27,6 +27,14 @@ public class Empleado {
     private String UbigActu;
     private String UbigOrig;
     private String Est;
-    private Ubigeo ubigeo;
+    
+    //Relaciones
+    private Ubigeo ubigeoOrigen;
+    private Ubigeo ubigeoActual;
 
+    public Empleado() {
+        ubigeoOrigen = new Ubigeo();
+        ubigeoActual = new Ubigeo();
+    }    
+    
 }
