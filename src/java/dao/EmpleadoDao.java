@@ -43,7 +43,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         } finally {
             this.Cerrar();
         }
-
     }
 
     @Override
@@ -73,7 +72,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(19, emp.getUbigActu());
             st.setString(20, emp.getUbigOrig());
             st.setString(21, emp.getEst());
-
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -90,7 +88,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
 
         try {
             this.Conexion();
-            //  String sql = "SELECT Nombre, if(estado = 0, 'Activo', 'Inactivo') FROM Empleado  ";
+            
             // String sql = " select * from Empleado where ACTIVO = true" ;
             String sql = "select * from vw_Empleado";
 //             String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado Where Est like 'Activo'";
@@ -120,9 +118,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setUbigActu(rs.getString("UbigActu"));
                 emp.setUbigOrig(rs.getString("UbigOrig"));
                 emp.setTelf(rs.getString("Telf"));
-
                 emp.setEst(rs.getString("Est"));
-
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -189,7 +185,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
 
         try {
             this.Conexion();
-            String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado WHERE idEmpl=?";
+            String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(nvarchar(10),FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(nvarchar(10),FecIng,103) AS FecIng,CONVERT(nvarchar(10),FecNom,103) AS FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado WHERE idEmpl=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, emp.getIdEmpl());
             rs = st.executeQuery();

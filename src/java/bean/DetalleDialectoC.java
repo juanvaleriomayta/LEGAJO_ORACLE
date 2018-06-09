@@ -38,19 +38,29 @@ public class DetalleDialectoC implements Serializable {
         try {
             dao = new DetalleDialectoDao();
             dao.registrar(detalleDialecto);
-            this.listar();
+            this.listarActivos();
 
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public void listar() throws Exception {
+    public void listarActivos() throws Exception {
         DetalleDialectoDao dao;
 
         try {
             dao = new DetalleDialectoDao();
-            lstDetalleDialecto = dao.listar();
+            lstDetalleDialecto = dao.listarActivos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+     public void listarInactivos() throws Exception {
+        DetalleDialectoDao dao;
+
+        try {
+            dao = new DetalleDialectoDao();
+           lstDetalleDialecto = dao.listarInactivos();
         } catch (Exception e) {
             throw e;
         }
@@ -78,7 +88,7 @@ public class DetalleDialectoC implements Serializable {
         try {
             dao = new DetalleDialectoDao();
             dao.modificar(detalleDialecto);
-            this.listar();
+            this.listarActivos();
         } catch (Exception e) {
             throw e;
         }
@@ -89,7 +99,7 @@ public class DetalleDialectoC implements Serializable {
         try {
             dao = new DetalleDialectoDao();
             dao.eliminar(detdia);
-            this.listar();
+            this.listarActivos();
         } catch (Exception e) {
             throw e;
         }
