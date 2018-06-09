@@ -1,8 +1,9 @@
 package modelo;
 
 public class Ubigeo {
+    
     private int CodigoUbigeo;
-    private String departamenmto;
+    private String departamento;
     private String provincia;
     private String distrito;
 
@@ -14,12 +15,12 @@ public class Ubigeo {
         this.CodigoUbigeo = CodigoUbigeo;
     }
 
-    public String getDepartamenmto() {
-        return departamenmto;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setDepartamenmto(String departamenmto) {
-        this.departamenmto = departamenmto;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public String getProvincia() {
