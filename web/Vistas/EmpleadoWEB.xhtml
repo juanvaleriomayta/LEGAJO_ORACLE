@@ -112,7 +112,7 @@
             </p:dataTable>
         </h:form>
 
-        
+
         <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
                 <p:panelGrid columns="4">
@@ -176,7 +176,7 @@
 
                     <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
                     <p:autoComplete value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
-                    <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
+                        <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
                     </p:autoComplete>
 
 
@@ -229,13 +229,12 @@
                     <p:outputLabel value="Estado Laboral" />
 
                     <p:selectOneRadio id="EstadoLaboral" value="#{empleadoC.empleado.est}" required="true" requiredMessage="Seleccione su Estado Laboral">
-
                         <f:selectItem itemLabel="Activo" itemValue="Activo"/>
                         <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
 
                     </p:selectOneRadio>
 
-                    <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.modificar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                     <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
 
                 </p:panelGrid>

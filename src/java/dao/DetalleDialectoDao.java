@@ -27,13 +27,40 @@ public class DetalleDialectoDao extends DAO {
 
     }
 
-    public List<DetalleDialecto> listar() throws Exception {
+    public List<DetalleDialecto> listarActivos() throws Exception {
         List<DetalleDialecto> lista;
         ResultSet rs;
         try {
             this.Conexion();
-//            String sql = "select * from vw_DetalleDialecto";
-             String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto";
+            String sql = "Select * from vw_detalleDialectoActi";
+            //      String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto";
+            PreparedStatement st = this.getCn().prepareCall(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                DetalleDialecto detdia = new DetalleDialecto();
+                detdia.setIdDetDial(rs.getInt("idDetDial"));
+                detdia.setLee(rs.getString("Lee"));
+                detdia.setHabla(rs.getString("Hab"));
+                detdia.setEscribe(rs.getString("Escri"));
+                detdia.setEstado(rs.getString("Estado"));
+                lista.add(detdia);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        return lista;
+    }
+
+    public List<DetalleDialecto> listarInactivos() throws Exception {
+        List<DetalleDialecto> lista;
+        ResultSet rs;
+        try {
+            this.Conexion();
+           String sql = "Select * from vw_DetalleDialectoInac";
+        //    String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto Where Estado like 'Inactivo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -91,7 +118,7 @@ public class DetalleDialectoDao extends DAO {
             st.setString(3, detdia.getEscribe());
             st.setString(4, detdia.getEstado());
             st.setInt(5, detdia.getIdDetDial());
-            
+
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -103,7 +130,7 @@ public class DetalleDialectoDao extends DAO {
     public void eliminar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-             String sql = "Update DetalleDialecto set Estado = 'Inactivo' WHERE idDetDial = ?";
+            String sql = "Update DetalleDialecto set Estado = 'Inactivo' WHERE idDetDial = ?";
             //String sql = "DELETE FROM DetDial WHERE idDetDial = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, detdia.getIdDetDial());

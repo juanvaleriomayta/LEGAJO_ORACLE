@@ -8,11 +8,56 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{detalleDialectoC.listarInactivos()}" />
         <h:form id="frm">
             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>
+            <p:dataTable id="data" value="#{detalleDialectoC.listarInactivos()}" var="detdial" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    <h1>DETALLE DIALECTO</h1> 
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
+                <p:column headerText="Lee" >
+                    <p:outputLabel value="#{detdial.lee}"/>
+                </p:column>
+                <p:column headerText="Habla" >
+                    <p:outputLabel value="#{detdial.habla}"/>
+                </p:column>
+                <p:column headerText="Escribe" >
+                    <p:outputLabel value="#{detdial.escribe}"/>
+                </p:column>
+                <p:column headerText="Estado" >
+                    <p:outputLabel value="#{detdial.estado}"/>
+                </p:column>
+
+                <p:column headerText="Activar" >
+                    <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                
+            </p:dataTable>
         </h:form>
-    </h:body>
+        <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="1">
+                    <p:outputLabel value="Estado" />
+                    <p:selectOneRadio id="CondicionLaboral" value="#{detalleDialectoC.detalleDialecto.estado}" required="true" requiredMessage="Seleccione su Estado">
+
+                        <f:selectItem itemLabel="Activo" itemValue="A"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="I" /> 
+                    </p:selectOneRadio>
+
+                    <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
+ 
+</h:body>
 </html>
 

@@ -54,33 +54,8 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-    public void limpiar() {
-        this.empleado.setIdEmpl(0);
-        this.empleado.setDNI("");
-        this.empleado.setNom("");
-        this.empleado.setApelPate("");
-        this.empleado.setApelMate("");
-        this.empleado.setRUC("");
-        this.empleado.setEmail("");
-        this.empleado.setTelf("");
-        this.empleado.setCel("");
-        this.empleado.setFecNac("");
-        this.empleado.setGrupSang("");
-        this.empleado.setEstCiv("");
-        this.empleado.setConLab("");
-        this.empleado.setCarnAseg("");
-        this.empleado.setRefe("");
-        this.empleado.setLeye("");
-        this.empleado.setFecIng("");
-        this.empleado.setFecNom("");
-        this.empleado.setDatCony("");
-        this.empleado.setUbigActu("");
-        this.empleado.setUbigOrig("");
-        this.empleado.setEst("");
-
-    }
-
-    private void registrar() throws Exception {
+   
+    public void registrar() throws Exception {
         EmpleadoDao dao;
         UbigeoDao dao2;
         try {
@@ -133,7 +108,7 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-    private void modificar() throws Exception {
+    public void modificar() throws Exception {
         EmpleadoDao dao;
 
         try {
@@ -156,6 +131,32 @@ public class EmpleadoC implements Serializable {
             throw e;
         }
     }
+     public void limpiar() {
+        this.empleado.setIdEmpl(0);
+        this.empleado.setDNI("");
+        this.empleado.setNom("");
+        this.empleado.setApelPate("");
+        this.empleado.setApelMate("");
+        this.empleado.setRUC("");
+        this.empleado.setEmail("");
+        this.empleado.setTelf("");
+        this.empleado.setCel("");
+        this.empleado.setFecNac("");
+        this.empleado.setGrupSang("");
+        this.empleado.setEstCiv("");
+        this.empleado.setConLab("");
+        this.empleado.setCarnAseg("");
+        this.empleado.setRefe("");
+        this.empleado.setLeye("");
+        this.empleado.setFecIng("");
+        this.empleado.setFecNom("");
+        this.empleado.setDatCony("");
+        this.empleado.setUbigActu("");
+        this.empleado.setUbigOrig("");
+        this.empleado.setEst("");
+
+    }
+
 
     //Getter and Setter
     public Empleado getEmpleado() {

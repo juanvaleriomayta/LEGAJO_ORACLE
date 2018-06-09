@@ -1,9 +1,10 @@
 package modelo;
 
 public class Familiares {
-  
+
     private int CodFami;
-    private String Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive,Estado;
+    private String Nom, Ape, Par, Ocu, FecNac, Tel, Cel, EstCiv, vive, Estado;
+    private Empleado empleado;
 
     public String getEstado() {
         return Estado;
@@ -93,5 +94,12 @@ public class Familiares {
         this.vive = vive;
     }
 
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
 
 }
