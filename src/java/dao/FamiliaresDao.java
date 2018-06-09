@@ -14,7 +14,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void registrarFamiliar(Familiares fam) throws Exception {
         this.Conexion();
         try {
-            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,CONVERT(DATE, FecNac, 103) AS FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getNom());
             st.setString(2, fam.getApe());
@@ -38,7 +38,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void registrar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,CONVERT(DATE, FecNac, 103) AS FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getNom());
             st.setString(2, fam.getApe());
@@ -97,7 +97,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
 
         try {
             this.Conexion();
-            String sql = "SELECT CodFami,Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive  FROM Familiares WHERE CodFami=?";
+            String sql = "SELECT CodFami,Nom,Ape,Par,Ocu,CONVERT(nvarchar(10), FecNac, 103) AS FecNac,Tel,Cel,EstCiv,vive  FROM Familiares WHERE CodFami=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, fam.getCodFami());
             rs = st.executeQuery();

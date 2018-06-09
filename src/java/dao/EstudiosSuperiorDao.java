@@ -15,7 +15,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void registrarEstudiosSuperiores(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,CONVERT(DATE, Desd,103) AS Desde)Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
@@ -95,7 +95,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
 
         try {
             this.Conexion();
-            String sql = "SELECT IdEstuSuper ,EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte FROM EstudiosSuperiores WHERE IdEstuSuper=?";
+            String sql = "SELECT IdEstuSuper ,EduSuper,Espe,CentrEstu,CONVERT(nvarchar(10),Desd,103) AS Desd,CONVERT(nvarchar(10),Has,103) AS Has,Culmi,GradAcadObte FROM EstudiosSuperiores WHERE IdEstuSuper=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, sup.getIdEstuSuper());
             rs = st.executeQuery();
