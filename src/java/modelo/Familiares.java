@@ -6,7 +6,7 @@ import lombok.Data;
 public class Familiares {
 
     private int CodFami;
-    private String Nombre;
+    private String NomFami;
     private String Ape;
     private String Par;
     private String Ocu;

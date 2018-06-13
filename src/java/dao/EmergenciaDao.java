@@ -52,6 +52,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Emergencia> listar() throws Exception {
         List<Emergencia> lista;
         ResultSet rs;

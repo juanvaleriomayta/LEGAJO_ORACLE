@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Familiares;
 
-public class FamiliaresDao extends DAO implements FamiliaresI{
+public class FamiliaresDao extends DAO implements FamiliaresI {
 
     @Override
     public void registrarFamiliar(Familiares fam) throws Exception {
         this.Conexion();
         try {
-            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?)";
+            String sql = "INSERT INTO Familiares  (NomFami,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, fam.getNombre());
+            st.setString(1, fam.getNomFami());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
             st.setString(4, fam.getOcu());
@@ -25,7 +25,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
             st.setString(7, fam.getCel());
             st.setString(8, fam.getEstCiv());
             st.setString(9, fam.getVive());
-            
+
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -38,9 +38,9 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void registrar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?)";
+            String sql = "INSERT INTO Familiares  (NomFami,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, fam.getNombre());
+            st.setString(1, fam.getNomFami());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
             st.setString(4, fam.getOcu());
@@ -64,14 +64,17 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
 
         try {
             this.Conexion();
-            String sql = "SELECT CodFami, Nom,Ape,Par,Ocu,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,Tel,Cel,EstCiv,vive FROM Familiares Where Estado like 'Activo'";
+            String sql = "select CodFami,NomFami,Ape,Par,Ocu,Tel,Empleado.Nom as 'Nombre de Empleado'from Familiares\n"
+                    + "inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+                    + "where Estado like 'ACtivo'";
+//            String sql = "SELECT CodFami, NomFami,Ape,Par,Ocu,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,Tel,Cel,EstCiv,vive FROM Familiares Where Estado like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 Familiares fam = new Familiares();
                 fam.setCodFami(rs.getInt("CodFami"));
-                fam.setNombre(rs.getString("Nom"));
+                fam.setNomFami(rs.getString("NomFami"));
                 fam.setApe(rs.getString("Ape"));
                 fam.setPar(rs.getString("Par"));
                 fam.setOcu(rs.getString("Ocu"));
@@ -97,14 +100,14 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
 
         try {
             this.Conexion();
-            String sql = "SELECT CodFami,Nom,Ape,Par,Ocu,CONVERT(nvarchar(10), FecNac, 103) AS FecNac,Tel,Cel,EstCiv,vive  FROM Familiares WHERE CodFami=?";
+            String sql = "SELECT CodFami,NomFami,Ape,Par,Ocu,CONVERT(nvarchar(10), FecNac, 103) AS FecNac,Tel,Cel,EstCiv,vive  FROM Familiares WHERE CodFami=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, fam.getCodFami());
             rs = st.executeQuery();
             while (rs.next()) {
                 fami = new Familiares();
                 fami.setCodFami(rs.getInt("CodFami"));
-                fami.setNombre(rs.getString("Nom"));
+                fami.setNomFami(rs.getString("Nom"));
                 fami.setApe(rs.getString("Ape"));
                 fami.setPar(rs.getString("Par"));
                 fami.setOcu(rs.getString("Ocu"));
@@ -126,9 +129,9 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void modificar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE Familiares SET  Nom = ?, Ape = ?,Par = ?, Ocu = ?, FecNac = convert(date, ?, 103),Tel = ?, Cel = ?, EstCiv = ?, vive = ? WHERE CodFami = ?";
+            String sql = "UPDATE Familiares SET  NomFami = ?, Ape = ?,Par = ?, Ocu = ?, FecNac = convert(date, ?, 103),Tel = ?, Cel = ?, EstCiv = ?, vive = ? WHERE CodFami = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, fam.getNombre());
+            st.setString(1, fam.getNomFami());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
             st.setString(4, fam.getOcu());

@@ -82,13 +82,22 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     }
 
     @Override
+
     public List<Empleado> listarActivos() throws Exception {
         List<Empleado> lista;
         ResultSet rs;
         try {
             this.Conexion();
-
-            String sql = "select * from Empleado where Est like 'Activo'";
+//          String sql = "Select Empleado.idEmpl, Empleado.Nom, Empleado.ApelPate, Empleado.ApelMate, Empleado.RUC, Empleado.Email,"
+//                    + "Empleado.Cel, Empleado.FecNac, ";
+            String sql = "select idEmpl,DNI,Nom,ApelPate,ApelMate,Email,Telf, Familiar.NomFami as 'Nombre de Familiar' from Empleado\n"
+                    + "inner join Familiares Familiar on Empleado.Nom = Familiar.NomFami\n"
+                    + "where Estado like 'ACtivo'";
+//            String sql = "Select Empleado.idEmpl,Empleado.DNI,Empleado.Nom,Empleado.ApelPate,Empleado.ApelMate,Empleado.RUC,Empleado.Email,Empleado.Telf,Empleado.cel,CONVERT(nvarchar(10),Empleado.FecNac,103) AS FecNac,Empleado.GrupSang,Empleado.EstCiv,Empleado.ConLab,Empleado.CarnAseg,Empleado.Refe,Empleado.Leye,CONVERT(nvarchar(10),Empleado.FecIng,103) AS FecIng,CONVERT(nvarchar(10),Empleado.FecNom,103) AS FecNom\n"
+//                    + "      ,Empleado.DatCony,Empleado.UbigActu,Empleado.UbigOrig,Empleado.Est,UbigeoActual.Dis AS DistritoActual,UbigeoOrigen.Dis AS DistritoOrigen\n"
+//                    + "FROM Empleado INNER JOIN Ubigeo UbigeoActual on Empleado.UbigActu = UbigeoActual.CodUbi\n"
+//                    + "              INNER JOIN Ubigeo UbigeoOrigen on Empleado.UbigOrig = UbigeoOrigen.CodUbi\n"
+//                    + "where Est like  'Activo';";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
