@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Empleado;
-import modelo.Ubigeo;
 
 public class EmpleadoDao extends DAO implements EmpleadoI {
 
@@ -15,7 +14,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void registrarEmpleado(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(DATE,FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(DATE,FecIng,103) AS FecIng,CONVERT(DATE,FecNom,103) AS FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,CONVERT(DATE,?,103), ?,?,?,?,?, ?,CONVERT(DATE,?,103),CONVERT(DATE,?,103),?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -50,7 +49,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void registrar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(DATE,FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(DATE,FecIng,103) AS FecIng,CONVERT(DATE,FecNom,103) AS FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Empleado (DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,UbigOrig,Est) values(?,UPPER(?),?,?, ?,?,?,?,CONVERT(DATE,?,103), ?,?,?,?,?, ?,CONVERT(DATE,?,103),CONVERT(DATE,?,103),?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -89,20 +88,11 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         try {
             this.Conexion();
 
-            // String sql = " select * from Empleado where ACTIVO = true" ;
-            String sql = "Select Empleado.idEmpl,Empleado.DNI,Empleado.Nom,Empleado.ApelPate,Empleado.ApelMate,Empleado.RUC,Empleado.Email,Empleado.Telf,Empleado.cel,CONVERT(nvarchar(10),Empleado.FecNac,103) AS FecNac,Empleado.GrupSang,Empleado.EstCiv,Empleado.ConLab,Empleado.CarnAseg,Empleado.Refe,Empleado.Leye,CONVERT(nvarchar(10),Empleado.FecIng,103) AS FecIng,CONVERT(nvarchar(10),Empleado.FecNom,103) AS FecNom\n"
-                    + "      ,Empleado.DatCony,Empleado.UbigActu,Empleado.UbigOrig,Empleado.Est,Empleado.Familiares_CodFami,Empleado.Datos_IdLegajo,Empleado.EstudiosBasicos_IdEstuBasi,Empleado.Ubigeo_CodUbi,Empleado.EstudiosSuperiores_IdEstusuper\n"
-                    + "      ,Empleado.Emergencia_IdEmerg,UbigeoActual.Dis AS DistritoActual,UbigeoOrigen.Dis AS DistritoOrigen\n"
-                    + "FROM Empleado INNER JOIN Ubigeo UbigeoActual on Empleado.UbigActu = UbigeoActual.CodUbi\n"
-                    + "              INNER JOIN Ubigeo UbigeoOrigen on Empleado.UbigOrig = UbigeoOrigen.CodUbi\n"
-                    + "where Est like  'Activo';";
-//             String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado Where Est like 'Activo'";
+            String sql = "select * from Empleado where Est like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
-                Ubigeo ubigeoOrigen = new Ubigeo();
-                Ubigeo ubigeoActual = new Ubigeo();
                 Empleado emp = new Empleado();
                 emp.setIdEmpl(rs.getInt("idEmpl"));
                 emp.setDNI(rs.getString("DNI"));
@@ -126,10 +116,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setUbigOrig(rs.getString("UbigOrig"));
                 emp.setTelf(rs.getString("Telf"));
                 emp.setEst(rs.getString("Est"));
-                ubigeoActual.setDistrito(rs.getString("DistritoActual"));
-                ubigeoOrigen.setDistrito(rs.getString("DistritoOrigen"));
-                emp.setUbigeoActual(ubigeoActual);
-                emp.setUbigeoOrigen(ubigeoOrigen);
+                emp.setDistritoActual(rs.getString("DistritoActual"));
+                emp.setDistritoOrigen(rs.getString("DistritoOrigen"));
                 lista.add(emp);
             }
         } catch (SQLException e) {

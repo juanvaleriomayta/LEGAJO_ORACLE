@@ -14,9 +14,9 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void registrarFamiliar(Familiares fam) throws Exception {
         this.Conexion();
         try {
-            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,CONVERT(DATE, FecNac, 103) AS FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, fam.getNom());
+            st.setString(1, fam.getNombre());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
             st.setString(4, fam.getOcu());
@@ -38,9 +38,9 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
     public void registrar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,CONVERT(DATE, FecNac, 103) AS FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Familiares  (Nom,Ape,Par,Ocu,FecNac,Tel,Cel,EstCiv,vive) values(?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, fam.getNom());
+            st.setString(1, fam.getNombre());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
             st.setString(4, fam.getOcu());
@@ -71,7 +71,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
             while (rs.next()) {
                 Familiares fam = new Familiares();
                 fam.setCodFami(rs.getInt("CodFami"));
-                fam.setNom(rs.getString("Nom"));
+                fam.setNombre(rs.getString("Nom"));
                 fam.setApe(rs.getString("Ape"));
                 fam.setPar(rs.getString("Par"));
                 fam.setOcu(rs.getString("Ocu"));
@@ -104,7 +104,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
             while (rs.next()) {
                 fami = new Familiares();
                 fami.setCodFami(rs.getInt("CodFami"));
-                fami.setNom(rs.getString("Nom"));
+                fami.setNombre(rs.getString("Nom"));
                 fami.setApe(rs.getString("Ape"));
                 fami.setPar(rs.getString("Par"));
                 fami.setOcu(rs.getString("Ocu"));
@@ -128,7 +128,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI{
             this.Conexion();
             String sql = "UPDATE Familiares SET  Nom = ?, Ape = ?,Par = ?, Ocu = ?, FecNac = convert(date, ?, 103),Tel = ?, Cel = ?, EstCiv = ?, vive = ? WHERE CodFami = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, fam.getNom());
+            st.setString(1, fam.getNombre());
             st.setString(2, fam.getApe());
             st.setString(3, fam.getPar());
             st.setString(4, fam.getOcu());

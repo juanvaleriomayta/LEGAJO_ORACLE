@@ -8,7 +8,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />
+        <!--<f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />-->
         <p:growl autoUpdate="true" />
         <h:form id="frm">
             <h3 align="center">DATOS PERSONALES</h3>
@@ -47,10 +47,10 @@
                     <h:outputText value="#{empleado.apelMate}"/>
                 </p:column>
                 <p:column headerText="Distrito de Origen">
-                    <h:outputText value="#{empleado.ubigeoOrigen.distrito}"/>
+                    <h:outputText value="#{empleado.distritoOrigen}"/>
                 </p:column>
                 <p:column headerText="Distrito Actual">
-                    <h:outputText value="#{empleado.ubigeoActual.distrito}"/>
+                    <h:outputText value="#{empleado.distritoActual}"/>
                 </p:column>
 
                 <style>
@@ -240,7 +240,7 @@
 
                     </p:selectOneRadio>
 
-                    <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.modificar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                     <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
 
                 </p:panelGrid>

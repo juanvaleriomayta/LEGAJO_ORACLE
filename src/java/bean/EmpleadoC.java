@@ -32,11 +32,9 @@ public class EmpleadoC implements Serializable {
 
     public void ingresarEmpleado() throws Exception {
         EmpleadoDao dao;
-        UbigeoDao dao2;
+
         try {
             dao = new EmpleadoDao();
-            dao2 = new UbigeoDao();
-            empleado.setUbigOrig(dao2.obtenerCodigoUbigeo(empleado.getUbigOrig()));
             dao.registrarEmpleado(empleado);
             this.limpiar();
             this.listarActivos();
@@ -58,11 +56,9 @@ public class EmpleadoC implements Serializable {
 
     public void registrar() throws Exception {
         EmpleadoDao dao;
-        UbigeoDao dao2;
+
         try {
             dao = new EmpleadoDao();
-            dao2 = new UbigeoDao();
-            empleado.setUbigOrig(dao2.obtenerCodigoUbigeo(empleado.getUbigOrig()));
             dao.registrar(empleado);
             this.listarActivos();
         } catch (Exception e) {

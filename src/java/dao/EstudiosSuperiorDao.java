@@ -15,7 +15,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void registrarEstudiosSuperiores(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,CONVERT(DATE, Desd,103) AS Desde)Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,CONVERT(DATE, ?,103),CONVERT(Date, ? , 103),?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
@@ -38,7 +38,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI{
     public void registrar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,Espe,CentrEstu,Desd,Hast,Culmi,GradAcadObte) values(?,?,?,CONVERT(DATE,?,103),CONVERT(DATE,?,103),?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());

@@ -158,26 +158,9 @@
                         <p:ajax event="change" update="EstadoLaboral"/>
                     </p:selectOneRadio>
                 </p:panelGrid>
-
-
-
-
-
-
-
-
-
             </p:fieldset>
-
-
-
         </h:form>
         <h:form>
-
-
-
-
-
             <H2>DATOS EN CASO DE EMERGENCIAS</H2>
             <p:fieldset legend="Contacto">
                 <p:panelGrid style="border: none" columns="4">
@@ -215,18 +198,9 @@
                         <p:ajax event="blur" update="celul"/>
                     </p:inputText> 
                 </p:panelGrid>
-
-
             </p:fieldset>
-
-
-
-
         </h:form>
         <h:form>
-
-
-
             <H2>DATOS REFRENTES A LOS PADRES E HIJOS DEL TRABAJADOR</H2>
             <p:fieldset legend="Familiar">
                 <p:panelGrid style="border: none" columns="4">
@@ -315,7 +289,7 @@
                         <p:ajax event="change" update="educaio"/>
 
                     </p:selectOneMenu>
-                    
+
                     <p:outputLabel for="culminado" value="Culminacion" />
                     <p:inputText id="culminado" value="#{estudiosBasicosC.estudiosBasicos.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
@@ -400,20 +374,6 @@
                     </p:inputText>
                 </p:panelGrid>
             </p:fieldset>
-
-            
-            
-            
-            
-            
-            
-
-
-
-
-
-
-
             <p:growl id="msg" autoUpdate="true"/>
 
             <p:commandButton value="ingresar" immediate="true" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();" />
