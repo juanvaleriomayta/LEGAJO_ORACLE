@@ -88,7 +88,12 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         try {
             this.Conexion();
 
-            String sql = "select * from Empleado where Est like 'Activo'";
+            String sql = "Select Empleado.idEmpl,Empleado.DNI,Empleado.Nom,Empleado.ApelPate,Empleado.ApelMate,Empleado.RUC,Empleado.Email,Empleado.Telf,Empleado.cel,CONVERT(nvarchar(10),Empleado.FecNac,103) AS FecNac,Empleado.GrupSang,Empleado.EstCiv,Empleado.ConLab,Empleado.CarnAseg,Empleado.Refe,Empleado.Leye,CONVERT(nvarchar(10),Empleado.FecIng,103) AS FecIng,CONVERT(nvarchar(10),Empleado.FecNom,103) AS FecNom\n"
+                    + "      ,Empleado.DatCony,Empleado.UbigActu,Empleado.UbigOrig,Empleado.Est,Empleado.Familiares_CodFami,Empleado.Datos_IdLegajo,Empleado.EstudiosBasicos_IdEstuBasi,Empleado.Ubigeo_CodUbi,Empleado.EstudiosSuperiores_IdEstusuper\n"
+                    + "      ,Empleado.Emergencia_IdEmerg,UbigeoActual.Dis AS DistritoActual,UbigeoOrigen.Dis AS DistritoOrigen\n"
+                    + "FROM Empleado INNER JOIN Ubigeo UbigeoActual on Empleado.UbigActu = UbigeoActual.CodUbi\n"
+                    + "              INNER JOIN Ubigeo UbigeoOrigen on Empleado.UbigOrig = UbigeoOrigen.CodUbi\n"
+                    + "where Est like  'Activo';";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
