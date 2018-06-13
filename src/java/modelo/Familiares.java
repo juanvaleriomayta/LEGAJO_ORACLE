@@ -6,7 +6,7 @@ import lombok.Data;
 public class Familiares {
 
     private int CodFami;
-    private String Nom;
+    private String Nombre;
     private String Ape;
     private String Par;
     private String Ocu;
@@ -16,6 +16,6 @@ public class Familiares {
     private String EstCiv;
     private String vive;
     private String Estado;
-    private Empleado empleado;
+    private String NombreEmpleado;
 
 }

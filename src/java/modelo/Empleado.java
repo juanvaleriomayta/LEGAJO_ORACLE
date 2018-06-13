@@ -28,13 +28,8 @@ public class Empleado {
     private String UbigOrig;
     private String Est;
     
-    //Relaciones
-    private Ubigeo ubigeoOrigen;
-    private Ubigeo ubigeoActual;
-
-    public Empleado() {
-        ubigeoOrigen = new Ubigeo();
-        ubigeoActual = new Ubigeo();
-    }    
+    //Distrito
+    private String DistritoOrigen;
+    private String DistritoActual;
     
 }

@@ -41,7 +41,7 @@ public class FamiliaresC implements Serializable {
 
     public void limpiar() {
         this.familiar.setCodFami(0);
-        this.familiar.setNom("");
+        this.familiar.setNombre("");
         this.familiar.setApe("");
         this.familiar.setPar("");
         this.familiar.setOcu("");
