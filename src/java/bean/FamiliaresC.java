@@ -40,16 +40,7 @@ public class FamiliaresC implements Serializable {
     }
 
     public void limpiar() {
-        this.familiar.setCodFami(0);
-        this.familiar.setNomFami("");
-        this.familiar.setApe("");
-        this.familiar.setPar("");
-        this.familiar.setOcu("");
-        this.familiar.setFecNac("");
-        this.familiar.setTel("");
-        this.familiar.setCel("");
-        this.familiar.setEstCiv("");
-        this.familiar.setVive("");
+        familiar = new Familiares();
     }
 
     private void registrar() throws Exception {

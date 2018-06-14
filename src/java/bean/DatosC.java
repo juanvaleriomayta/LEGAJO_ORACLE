@@ -29,16 +29,8 @@ public class DatosC implements Serializable {
     }
 
     public void limpiar() {
-        this.datos.setIdLegajo(0);
-        this.datos.setCon("");
-        this.datos.setApreCali("");
-        this.datos.setSerPre("");
-        this.datos.setIntProCapPerf("");
-        this.datos.setRefPer("");
-        this.datos.setBonPer("");
-        this.datos.setComInfTper("");
-        this.datos.setBonFam("");
 
+        datos = new Datos();
     }
 
     private void registrar() throws Exception {

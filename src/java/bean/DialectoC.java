@@ -29,8 +29,7 @@ public class DialectoC {
     }
 
     public void limpiar() {
-        this.dialecto.setIdDial(0);
-        this.dialecto.setNomDial("");
+        dialecto = new Dialecto();
 
     }
 

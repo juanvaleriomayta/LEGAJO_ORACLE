@@ -41,14 +41,7 @@ public class EstudiosSuperiorC implements Serializable {
     }
 
     public void limpiar() {
-        this.estudiosSuperior.setIdEstuSuper(0);
-        this.estudiosSuperior.setEduSuper("");
-        this.estudiosSuperior.setEspe("");
-        this.estudiosSuperior.setCentrEstu("");
-        this.estudiosSuperior.setDesd("");
-        this.estudiosSuperior.setHast("");
-        this.estudiosSuperior.setCulmi("");
-        this.estudiosSuperior.setGradAcadObte("");
+        estudiosSuperior = new EstudiosSuperior();
 
     }
 

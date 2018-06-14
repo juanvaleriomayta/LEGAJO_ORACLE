@@ -41,12 +41,7 @@ public class EmergenciaC implements Serializable {
     }
 
     public void limpiar() {
-        this.emergencia.setIdEmerg(0);
-        this.emergencia.setNom("");
-        this.emergencia.setApe("");
-        this.emergencia.setParen("");
-        this.emergencia.setTel("");
-        this.emergencia.setCel("");
+        emergencia = new Emergencia();
       
     }
 

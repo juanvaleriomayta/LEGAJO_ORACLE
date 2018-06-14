@@ -41,13 +41,7 @@ public class EstudiosBasicosC implements Serializable {
     }
 
     public void limpiar() {
-        this.estudiosBasicos.setIdEstuBasi(0);
-        this.estudiosBasicos.setEduc("");
-        this.estudiosBasicos.setCulmi("");
-        this.estudiosBasicos.setCentrEstu("");
-        this.estudiosBasicos.setDesd("");
-        this.estudiosBasicos.setHas("");
-
+        estudiosBasicos = new EstudiosBasicos();
     }
 
     private void registrar() throws Exception {
