@@ -66,10 +66,15 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
 
         try {
             this.Conexion();
-            String sql = "select CodFami, NomFami, Ape, Par, Ocu, FecNac, Tel,CelularFami, EstCiv,vive, Empleado.Nom as 'Nombre del Empleado'\n"
-                    + " from Familiares\n"
-                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
-                    + " where Estado like 'Activo'";
+            String sql = " select Familiares.CodFami, Familiares.NomFami, Familiares.Ape, Familiares.Par, Familiares.Ocu, Familiares.FecNac, Familiares.Tel,Familiares.CelularFami, Familiares.EstCivFami,Familiares.vive,Familiares.Estado, Empleado.Nom as 'Nombre del Empleado'\n"
+                    + "                    from Familiares\n"
+                    + "                      inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+                    + "                 where Estado like 'Activo'";
+//            String sql = "select * from vw_FamiliaresAct";
+//            String sql = "select CodFami, NomFami, Ape, Par, Ocu, FecNac, Tel,CelularFami, EstCiv,vive, Empleado.Nom as 'Nombre del Empleado'\n"
+//                    + " from Familiares\n"
+//                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+//                    + " where Estado like 'Activo'";
 //            String sql = "SELECT CodFami, NomFami,Ape,Par,Ocu,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,Tel,Cel,EstCiv,vive FROM Familiares Where Estado like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
@@ -83,8 +88,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
                 fam.setOcu(rs.getString("Ocu"));
                 fam.setFecNac(rs.getString("FecNac"));
                 fam.setTel(rs.getString("Tel"));
-                fam.setCel(rs.getString("Cel"));
-                fam.setEstCiv(rs.getString("EstCiv"));
+                fam.setCel(rs.getString("CelularFami"));
+                fam.setEstCiv(rs.getString("EstCivFami"));
                 fam.setVive(rs.getString("vive"));
                 fam.setEstado(rs.getString("Estado"));
                 lista.add(fam);
@@ -96,14 +101,14 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
         }
         return lista;
     }
-    
-        public List<Familiares> listarInactivos() throws Exception {
+
+    public List<Familiares> listarInactivos() throws Exception {
         List<Familiares> lista;
         ResultSet rs;
 
         try {
             this.Conexion();
-            String sql = "select CodFami, NomFami, Ape, Par, Ocu, FecNac, Tel,CelularFami, EstCiv,vive,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
+            String sql = "select Familiares.CodFami, Familiares.NomFami, Familiares.Ape, Familiares.Par, Familiares.Ocu, Familiares.FecNac, Familiares.Tel,Familiares.CelularFami, Familiares.EstCivFami,Familiares.vive,Familiares.Estado, Empleado.Nom as 'Nombre del Empleado'\n"
                     + " from Familiares\n"
                     + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
                     + " where Estado like 'Inactivo'";
@@ -133,7 +138,6 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
         }
         return lista;
     }
-
 
     @Override
     public Familiares leerID(Familiares fam) throws Exception {

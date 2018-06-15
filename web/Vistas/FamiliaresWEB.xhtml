@@ -44,9 +44,11 @@
                     <p:columnToggler datasource="data" trigger="toggler" />
                 </f:facet>
 
-
+                <p:column headerText="Nombre del Empleado" >
+                    <p:outputLabel value="#{familiar.nombreEmpleado}"/>
+                </p:column>
                 <p:column headerText="Nombre" >
-                    <p:outputLabel value="#{familiar.nom}"/>
+                    <p:outputLabel value="#{familiar.nomFami}"/>
                 </p:column>
                 <p:column headerText="Apellido" >
                     <p:outputLabel value="#{familiar.ape}"/>
@@ -95,7 +97,7 @@
                 <p:panelGrid columns="2">
 
                     <p:outputLabel value="Nombre" />
-                    <p:inputText value="#{familiaresC.familiar.nom}" >
+                    <p:inputText value="#{familiaresC.familiar.nomFami}" >
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                     </p:inputText>
 
@@ -141,10 +143,10 @@
                         <f:selectItem itemLabel="Si" itemValue="Si"/>
                         <f:selectItem itemLabel="No" itemValue="No"/>                                          
                     </p:selectOneRadio>
-                    
-                     <p:outputLabel value="Estado Laboral" />
 
-                     <p:selectOneRadio id="EstadoLaboral" value="#{familiaresC.familiar.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
+                    <p:outputLabel value="Estado Laboral" />
+
+                    <p:selectOneRadio id="EstadoLaboral" value="#{familiaresC.familiar.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
 
                         <f:selectItem itemLabel="Activo" itemValue="Activo"/>
                         <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
