@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Emergencia;
 
-public class EmergenciaDao extends DAO implements EmergenciasI{
-    
-    
+public class EmergenciaDao extends DAO implements EmergenciasI {
+
     @Override
     public void registrarEmergencia(Emergencia eme) throws Exception {
         try {
@@ -59,8 +58,12 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
 
         try {
             this.Conexion();
+            String sql = " select IdEmerg, NomEmer, Ape, Paren, Tel, Celular,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
+                    + " from Emergencia \n"
+                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+                    + " where Estado like 'Activo'";
             //select * from vw_Emergencia
-            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia Where Estado like 'Activo'";
+//            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia Where Estado like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -74,7 +77,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
                 eme.setCel(rs.getString("Cel"));
                 eme.setEstado(rs.getString("Estado"));
                 lista.add(eme);
-                
+
             }
         } catch (SQLException e) {
             throw e;
@@ -84,6 +87,42 @@ public class EmergenciaDao extends DAO implements EmergenciasI{
         return lista;
     }
 
+    
+    public List<Emergencia> listarInactivos() throws Exception {
+        List<Emergencia> lista;
+        ResultSet rs;
+
+        try {
+            this.Conexion();
+            String sql = " select IdEmerg, NomEmer, Ape, Paren, Tel, Celular,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
+                    + " from Emergencia \n"
+                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+                    + " where Estado like 'Inactivo'";
+            //select * from vw_Emergencia
+//            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia Where Estado like 'Activo'";
+            PreparedStatement st = this.getCn().prepareCall(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Emergencia eme = new Emergencia();
+                eme.setIdEmerg(rs.getInt("IdEmerg"));
+                eme.setNom(rs.getString("Nom"));
+                eme.setApe(rs.getString("Ape"));
+                eme.setParen(rs.getString("Paren"));
+                eme.setTel(rs.getString("Tel"));
+                eme.setCel(rs.getString("Cel"));
+                eme.setEstado(rs.getString("Estado"));
+                lista.add(eme);
+
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        return lista;
+    }
+    
     @Override
     public Emergencia leerID(Emergencia eme) throws Exception {
         Emergencia emer = null;

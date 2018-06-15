@@ -32,7 +32,11 @@ public class DetalleDialectoDao extends DAO {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "Select * from vw_detalleDialectoActi";
+            String sql = " select idDetDial, Lee, Habla, Escribe, Dialecto.NomDial,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
+                    + " from DetalleDialecto\n"
+                    + " left outer join Dialecto Dialecto on Dialecto.NomDial = Dialecto.NomDial\n"
+                    + " left outer join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+                    + " where Estado like 'Activo'";
             //      String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
@@ -59,8 +63,13 @@ public class DetalleDialectoDao extends DAO {
         ResultSet rs;
         try {
             this.Conexion();
-           String sql = "Select * from vw_DetalleDialectoInac";
-        //    String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto Where Estado like 'Inactivo'";
+            String sql = " select idDetDial, Lee, Habla, Escribe, Dialecto.NomDial,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
+                    + " from DetalleDialecto\n"
+                    + " left outer join Dialecto Dialecto on Dialecto.NomDial = Dialecto.NomDial\n"
+                    + " left outer join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+                    + " where Estado like 'Inactivo'";
+//           String sql = "Select * from vw_DetalleDialectoInac";
+            //    String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto Where Estado like 'Inactivo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
