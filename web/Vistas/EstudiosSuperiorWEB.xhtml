@@ -26,6 +26,18 @@
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                 <f:facet name="header">
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/image.png" width="24"/>
+                        <p:dataExporter type="pdf" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/CSV.png" width="24"/>
+                        <p:dataExporter type="xls" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/Doc.png" width="24"/>
+                        <p:dataExporter type="doc" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                    </h:commandLink>
                     <h1>Estudios Basicos del Empleado</h1> 
 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -55,11 +67,11 @@
                 <p:column headerText="Estado Laboral" >
                     <p:outputLabel value="#{superior.estado}"/>
                 </p:column>
-                
-                <p:column headerText="Modificar" >
+
+                <p:column headerText="Modificar" exportable="false">
                     <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
-                <p:column headerText="Eliminar" >
+                <p:column headerText="Eliminar" exportable="false">
                     <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>
@@ -103,10 +115,10 @@
 
                     <p:outputLabel value="Culminacion" />
                     <p:selectOneRadio id="Culminacion" value="#{estudiosSuperiorC.estudiosSuperior.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
-                         <f:selectItem itemLabel="Completa" itemValue="C"/>
+                        <f:selectItem itemLabel="Completa" itemValue="C"/>
                         <f:selectItem itemLabel="Incompleta" itemValue="I" /> 
                     </p:selectOneRadio>
-                    
+
                     <p:outputLabel value="Graduacion Academica Obtenida" />
                     <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.gradAcadObte}" required="true" requiredMessage="Ingrese la Graduacion Academica Obtenida">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
