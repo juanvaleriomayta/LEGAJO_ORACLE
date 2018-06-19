@@ -17,7 +17,7 @@
             <p:dataTable id="data"  value="#{estudiosSuperiorC.lstEstudiosSuperior}" var="superior" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15,10000">
                 <f:facet name="header">
                     <h:commandLink>
                         <p:graphicImage value="/resources/icon/image.png" width="50"/>
@@ -66,7 +66,7 @@
                     <p:outputLabel value="#{superior.estado}"/>
                 </p:column>
 
-                <p:column headerText="Activar" >
+                <p:column headerText="Activar" exportable="false">
                     <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
 

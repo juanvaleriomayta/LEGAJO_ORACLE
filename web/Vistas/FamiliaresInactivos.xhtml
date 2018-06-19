@@ -18,7 +18,7 @@
              <p:dataTable id="data" value="#{familiaresC.lstFamiliares}" var="familiar" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"
+                         rowsPerPageTemplate="5,10,15,10000"
                          rowStyleClass="#{contactos.tipDeFami == 'F' ? 'familiar':'contacto'}">
                 <f:facet name="header">
                     <h:commandLink>
@@ -74,7 +74,7 @@
                 <p:column headerText="Estado" >
                     <p:outputLabel value="#{familiar.estado}"/>
                 </p:column>
-                <p:column headerText="Activar" >
+                <p:column headerText="Activar" exportable="false">
                     <p:commandButton icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
                 

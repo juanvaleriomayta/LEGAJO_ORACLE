@@ -23,7 +23,7 @@
             <p:dataTable id="data"  value="#{estudiosBasicosC.lstEstudiosBasicos}" var="basicos" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15,10000">
                 <f:facet name="header">
                     <h:commandLink>
                         <p:graphicImage value="/resources/icon/image.png" width="50"/>
@@ -67,10 +67,10 @@
                     <p:outputLabel value="#{basicos.estado}"/>
                 </p:column>
                 
-                <p:column headerText="Modificar" >
+                <p:column headerText="Modificar" exportable="false">
                     <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
-                <p:column headerText="Eliminar" >
+                <p:column headerText="Eliminar" exportable="false">
                     <p:commandButton value="Eliminar" actionListener="#{estudiosBasicosC.eliminar(basicos)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>

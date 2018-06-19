@@ -18,7 +18,7 @@
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"  emptyMessage="No estas la Lista">
+                         rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No estas la Lista">
                 <f:facet name="header">
                     <h:commandLink>
                         <p:graphicImage value="/resources/icon/image.png" width="50"/>
@@ -104,7 +104,7 @@
 
                 </p:rowExpansion>
 
-                <p:column headerText="Activar" >
+                <p:column headerText="Activar" exportable="false">
                     <p:commandButton  icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
 

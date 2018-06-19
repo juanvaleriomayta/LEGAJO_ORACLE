@@ -36,7 +36,7 @@
             <p:dataTable id="data" value="#{familiaresC.lstFamiliares}" var="familiar" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"
+                         rowsPerPageTemplate="5,10,15,10000"
                          rowStyleClass="#{contactos.tipDeFami == 'F' ? 'familiar':'contacto'}">
                 <f:facet name="header">
                     <h:commandLink>
@@ -94,10 +94,10 @@
                 <p:column headerText="Estado" >
                     <p:outputLabel value="#{familiar.estado}"/>
                 </p:column>
-                <p:column headerText="Modificar" >
+                <p:column headerText="Modificar" exportable="false">
                     <p:commandButton icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
-                <p:column headerText="Eliminar" >
+                <p:column headerText="Eliminar" exportable="false">
                     <p:commandButton icon="ui-icon-circle-close" actionListener="#{familiaresC.eliminar(familiar)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>
