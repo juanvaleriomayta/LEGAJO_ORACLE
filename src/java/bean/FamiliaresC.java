@@ -63,6 +63,16 @@ public class FamiliaresC implements Serializable {
             throw e;
         }
     }
+    
+        public void listarInactivos() throws Exception {
+        FamiliaresDao dao;
+        try {
+            dao = new FamiliaresDao();
+            lstFamiliares = dao.listarInactivos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
     public void leerID(Familiares fam) throws Exception {
         FamiliaresDao dao;

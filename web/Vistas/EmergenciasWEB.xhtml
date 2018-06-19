@@ -36,9 +36,25 @@
             <p:dataTable id="data" value="#{emergenciaC.lstEmergencia}" var="emergencias" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15,100">
 
                 <f:facet name="header">
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                        <p:dataExporter type="pdf" target="data" fileName="Emergencia" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                        <p:dataExporter type="csv" target="data" fileName="Emergencia" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                        <p:dataExporter type="xml" target="data" fileName="Emergencia" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                        <p:dataExporter type="xls" target="data" fileName="Emergencia" pageOnly="true"/>
+                    </h:commandLink>
                     <h1>Datos Emergentes</h1> 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                     <p:columnToggler datasource="data" trigger="toggler" />
@@ -66,10 +82,10 @@
               
 
 
-                <p:column headerText="Modificar" >
+                <p:column headerText="Modificar" exportable="false">
                     <p:commandButton icon="ui-icon-pencil" actionListener="#{emergenciaC.leerID(emergencias)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>
-                <p:column headerText="Eliminar" >
+                <p:column headerText="Eliminar" exportable="false">
                     <p:commandButton icon="ui-icon-circle-close" actionListener="#{emergenciaC.eliminar(emergencias)}" update="data" style="background-color:red;color:red;">
                         <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                     </p:commandButton>

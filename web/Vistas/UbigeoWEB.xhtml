@@ -26,14 +26,31 @@
             <p:dataTable id="data" value="#{ubigeoBean.lstUbigeo}" var="ubigeo" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15,120000">
                 <f:facet name="header">
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                        <p:dataExporter type="pdf" target="data" fileName="Ubigeo" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                        <p:dataExporter type="csv" target="data" fileName="Ubigeo" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <a href="EstudiosBasicosWEB.xhtml"></a>
+                        <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                        <p:dataExporter type="xml" target="data" fileName="Ubigeo" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                        <p:dataExporter type="xls" target="data" fileName="Ubigeo" pageOnly="true"/>
+                    </h:commandLink>
                     <h1>Ubigeo</h1> 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                     <p:columnToggler datasource="data" trigger="toggler" />
                 </f:facet>
                 <p:column headerText="Departamento" >
-                    <p:outputLabel value="#{ubigeo.departamenmto}"/>
+                    <p:outputLabel value="#{ubigeo.departamento}"/>
                 </p:column>
                 <p:column headerText="Provincia" >
                     <p:outputLabel value="#{ubigeo.provincia}"/>
@@ -47,7 +64,7 @@
         <p:dialog header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
             <h:form>
                 <p:outputLabel value="Departamento" />
-                <p:inputText value="#{ubigeoBean.ubigeo.departamenmto}" />
+                <p:inputText value="#{ubigeoBean.ubigeo.departamento}" />
 
                 <p:outputLabel value="Provincia" />
                 <p:inputText value="#{ubigeoBean.ubigeo.provincia}" />

@@ -45,7 +45,7 @@
                     </h:commandLink>
                     <h1>Empleado</h1> 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
-                    <p:columnToggler datasource="data" trigger="toggler" />
+                    <p:columnToggler datasource="data" trigger="toggler"/>
                 </f:facet>
                 <p:column style="width:16px">
                     <p:rowToggler/>
@@ -115,7 +115,6 @@
                     </p:panelGrid>
 
                 </p:rowExpansion>
-
                 <p:column headerText="Modificar" exportable="false">
                     <p:commandButton  icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                 </p:column>

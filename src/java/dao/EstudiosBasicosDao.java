@@ -14,7 +14,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void registrarEstudiosBasicos(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd, Has,Estado) values(?,?,?,CONVERT(DATE,? ,103),CONVERT(DATE,?,103),?)";
+            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstuBasi,DesdBasi, HasBasi,Estado) values(?,?,?,CONVERT(DATE,? ,103),CONVERT(DATE,?,103),?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());
@@ -36,7 +36,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void registrar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstu,Desd, Has,Estado) values(?,?,?,CONVERT(DATE,? ,103),CONVERT(DATE,?,103),?)";
+            String sql = "INSERT INTO EstudiosBasicos (Educ,Culmi,CentrEstuBasi,DesdBasi, HasBasi,Estado) values(?,?,?,CONVERT(DATE,? ,103),CONVERT(DATE,?,103),?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());
@@ -75,9 +75,9 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
                 bas.setIdEstuBasi(rs.getInt("IdEstuBasi"));
                 bas.setEduc(rs.getString("Educ"));
                 bas.setCulmi(rs.getString("Culmi"));
-                bas.setCentrEstu(rs.getString("CentrEstu"));
-                bas.setDesd(rs.getString("Desd"));
-                bas.setHas(rs.getString("Has"));
+                bas.setCentrEstu(rs.getString("CentrEstuBasi"));
+                bas.setDesd(rs.getString("DesdBasi"));
+                bas.setHas(rs.getString("HasBasi"));
                 bas.setEstado(rs.getString("Estado"));
 
                 lista.add(bas);
@@ -96,11 +96,11 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
 
         try {
             this.Conexion();
-            String sql = " select IdEstuBasi, Educ, Culmi, CentrEstuBasi,DesdBasi , HasBasi,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
-                    + " from EstudiosBasicos\n"
-                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
-                    + " where Estado like 'Inactivo'";
-//            String sql = "select * from vw_EstudioBasico";
+//            String sql = " select IdEstuBasi, Educ, Culmi, CentrEstuBasi,DesdBasi , HasBasi,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
+//                    + " from EstudiosBasicos\n"
+//                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
+//                    + " where Estado like 'Inactivo'";
+            String sql = "select * from vw_EstudiosBasicosInac";
 //            String sql = "SELECT IdEstuBasi, Educ,Culmi,CentrEstu,FORMAT(Desd,'dd/MM/yyyy') as Desd,FORMAT(Has,'dd/MM/yyyy') as Has,Estado FROM EstudiosBasicos Where Estado like 'Activo'";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
@@ -110,9 +110,9 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
                 bas.setIdEstuBasi(rs.getInt("IdEstuBasi"));
                 bas.setEduc(rs.getString("Educ"));
                 bas.setCulmi(rs.getString("Culmi"));
-                bas.setCentrEstu(rs.getString("CentrEstu"));
-                bas.setDesd(rs.getString("Desd"));
-                bas.setHas(rs.getString("Has"));
+                bas.setCentrEstu(rs.getString("CentrEstuBasi"));
+                bas.setDesd(rs.getString("DesdBasi"));
+                bas.setHas(rs.getString("HasBasi"));
                 bas.setEstado(rs.getString("Estado"));
 
                 lista.add(bas);
@@ -132,7 +132,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
 
         try {
             this.Conexion();
-            String sql = "SELECT IdEstuBasi, Educ,Culmi,CentrEstu,CONVERT(nvarchar(10),Desd,103) AS Desd,CONVERT(nvarchar(10),Has,103) AS Has,Estado  FROM EstudiosBasicos WHERE IdEstuBasi=?";
+            String sql = "SELECT IdEstuBasi, Educ,Culmi,CentrEstuBasi,CONVERT(nvarchar(10),DesdBasi,103) AS DesdBasi,CONVERT(nvarchar(10),HasBasi,103) AS HasBasi,Estado  FROM EstudiosBasicos WHERE IdEstuBasi=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, bas.getIdEstuBasi());
             rs = st.executeQuery();
@@ -141,9 +141,9 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
                 basi.setIdEstuBasi(rs.getInt("IdEstuBasi"));
                 basi.setEduc(rs.getString("Educ"));
                 basi.setCulmi(rs.getString("Culmi"));
-                basi.setCentrEstu(rs.getString("CentrEstu"));
-                basi.setDesd(rs.getString("Desd"));
-                basi.setHas(rs.getString("Has"));
+                basi.setCentrEstu(rs.getString("CentrEstuBasi"));
+                basi.setDesd(rs.getString("DesdBasi"));
+                basi.setHas(rs.getString("HasBasi"));
                 basi.setEstado(rs.getString("Estado"));
 
             }
@@ -159,7 +159,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void modificar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE EstudiosBasicos SET Educ = ?, Culmi=?,CentrEstu=? , Desd = convert(date, ?, 103), Has = convert(date, ?, 103),Estado=?  WHERE IdEstuBasi = ?";
+            String sql = "UPDATE EstudiosBasicos SET Educ = ?, Culmi=?,CentrEstuBasi=? , DesdBasi = convert(date, ?, 103), HasBasi = convert(date, ?, 103),Estado=?  WHERE IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());

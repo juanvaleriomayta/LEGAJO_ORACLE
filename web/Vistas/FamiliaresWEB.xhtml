@@ -16,7 +16,7 @@
 
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" update=":dlgDatos"/>
 
-            <p:commandButton value="Listar" actionListener="#{familiaresC.listar()}" update="data"/>
+<!--            <p:commandButton value="Listar" actionListener="#{familiaresC.listar()}" update="data"/>-->
             <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>
@@ -39,6 +39,23 @@
                          rowsPerPageTemplate="5,10,15"
                          rowStyleClass="#{contactos.tipDeFami == 'F' ? 'familiar':'contacto'}">
                 <f:facet name="header">
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                        <p:dataExporter type="pdf" target="data" fileName="Familiares Activos" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                        <p:dataExporter type="csv" target="data" fileName="Familiares Activos" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <a href="EstudiosBasicosWEB.xhtml"></a>
+                        <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                        <p:dataExporter type="xml" target="data" fileName="Familiares Activos" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                        <p:dataExporter type="xls" target="data" fileName="Familiares Activos" pageOnly="true"/>
+                    </h:commandLink>
                     <h1>Familiares del Empleado</h1> 
                     <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                     <p:columnToggler datasource="data" trigger="toggler" />

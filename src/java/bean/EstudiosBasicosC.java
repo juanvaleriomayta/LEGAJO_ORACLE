@@ -67,7 +67,16 @@ public class EstudiosBasicosC implements Serializable {
             throw e;
         }
     }
+    public void listarInactivos() throws Exception {
+        EstudiosBasicosDao dao;
 
+        try {
+            dao = new EstudiosBasicosDao();
+            lstEstudiosBasicos = dao.listarInactivos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
     public void leerID(EstudiosBasicos bas) throws Exception {
         EstudiosBasicosDao dao;
         EstudiosBasicos temp;

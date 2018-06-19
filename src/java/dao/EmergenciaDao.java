@@ -14,7 +14,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
     public void registrarEmergencia(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Emergencia (Nom, Ape,Paren,Tel,Cel,Estado) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO Emergencia (NomEmer, Ape,Paren,Tel,Celular,Estado) values(?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, eme.getNom());
             st.setString(2, eme.getApe());
@@ -34,7 +34,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
     public void registrar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Emergencia (Nom, Ape,Paren,Tel,Cel,Estado) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO Emergencia (NomEmer, Ape,Paren,Tel,Celular,Estado) values(?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, eme.getNom());
             st.setString(2, eme.getApe());
@@ -70,11 +70,11 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             while (rs.next()) {
                 Emergencia eme = new Emergencia();
                 eme.setIdEmerg(rs.getInt("IdEmerg"));
-                eme.setNom(rs.getString("Nom"));
+                eme.setNom(rs.getString("NomEmer"));
                 eme.setApe(rs.getString("Ape"));
                 eme.setParen(rs.getString("Paren"));
                 eme.setTel(rs.getString("Tel"));
-                eme.setCel(rs.getString("Cel"));
+                eme.setCel(rs.getString("Celular"));
                 eme.setEstado(rs.getString("Estado"));
                 lista.add(eme);
 
@@ -106,11 +106,11 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             while (rs.next()) {
                 Emergencia eme = new Emergencia();
                 eme.setIdEmerg(rs.getInt("IdEmerg"));
-                eme.setNom(rs.getString("Nom"));
+                eme.setNom(rs.getString("NomEmer"));
                 eme.setApe(rs.getString("Ape"));
                 eme.setParen(rs.getString("Paren"));
                 eme.setTel(rs.getString("Tel"));
-                eme.setCel(rs.getString("Cel"));
+                eme.setCel(rs.getString("Celular"));
                 eme.setEstado(rs.getString("Estado"));
                 lista.add(eme);
 
@@ -130,18 +130,18 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
 
         try {
             this.Conexion();
-            String sql = "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia WHERE IdEmerg=?";
+            String sql = "SELECT IdEmerg, NomEmer, Ape,Paren,Tel,Celular,Estado FROM Emergencia WHERE IdEmerg=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, eme.getIdEmerg());
             rs = st.executeQuery();
             while (rs.next()) {
                 emer = new Emergencia();
                 emer.setIdEmerg(rs.getInt("IdEmerg"));
-                emer.setNom(rs.getString("Nom"));
+                emer.setNom(rs.getString("NomEmer"));
                 emer.setApe(rs.getString("Ape"));
                 emer.setParen(rs.getString("Paren"));
                 emer.setTel(rs.getString("Tel"));
-                emer.setCel(rs.getString("Cel"));
+                emer.setCel(rs.getString("Celular"));
                 emer.setEstado(rs.getString("Estado"));
             }
         } catch (SQLException e) {
@@ -156,7 +156,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
     public void modificar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE Emergencia SET Nom=?, Ape=?,Paren=?,Tel=?,Cel=?,Estado=? WHERE IdEmerg = ?";
+            String sql = "UPDATE Emergencia SET NomEmer=?, Ape=?,Paren=?,Tel=?,Celular=?,Estado=? WHERE IdEmerg = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, eme.getNom());
             st.setString(2, eme.getApe());
