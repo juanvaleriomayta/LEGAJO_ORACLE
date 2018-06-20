@@ -1,0 +1,169 @@
+/**
+Created by Sobola Timilehin David
+*/
+@import url(https://use.fontawesome.com/releases/v5.0.11/css/all.css);
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 85%;
+  width: 100%;
+  height: 100%;
+  background: #eaeaea;
+}
+* {
+  box-sizing: border-box;
+}
+*:focus {
+  outline-width: 0;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+:root {
+  --primary: peru;
+  --dark: #c0c0;
+  --light: #fff;
+  --grad1: rgba(205, 134, 63, 0.767);
+  --grad2: rgba(205, 134, 63, 0.3);
+}
+.login-wrapper {
+    position: absolute;
+  top: 25%;
+  bottom: 25%;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+.login-card {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+    perspective: 1000px;
+    padding: 0;
+}
+.login-card , .login-inner {
+    width: 350px;
+}
+.inner {
+    transition: 0.8s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+.inner:hover {
+    transform: rotateY(180deg);
+}
+.login-inner{
+    background: #fff;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    backface-visibility: hidden;
+}
+.login-header {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    margin: 0;
+    align-items: center;
+    color: var(--primary);
+    padding: 10px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+.login-header h2 {
+    font-size: 20px;
+    padding-bottom: 0;
+  margin: 0;
+}
+.login-header h3 {
+    color: #000;
+    font-size: 26px;
+    margin-bottom: 0;
+}
+.login-header p {
+    color: #5a5a5a;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+.login-card-title {
+    text-align: left;
+    position: relative;
+    color: var(--primary);
+    padding: 5px 10px 0 0;
+    font-size: 26px;
+}
+
+.login-group {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    margin: 0;
+}
+.login-group .login-control {
+    width: 300px;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid var(--primary);
+    transition: all 0.6s ease-in-out;
+}
+input:focus{
+    border: 0;
+    border-bottom: 2px solid var(--primary);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+}
+.login-btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.login-btn-group p a{
+    padding: 10px;
+}
+.login-group button {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    background: var(--primary);
+    border-radius: .3rem;
+    box-shadow: 0 0 5px var(--grad1);
+    border: 1px solid var(--grad2);
+    color: #fff;
+    transition: all 500ms ease-in-out;
+}
+.login-group button:hover, .login-group button:focus {
+    cursor: pointer;
+    background: var(--primary);
+    border-radius: .3rem;
+    box-shadow: 0 0 5px var(--grad1);
+    border: 1px solid var(--grad2);
+    color: #fff;
+}
+.login-bottom {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+}
+#login-select {
+    border: none;
+    background: transparent;
+}
+.login-footer span a{
+    color: var(--primary);
+}
+.login-nav {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
