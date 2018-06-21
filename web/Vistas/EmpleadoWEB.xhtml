@@ -8,43 +8,12 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form id="dlgDatos">
-            <p:layout fullPage="true">
+        
+           
                 <f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />
                 <p:growl autoUpdate="true" />
-                <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
-                    <p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:10px">
-                        <p:submenu label="LEGAJO" icon=" ui-icon-grip-diagonal-se">
-                            <p:column>
-                                <p:submenu label="SECCIONES">
-                                    <p:menuitem value="Empleado" outcome="EmpleadoWEB" />
-                                    <p:menuitem value="Estudios Basicos" outcome="EstudiosBasicosWEB" />
-                                    <p:menuitem value="Estudios Superiores" outcome="EstudiosSuperiorWEB" />
-                                    <p:menuitem value="Dialecto" outcome="DialectoWEB" />
-                                    <p:menuitem value="Familiares del Empleado" outcome="FamiliaresWEB" />
-                                    <p:menuitem value="Ingresar Empleado" outcome="IngresarEmpleado" />
-                                    <p:menuitem value="Datos Emergentes" outcome="EmergenciasWEB" />
-                                    <p:menuitem value="Detalle Dialecto" outcome="UbigeoWEB" />
-                                </p:submenu>
-
-                            </p:column>
-                        </p:submenu>
-                        <p:submenu label="INACTIVOS" icon=" ui-icon-grip-diagonal-se">
-                            <p:column>
-                                <p:submenu label="SECCIONES">
-                                    <p:menuitem value="Empleados " outcome="EmpleadoInactivos" /> 
-                                    <p:menuitem value="Familiares " outcome="FamiliaresInactivos" />
-                                    <p:menuitem value="Estudios Basicos " outcome="EstudioBasiInac" />
-                                    <p:menuitem value="Estudios Superiores " outcome="EstudioSuperInac" />
-                                    <p:menuitem value="Detalle Dialecto " outcome="DetaDialecInac" />
-
-
-                                </p:submenu>
-                            </p:column>
-                        </p:submenu>
-                    </p:megaMenu>
-                </p:layoutUnit>
-                <p:layoutUnit position="center">
+                
+                
                     <h:form id="frm">
 
                         <h3 align="center">DATOS PERSONALES</h3>
@@ -303,10 +272,9 @@
 
                     </p:dialog>
 
-                </p:layoutUnit>
 
-            </p:layout>
-        </h:form>
+         
+       
     </h:body>
 </html>
 
