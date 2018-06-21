@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <f:event type="preRenderView" listener="#{estudiosSuperiorC.listar()}" />
+
+        <p:growl id="msj" autoUpdate="true"/>
+        <h:form id="frm">
+
+            <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosSuperiorC.setAccion('Registrar')}" update=":dlgDatos"/>
+            <p:commandButton value="Listar" actionListener="#{estudiosSuperiorC.listar()}" update="data"/>
+            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                <f:param name="productId" value="50" />
+            </p:button>
+
+
+            <p:dataTable id="data"  value="#{estudiosSuperiorC.lstEstudiosSuperior}" var="superior" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,10000">
+                <f:facet name="header">
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/image.png" width="24"/>
+                        <p:dataExporter type="pdf" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/CSV.png" width="24"/>
+                        <p:dataExporter type="xls" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                    </h:commandLink>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/icon/Doc.png" width="24"/>
+                        <p:dataExporter type="doc" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                    </h:commandLink>
+                    <h1>Estudios Basicos del Empleado</h1> 
+
+                    <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="data" trigger="toggler" />
+                </f:facet>
+                <p:column headerText="Educacion Superior" >
+                    <p:outputLabel value="#{superior.eduSuper}"/>
+                </p:column>
+                <p:column headerText="Especialidad" >
+                    <p:outputLabel value="#{superior.espe}"/>
+                </p:column>
+                <p:column headerText="Centro de Estudios" >
+                    <p:outputLabel value="#{superior.centrEstu}"/>
+                </p:column>
+                <p:column headerText="Desde" >
+                    <p:outputLabel value="#{superior.desd}"/>
+                </p:column>
+                <p:column headerText="Hasta" >
+                    <p:outputLabel value="#{superior.hast}"/>
+                </p:column>
+                <p:column headerText="Culminación" >
+                    <p:outputLabel value="#{superior.culmi}"/>
+                </p:column>
+                <p:column headerText="Graduacion Academica Obtenida" >
+                    <p:outputLabel value="#{superior.gradAcadObte}"/>
+                </p:column>
+                <p:column headerText="Estado Laboral" >
+                    <p:outputLabel value="#{superior.estado}"/>
+                </p:column>
+
+                <p:column headerText="Modificar" exportable="false">
+                    <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                </p:column>
+                <p:column headerText="Eliminar" exportable="false">
+                    <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
+                        <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>               
+        </h:form>
+
+        <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Educacion Superior" />
+                    <p:selectOneMenu id="EducacionSuperior" value="#{estudiosSuperiorC.estudiosSuperior.eduSuper}" required="true" requiredMessage="Seleccione la Educacion ">
+                        <f:selectItem itemLabel="Seleccione"/>
+                        <f:selectItem itemLabel="Instituto Superior" itemValue="Instituto Superior" />
+                        <f:selectItem itemLabel="Universitarios" itemValue="Universitarios" />
+                        <f:selectItem itemLabel="Especialista" itemValue="Especialista" />
+                        <f:selectItem itemLabel="SubEspecialidad" itemValue="SubEspecialidad" />
+                        <f:selectItem itemLabel="Maestria" itemValue="Maestria" />
+                        <f:selectItem itemLabel="Doctorado" itemValue="Doctorado" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Especialidad" />
+                    <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.espe}" required="true" requiredMessage="Ingrese la Especialidad">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtCentroEstudios" value="Centro de Estudios"/>
+                    <p:inputText id="txtCentroEstudios" value="#{estudiosSuperiorC.estudiosSuperior.centrEstu}" required="true" requiredMessage="Ingrese Centro de Estudios">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="txtDesde" value="Desde"/>
+                    <p:inputMask id="txtDesde" value="#{estudiosSuperiorC.estudiosSuperior.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>
+
+                    <p:outputLabel value="Hasta" />
+                    <p:inputMask id="Hasta" value="#{estudiosSuperiorC.estudiosSuperior.hast}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
+
+                    <p:outputLabel value="Culminacion" />
+                    <p:selectOneRadio id="Culminacion" value="#{estudiosSuperiorC.estudiosSuperior.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
+                        <f:selectItem itemLabel="Completa" itemValue="C"/>
+                        <f:selectItem itemLabel="Incompleta" itemValue="I" /> 
+                    </p:selectOneRadio>
+
+                    <p:outputLabel value="Graduacion Academica Obtenida" />
+                    <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.gradAcadObte}" required="true" requiredMessage="Ingrese la Graduacion Academica Obtenida">
+                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                    </p:inputText>
+                    <p:outputLabel value="Estado Laboral" />
+
+                    <p:selectOneRadio id="EstadoLaboral" value="#{estudiosSuperiorC.estudiosSuperior.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+
+                    </p:selectOneRadio>
+
+                    <p:commandButton value="#{estudiosSuperiorC.accion}" actionListener="#{estudiosSuperiorC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                </p:panelGrid>
+            </h:form>
+
+        </p:dialog>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
