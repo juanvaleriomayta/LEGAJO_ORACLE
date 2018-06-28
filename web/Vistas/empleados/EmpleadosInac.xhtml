@@ -10,16 +10,12 @@
 
         <ui:composition template="./../template/Template.xhtml">
 
-            <ui:define name="left">
-                left
-            </ui:define>
-
-            <ui:define name="content">
+            <ui:define name="EmpleadosInactivos">
                 <!--<f:event type="preRenderView" listener="#{empleadoC.listarInactivos()}"/>-->
         <h:form id="frm">
-            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+<!--            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
-            </p:button>
+            </p:button>-->
 
 
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"

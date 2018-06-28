@@ -10,22 +10,18 @@
 
         <ui:composition template="./../template/Template.xhtml">
 
-            <ui:define name="left">
-                left
-            </ui:define>
-
-            <ui:define name="content">
-               <f:event type="preRenderView" listener="#{familiaresC.listar()}" />
+            <ui:define name="Familiares">
 
         <p:growl id="msj" autoUpdate="true"/>
         <h:form id="frm">
+            <f:event type="preRenderView" listener="#{familiaresC.listar()}" />
 
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" update=":dlgDatos"/>
 
 <!--            <p:commandButton value="Listar" actionListener="#{familiaresC.listar()}" update="data"/>-->
-            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+<!--            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
-            </p:button>
+            </p:button>-->
 
             <style>
                 .familiar{

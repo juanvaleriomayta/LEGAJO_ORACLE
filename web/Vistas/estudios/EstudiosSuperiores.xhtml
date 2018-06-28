@@ -10,21 +10,17 @@
 
         <ui:composition template="./../template/Template.xhtml">
 
-            <ui:define name="left">
-                left
-            </ui:define>
-
-            <ui:define name="content">
+            <ui:define name="EstudiosSuperiores">
                 <f:event type="preRenderView" listener="#{estudiosSuperiorC.listar()}" />
 
         <p:growl id="msj" autoUpdate="true"/>
         <h:form id="frm">
 
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosSuperiorC.setAccion('Registrar')}" update=":dlgDatos"/>
-            <p:commandButton value="Listar" actionListener="#{estudiosSuperiorC.listar()}" update="data"/>
-            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+            <!--<p:commandButton value="Listar" actionListener="#{estudiosSuperiorC.listar()}" update="data"/>-->
+<!--            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
-            </p:button>
+            </p:button>-->
 
 
             <p:dataTable id="data"  value="#{estudiosSuperiorC.lstEstudiosSuperior}" var="superior" rows="10"

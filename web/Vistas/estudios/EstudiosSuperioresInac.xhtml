@@ -9,16 +9,13 @@
     <body>
 
         <ui:composition template="./../template/Template.xhtml">
+            <f:event type="preRenderView" listener="#{estudiosSuperiorC.lstEstudiosSuperior}" />
 
-            <ui:define name="left">
-                left
-            </ui:define>
-
-            <ui:define name="content">
+            <ui:define name="EstudiosSuperioresInactivos">
                 <h:form id="frm" >
-            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+<!--            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
-            </p:button>
+            </p:button>-->
 
             <p:dataTable id="data"  value="#{estudiosSuperiorC.lstEstudiosSuperior}" var="superior" rows="10"
                          paginator="true"

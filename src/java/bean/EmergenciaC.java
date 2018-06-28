@@ -3,10 +3,8 @@ package bean;
 import dao.EmergenciaDao;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import modelo.Emergencia;
 
 @ManagedBean
@@ -52,7 +50,6 @@ public class EmergenciaC implements Serializable {
             dao = new EmergenciaDao();
             dao.registrar(emergencia);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -64,7 +61,6 @@ public class EmergenciaC implements Serializable {
         try {
             dao = new EmergenciaDao();
             lstEmergencia = dao.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Listado con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -94,7 +90,6 @@ public class EmergenciaC implements Serializable {
             dao = new EmergenciaDao();
             dao.modificar(emergencia);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Modificado con Exito"));
         } catch (Exception e) {
             throw e;
         }
@@ -107,7 +102,6 @@ public class EmergenciaC implements Serializable {
             dao = new EmergenciaDao();
             dao.eliminar(eme);
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Eliminado con Exito"));
         } catch (Exception e) {
             throw e;
         }

@@ -37,16 +37,10 @@
             <ul class="nav-categories ul-base">
                 <li><a href="../empleados/Empleados.xhtml">empleados</a></li>
                 <li><a href="../estudios/EstudiosBasicos.xhtml">Estudios Basicos</a></li>
+                <li><a href="../estudios/EstudiosSuperiores.xhtml">Estudios Superioress</a></li>
+                <li><a href="../familiares/Familiares.xhtml">Familiares</a></li>
+                <li><a href="../emergencias/Emergencias.xhtml">Emergencias</a></li>
 
-
-                <li><a href="#">Speak up</a></li>
-                <li><a href="#">General</a></li>
-
-                <li><a href="#">Lifestyle</a></li>
-                <li><a href="#">World</a></li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Entertainment</a></li>
-                <li><a href="#">Sports</a></li>
             </ul>
             <ul class="social ul-base">
                 <li><a href="https://twitter.com/MediahawkZ" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -72,10 +66,13 @@
                 <div class="header-categories">
                     <ul class="ul-base">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" href="#"><span>Categories</span> <i class="material-icons">keyboard_arrow_down</i></a>
+                            <a class="dropdown-toggle" href="#"><span>Categorias Inactivos</span> <i class="material-icons">keyboard_arrow_down</i></a>
                             <ul class="dropdown-menu ul-base">
-                                <li><a href="#">Demo1</a></li>
-                                <li><a href="#">Demo2</a></li>
+                                <li><a href="../empleados/EmpleadosInac.xhtml">Empleados Inactivos</a></li>
+                                <li><a href="../estudios/EstudiosBasicosInac.xhtml">Estudios Basicos Inactivos</a></li>
+                                <li><a href="../estudios/EstudiosSuperioresInac.xhtml">Estudios Superiores Inactivos</a></li>
+                                <li><a href="../familiares/FamiliaresInactivos.xhtml">Familiares Inactivos</a></li>
+                                
                             </ul>
                         </li>
                     </ul>
@@ -105,8 +102,15 @@
 
         <!-- Main content -->
         <main role="main">
-            <ui:insert name="contenido">Aqui va el contenido de las Paginas</ui:insert>
-            <ui:insert name="content">Aqui va el contenido</ui:insert>
+            <ui:insert name="contenido"></ui:insert>
+            <ui:insert name="EstudiosBasicos"></ui:insert>
+            <ui:insert name="EstudiosSuperiores"></ui:insert>
+            <ui:insert name="Familiares"></ui:insert>
+            <ui:insert name="Emergencias"></ui:insert>
+            <ui:insert name="EmpleadosInactivos"></ui:insert>
+            <ui:insert name="EstudiosBasicosInactivos"></ui:insert>
+            <ui:insert name="EstudiosSuperioresInactivos"></ui:insert>
+            <ui:insert name="FamiliaresInactivos"></ui:insert>
         </main>
         <!-- @end main -->
 

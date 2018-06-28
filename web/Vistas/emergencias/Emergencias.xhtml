@@ -9,12 +9,7 @@
 
         <ui:composition template="./../template/Template.xhtml">
 
-            <ui:define name="left">
-                left
-            </ui:define>
-
-            <ui:define name="content">
-                <f:event type="preRenderView" listener="#{emergenciaC.listar()}" />
+            <ui:define name="Emergencias">
 
         <p:growl id="msj" autoUpdate="true"/>
         <h:form id="frm">
@@ -22,9 +17,9 @@
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{emergenciaC.setAccion('Registrar')}" update=":dlgDatos"/>
 
             <p:commandButton value="Listar" actionListener="#{emergenciaC.listar()}" update="data"/>
-            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+<!--            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
-            </p:button>
+            </p:button>-->
 
             <style>
                 .familiar{
