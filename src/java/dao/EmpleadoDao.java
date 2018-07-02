@@ -88,7 +88,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "select * from vw_EmpleadoAct";
+            String sql = "SELECT * FROM Empleado";
+
 //            String sql ="SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FORMAT(FecNac,'dd/MM/yyyy') as FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FORMAT(FecIng,'dd/MM/yyyy') as FecIng,FORMAT(FecNom,'dd/MM/yyyy') as FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado";
 //            String sql = "select Empleado.idEmpl,Empleado.DNI,Empleado.Nom,Empleado.ApelPate,Empleado.ApelMate,Empleado.RUC,Empleado.Email,Empleado.Telf,Empleado.Cel,convert(varchar,Empleado.FecNac,105) as FecNac,Empleado.GrupSang,Empleado.EstCiv,Empleado.ConLab,Empleado.CarnAseg,Empleado.Refe,Empleado.Leye,convert(varchar,Empleado.FecIng,105) as FecIng,CONVERT(varchar,Empleado.FecNom,105) as FecNom,Empleado.DatCony,Empleado.UbigActu,Empleado.UbigOrig,Empleado.Est,\n"
 //                    + " Familiar.NomFami as 'Nombre de Familiar', Familiar.Ape as 'Apellido del Familiar', Familiar.Par,Familiar.Ocu,convert(varchar,Familiar.FecNac,105) as FecNacFami,Familiar.Tel as 'Telefono del Celular',Familiar.CelularFami as 'Celular del Familiar', Familiar.EstCivFami,Familiar.vive,\n"
