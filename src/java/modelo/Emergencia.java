@@ -6,11 +6,17 @@ import lombok.Data;
 public class Emergencia {
 
     private int IdEmerg;
-    private String Nom;
-    private String Ape;
-    private String Paren;
-    private String Tel;
-    private String Cel;
-    private String Estado;
+    private String NomEmer;
+    private String ApeEmer;
+    private String ParenEmer;
+    private String TelEmer;
+    private String CelEmer;
+    private String EstadoEmer;
+    
+    //Empleado
+    private String EmpleadoNombr;
+    private String EmpleadoApell;
+    
+    
 
 }

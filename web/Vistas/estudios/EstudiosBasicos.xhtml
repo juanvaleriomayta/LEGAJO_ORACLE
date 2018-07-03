@@ -15,7 +15,7 @@
 
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
-                    <f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />
+                    <!--<f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />-->
 
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosBasicosC.setAccion('Registrar')}" update=":dlgDatos"/>
         <!--            <p:commandButton value="Listar" actionListener="#{estudiosBasicosC.listar()}" update="data"/>-->
@@ -67,6 +67,14 @@
 
                         <p:column headerText="Estado" >
                             <p:outputLabel value="#{basicos.estado}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Nombre del Empleado" >
+                            <p:outputLabel value="#{basicos.empleadoNom}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Apellido del Empleado" >
+                            <p:outputLabel value="#{basicos.empleadoApe}"/>
                         </p:column>
 
                         <p:column headerText="Modificar" exportable="false">

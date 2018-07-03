@@ -25,11 +25,26 @@ public class Empleado {
     private String FecNom;
     private String DatCony;
     private String UbigActu;
-    private String UbigOrig;
     private String Est;
+          
+    //Familiares
+    private String FamiliaresNom;
+    private String FamiliaresApe;
+    
+    //Emergencia
+    private String EmergenciaNom;
+    private String EmergenciaApe;
+    
+    //Estudios basicos
+    private String EstuBasiEducacion;
+    private String EstuBasiCentroEstudos;
+    
+    //Estudios Superiores
+    private String EstuSuperEducacion;
+    private String EstuSuperCentroEstudios;
     
     //Distrito
-    private String DistritoOrigen;
-    private String DistritoActual;
-    
+    private String LugarNacimineto;
+    private String Direccion;
+        
 }

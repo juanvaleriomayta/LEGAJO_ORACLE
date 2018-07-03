@@ -11,7 +11,7 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="EstudiosBasicosInactivos">
-                <f:event type="preRenderView" listener="#{estudiosBasicosC.listarInactivos()}" />
+                <!--<f:event type="preRenderView" listener="#{estudiosBasicosC.listarInactivos()}" />-->
                 <p:growl autoUpdate="true" />
                 <h:form id="frm">
 <!--                    <p:button outcome="index" value="Salir" icon="ui-icon-exit">
@@ -61,6 +61,14 @@
 
                         <p:column headerText="Estado" >
                             <p:outputLabel value="#{basicos.estado}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Nombre del Empleado" >
+                            <p:outputLabel value="#{basicos.empleadoNom}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Apellido del Empleado" >
+                            <p:outputLabel value="#{basicos.empleadoApe}"/>
                         </p:column>
 
                         <p:column headerText="Activar" exportable="false">

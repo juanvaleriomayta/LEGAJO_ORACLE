@@ -12,5 +12,9 @@ public class EstudiosBasicos {
     private String Desd;
     private String Has;
     private String Estado;
+    
+    //Empleado
+    private String EmpleadoNom;
+    private String EmpleadoApe;
 
 }
