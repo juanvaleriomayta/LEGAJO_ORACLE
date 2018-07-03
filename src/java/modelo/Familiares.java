@@ -16,6 +16,6 @@ public class Familiares {
     private String EstCiv;
     private String vive;
     private String Estado;
-    private String NombreEmpleado;
+    private String Empleado;
 
 }

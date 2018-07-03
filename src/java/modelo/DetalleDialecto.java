@@ -10,5 +10,7 @@ public class DetalleDialecto {
     private String Habla;
     private String Escribe;
     private String Estado;
+    private String Empleado;
+    private String Dialecto;           
 
 }

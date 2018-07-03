@@ -27,6 +27,12 @@ public class Empleado {
     private String UbigActu;
     private String UbigOrig;
     private String Est;
+    private String ubigeo;
+    private String familiares;
+    private String emergencia;
+    private String estudiosbasicos;
+    private String estudiossuperiores;
+    
     
     //Distrito
     private String DistritoOrigen;

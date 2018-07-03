@@ -12,12 +12,13 @@ public class DetalleDialectoDao extends DAO {
     public void registrar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO DetalleDialecto (Lee,Hab,Escri,Estado) values(?,?,?,?)";
+            String sql = "INSERT INTO DetalleDialecto (Lee,Habla,Escribe,Estado,Dialecto_idDial) values(?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, detdia.getLee());
             st.setString(2, detdia.getHabla());
             st.setString(3, detdia.getEscribe());
             st.setString(4, detdia.getEstado());
+            st.setString(5, detdia.getEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -32,22 +33,18 @@ public class DetalleDialectoDao extends DAO {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = " select idDetDial, Lee, Habla, Escribe, Dialecto.NomDial,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
-                    + " from DetalleDialecto\n"
-                    + " left outer join Dialecto Dialecto on Dialecto.NomDial = Dialecto.NomDial\n"
-                    + " left outer join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
-                    + " where Estado like 'Activo'";
-            //      String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto";
+            String sql = "SELECT * FROM vw_DetaEmplActi";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 DetalleDialecto detdia = new DetalleDialecto();
-                detdia.setIdDetDial(rs.getInt("idDetDial"));
                 detdia.setLee(rs.getString("Lee"));
-                detdia.setHabla(rs.getString("Hab"));
-                detdia.setEscribe(rs.getString("Escri"));
+                detdia.setHabla(rs.getString("Habla"));
+                detdia.setEscribe(rs.getString("Escribe"));
                 detdia.setEstado(rs.getString("Estado"));
+                detdia.setEmpleado(rs.getString("Empleado_idEmpl"));
+                detdia.setDialecto(rs.getString("Dialecto_IdDial"));
                 lista.add(detdia);
             }
         } catch (SQLException e) {
@@ -63,23 +60,18 @@ public class DetalleDialectoDao extends DAO {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = " select idDetDial, Lee, Habla, Escribe, Dialecto.NomDial,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
-                    + " from DetalleDialecto\n"
-                    + " left outer join Dialecto Dialecto on Dialecto.NomDial = Dialecto.NomDial\n"
-                    + " left outer join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
-                    + " where Estado like 'Inactivo'";
-//           String sql = "Select * from vw_DetalleDialectoInac";
-            //    String sql = "SELECT idDetDial, Lee,Hab,Escri, Estado FROM DetalleDialecto Where Estado like 'Inactivo'";
+            String sql = "SELECT * FROM vw_DetaEmplInac";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 DetalleDialecto detdia = new DetalleDialecto();
-                detdia.setIdDetDial(rs.getInt("idDetDial"));
                 detdia.setLee(rs.getString("Lee"));
-                detdia.setHabla(rs.getString("Hab"));
-                detdia.setEscribe(rs.getString("Escri"));
+                detdia.setHabla(rs.getString("Habla"));
+                detdia.setEscribe(rs.getString("Escribe"));
                 detdia.setEstado(rs.getString("Estado"));
+                detdia.setEmpleado(rs.getString("Empleado_idEmpl"));
+                detdia.setDialecto(rs.getString("Dialecto_IdDial"));
                 lista.add(detdia);
             }
         } catch (SQLException e) {
@@ -97,7 +89,7 @@ public class DetalleDialectoDao extends DAO {
 
         try {
             this.Conexion();
-            String sql = "SELECT idDetDial,Lee,Hab,Escri,Estado  FROM DetalleDialecto WHERE idDetDial=?";
+            String sql = "SELECT idDetDial,Lee,Habla,Escribe,Estado  FROM DetalleDialecto WHERE idDetDial=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, detdia.getIdDetDial());
             rs = st.executeQuery();
@@ -105,9 +97,11 @@ public class DetalleDialectoDao extends DAO {
                 detdial = new DetalleDialecto();
                 detdial.setIdDetDial(rs.getInt("idDetDial"));
                 detdial.setLee(rs.getString("Lee"));
-                detdial.setHabla(rs.getString("Hab"));
-                detdial.setEscribe(rs.getString("Escri"));
+                detdial.setHabla(rs.getString("Habla"));
+                detdial.setEscribe(rs.getString("Escribe"));
                 detdia.setEstado(rs.getString("Estado"));
+                detdia.setEmpleado(rs.getString("Empleado_idEmpl"));
+                detdia.setDialecto(rs.getString("Dialecto_IdDial"));
             }
         } catch (SQLException e) {
             throw e;
@@ -120,13 +114,14 @@ public class DetalleDialectoDao extends DAO {
     public void modificar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE DetalleDialecto SET Lee = ?, Hab = ?, Escri = ?,Estado=? WHERE idDetDial = ?";
+            String sql = "UPDATE DetalleDialecto SET Lee = ?, Habla = ?, Escribe = ?,Estado=?, Empleado_idEmpl=? WHERE idDetDial = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, detdia.getLee());
-            st.setString(2, detdia.getHabla());
-            st.setString(3, detdia.getEscribe());
-            st.setString(4, detdia.getEstado());
-            st.setInt(5, detdia.getIdDetDial());
+            st.setInt(1, detdia.getIdDetDial());
+            st.setString(2, detdia.getLee());
+            st.setString(3, detdia.getHabla());
+            st.setString(4, detdia.getEscribe());
+            st.setString(5, detdia.getEstado());
+            st.setInt(6, detdia.getIdDetDial());
 
             st.executeUpdate();
         } catch (SQLException e) {

@@ -14,5 +14,7 @@ public class EstudiosSuperior {
     private String Culmi;
     private String GradAcadObte;
     private String Estado;
+    private String Empleado;
+    
 
 }

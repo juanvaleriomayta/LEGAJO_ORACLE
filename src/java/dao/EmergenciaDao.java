@@ -14,14 +14,15 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
     public void registrarEmergencia(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Emergencia (NomEmer, Ape,Paren,Tel,Celular,Estado) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO Emergencia (NomEmer, ApeEmer,ParenEmer,TelEmer,CelularEmer,EstadoEmer, Empleado_idEmpl) values(?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, eme.getNom());
-            st.setString(2, eme.getApe());
-            st.setString(3, eme.getParen());
-            st.setString(4, eme.getTel());
-            st.setString(5, eme.getCel());
-            st.setString(6, eme.getEstado());
+            st.setString(1, eme.getNomEmer());
+            st.setString(2, eme.getApeEmer());
+            st.setString(3, eme.getParenEmer());
+            st.setString(4, eme.getTelEmer());
+            st.setString(5, eme.getCelEmer());
+            st.setString(6, eme.getEstadoEmer());
+            st.setString(7, eme.getEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -34,14 +35,15 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
     public void registrar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Emergencia (NomEmer, Ape,Paren,Tel,Celular,Estado) values(?,?,?,?,?,?)";
+            String sql = "INSERT INTO Emergencia (NomEmer, ApeEmer,ParenEmer,TelEmer,CelularEmer,EstadoEmer,Empleado_idEmpl) values(?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, eme.getNom());
-            st.setString(2, eme.getApe());
-            st.setString(3, eme.getParen());
-            st.setString(4, eme.getTel());
-            st.setString(5, eme.getCel());
-            st.setString(6, eme.getEstado());
+            st.setString(1, eme.getNomEmer());
+            st.setString(2, eme.getApeEmer());
+            st.setString(3, eme.getParenEmer());
+            st.setString(4, eme.getTelEmer());
+            st.setString(5, eme.getCelEmer());
+            st.setString(6, eme.getEstadoEmer());
+            st.setString(7, eme.getEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -58,24 +60,20 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
 
         try {
             this.Conexion();
-            String sql = " select IdEmerg, NomEmer, Ape, Paren, Tel, Celular,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
-                    + " from Emergencia \n"
-                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
-                    + " where Estado like 'Activo'";
-            //select * from vw_Emergencia
-//            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia Where Estado like 'Activo'";
+            String sql = "SELECT * FROM vw_EmerEmplActi";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 Emergencia eme = new Emergencia();
-                eme.setIdEmerg(rs.getInt("IdEmerg"));
-                eme.setNom(rs.getString("NomEmer"));
-                eme.setApe(rs.getString("Ape"));
-                eme.setParen(rs.getString("Paren"));
-                eme.setTel(rs.getString("Tel"));
-                eme.setCel(rs.getString("Celular"));
-                eme.setEstado(rs.getString("Estado"));
+                eme.setNomEmer(rs.getString("NomEmer"));
+                eme.setApeEmer(rs.getString("ApeEmer"));
+                eme.setParenEmer(rs.getString("ParenEmer"));
+                eme.setTelEmer(rs.getString("TelEmer"));
+                eme.setCelEmer(rs.getString("CelularEmer"));
+                eme.setEstadoEmer(rs.getString("EstadoEmer"));
+                eme.setEmpleado(rs.getString("Empleado_idEmpl"));
+
                 lista.add(eme);
 
             }
@@ -87,31 +85,24 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
         return lista;
     }
 
-    
     public List<Emergencia> listarInactivos() throws Exception {
         List<Emergencia> lista;
         ResultSet rs;
 
         try {
             this.Conexion();
-            String sql = " select IdEmerg, NomEmer, Ape, Paren, Tel, Celular,Estado, Empleado.Nom as 'Nombre del Empleado'\n"
-                    + " from Emergencia \n"
-                    + " inner join Empleado Empleado on Empleado.Nom = Empleado.Nom\n"
-                    + " where Estado like 'Inactivo'";
-            //select * from vw_Emergencia
-//            String sql =  "SELECT IdEmerg, Nom, Ape,Paren,Tel,Cel,Estado FROM Emergencia Where Estado like 'Activo'";
+            String sql = "SELECT * FROM vw_EmerEmplInac";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 Emergencia eme = new Emergencia();
-                eme.setIdEmerg(rs.getInt("IdEmerg"));
-                eme.setNom(rs.getString("NomEmer"));
-                eme.setApe(rs.getString("Ape"));
-                eme.setParen(rs.getString("Paren"));
-                eme.setTel(rs.getString("Tel"));
-                eme.setCel(rs.getString("Celular"));
-                eme.setEstado(rs.getString("Estado"));
+                eme.setNomEmer(rs.getString("NomEmer"));
+                eme.setApeEmer(rs.getString("ApeEmer"));
+                eme.setParenEmer(rs.getString("ParenEmer"));
+                eme.setTelEmer(rs.getString("TelEmer"));
+                eme.setCelEmer(rs.getString("CelularEmer"));
+                eme.setEstadoEmer(rs.getString("EstadoEmer"));
                 lista.add(eme);
 
             }
@@ -122,7 +113,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
         }
         return lista;
     }
-    
+
     @Override
     public Emergencia leerID(Emergencia eme) throws Exception {
         Emergencia emer = null;
@@ -130,19 +121,20 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
 
         try {
             this.Conexion();
-            String sql = "SELECT IdEmerg, NomEmer, Ape,Paren,Tel,Celular,Estado FROM Emergencia WHERE IdEmerg=?";
+            String sql = "SELECT IdEmerg, NomEmer, ApeEmer,ParenEmer,TelEmer,CelularEmer,EstadoEmer, Empleado_idEmpl FROM Emergencia WHERE IdEmerg=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, eme.getIdEmerg());
             rs = st.executeQuery();
             while (rs.next()) {
                 emer = new Emergencia();
                 emer.setIdEmerg(rs.getInt("IdEmerg"));
-                emer.setNom(rs.getString("NomEmer"));
-                emer.setApe(rs.getString("Ape"));
-                emer.setParen(rs.getString("Paren"));
-                emer.setTel(rs.getString("Tel"));
-                emer.setCel(rs.getString("Celular"));
-                emer.setEstado(rs.getString("Estado"));
+                emer.setNomEmer(rs.getString("NomEmer"));
+                emer.setApeEmer(rs.getString("ApeEmer"));
+                emer.setParenEmer(rs.getString("ParenEmer"));
+                emer.setTelEmer(rs.getString("TelEmer"));
+                emer.setCelEmer(rs.getString("CelularEmer"));
+                emer.setEstadoEmer(rs.getString("EstadoEmer"));
+                emer.setEmpleado(rs.getString("Empleado_idEmpl"));
             }
         } catch (SQLException e) {
             throw e;
@@ -156,15 +148,15 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
     public void modificar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE Emergencia SET NomEmer=?, Ape=?,Paren=?,Tel=?,Celular=?,Estado=? WHERE IdEmerg = ?";
+            String sql = "UPDATE Emergencia SET NomEmer=?, ApeEmer=?,ParenEmer=?,TelEmer=?,CelularEmer=?,EstadoEmer=?,Empleado_idEmpl=? WHERE IdEmerg = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, eme.getNom());
-            st.setString(2, eme.getApe());
-            st.setString(3, eme.getParen());
-            st.setString(4, eme.getTel());
-            st.setString(5, eme.getCel());
-            st.setInt(6, eme.getIdEmerg());
-            st.setString(7, eme.getEstado());
+            st.setString(1, eme.getNomEmer());
+            st.setString(2, eme.getApeEmer());
+            st.setString(3, eme.getParenEmer());
+            st.setString(4, eme.getTelEmer());
+            st.setString(5, eme.getCelEmer());
+            st.setString(6, eme.getEstadoEmer());
+            st.setString(7, eme.getEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
