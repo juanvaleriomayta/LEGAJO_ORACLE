@@ -32,6 +32,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
         }
     }
 
+    
     @Override
     public void registrar(Emergencia eme) throws Exception {
         try {

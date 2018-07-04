@@ -119,7 +119,15 @@
                             <p:inputText value="#{emergenciaC.emergencia.celEmer}" maxlength="9">
                                 <p:keyFilter regEx="/[\d\-]/"/>
 
-                            </p:inputText>            
+
+
+                            </p:inputText>   
+
+                            <p:outputLabel value="Nombre del Empleado"/>
+                            <p:autoComplete value="#{empleadoC.empleado.nom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                                <p:ajax event="itemSelect" listener="#{emergenciaC.lstEmergencia}" update="frm" />
+                            </p:autoComplete>
+
                             <p:outputLabel value="Estado Laboral" />
 
                             <p:selectOneRadio id="EstadoLaboral" value="#{emergenciaC.emergencia.estadoEmer}" required="true" requiredMessage="Seleccione su Estado Laboral">

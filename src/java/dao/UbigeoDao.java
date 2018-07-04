@@ -34,7 +34,7 @@ public class UbigeoDao extends DAO implements UbigeoI {
         ResultSet rs;
         List<String> Lista;
         try {
-            String sql = "select concat(Dep,',',Pro,',',Dis) AS distrito from Ubigeo where distrito like upper(?)";
+            String sql = "select concat(Dep,',',Pro,',',Dis) AS Dis from Ubigeo where Dis like upper(?)";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, "%" + Consulta + "%");
             Lista = new ArrayList<>();

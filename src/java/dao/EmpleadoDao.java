@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
 import modelo.Empleado;
 
+@ManagedBean(name = "lisEmpl")
 public class EmpleadoDao extends DAO implements EmpleadoI {
 
     @Override
@@ -79,6 +81,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
 
     }
 
+   
     @Override
 
     public List<Empleado> listarActivos() throws Exception {
@@ -164,6 +167,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setFecNom(rs.getString("FecNom"));
                 emp.setDatCony(rs.getString("DatCony"));
                 emp.setTelf(rs.getString("Telf"));
+                emp.setUbigActu(rs.getString("Direccion"));
                 emp.setEst(rs.getString("Est"));
                 emp.setFamiliaresNom(rs.getString("NomFami"));
                 emp.setFamiliaresApe(rs.getString("ApelFami"));
@@ -212,6 +216,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emple.setConLab(rs.getString("ConLab"));
                 emple.setCarnAseg(rs.getString("CarnAseg"));
                 emple.setRefe(rs.getString("Refe"));
+                emple.setUbigActu(rs.getString("UbigActu"));
                 emple.setLeye(rs.getString("Leye"));
                 emple.setFecIng(rs.getString("FecIng"));
                 emple.setFecNom(rs.getString("FecNom"));
@@ -252,8 +257,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(17, emp.getFecNom());
             st.setString(18, emp.getDatCony());
             st.setString(19, emp.getUbigActu());
-            st.setString(21, emp.getEst());
-            st.setInt(22, emp.getIdEmpl());
+            st.setString(20, emp.getEst());
+            st.setInt(21, emp.getIdEmpl());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -275,5 +280,9 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         } finally {
             this.Cerrar();
         }
+    }
+
+    public List<String> autocompleteEmpleado(String query) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

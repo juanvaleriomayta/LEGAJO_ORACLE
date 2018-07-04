@@ -4,6 +4,7 @@ import dao.EmpleadoDao;
 import dao.UbigeoDao;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,11 @@ public class EmpleadoC implements Serializable {
         } catch (IOException ex) {
             Logger.getLogger(EmpleadoC.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+      public List<String> completeText(String query) throws SQLException {               
+        EmpleadoDao dao = new EmpleadoDao();
+        return dao.autocompleteEmpleado(query);
     }
 
     public void ingresarEmpleado() throws Exception {
