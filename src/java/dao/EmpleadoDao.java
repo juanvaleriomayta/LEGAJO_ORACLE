@@ -12,6 +12,7 @@ import modelo.Empleado;
 @ManagedBean(name = "lisEmpl")
 public class EmpleadoDao extends DAO implements EmpleadoI {
 
+    
     @Override
     public void registrarEmpleado(Empleado emp) throws Exception {
         try {
@@ -81,7 +82,28 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
 
     }
 
-   
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+        this.Conexion();
+        ResultSet rs;
+        List<String> Lista;
+        try {
+            String sql = "select concat(Nom,',',ApelPate,',',ApelMate) AS Apellidos from Empleado where UPPER(Nom) like UPPER(?) or UPPER(ApelPate) like UPPER(?)  or UPPER(ApelMate) like UPPER(?)";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, "%" + Consulta + "%");
+            ps.setString(2, "%" + Consulta + "%");
+            ps.setString(3, "%" + Consulta + "%");
+            Lista = new ArrayList<>();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Lista.add(rs.getString("Apellidos"));
+            }
+            return Lista;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
     @Override
 
     public List<Empleado> listarActivos() throws Exception {
@@ -216,7 +238,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emple.setConLab(rs.getString("ConLab"));
                 emple.setCarnAseg(rs.getString("CarnAseg"));
                 emple.setRefe(rs.getString("Refe"));
-                emple.setUbigActu(rs.getString("UbigActu"));
+                emple.setUbigActu(rs.getString("Direccion"));
                 emple.setLeye(rs.getString("Leye"));
                 emple.setFecIng(rs.getString("FecIng"));
                 emple.setFecNom(rs.getString("FecNom"));
@@ -280,9 +302,5 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         } finally {
             this.Cerrar();
         }
-    }
-
-    public List<String> autocompleteEmpleado(String query) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
