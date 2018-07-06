@@ -69,11 +69,11 @@
                         <p:column headerText="Estado Laboral" >
                             <p:outputLabel value="#{superior.estado}"/>
                         </p:column>
-                        
+
                         <p:column headerText="Nombre del Empleado" >
                             <p:outputLabel value="#{superior.empleadoNom}"/>
                         </p:column>
-                        
+
                         <p:column headerText="Apellido del Empleado" >
                             <p:outputLabel value="#{superior.empleadoApe}"/>
                         </p:column>
@@ -133,6 +133,11 @@
                             <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.gradAcadObte}" required="true" requiredMessage="Ingrese la Graduacion Academica Obtenida">
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
+
+                            <p:outputLabel value="Nombre del Empleado"/>
+                            <p:autoComplete value="#{empleadoC.empleado.nom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                                <p:ajax event="itemSelect" listener="#{estudiosSuperiorC.lstEstudiosSuperior}" update="frm" />
+                            </p:autoComplete>
                             <p:outputLabel value="Estado Laboral" />
 
                             <p:selectOneRadio id="EstadoLaboral" value="#{estudiosSuperiorC.estudiosSuperior.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">

@@ -155,6 +155,11 @@
                                 <f:selectItem itemLabel="Si" itemValue="Si"/>
                                 <f:selectItem itemLabel="No" itemValue="No"/>                                          
                             </p:selectOneRadio>
+                            
+                            <p:outputLabel value="Nombre del Empleado"/>
+                            <p:autoComplete value="#{empleadoC.empleado.nom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                                <p:ajax event="itemSelect" listener="#{familiaresC.lstFamiliares}" update="frm" />
+                            </p:autoComplete>
 
                             <p:outputLabel value="Estado Laboral" />
 
