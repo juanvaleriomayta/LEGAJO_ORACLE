@@ -26,6 +26,7 @@ public class Empleado {
     private String DatCony;
     private String UbigActu;
     private String Est;
+    private String Pass;
           
     //Familiares
     private String FamiliaresNom;
@@ -43,8 +44,8 @@ public class Empleado {
     private String EstuSuperEducacion;
     private String EstuSuperCentroEstudios;
     
-    //Distrito
-    private String LugarNacimineto;
-    private String Direccion;
+    //Ubigeo (Lugar de Nacimiento)
+    private String Origen;
+ 
         
 }
