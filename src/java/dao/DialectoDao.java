@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Dialecto;
 
-
-public class DialectoDao extends DAO implements DialectoI{
+public class DialectoDao extends DAO implements DialectoI {
 
     @Override
     public void registrar(Dialecto dia) throws Exception {
@@ -26,6 +25,26 @@ public class DialectoDao extends DAO implements DialectoI{
             this.Cerrar();
         }
 
+    }
+
+    public List<String> autocompleteDialecto(String Consulta) throws SQLException {
+        this.Conexion();
+        ResultSet rs;
+        List<String> Lista;
+        try {
+            String sql = "select NomDial from Dialecto where NomDial like ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, "%" + Consulta + "%");
+            Lista = new ArrayList<>();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Lista.add(rs.getString("NomDial"));
+            }
+            return Lista;
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 
     @Override
@@ -82,7 +101,7 @@ public class DialectoDao extends DAO implements DialectoI{
     public void modificar(Dialecto dia) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE Dialecto SET NomDial = ? WHERE IdDial = ?"; 
+            String sql = "UPDATE Dialecto SET NomDial = ? WHERE IdDial = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, dia.getNomDial());
             st.setInt(2, dia.getIdDial());
