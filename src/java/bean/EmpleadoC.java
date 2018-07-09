@@ -1,7 +1,6 @@
 package bean;
 
 import dao.EmpleadoDao;
-import dao.UbigeoDao;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;

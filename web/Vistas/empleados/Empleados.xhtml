@@ -3,6 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:p="http://primefaces.org/ui">
 
     <body>
@@ -91,8 +92,6 @@
                             <h:outputText value="#{empleado.conLab}"/>
                             <h:outputText value="Fecha de Ingreso"/>
                             <h:outputText value="#{empleado.fecIng}"/>
-                            <h:outputText value="Estado"/>
-                            <h:outputText value="#{empleado.est}"/>
                             <h:outputText value="Carnet Asegurado"/>
                             <h:outputText value="#{empleado.carnAseg}"/>
                             <h:outputText value="Referencia"/>
@@ -103,43 +102,32 @@
                             <h:outputText value="#{empleado.fecNom}"/>
                             <h:outputText value="Datos del Conyugue"/>
                             <h:outputText value="#{empleado.datCony}"/>
-                            <h:outputText value="Dirección"/>
-                            <h:outputText value="#{empleado.ubigActu}"/>
                             <h:outputText value="Lugar de Nacimiento"/>
                             <h:outputText value="#{empleado.origen}"/>
-                            <h:outputText value="Nombre del Familiar"/>
-                            <h:outputText value="#{empleado.familiaresNom}"/>
-                            <h:outputText value="Apellido del Familiar"/>
-                            <h:outputText value="#{empleado.familiaresApe}"/>
-                            <h:outputText value="Nombre del Contacto"/>
-                            <h:outputText value="#{empleado.emergenciaNom}"/>
-                            <h:outputText value="Apellido del Contacto"/>
-                            <h:outputText value="#{empleado.emergenciaApe}"/>
-                            <h:outputText value="Educacion Basica"/>
-                            <h:outputText value="#{empleado.estuBasiEducacion}"/>
-                            <h:outputText value="Centro de Estudios Basicos"/>
-                            <h:outputText value="#{empleado.estuBasiCentroEstudos}"/>
-                            <h:outputText value="Educaion Superior"/>
-                            <h:outputText value="#{empleado.estuSuperEducacion}"/>
-                            <h:outputText value="Centro de Estudios Superior"/>
-                            <h:outputText value="#{empleado.estuSuperCentroEstudios}"/>                                         
+
                         </p:panelGrid>
                     </p:rowExpansion>
 
-                    <p:column headerText="Modificar" exportable="false">
-                        <p:commandButton  icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                    <p:column >
+                        <p:commandButton  title="MODIFICAR LOS DATOS DEL EMPLEADO" icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
+                            <p:tooltip trackMouse="true"/>
+                        </p:commandButton>
                     </p:column>
 
-                    <p:column headerText="Eliminar" exportable="false">
+                    <p:column >
                         <p:growl id="message" showDetail="true" />
-                        <p:commandButton icon="ui-icon-circle-close" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
+                        <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
                             <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                            <p:tooltip trackMouse="true"/>
                         </p:commandButton>
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                         </p:confirmDialog>
                     </p:column>
+                    <f:facet name="footer">
+                        EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.
+                    </f:facet>
                 </p:dataTable>
 
 
@@ -258,17 +246,6 @@
                             <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
 
                         </p:selectOneRadio>
-
-
-
-                        <p:outputLabel value="Estado Laboral" />
-
-                        <p:selectOneRadio id="EstadoLaboral" value="#{empleadoC.empleado.est}" required="true" requiredMessage="Seleccione su Estado Laboral">
-                            <f:selectItem itemLabel="Activo" itemValue="Activo"/>
-                            <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
-
-                        </p:selectOneRadio>
-
                         <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                         <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
 

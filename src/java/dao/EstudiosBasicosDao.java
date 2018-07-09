@@ -14,16 +14,15 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void registrarEstudiosBasicos(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudioBasicos (EducBasi,CulmiBasi,CentrEstuBasi,DesdBasi, HasBasi,EstadoBasi,Empleado_idEmpl) values(?,?,?,CONVERT(DATE,? ,103),CONVERT(DATE,?,103),?,?,?)";
+            String sql = "EXEC sp_EstudiosBasicos ?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());
             st.setString(3, bas.getCentrEstu());
             st.setString(4, bas.getDesd());
             st.setString(5, bas.getHas());
-            st.setString(6, bas.getEstado());
-            st.setString(7, bas.getEmpleadoNom());
-            st.setString(8, bas.getEmpleadoApe());
+            st.setString(6, "A");
+            st.setString(7, bas.getCodEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -37,16 +36,15 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void registrar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudioBasicos (EducBasi,CulmiBasi,CentrEstuBasi,DesdBasi,HasBasi,EstadoBasi,Empleado_idEmpl) values(?,?,?,CONVERT(DATE,? ,103),CONVERT(DATE,?,103),?,?)";
+            String sql = "EXEC sp_EstudiosBasicos ?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getEduc());
             st.setString(2, bas.getCulmi());
             st.setString(3, bas.getCentrEstu());
             st.setString(4, bas.getDesd());
             st.setString(5, bas.getHas());
-            st.setString(6, bas.getEstado());
-            st.setString(7, bas.getEmpleadoNom());
-            st.setString(8, bas.getEmpleadoApe());
+            st.setString(6, "A");
+            st.setString(7, bas.getCodEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -54,6 +52,26 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
             this.Cerrar();
         }
 
+    }
+
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+        this.Conexion();
+        ResultSet rs;
+        List<String> Lista;
+        try {
+            String sql = "select concat(Nom,',',ApelPate,',',ApelMate) AS Empleado from Empleado where UPPER(Nom) like UPPER(?) or UPPER(ApelPate) like UPPER(?)  or UPPER(ApelMate) like UPPER(?)";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, "%" + Consulta + "%");
+            Lista = new ArrayList<>();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Lista.add(rs.getString("Empleado"));
+            }
+            return Lista;
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 
     @Override
@@ -75,8 +93,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
                 bas.setDesd(rs.getString("DesdBasi"));
                 bas.setHas(rs.getString("HasBasi"));
                 bas.setEstado(rs.getString("EstadoBasi"));
-                bas.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                bas.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                bas.setEmpleado(rs.getString("Empleado"));
                 lista.add(bas);
             }
         } catch (SQLException e) {
@@ -105,8 +122,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
                 bas.setDesd(rs.getString("DesdBasi"));
                 bas.setHas(rs.getString("HasBasi"));
                 bas.setEstado(rs.getString("EstadoBasi"));
-                bas.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                bas.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                bas.setEmpleado(rs.getString("Empleado"));
                 lista.add(bas);
             }
         } catch (SQLException e) {
@@ -137,8 +153,8 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
                 basi.setDesd(rs.getString("DesdBasi"));
                 basi.setHas(rs.getString("HasBasi"));
                 basi.setEstado(rs.getString("EstadoBasi"));
-                basi.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                basi.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                basi.setEmpleado(rs.getString("idEmpl"));
+
             }
         } catch (SQLException e) {
             throw e;
@@ -161,8 +177,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
             st.setString(5, bas.getHas());
             st.setInt(6, bas.getIdEstuBasi());
             st.setString(7, bas.getEstado());
-            st.setString(8, bas.getEmpleadoNom());
-            st.setString(9, bas.getEmpleadoApe());
+            st.setString(8, bas.getEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

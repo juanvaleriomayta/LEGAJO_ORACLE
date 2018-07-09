@@ -3,25 +3,17 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-
         <ui:composition template="./../template/Template.xhtml">
-
-
             <ui:define name="EstudiosBasicos">
-
-
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
-                    <!--<f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />-->
+                    <f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />
 
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosBasicosC.setAccion('Registrar')}" update=":dlgDatos"/>
-        <!--            <p:commandButton value="Listar" actionListener="#{estudiosBasicosC.listar()}" update="data"/>-->
-
-
-
                     <p:dataTable id="data"  value="#{estudiosBasicosC.lstEstudiosBasicos}" var="basicos" rows="10"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -65,18 +57,9 @@
                             <p:outputLabel value="#{basicos.has}"/>
                         </p:column>
 
-                        <p:column headerText="Estado" >
-                            <p:outputLabel value="#{basicos.estado}"/>
+                        <p:column headerText="Empleado">
+                            <p:outputLabel value="#{basicos.empleado}"/>
                         </p:column>
-
-                        <p:column headerText="Nombre del Empleado" >
-                            <p:outputLabel value="#{basicos.empleadoNom}"/>
-                        </p:column>
-
-                        <p:column headerText="Apellido del Empleado" >
-                            <p:outputLabel value="#{basicos.empleadoApe}"/>
-                        </p:column>
-
                         <p:column headerText="Modificar" exportable="false">
                             <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
@@ -89,6 +72,9 @@
                                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                         </p:column>
+                        <f:facet name="footer">
+                            EN TOTAL HAY #{fn:length(estudiosBasicosC.lstEstudiosBasicos)} REGISTRADOS.
+                        </f:facet>
                     </p:dataTable>               
                 </h:form>
 
@@ -101,7 +87,7 @@
                                 <f:selectItem itemLabel="Secundaria" itemValue="S" />
                                 <f:selectItem itemLabel="Primaria" itemValue="P" />
                             </p:selectOneMenu>
-                            
+
                             <p:outputLabel value="Culminacion" />
                             <p:inputText value="#{estudiosBasicosC.estudiosBasicos.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
@@ -112,17 +98,8 @@
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
 
-                            <p:outputLabel value="Estado Laboral" />
-
-                            <p:selectOneRadio id="EstadoLaboral" value="#{estudiosBasicosC.estudiosBasicos.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
-
-                                <f:selectItem itemLabel="Activo" itemValue="Activo"/>
-                                <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
-
-                            </p:selectOneRadio>
-
                             <p:outputLabel value="Nombre del Empleado"/>
-                            <p:autoComplete value="#{empleadoC.empleado.nom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                            <p:autoComplete value="#{estudiosBasicosC.estudiosBasicos.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
                                 <p:ajax event="itemSelect" listener="#{estudiosBasicosC.lstEstudiosBasicos}" update="frm" />
                             </p:autoComplete>
 

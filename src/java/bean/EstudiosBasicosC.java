@@ -1,7 +1,9 @@
 package bean;
 
+import dao.EmpleadoDao;
 import dao.EstudiosBasicosDao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -28,6 +30,11 @@ public class EstudiosBasicosC implements Serializable {
 
         }
     }
+    
+    public List<String> completeText(String query) throws SQLException{
+        EstudiosBasicosDao dao = new EstudiosBasicosDao();
+        return dao.autocompleteEmpleado(query);
+    }
 
     public void operar() throws Exception {
         switch (accion) {
@@ -46,9 +53,12 @@ public class EstudiosBasicosC implements Serializable {
 
     private void registrar() throws Exception {
         EstudiosBasicosDao dao;
-
+        EmpleadoDao dao2;
+                
         try {
             dao = new EstudiosBasicosDao();
+            dao2 = new EmpleadoDao();
+            estudiosBasicos.setCodEmpleado(dao2.obtenerCodigoEmpleado(estudiosBasicos.getEmpleado()));
             dao.registrar(estudiosBasicos);
             this.listar();
         } catch (Exception e) {
@@ -67,6 +77,7 @@ public class EstudiosBasicosC implements Serializable {
             throw e;
         }
     }
+
     public void listarInactivos() throws Exception {
         EstudiosBasicosDao dao;
 
@@ -77,6 +88,7 @@ public class EstudiosBasicosC implements Serializable {
             throw e;
         }
     }
+
     public void leerID(EstudiosBasicos bas) throws Exception {
         EstudiosBasicosDao dao;
         EstudiosBasicos temp;

@@ -14,7 +14,9 @@ public class EstudiosBasicos {
     private String Estado;
     
     //Empleado
-    private String EmpleadoNom;
-    private String EmpleadoApe;
+    private String Empleado;
+    private String CodEmpleado;
+            
+           
 
 }

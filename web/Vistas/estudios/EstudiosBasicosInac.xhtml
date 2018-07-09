@@ -64,12 +64,9 @@
                         </p:column>
                         
                         <p:column headerText="Nombre del Empleado" >
-                            <p:outputLabel value="#{basicos.empleadoNom}"/>
+                            <p:outputLabel value="#{basicos.empleado}"/>
                         </p:column>
                         
-                        <p:column headerText="Apellido del Empleado" >
-                            <p:outputLabel value="#{basicos.empleadoApe}"/>
-                        </p:column>
 
                         <p:column headerText="Activar" exportable="false">
                             <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
