@@ -1,6 +1,7 @@
 package bean;
 
 import dao.DialectoDao;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -16,6 +17,12 @@ public class DialectoC {
     private List<Dialecto> lstDialecto;
 
     private String accion;
+    
+    
+    public List<String> completeTextDialecto(String query) throws SQLException {               
+        DialectoDao dao = new DialectoDao();
+        return dao.autocompleteDialecto(query);
+    }
 
     public void operar() throws Exception {
         switch (accion) {

@@ -10,123 +10,135 @@
 
         <ui:composition template="./../template/Template.xhtml">
 
+            <ui:define name="DetalleDialecto">
+                <p:growl id="msj" autoUpdate="true"/>
+                <h:form id="frm">
 
-            <p:growl id="msj" autoUpdate="true"/>
-            <h:form id="frm">
+                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
-                <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
+                    <!--                    <p:button outcome="index" value="Salir" icon="ui-icon-exit">
+                                            <f:param name="productId" value="50" />
+                                        </p:button>-->
 
-                <p:button outcome="index" value="Salir" icon="ui-icon-exit">
-                    <f:param name="productId" value="50" />
-                </p:button>
+                    <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detdial" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,10000">
+                        <f:facet name="header">
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                                <p:dataExporter type="pdf" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                                <p:dataExporter type="csv" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <a href="EstudiosBasicosWEB.xhtml"></a>
+                                <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                                <p:dataExporter type="xml" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                                <p:dataExporter type="xls" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
+                            </h:commandLink>
 
-                <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detdial" rows="10"
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15,10000">
-                    <f:facet name="header">
-                        <h:commandLink>
-                            <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                            <p:dataExporter type="pdf" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                        </h:commandLink>
-                        <h:commandLink>
-                            <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                            <p:dataExporter type="csv" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                        </h:commandLink>
-                        <h:commandLink>
-                            <a href="EstudiosBasicosWEB.xhtml"></a>
-                            <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                            <p:dataExporter type="xml" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                        </h:commandLink>
-                        <h:commandLink>
-                            <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                            <p:dataExporter type="xls" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                        </h:commandLink>
+                            <h1>DETALLE DIALECTO</h1> 
 
-                        <h1>DETALLE DIALECTO</h1> 
-
-                        <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
-                        <p:columnToggler datasource="data" trigger="toggler" />
-                    </f:facet>
-                    <p:column headerText="Lee" >
-                        <p:outputLabel value="#{detdial.lee}"/>
-                    </p:column>
-                    <p:column headerText="Habla" >
-                        <p:outputLabel value="#{detdial.habla}"/>
-                    </p:column>
-                    <p:column headerText="Escribe" >
-                        <p:outputLabel value="#{detdial.escribe}"/>
-                    </p:column>
-                    <p:column headerText="Estado" >
-                        <p:outputLabel value="#{detdial.estado}"/>
-                    </p:column>             
-                    <p:column headerText="Nombre del Empleado">
-                        <p:outputLabel value="#{detdial.empleadoNom}"/>
-                    </p:column>
-                    <p:column headerText="Apellido del Empleado">
-                        <p:outputLabel value="#{detdial.empleadoApel}"/>
-                    </p:column>
-                    <p:column headerText="Dialecto">
-                        <p:outputLabel value="#{detdial.dialectoNom}"/>
-                    </p:column>
+                            <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                            <p:columnToggler datasource="data" trigger="toggler" />
+                        </f:facet>
+                        <p:column headerText="Lee" >
+                            <p:outputLabel value="#{detdial.lee}"/>
+                        </p:column>
+                        <p:column headerText="Habla" >
+                            <p:outputLabel value="#{detdial.habla}"/>
+                        </p:column>
+                        <p:column headerText="Escribe" >
+                            <p:outputLabel value="#{detdial.escribe}"/>
+                        </p:column>
+                        <p:column headerText="Nombre del Empleado">
+                            <p:outputLabel value="#{detdial.empleadoNom}"/>
+                        </p:column>
+                        <p:column headerText="Apellido del Empleado">
+                            <p:outputLabel value="#{detdial.empleadoApel}"/>
+                        </p:column>
+                        <p:column headerText="Dialecto">
+                            <p:outputLabel value="#{detdial.dialectoNom}"/>
+                        </p:column>
+                        <p:column headerText="Estado" >
+                            <p:outputLabel value="#{detdial.estado}"/>
+                        </p:column>             
 
 
-                    <p:column headerText="Modificar" >
-                        <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
-                    </p:column>
-                    <p:column headerText="Eliminar" >
-                        <p:growl id="message" showDetail="true" />
 
-                        <p:commandButton icon="ui-icon-circle-close" actionListener="#{detalleDialectoC.eliminar(detdial)}" update="data" style="background-color:red;color:red;">
-                            <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
-                        </p:commandButton>
+                        <p:column headerText="Modificar" exportable="false">
+                            <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        </p:column>
+                        <p:column headerText="Eliminar" exportable="false">
+                            <p:growl id="message" showDetail="true" />
 
-                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                        </p:confirmDialog>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-            <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
-                <h:form>
-                    <p:panelGrid columns="1">
-                        <p:outputLabel value="Lee" />
-                        <p:selectOneMenu id="Lee" value="#{detalleDialectoC.detalleDialecto.lee}" required="true" requiredMessage="Seleccione ">
-                            <f:selectItem itemLabel="Seleccione"/>
-                            <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
-                            <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
-                        </p:selectOneMenu>
+                            <p:commandButton icon="ui-icon-circle-close" actionListener="#{detalleDialectoC.eliminar(detdial)}" update="data" style="background-color:red;color:red;">
+                                <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                            </p:commandButton>
 
-                        <p:outputLabel value="Habla" />
-                        <p:selectOneMenu id="Habla" value="#{detalleDialectoC.detalleDialecto.habla}" required="true" requiredMessage="Seleccione ">
-                            <f:selectItem itemLabel="Seleccione"/>
-                            <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
-                            <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
-                        </p:selectOneMenu>
-
-                        <p:outputLabel value="Escribe" />
-                        <p:selectOneMenu id="Escribe" value="#{detalleDialectoC.detalleDialecto.escribe}" required="true" requiredMessage="Seleccione ">
-                            <f:selectItem itemLabel="Seleccione"/>
-                            <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
-                            <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
-                        </p:selectOneMenu>
-
-                        <p:outputLabel value="Estado" />
-                        <p:selectOneRadio id="CondicionLaboral" value="#{detalleDialectoC.detalleDialecto.estado}" required="true" requiredMessage="Seleccione su Estado">
-
-                            <f:selectItem itemLabel="Activo" itemValue="A"/>
-                            <f:selectItem itemLabel="Inactivo" itemValue="I" /> 
-                        </p:selectOneRadio>
-
-                        <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
-                    </p:panelGrid>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </p:column>
+                    </p:dataTable>
                 </h:form>
+                <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+                    <h:form>
+                        <p:panelGrid columns="1">
+                            <p:outputLabel value="Lee" />
+                            <p:selectOneMenu id="Lee" value="#{detalleDialectoC.detalleDialecto.lee}" required="true" requiredMessage="Seleccione ">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
+                                <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
+                            </p:selectOneMenu>
 
-            </p:dialog>
+                            <p:outputLabel value="Habla" />
+                            <p:selectOneMenu id="Habla" value="#{detalleDialectoC.detalleDialecto.habla}" required="true" requiredMessage="Seleccione ">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
+                                <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Escribe" />
+                            <p:selectOneMenu id="Escribe" value="#{detalleDialectoC.detalleDialecto.escribe}" required="true" requiredMessage="Seleccione ">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItem itemLabel="Con Facilidad" itemValue="Con Facilidad" />
+                                <f:selectItem itemLabel="Sin Facilidad" itemValue="Sin Facilidad" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Empleado"/>
+                            <p:autoComplete value="#{detalleDialectoC.detalleDialecto.empleadoNom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                                <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
+                            </p:autoComplete>
+
+                            <p:outputLabel value="Dialectos"/>
+                            <p:autoComplete value="#{detalleDialectoC.detalleDialecto.dialectoNom}" completeMethod="#{dialectoC.completeTextDialecto(query)}" forceSelection="true">
+                                <p:ajax event="itemSelect" listener="#{dialectoC.lstDialecto}" update="frm" />
+                            </p:autoComplete>
 
 
+                            <p:outputLabel value="Estado" />
+                            <p:selectOneRadio id="CondicionLaboral" value="#{detalleDialectoC.detalleDialecto.estado}" required="true" requiredMessage="Seleccione su Estado">
+
+                                <f:selectItem itemLabel="Activo" itemValue="A"/>
+                                <f:selectItem itemLabel="Inactivo" itemValue="I" /> 
+                            </p:selectOneRadio>
+
+                            <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                        </p:panelGrid>
+                    </h:form>
+
+                </p:dialog>
+
+            </ui:define>
         </ui:composition>
 
     </body>

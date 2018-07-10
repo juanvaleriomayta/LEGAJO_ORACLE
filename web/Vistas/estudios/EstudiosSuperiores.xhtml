@@ -40,7 +40,7 @@
                                 <p:graphicImage value="/resources/icon/Doc.png" width="24"/>
                                 <p:dataExporter type="doc" target="data" fileName="lstEmpleado" pageOnly="true"/>
                             </h:commandLink>
-                            <h1>Estudios Basicos del Empleado</h1> 
+                            <h1>Estudios Superiores del Empleado</h1> 
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
@@ -66,6 +66,7 @@
                         <p:column headerText="Graduacion Academica Obtenida" >
                             <p:outputLabel value="#{superior.gradAcadObte}"/>
                         </p:column>
+
                         <p:column headerText="Estado Laboral" >
                             <p:outputLabel value="#{superior.estado}"/>
                         </p:column>
@@ -134,10 +135,11 @@
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
 
-                            <p:outputLabel value="Nombre del Empleado"/>
-                            <p:autoComplete value="#{empleadoC.empleado.nom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
-                                <p:ajax event="itemSelect" listener="#{estudiosSuperiorC.lstEstudiosSuperior}" update="frm" />
+                            <p:outputLabel value="Empleado"/>
+                            <p:autoComplete value="#{estudiosSuperiorC.estudiosSuperior.empleadoNom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                                <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
                             </p:autoComplete>
+
                             <p:outputLabel value="Estado Laboral" />
 
                             <p:selectOneRadio id="EstadoLaboral" value="#{estudiosSuperiorC.estudiosSuperior.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
