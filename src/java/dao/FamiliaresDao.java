@@ -26,8 +26,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
             st.setString(8, fam.getEstCiv());
             st.setString(9, fam.getVive());
             st.setString(10, fam.getEstado());
-            st.setString(11, fam.getEmpleadoNom());
-            st.setString(12, fam.getEmpleadoApe());
+            st.setString(11, fam.getEmpleado());
+           
 
             st.executeUpdate();
         } catch (SQLException e) {
@@ -54,8 +54,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
             st.setString(8, fam.getEstCiv());
             st.setString(9, fam.getVive());
             st.setString(10, fam.getEstado());
-            st.setString(11, fam.getEmpleadoNom());
-            st.setString(12, fam.getEmpleadoApe());
+            st.setString(11, fam.getEmpleado());
+           
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -87,8 +87,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
                 fam.setEstCiv(rs.getString("EstCivFami"));
                 fam.setVive(rs.getString("viveFami"));
                 fam.setEstado(rs.getString("EstadoFami"));
-                fam.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                fam.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                fam.setEmpleado(rs.getString("Empleado"));
+          
                 lista.add(fam);
             }
         } catch (SQLException e) {
@@ -121,8 +121,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
                 fam.setEstCiv(rs.getString("EstCivFami"));
                 fam.setVive(rs.getString("viveFami"));
                 fam.setEstado(rs.getString("EstadoFami"));
-                fam.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                fam.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                fam.setEmpleado(rs.getString("Empleado"));
+              
                 lista.add(fam);
             }
         } catch (SQLException e) {
@@ -157,8 +157,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
                 fami.setEstCiv(rs.getString("EstCivFami"));
                 fami.setVive(rs.getString("viveFami"));
                 fami.setEstado(rs.getString("EstadoFami"));
-                fami.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                fami.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                fami.setEmpleado(rs.getString("Nombre del Empleado"));
+        
             }
         } catch (SQLException e) {
             throw e;
@@ -184,8 +184,8 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
             st.setString(8, fam.getEstCiv());
             st.setString(9, fam.getVive());
             st.setString(10, fam.getEstado());
-            st.setString(11, fam.getEmpleadoNom());
-            st.setString(12, fam.getEmpleadoApe());
+            st.setString(11, fam.getEmpleado());
+
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

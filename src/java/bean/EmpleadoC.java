@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -29,8 +30,8 @@ public class EmpleadoC implements Serializable {
             Logger.getLogger(EmpleadoC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-      public List<String> completeText(String query) throws SQLException {               
+
+    public List<String> completeText(String query) throws SQLException {
         EmpleadoDao dao = new EmpleadoDao();
         return dao.autocompleteEmpleado(query);
     }
@@ -94,18 +95,12 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-    public void leerID(Empleado emp) throws Exception {
+    public void leerID(String emp) throws Exception {
         EmpleadoDao dao;
-        Empleado temp;
-
         try {
             dao = new EmpleadoDao();
-            temp = dao.leerID(emp);
-
-            if (temp != null) {
-                this.empleado = temp;
-                this.accion = "Modificar";
-            }
+            this.empleado = dao.leerID(emp);
+            this.accion = "Modificar";
         } catch (Exception e) {
             throw e;
         }
@@ -117,8 +112,11 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.modificar(empleado);
-            this.listarActivos();
+            listarActivos();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "CORREGIR LOS DATOS"));
             throw e;
         }
     }

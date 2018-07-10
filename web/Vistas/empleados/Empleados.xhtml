@@ -108,9 +108,8 @@
                         </p:panelGrid>
                     </p:rowExpansion>
 
-                    <p:column >
-                        <p:commandButton  title="MODIFICAR LOS DATOS DEL EMPLEADO" icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
-                            <p:tooltip trackMouse="true"/>
+                    <p:column headerText="Modificar" exportable="false" >
+                        <p:commandButton  value="Modificar" icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
                         </p:commandButton>
                     </p:column>
 
@@ -246,7 +245,7 @@
                             <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
 
                         </p:selectOneRadio>
-                        <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                        <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                         <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
 
                     </p:panelGrid>

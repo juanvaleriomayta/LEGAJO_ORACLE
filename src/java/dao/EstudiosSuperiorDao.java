@@ -14,7 +14,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
     public void registrarEstudiosSuperiores(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,EspeSuper,CentrEstuSuper,DesdSuper,HastSuper,CulmiSuper,EstadoSuper,GradAcadObte,Empleado_idEmpl) values(?,?,?,?,CONVERT(DATE, ?,103),CONVERT(Date, ? , 103),?,?,?)";
+            String sql = "EXEC SP_ESTUDIOSUPER ?,?,?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
@@ -23,9 +23,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             st.setString(5, sup.getHast());
             st.setString(6, sup.getCulmi());
             st.setString(7, sup.getGradAcadObte());
-            st.setString(8, sup.getEstado());
-            st.setString(9, sup.getEmpleadoNom());
-            st.setString(10, sup.getEmpleadoApe());
+            st.setString(8, "A");
+            st.setString(9, sup.getCodiEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -39,7 +38,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
     public void registrar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO EstudiosSuperiores (EduSuper,EspeSuper,CentrEstuSuper,DesdSuper,HastSuper,CulmiSuper,EstadoSuper,GradAcadObte,Empleado_idEmpl) values(?,?,?,?,CONVERT(DATE,?,103),CONVERT(DATE,?,103),?,?,?)";
+            String sql = "EXEC SP_ESTUDIOSUPER ?,?,?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getEduSuper());
             st.setString(2, sup.getEspe());
@@ -48,9 +47,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             st.setString(5, sup.getHast());
             st.setString(6, sup.getCulmi());
             st.setString(7, sup.getGradAcadObte());
-            st.setString(8, sup.getEstado());
-            st.setString(9, sup.getEmpleadoNom());
-            st.setString(10, sup.getEmpleadoApe());
+            st.setString(8, "A");
+            st.setString(9, sup.getCodiEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -59,6 +57,27 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
         }
 
     }
+    
+      public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+        this.Conexion();
+        ResultSet rs;
+        List<String> Lista;
+        try {
+            String sql = "select concat(Nom,',',ApelPate,',',ApelMate) AS Empleado from Empleado where UPPER(Nom) like UPPER(?) or UPPER(ApelPate) like UPPER(?)  or UPPER(ApelMate) like UPPER(?)";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, "%" + Consulta + "%");
+            Lista = new ArrayList<>();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Lista.add(rs.getString("Empleado"));
+            }
+            return Lista;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
 
     @Override
     public List<EstudiosSuperior> listar() throws Exception {
@@ -81,8 +100,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
                 sup.setCulmi(rs.getString("CulmiSuper"));
                 sup.setGradAcadObte(rs.getString("GradAcadObte"));
                 sup.setEstado(rs.getString("EstadoSuper"));
-                sup.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                sup.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                sup.setEmpleado(rs.getString("Empleado"));
                 lista.add(sup);
             }
         } catch (SQLException e) {
@@ -93,8 +111,10 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
         return lista;
     }
 
+    
+    @Override
     public List<EstudiosSuperior> listarInactivos() throws Exception {
-        List<EstudiosSuperior> lista;
+        List<EstudiosSuperior> listar;
         ResultSet rs;
 
         try {
@@ -102,7 +122,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             String sql = "select * from vw_EstuSuperEmplInac";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
-            lista = new ArrayList();
+            listar = new ArrayList();
             while (rs.next()) {
                 EstudiosSuperior sup = new EstudiosSuperior();
                 sup.setEduSuper(rs.getString("EduSuper"));
@@ -110,19 +130,18 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
                 sup.setCentrEstu(rs.getString("CentrEstuSuper"));
                 sup.setDesd(rs.getString("DesdSuper"));
                 sup.setHast(rs.getString("HastSuper"));
-                sup.setCulmi(rs.getString("CulmiSupe"));
+                sup.setCulmi(rs.getString("CulmiSuper"));
                 sup.setGradAcadObte(rs.getString("GradAcadObte"));
                 sup.setEstado(rs.getString("EstadoSuper"));
-                sup.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                sup.setEmpleadoApe(rs.getString("Apellido del Empleado"));
-                lista.add(sup);
+                sup.setEmpleado(rs.getString("Empleado"));
+                listar.add(sup);
             }
         } catch (SQLException e) {
             throw e;
         } finally {
             this.Cerrar();
         }
-        return lista;
+        return listar;
     }
 
     @Override
@@ -147,8 +166,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
                 supe.setCulmi(rs.getString("CulmiSuper"));
                 supe.setGradAcadObte(rs.getString("GradAcadObte"));
                 supe.setEstado(rs.getString("EstadoSuper"));
-                supe.setEmpleadoNom(rs.getString("Nombre del Empleado"));
-                supe.setEmpleadoApe(rs.getString("Apellido del Empleado"));
+                supe.setEmpleado(rs.getString("idEmpl"));
 
             }
         } catch (SQLException e) {
@@ -173,8 +191,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             st.setString(6, sup.getCulmi());
             st.setString(7, sup.getGradAcadObte());
             st.setString(8, sup.getEstado());
-            st.setString(9, sup.getEmpleadoNom());
-            st.setString(10, sup.getEmpleadoApe());
+            st.setString(9, sup.getCodiEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

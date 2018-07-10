@@ -1,7 +1,10 @@
 package bean;
 
 import dao.DetalleDialectoDao;
+import dao.DialectoDao;
+import dao.EmpleadoDao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,8 +18,6 @@ public class DetalleDialectoC implements Serializable {
     private List<DetalleDialecto> lstDetalleDialecto;
     private String accion;
 
-  
-
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -27,22 +28,31 @@ public class DetalleDialectoC implements Serializable {
                 break;
         }
     }
-
     public void limpiar() {
         detalleDialecto = new DetalleDialecto();
     }
 
-    private void registrar() throws Exception {
+    public void registrar() throws Exception {
         DetalleDialectoDao dao;
-
+        EmpleadoDao dao2;
+        DialectoDao dao3;
         try {
             dao = new DetalleDialectoDao();
+            dao2 = new EmpleadoDao();
+            dao3 = new DialectoDao();
+            detalleDialecto.setCodEmpleado(dao2.obtenerCodigoEmpleado(detalleDialecto.getEmpleado()));
+            detalleDialecto.setCodDialecto(dao3.obtenerCodigoDialecto(detalleDialecto.getDialecto()));
             dao.registrar(detalleDialecto);
             this.listarActivos();
-
+            this.limpiar();
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public List<String> completText(String query) throws SQLException {
+        DetalleDialectoDao dao = new DetalleDialectoDao();
+        return dao.autocompleteEmpleado(query);
     }
 
     public void listarActivos() throws Exception {
@@ -55,12 +65,13 @@ public class DetalleDialectoC implements Serializable {
             throw e;
         }
     }
-     public void listarInactivos() throws Exception {
+
+    public void listarInactivos() throws Exception {
         DetalleDialectoDao dao;
 
         try {
             dao = new DetalleDialectoDao();
-           lstDetalleDialecto = dao.listarInactivos();
+            lstDetalleDialecto = dao.listarInactivos();
         } catch (Exception e) {
             throw e;
         }
@@ -83,7 +94,7 @@ public class DetalleDialectoC implements Serializable {
         }
     }
 
-    private void modificar() throws Exception {
+    public void modificar() throws Exception {
         DetalleDialectoDao dao;
         try {
             dao = new DetalleDialectoDao();
@@ -104,8 +115,9 @@ public class DetalleDialectoC implements Serializable {
             throw e;
         }
     }
+
     //Getter and Setter
-      public DetalleDialecto getDetalleDialecto() {
+    public DetalleDialecto getDetalleDialecto() {
         return detalleDialecto;
     }
 
@@ -117,7 +129,7 @@ public class DetalleDialectoC implements Serializable {
         this.limpiar();
         this.accion = accion;
     }
-    
+
     public void setDetalleDialecto(DetalleDialecto detalleDialecto) {
         this.detalleDialecto = detalleDialecto;
     }

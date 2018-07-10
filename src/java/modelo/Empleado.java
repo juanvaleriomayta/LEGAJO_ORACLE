@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Empleado {
 
-    private int idEmpl;
+    private String idEmpl;
     private String DNI;
     private String Nom;
     private String ApelPate;

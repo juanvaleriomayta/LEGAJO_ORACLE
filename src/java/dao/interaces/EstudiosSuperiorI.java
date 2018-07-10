@@ -31,4 +31,7 @@ public interface EstudiosSuperiorI {
     
     //Este emtodo sirve para eliminar los datos superiores del empleado
     public void eliminar(EstudiosSuperior sup) throws Exception;
+    
+    //Este metodo sirve para listar todos los inactivos
+    public List<EstudiosSuperior> listarInactivos() throws Exception ;
 }

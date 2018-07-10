@@ -11,7 +11,7 @@
             <ui:define name="EstudiosBasicos">
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
-                    <f:event type="preRenderView" listener="#{empleadoC.listarActivos()}" />
+                    <f:event type="preRenderView" listener="#{estudiosBasicosC.listar()}" />
 
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosBasicosC.setAccion('Registrar')}" update=":dlgDatos"/>
                     <p:dataTable id="data"  value="#{estudiosBasicosC.lstEstudiosBasicos}" var="basicos" rows="10"
@@ -61,7 +61,7 @@
                             <p:outputLabel value="#{basicos.empleado}"/>
                         </p:column>
                         <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
                         <p:column headerText="Eliminar" exportable="false">
                             <p:commandButton value="Eliminar" actionListener="#{estudiosBasicosC.eliminar(basicos)}" update="data" style="background-color:red;color:red;">
@@ -100,7 +100,6 @@
 
                             <p:outputLabel value="Nombre del Empleado"/>
                             <p:autoComplete value="#{estudiosBasicosC.estudiosBasicos.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
-                                <p:ajax event="itemSelect" listener="#{estudiosBasicosC.lstEstudiosBasicos}" update="frm" />
                             </p:autoComplete>
 
 
@@ -110,8 +109,8 @@
                             <p:outputLabel value="Hasta" />
                             <p:inputMask id="Hasta" value="#{estudiosBasicosC.estudiosBasicos.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
 
-                            <p:commandButton value="#{estudiosBasicosC.accion}" actionListener="#{estudiosBasicosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton value="#{estudiosBasicosC.accion}" actionListener="#{estudiosBasicosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="CANCELAR" icon="ui-icon-close" immediate="true" onclick="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>
 

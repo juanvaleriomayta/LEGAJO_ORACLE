@@ -1,12 +1,16 @@
 package bean;
 
+import com.sun.istack.logging.Logger;
 import dao.EmpleadoDao;
 import dao.EstudiosBasicosDao;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import modelo.Empleado;
 import modelo.EstudiosBasicos;
 
 @ManagedBean
@@ -23,15 +27,17 @@ public class EstudiosBasicosC implements Serializable {
         try {
             dao = new EstudiosBasicosDao();
             dao.registrarEstudiosBasicos(estudiosBasicos);
-            this.limpiar();
-            this.listar();
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
             throw e;
 
         }
     }
-    
-    public List<String> completeText(String query) throws SQLException{
+
+    public List<String> completeText(String query) throws SQLException {
         EstudiosBasicosDao dao = new EstudiosBasicosDao();
         return dao.autocompleteEmpleado(query);
     }
@@ -51,10 +57,10 @@ public class EstudiosBasicosC implements Serializable {
         estudiosBasicos = new EstudiosBasicos();
     }
 
-    private void registrar() throws Exception {
+    public void registrar() throws Exception {
         EstudiosBasicosDao dao;
         EmpleadoDao dao2;
-                
+
         try {
             dao = new EstudiosBasicosDao();
             dao2 = new EmpleadoDao();
@@ -89,31 +95,30 @@ public class EstudiosBasicosC implements Serializable {
         }
     }
 
-    public void leerID(EstudiosBasicos bas) throws Exception {
+    public void leerID(String Codigo) throws Exception {
         EstudiosBasicosDao dao;
-        EstudiosBasicos temp;
-
         try {
             dao = new EstudiosBasicosDao();
-            temp = dao.leerID(bas);
-
-            if (temp != null) {
-                this.estudiosBasicos = temp;
-                this.accion = "Modificar";
-            }
+            this.estudiosBasicos = dao.leerID(Codigo);
+            this.accion = "Modificar";
         } catch (Exception e) {
             throw e;
         }
     }
 
-    private void modificar() throws Exception {
+    public void modificar() throws Exception {
         EstudiosBasicosDao dao;
-
+        EmpleadoDao dao2;
         try {
             dao = new EstudiosBasicosDao();
+            dao2 = new EmpleadoDao();
+            estudiosBasicos.setCodEmpleado(dao2.obtenerCodigoEmpleado(estudiosBasicos.getEmpleado()));
             dao.modificar(estudiosBasicos);
-            this.listar();
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "CORREGIR LOS DATOS"));
             throw e;
         }
     }
@@ -124,7 +129,7 @@ public class EstudiosBasicosC implements Serializable {
         try {
             dao = new EstudiosBasicosDao();
             dao.eliminar(bas);
-            this.listar();
+            listar();
         } catch (Exception e) {
             throw e;
         }

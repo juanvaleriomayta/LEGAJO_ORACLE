@@ -1,7 +1,9 @@
 package bean;
 
+import dao.EmpleadoDao;
 import dao.EstudiosSuperiorDao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -28,6 +30,11 @@ public class EstudiosSuperiorC implements Serializable {
 
         }
     }
+    
+    public List<String> completeText (String query) throws SQLException{
+        EstudiosSuperiorDao dao = new EstudiosSuperiorDao();
+        return dao.autocompleteEmpleado(query);
+    }
 
     public void operar() throws Exception {
         switch (accion) {
@@ -45,11 +52,14 @@ public class EstudiosSuperiorC implements Serializable {
 
     }
 
-    private void registrar() throws Exception {
+    public void registrar() throws Exception {
         EstudiosSuperiorDao dao;
+        EmpleadoDao dao2;
 
         try {
             dao = new EstudiosSuperiorDao();
+            dao2 = new EmpleadoDao();
+            estudiosSuperior.setCodiEmpleado(dao2.obtenerCodigoEmpleado(estudiosSuperior.getEmpleado()));
             dao.registrar(estudiosSuperior);
             this.listar();
         } catch (Exception e) {
@@ -64,6 +74,17 @@ public class EstudiosSuperiorC implements Serializable {
         try {
             dao = new EstudiosSuperiorDao();
             lstEstudiosSuperior = dao.listar();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+     public void listarInactivos() throws Exception {
+        EstudiosSuperiorDao dao;
+
+        try {
+            dao = new EstudiosSuperiorDao();
+            lstEstudiosSuperior = dao.listarInactivos();
         } catch (Exception e) {
             throw e;
         }
@@ -86,7 +107,7 @@ public class EstudiosSuperiorC implements Serializable {
         }
     }
 
-    private void modificar() throws Exception {
+    public void modificar() throws Exception {
         EstudiosSuperiorDao dao;
 
         try {

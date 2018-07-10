@@ -24,7 +24,7 @@ public interface EstudiosBasicosI {
      public List<EstudiosBasicos> listar() throws Exception;
      
      //Este metodo permite leer los codigos identificadores de datos basicos del empleado
-     public EstudiosBasicos leerID(EstudiosBasicos bas) throws Exception ;
+     public EstudiosBasicos leerID(String bas) throws Exception ;
      
      //Este metodo permite modificar los datos basicos del empleado
      public void modificar(EstudiosBasicos bas) throws Exception;

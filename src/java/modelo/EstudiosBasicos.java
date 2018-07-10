@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class EstudiosBasicos {
 
-    private int IdEstuBasi;
+    private String IdEstuBasi;
     private String Educ;
     private String Culmi;
     private String CentrEstu;

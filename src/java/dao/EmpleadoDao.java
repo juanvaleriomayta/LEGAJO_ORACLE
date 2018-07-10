@@ -102,8 +102,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         }
 
     }
-    
-      public String obtenerCodigoEmpleado(String Empleado) throws SQLException {
+
+    public String obtenerCodigoEmpleado(String Empleado) throws SQLException {
         this.Conexion();
         ResultSet rs;
         try {
@@ -155,6 +155,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             lista = new ArrayList();
             while (rs.next()) {
                 Empleado emp = new Empleado();
+                emp.setIdEmpl(rs.getString("idEmpl"));
                 emp.setDNI(rs.getString("DNI"));
                 emp.setNom(rs.getString("Nom"));
                 emp.setApelPate(rs.getString("ApelPate"));
@@ -249,19 +250,19 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     }
 
     @Override
-    public Empleado leerID(Empleado emp) throws Exception {
+    public Empleado leerID(String codigo) throws Exception {
         Empleado emple = null;
         ResultSet rs;
 
         try {
             this.Conexion();
-            String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(nvarchar(10),FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(nvarchar(10),FecIng,103) AS FecIng,CONVERT(nvarchar(10),FecNom,103) AS FecNom,DatCony,UbigActu,UbigOrig,Est FROM Empleado WHERE idEmpl=?";
+            String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(nvarchar(10),FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(nvarchar(10),FecIng,103) AS FecIng,CONVERT(nvarchar(10),FecNom,103) AS FecNom,DatCony,UbigActu,Est,Origen FROM Empleado WHERE idEmpl=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setInt(1, emp.getIdEmpl());
+            st.setString(1, codigo);
             rs = st.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 emple = new Empleado();
-                emple.setIdEmpl(rs.getInt("idEmpl"));
+                emple.setIdEmpl(rs.getString("idEmpl"));
                 emple.setDNI(rs.getString("DNI"));
                 emple.setNom(rs.getString("Nom"));
                 emple.setApelPate(rs.getString("ApelPate"));
@@ -276,14 +277,13 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emple.setConLab(rs.getString("ConLab"));
                 emple.setCarnAseg(rs.getString("CarnAseg"));
                 emple.setRefe(rs.getString("Refe"));
-                emple.setUbigActu(rs.getString("Direccion"));
-                //             emple.setOrigen(rs.getString("Lugar de Nacimiento"));
                 emple.setLeye(rs.getString("Leye"));
                 emple.setFecIng(rs.getString("FecIng"));
                 emple.setFecNom(rs.getString("FecNom"));
                 emple.setDatCony(rs.getString("DatCony"));
+                emple.setUbigActu(rs.getString("Direccion"));
                 emple.setEst(rs.getString("Est"));
-
+                emple.setOrigen(rs.getString("Lugar de Nacimiento"));
             }
         } catch (SQLException e) {
             throw e;
@@ -297,31 +297,33 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void modificar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE Empleado SET DNI = ?, Nom = ?, ApelPate = ?, ApelMate = ?,RUC = ?, Email = ?,Telf = ?,Cel = ?,FecNac = convert(date, ?, 103),GrupSang = ?,EstCiv = ?,ConLab = ?,CarnAseg = ?,Refe = ?,Leye = ?,FecIng = convert(date, ?, 103),FecNom = convert(date, ?, 103),DatCony = ?,UbigActu = ?,UbigOrig = ?,Est = ? WHERE idEmpl = ?";
+            String sql = "EXEC SP_EMPLEADO_UPDATE ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+//            String sql = "UPDATE Empleado SET DNI = ?, Nom = ?, ApelPate = ?, ApelMate = ?,RUC = ?, Email = ?,Telf = ?,Cel = ?,FecNac=to_date(?,'DD/MM/YYYY'),GrupSang = ?,EstCiv = ?,ConLab = ?,CarnAseg = ?,Refe = ?,Leye = ?,FecIng=to_date('DD/MM/YYYY'),FecNom=to_date('DD/MM/YYYY'),DatCony = ?,UbigActu = ?,UbigOrig = ?,Est = ? WHERE idEmpl = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, emp.getDNI());
-            st.setString(2, emp.getNom());
-            st.setString(3, emp.getApelPate());
-            st.setString(4, emp.getApelMate());
-            st.setString(5, emp.getRUC());
-            st.setString(6, emp.getEmail());
-            st.setString(7, emp.getTelf());
-            st.setString(8, emp.getCel());
-            st.setString(9, emp.getFecNac());
-            st.setString(10, emp.getGrupSang());
-            st.setString(11, emp.getEstCiv());
-            st.setString(12, emp.getConLab());
-            st.setString(13, emp.getCarnAseg());
-            st.setString(14, emp.getRefe());
-            st.setString(15, emp.getLeye());
-            st.setString(16, emp.getFecIng());
-            st.setString(17, emp.getFecNom());
-            st.setString(18, emp.getDatCony());
-            st.setString(19, emp.getUbigActu());
-//            st.setString(20, emp.getOrigen());
-            st.setString(20, emp.getEst());
-            st.setInt(21, emp.getIdEmpl());
-//            st.setString(23, emp.getPass());
+            st.setString(1, emp.getIdEmpl());
+            st.setString(2, emp.getDNI());
+            st.setString(3, emp.getNom());
+            st.setString(5, emp.getApelPate());
+            st.setString(5, emp.getApelMate());
+            st.setString(6, emp.getRUC());
+            st.setString(7, emp.getEmail());
+            st.setString(8, emp.getTelf());
+            st.setString(9, emp.getCel());
+            st.setString(10, emp.getFecNac());
+            st.setString(11, emp.getGrupSang());
+            st.setString(12, emp.getEstCiv());
+            st.setString(13, emp.getConLab());
+            st.setString(14, emp.getCarnAseg());
+            st.setString(15, emp.getRefe());
+            st.setString(16, emp.getLeye());
+            st.setString(17, emp.getFecIng());
+            st.setString(18, emp.getFecNom());
+            st.setString(19, emp.getDatCony());
+            st.setString(20, emp.getUbigActu());
+            st.setString(21, emp.getEst());
+            st.setString(22, emp.getOrigen());
+
+            //            st.setString(23, emp.getPass());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -334,9 +336,10 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void eliminar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update Empleado set Est = 'I' WHERE idEmpl = ?";
+            String sql = "Update Empleado set Est=? WHERE idEmpl = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setInt(1, emp.getIdEmpl());
+            st.setString(1, "I");
+            st.setString(2, emp.getIdEmpl());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

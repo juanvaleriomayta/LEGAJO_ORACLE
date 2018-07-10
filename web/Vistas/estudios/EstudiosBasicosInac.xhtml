@@ -11,7 +11,7 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="EstudiosBasicosInactivos">
-                <!--<f:event type="preRenderView" listener="#{estudiosBasicosC.listarInactivos()}" />-->
+                <f:event type="preRenderView" listener="#{estudiosBasicosC.listarInactivos()}" />
                 <p:growl autoUpdate="true" />
                 <h:form id="frm">
 <!--                    <p:button outcome="index" value="Salir" icon="ui-icon-exit">
@@ -69,7 +69,7 @@
                         
 
                         <p:column headerText="Activar" exportable="false">
-                            <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton value="Activar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
 
                     </p:dataTable>               

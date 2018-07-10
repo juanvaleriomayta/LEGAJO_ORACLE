@@ -5,17 +5,18 @@ import lombok.Data;
 @Data
 public class DetalleDialecto {
 
-    private int idDetDial;
+    private String idDetDial;
     private String Lee;
     private String Habla;
     private String Escribe;
     private String Estado;
     
     //Empleado
-    private String EmpleadoNom;
-    private String EmpleadoApel;
+    private String Empleado;
+    private String CodEmpleado;
     
     //Dialecto
-    private String DialectoNom;           
+    private String Dialecto;
+    private String CodDialecto;
 
 }

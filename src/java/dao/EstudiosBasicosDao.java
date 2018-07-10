@@ -87,6 +87,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
             lista = new ArrayList();
             while (rs.next()) {
                 EstudiosBasicos bas = new EstudiosBasicos();
+                bas.setIdEstuBasi(rs.getString("IdEstuBasi"));
                 bas.setEduc(rs.getString("EducBasi"));
                 bas.setCulmi(rs.getString("CulmiBasi"));
                 bas.setCentrEstu(rs.getString("CentrEstuBasi"));
@@ -110,7 +111,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
 
         try {
             this.Conexion();
-            String sql = "Select * FROM vw_EstuBasiEmplInac";
+            String sql = "SELECT * FROM vw_EstuBasiEmplInac";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -134,27 +135,25 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     }
 
     @Override
-    public EstudiosBasicos leerID(EstudiosBasicos bas) throws Exception {
+    public EstudiosBasicos leerID(String Codigo) throws Exception {
         EstudiosBasicos basi = null;
         ResultSet rs;
-
         try {
             this.Conexion();
-            String sql = "SELECT IdEstuBasi, EducBasi,CulmiBasi,CentrEstuBasi,CONVERT(nvarchar(10),DesdBasi,103) AS DesdBasi,CONVERT(nvarchar(10),HasBasi,103) AS HasBasi,EstadoBasi,Empleado_idEmpl  FROM EstudioBasicos WHERE IdEstuBasi=?";
+            String sql = "SELECT IdEstuBasi, EducBasi,CulmiBasi,CentrEstuBasi,CONVERT(nvarchar(10),DesdBasi,103) AS DesdBasi,CONVERT(nvarchar(10),HasBasi,103) AS HasBasi,EstadoBasi,UPPER(CONCAT (Empleado.Nom,',',Empleado.ApelPate,',',Empleado.ApelMate)) AS 'Empleado'  FROM EstudioBasicos LEFT OUTER JOIN Empleado ON EstudioBasicos.Empleado_idEmpl = Empleado.idEmpl WHERE IdEstuBasi=? ";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setInt(1, bas.getIdEstuBasi());
+            st.setString(1, Codigo);
             rs = st.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 basi = new EstudiosBasicos();
-                basi.setIdEstuBasi(rs.getInt("IdEstuBasi"));
+                basi.setIdEstuBasi(rs.getString("IdEstuBasi"));
                 basi.setEduc(rs.getString("EducBasi"));
                 basi.setCulmi(rs.getString("CulmiBasi"));
                 basi.setCentrEstu(rs.getString("CentrEstuBasi"));
                 basi.setDesd(rs.getString("DesdBasi"));
                 basi.setHas(rs.getString("HasBasi"));
                 basi.setEstado(rs.getString("EstadoBasi"));
-                basi.setEmpleado(rs.getString("idEmpl"));
-
+                basi.setEmpleado(rs.getString("Empleado"));
             }
         } catch (SQLException e) {
             throw e;
@@ -168,16 +167,18 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void modificar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE EstudioBasicos SET EducBasi = ?, CulmiBasi=?,CentrEstuBasi=? , DesdBasi = convert(date, ?, 103), HasBasi = convert(date, ?, 103),EstadoBasi=?,Empleado_idEmpl  WHERE IdEstuBasi = ?";
+            String sql =" EXEC SP_EstudiosBasicosUpdate ?,?,?,?,?,?,?,?";
+//            String sql = "SP_EstudiosBasicosUpdate @IdEstuBasi=?,@EducBasi=?,@CulmiBasi=?,@CentrEstuBasi=?,@DesdBasi=?,@HasBasi=?,@EstadoBasi=?,@Empleado_idEmpl=? ";
+//            String sql = "UPDATE EstudioBasicos SET EducBasi = ?, CulmiBasi=?,CentrEstuBasi=? , DesdBasi = convert(date, ?, 103), HasBasi = convert(date, ?, 103),EstadoBasi=?,Empleado_idEmpl  WHERE IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, bas.getEduc());
-            st.setString(2, bas.getCulmi());
-            st.setString(3, bas.getCentrEstu());
-            st.setString(4, bas.getDesd());
-            st.setString(5, bas.getHas());
-            st.setInt(6, bas.getIdEstuBasi());
+            st.setString(1, bas.getIdEstuBasi());
+            st.setString(2, bas.getEduc());
+            st.setString(3, bas.getCulmi());
+            st.setString(4, bas.getCentrEstu());
+            st.setString(5, bas.getDesd());
+            st.setString(6, bas.getHas());
             st.setString(7, bas.getEstado());
-            st.setString(8, bas.getEmpleado());
+            st.setString(8, bas.getCodEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -190,9 +191,10 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void eliminar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update EstudioBasicos set Estado = 'I' where = IdEstuBasi = ?";
+            String sql = "Update EstudioBasicos set Estado =? where = IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setInt(1, bas.getIdEstuBasi());
+            st.setString(1, "I");
+            st.setString(1, bas.getIdEstuBasi());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

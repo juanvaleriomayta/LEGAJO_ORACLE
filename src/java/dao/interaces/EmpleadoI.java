@@ -27,7 +27,7 @@ public interface EmpleadoI {
     public List<Empleado> listarInactivos() throws Exception;
 
     //Este metodo permite leer los codigos identificadores de cada mpleado
-    public Empleado leerID(Empleado emp) throws Exception;
+    public Empleado leerID(String emp) throws Exception;
 
     //Este metodo permite modificar loa datos registrados del empleado
     public void modificar(Empleado emp) throws Exception;
