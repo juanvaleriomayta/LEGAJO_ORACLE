@@ -281,9 +281,9 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emple.setFecIng(rs.getString("FecIng"));
                 emple.setFecNom(rs.getString("FecNom"));
                 emple.setDatCony(rs.getString("DatCony"));
-                emple.setUbigActu(rs.getString("Direccion"));
+                emple.setUbigActu(rs.getString("UbigActu"));
                 emple.setEst(rs.getString("Est"));
-                emple.setOrigen(rs.getString("Lugar de Nacimiento"));
+                emple.setOrigen(rs.getString("Origen"));
             }
         } catch (SQLException e) {
             throw e;
@@ -303,7 +303,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(1, emp.getIdEmpl());
             st.setString(2, emp.getDNI());
             st.setString(3, emp.getNom());
-            st.setString(5, emp.getApelPate());
+            st.setString(4, emp.getApelPate());
             st.setString(5, emp.getApelMate());
             st.setString(6, emp.getRUC());
             st.setString(7, emp.getEmail());
