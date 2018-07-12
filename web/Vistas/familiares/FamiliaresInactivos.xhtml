@@ -11,6 +11,7 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="FamiliaresInactivos">
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                 <f:event type="preRenderView" listener="#{familiaresC.listarInactivos()}" />
 
                 <p:growl autoUpdate="true" />

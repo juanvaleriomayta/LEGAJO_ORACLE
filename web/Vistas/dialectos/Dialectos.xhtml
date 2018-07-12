@@ -10,14 +10,10 @@
 
         <ui:composition template="./../template/Template.xhtml">
 
-            <ui:define name="left">
-                left
-            </ui:define>
-
             <ui:define name="content">
                 <p:growl id="msj" autoUpdate="true"/>
         <h:form id="frm">
-
+            <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
             
             <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{dialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
             <p:commandButton value="Listar" actionListener="#{dialectoC.listar()}" update="data"/>

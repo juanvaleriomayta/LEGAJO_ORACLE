@@ -13,7 +13,7 @@
 
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
-
+                    <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{emergenciaC.setAccion('Registrar')}" update=":dlgDatos"/>
 
                     <p:commandButton value="Listar" actionListener="#{emergenciaC.listar()}" update="data"/>

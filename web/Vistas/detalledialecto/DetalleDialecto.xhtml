@@ -10,9 +10,9 @@
     <body>
 
         <ui:composition template="./../template/Template.xhtml">
-
+            
             <ui:define name="DetalleDialecto">
-
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                 <f:event type="preRenderView" listener="#{detalleDialectoC.listarActivos()}" />
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">

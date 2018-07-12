@@ -12,7 +12,7 @@
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
                     <f:event type="preRenderView" listener="#{estudiosBasicosC.listar()}" />
-
+                    <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosBasicosC.setAccion('Registrar')}" update=":dlgDatos"/>
                     <p:dataTable id="data"  value="#{estudiosBasicosC.lstEstudiosBasicos}" var="basicos" rows="10"
                                  paginator="true"

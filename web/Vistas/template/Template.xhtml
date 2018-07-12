@@ -41,19 +41,11 @@
                 <li><a href="../familiares/Familiares.xhtml">Familiares</a></li>
                 <li><a href="../emergencias/Emergencias.xhtml">Emergencias</a></li>
                 <li><a href="../detalledialecto/DetalleDialecto.xhtml">Detalle Dialecto</a></li>
-               
+                <p:button  href="Login" value="Sign out" icon="ui-icon-star"/>
+
 
             </ul>
-            <ul class="social ul-base">
-                <li><a href="https://twitter.com/MediahawkZ" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://www.facebook.com/mediahawkz" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://plus.google.com/+MediahawkzIndia" class="google-plus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="http://www.mediahawkz.com/rss" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
-            </ul>
-            <div class="copyright">
-                <span>&copy; 2016 <a href="http://www.mediahawkz.com" class="link">MediahawkZ.com</a> Made in India</span>
-                <span>Designed by <a href="https://twitter.com/rkchauhan01" target="_blank">Ravikumar Chauhan</a></span>
-            </div>
+
         </nav><!-- @end nav -->
 
         <!-- header -->
@@ -76,8 +68,8 @@
                                 <li><a href="../familiares/FamiliaresInactivos.xhtml">Familiares Inactivos</a></li>
                                 <li><a href="../detalledialecto/DetalleDialectoInac.xhtml">Detalle Dialecto Inactivos</a></li>
                                 <li><a href="../familiares/FamiliaresInactivos.xhtml">Familiares Inactivos</a></li>
-                                
-                                
+
+
                             </ul>
                         </li>
                     </ul>
@@ -90,11 +82,11 @@
                 </div>
                 <div class="header-menu">
                     <ul class="ul-base">
-                        <li><a href="https://twitter.com/MediahawkZ" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.facebook.com/mediahawkz" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://plus.google.com/+MediahawkzIndia" class="google-plus" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="http://www.mediahawkz.com/rss" class="rss" target="_blank"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="http://www.mediahawkz.com/admin">Login</a></li>
+                        <h:form>
+                        <p:commandButton value="Cerrar Session" actionListener="#{Login.finishSession()}"/>
+                        </h:form>
+
+
                     </ul>
                 </div>
             </div>
@@ -118,6 +110,7 @@
             <ui:insert name="FamiliaresInactivos"></ui:insert>
             <ui:insert name="DetalleDialecto"></ui:insert>
             <ui:insert name="DetalleDialectoInac"></ui:insert>
+
         </main>
         <!-- @end main -->
 

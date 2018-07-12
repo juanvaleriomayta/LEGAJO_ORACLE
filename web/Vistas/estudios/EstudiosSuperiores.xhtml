@@ -12,6 +12,7 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="EstudiosSuperiores">
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                 <f:event type="preRenderView" listener="#{estudiosSuperiorC.listar()}" />
 
                 <p:growl id="msj" autoUpdate="true"/>

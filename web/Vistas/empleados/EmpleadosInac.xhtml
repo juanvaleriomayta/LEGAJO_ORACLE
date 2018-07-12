@@ -16,8 +16,8 @@
 <!--            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
                 <f:param name="productId" value="50" />
             </p:button>-->
-
-
+            
+            <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
             <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

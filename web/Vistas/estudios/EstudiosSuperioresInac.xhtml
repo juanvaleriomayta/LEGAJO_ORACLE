@@ -12,6 +12,7 @@
          
 
             <ui:define name="EstudiosSuperioresInactivos">
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                 <f:event type="preRenderView" listener="#{estudiosSuperiorC.listarInactivos()}" />
                 <h:form id="frm" >
                    

@@ -17,6 +17,7 @@
     </h:head>
 
     <h:body>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -29,14 +30,18 @@
                         </div>
                     </div>
                     <div class="wrap">
-                        <p class="form-title">Login</p>
+                        <p class="form-title">Login</p> 
 
                         <form class="login">
-                            <input type="text" placeholder="Username" required="required" />
-                            <input type="password" placeholder="Password" required="required" />
-                            <div type="submit" value="Sign In" class="btn btn-primary btn-block btn-large">
-                                <a href="Vistas/empleados/Empleados.xhtml" required="required"><h5>Login</h5></a> 
-                            </div>
+                            <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
+                            <h:form id="form">
+                                <p:inputText value="#{Login.DNI}" required="true" placeholder="Usuario" />
+                                <p:password value="#{Login.pass}" required="true" placeholder="Contraseña" />
+                                <p:commandButton id="BtnIniciarSesion" type="submit" value="Ingresar" class="btn btn-primary btn-block btn-large" actionListener="#{Login.startSessionEmpleado()}"/>
+                                <p:blockUI block="form" trigger="BtnIniciarSesion"/>
+                            </h:form>
+
+
 
 
 
@@ -53,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 forgot-pass-content">
-                                        <a href="Vistas/template/Template.xhtml" class="forgot-pass">Forgot Password</a>
+                                        <a href="Vistas/template/Template.xhtml" class="forgot-pass">Crear Cuenta</a>
                                     </div>
 
                                 </div>
@@ -66,6 +71,8 @@
             </div>
 
         </div>
+
+
 
     </h:body>
 </html>

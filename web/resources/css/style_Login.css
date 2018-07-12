@@ -23,7 +23,7 @@ p.form-title
     font-size: 50px;
     font-weight: 600;
     text-align: center;
-    color: #000000;
+    color: #FFFFFF;
     margin-top: 25%;
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -37,6 +37,7 @@ form
 
 form.login input[type="text"], form.login input[type="password"]
 {
+    background: transparent;
     width: 100%;
     margin: 0;
     padding: 10px 19px;
@@ -50,12 +51,13 @@ form.login input[type="text"], form.login input[type="password"]
     font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 5px;
-    color: #000000;
+    color: #FFFFFF;
     outline: 0;
 }
 
 form.login input[type="submit"]
 {
+    background: transparent;
     width: 100%;
     font-size: 14px;
     text-transform: uppercase;
