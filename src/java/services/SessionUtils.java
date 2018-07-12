@@ -6,11 +6,11 @@ import javax.faces.context.FacesContext;
 public class SessionUtils {
 
     public static Empleado obtenerObjetoSesion() {
-        return (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("username");
+        return (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("DNI");
     }
 
     public static String ObtenerNombreSesion() {
-        Empleado us = (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("username");
+        Empleado us = (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("DNI");
         if (us != null) {
             return us.getNom();
         } else {
@@ -19,7 +19,7 @@ public class SessionUtils {
     }
 
     public static String ObtenerCodigoSesion() {
-        Empleado us = (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("username");
+        Empleado us = (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("DNI");
         if (us != null) {
             return us.getIdEmpl();
         } else {

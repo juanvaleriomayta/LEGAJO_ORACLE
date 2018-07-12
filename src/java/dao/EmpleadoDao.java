@@ -152,6 +152,8 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setTelf(rs.getString("Telf"));
                 emp.setUbigActu(rs.getString("UbigActu"));
                 emp.setOrigen(rs.getString("Origen"));
+                emp.setDNI(DNI);
+                emp.setPass(Pass);
 //                emp.setFamiliaresNom(rs.getString("NomFami"));
 //                emp.setFamiliaresApe(rs.getString("ApelFami"));
 //                emp.setEmergenciaNom(rs.getString("NomEmer"));

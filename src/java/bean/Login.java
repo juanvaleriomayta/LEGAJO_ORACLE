@@ -49,8 +49,13 @@ public class Login implements Serializable {
     }
 
     public void securityLogin() throws IOException {
-        if (SessionUtils.obtenerObjetoSesion() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
+        Empleado us = SessionUtils.obtenerObjetoSesion();
+        if (us != null) {
+            switch (us.getEst()) {
+                case "A":
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
+                    break;                            
+            }
         }
     }
 
