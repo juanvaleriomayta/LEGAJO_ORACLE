@@ -73,7 +73,7 @@
 
 
                         <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior.idEstuSuper)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
                         <p:column headerText="Eliminar" exportable="false">
                             <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
@@ -138,7 +138,7 @@
 
                        
 
-                            <p:commandButton value="#{estudiosSuperiorC.accion}" actionListener="#{estudiosSuperiorC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton value="#{estudiosSuperiorC.accion}" actionListener="#{estudiosSuperiorC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>

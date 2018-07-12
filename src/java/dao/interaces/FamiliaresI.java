@@ -24,7 +24,7 @@ public interface FamiliaresI {
     public List<Familiares> listar() throws Exception;
     
     //Este metodo sirve para leer por codigo identificador de los familiares del empleado
-    public Familiares leerID(Familiares fam) throws Exception;
+    public Familiares leerID(String fam) throws Exception;
     
     //Este metodo sirve para modificar los datos de familiares del empleado
     public void modificar(Familiares fam) throws Exception;

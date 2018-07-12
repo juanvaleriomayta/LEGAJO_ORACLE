@@ -81,14 +81,14 @@
                                 <h:outputText value="#{familiar.vive}"/>                                 
                                 <h:outputText value="Empleado"/>
                                 <h:outputText value="#{familiar.empleado}"/>
-                               
+
 
 
                             </p:panelGrid>
                         </p:rowExpansion>
 
                         <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton value="MODIFICAR" icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar.codFami)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
                         <p:column headerText="Eliminar" exportable="false">
                             <p:commandButton icon="ui-icon-circle-close" actionListener="#{familiaresC.eliminar(familiar)}" update="data" style="background-color:red;color:red;">
@@ -155,23 +155,14 @@
                                 <f:selectItem itemLabel="Si" itemValue="Si"/>
                                 <f:selectItem itemLabel="No" itemValue="No"/>                                          
                             </p:selectOneRadio>
-                            
+
                             <p:outputLabel value="Nombre del Empleado"/>
-                            <p:autoComplete value="#{empleadoC.empleado.nom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
-                                <p:ajax event="itemSelect" listener="#{familiaresC.lstFamiliares}" update="frm" />
+                            <p:autoComplete value="#{familiaresC.familiar.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">                               
                             </p:autoComplete>
 
-                            <p:outputLabel value="Estado Laboral" />
-
-                            <p:selectOneRadio id="EstadoLaboral" value="#{familiaresC.familiar.estado}" required="true" requiredMessage="Seleccione su Estado Laboral">
-
-                                <f:selectItem itemLabel="Activo" itemValue="Activo"/>
-                                <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
-
-                            </p:selectOneRadio>
 
 
-                            <p:commandButton value="#{familiaresC.accion}" actionListener="#{familiaresC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton value="#{familiaresC.accion}" actionListener="#{familiaresC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
 

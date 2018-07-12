@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class EstudiosSuperior {
 
-    private int IdEstuSuper;
+    private String IdEstuSuper;
     private String EduSuper;
     private String Espe;
     private String CentrEstu;

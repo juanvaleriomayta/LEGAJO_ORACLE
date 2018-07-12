@@ -14,8 +14,8 @@ public class Emergencia {
     private String EstadoEmer;
     
     //Empleado
-    private String EmpleadoNombr;
-    private String EmpleadoApell;
+    private String Empleado;
+    private String CodEmpleado;
     
     
 

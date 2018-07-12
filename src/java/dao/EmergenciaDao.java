@@ -22,8 +22,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             st.setString(4, eme.getTelEmer());
             st.setString(5, eme.getCelEmer());
             st.setString(6, eme.getEstadoEmer());
-            st.setString(7, eme.getEmpleadoNombr());
-            st.setString(8, eme.getEmpleadoApell());
+       
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -45,8 +44,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             st.setString(4, eme.getTelEmer());
             st.setString(5, eme.getCelEmer());
             st.setString(6, eme.getEstadoEmer());
-            st.setString(7, eme.getEmpleadoNombr());
-            st.setString(8, eme.getEmpleadoApell());
+//            st.setString(7, eme.getEmpleadoNombr());
+//            st.setString(8, eme.getEmpleadoApell());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -75,8 +74,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
                 eme.setTelEmer(rs.getString("TelEmer"));
                 eme.setCelEmer(rs.getString("CelularEmer"));
                 eme.setEstadoEmer(rs.getString("EstadoEmer"));
-                eme.setEmpleadoNombr(rs.getString("Nom"));
-                eme.setEmpleadoApell(rs.getString("Apellido del Empleado"));
+//                eme.setEmpleadoNombr(rs.getString("Nom"));
+//                eme.setEmpleadoApell(rs.getString("Apellido del Empleado"));
 
                 lista.add(eme);
 
@@ -107,8 +106,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
                 eme.setTelEmer(rs.getString("TelEmer"));
                 eme.setCelEmer(rs.getString("CelularEmer"));
                 eme.setEstadoEmer(rs.getString("EstadoEmer"));
-                eme.setEmpleadoNombr(rs.getString("Nom"));
-                eme.setEmpleadoApell(rs.getString("Apellido del Empleado"));
+//                eme.setEmpleadoNombr(rs.getString("Nom"));
+//                eme.setEmpleadoApell(rs.getString("Apellido del Empleado"));
 
                 lista.add(eme);
 
@@ -141,8 +140,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
                 emer.setTelEmer(rs.getString("TelEmer"));
                 emer.setCelEmer(rs.getString("CelularEmer"));
                 emer.setEstadoEmer(rs.getString("EstadoEmer"));
-                emer.setEmpleadoNombr(rs.getString("Nom"));
-                emer.setEmpleadoApell(rs.getString("Apellido del Empleado"));
+//                emer.setEmpleadoNombr(rs.getString("Nom"));
+//                emer.setEmpleadoApell(rs.getString("Apellido del Empleado"));
             }
         } catch (SQLException e) {
             throw e;
@@ -164,8 +163,8 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             st.setString(4, eme.getTelEmer());
             st.setString(5, eme.getCelEmer());
             st.setString(6, eme.getEstadoEmer());
-            st.setString(7, eme.getEmpleadoNombr());
-            st.setString(8, eme.getEmpleadoApell());
+//            st.setString(7, eme.getEmpleadoNombr());
+//            st.setString(8, eme.getEmpleadoApell());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
