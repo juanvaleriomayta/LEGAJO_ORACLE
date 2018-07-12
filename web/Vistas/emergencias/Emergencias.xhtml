@@ -10,13 +10,11 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="Emergencias">
-
+                <f:event type="preRenderView" listener="#{emergenciaC.listar()}" />
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
                     <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{emergenciaC.setAccion('Registrar')}" update=":dlgDatos"/>
-
-                    <p:commandButton value="Listar" actionListener="#{emergenciaC.listar()}" update="data"/>
 
                     <p:dataTable id="data" value="#{emergenciaC.lstEmergencia}" var="emergencias" rows="10"
                                  paginator="true"
@@ -66,18 +64,15 @@
                         <p:column headerText="Esatdo" >
                             <p:outputLabel value="#{emergencias.estadoEmer}"/>
                         </p:column>
-                        <p:column headerText="Nombre del Empleado" >
-                            <p:outputLabel value="#{emergencias.empleadoNombr}"/>
+                        <p:column headerText="Empleado" >
+                            <p:outputLabel value="#{emergencias.empleado}"/>
                         </p:column>
 
-                        <p:column headerText="Apellido del Empleado" >
-                            <p:outputLabel value="#{emergencias.empleadoApell}"/>
-                        </p:column>
-
+                        
 
 
                         <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton icon="ui-icon-pencil" actionListener="#{emergenciaC.leerID(emergencias)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton icon="ui-icon-pencil" actionListener="#{emergenciaC.leerID(emergencias.idEmerg)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
                         <p:column headerText="Eliminar" exportable="false">
                             <p:commandButton icon="ui-icon-circle-close" actionListener="#{emergenciaC.eliminar(emergencias)}" update="data" style="background-color:red;color:red;">
@@ -124,18 +119,9 @@
                             </p:inputText>   
 
                             <p:outputLabel value="Nombre del Empleado"/>
-                            <p:autoComplete value="#{empleadoC.empleado.nom}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
-                                <p:ajax event="itemSelect" listener="#{emergenciaC.lstEmergencia}" update="frm" />
+                            <p:autoComplete value="#{emergenciaC.emergencia.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
                             </p:autoComplete>
 
-                            <p:outputLabel value="Estado Laboral" />
-
-                            <p:selectOneRadio id="EstadoLaboral" value="#{emergenciaC.emergencia.estadoEmer}" required="true" requiredMessage="Seleccione su Estado Laboral">
-
-                                <f:selectItem itemLabel="Activo" itemValue="Activo"/>
-                                <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
-
-                            </p:selectOneRadio>
 
                             <p:commandButton value="#{emergenciaC.accion}" actionListener="#{emergenciaC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>

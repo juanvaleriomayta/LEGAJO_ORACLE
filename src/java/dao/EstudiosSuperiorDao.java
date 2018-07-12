@@ -57,8 +57,8 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
         }
 
     }
-    
-      public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;
@@ -78,7 +78,6 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
         }
     }
 
-
     @Override
     public List<EstudiosSuperior> listar() throws Exception {
         List<EstudiosSuperior> lista;
@@ -92,6 +91,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             lista = new ArrayList();
             while (rs.next()) {
                 EstudiosSuperior sup = new EstudiosSuperior();
+                sup.setIdEstuSuper(rs.getString("IdEstuSuper"));
                 sup.setEduSuper(rs.getString("EduSuper"));
                 sup.setEspe(rs.getString("EspeSuper"));
                 sup.setCentrEstu(rs.getString("CentrEstuSuper"));
@@ -111,7 +111,6 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
         return lista;
     }
 
-    
     @Override
     public List<EstudiosSuperior> listarInactivos() throws Exception {
         List<EstudiosSuperior> listar;
@@ -145,19 +144,18 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
     }
 
     @Override
-    public EstudiosSuperior leerID(EstudiosSuperior sup) throws Exception {
+    public EstudiosSuperior leerID(String Codigo) throws Exception {
         EstudiosSuperior supe = null;
         ResultSet rs;
-
         try {
             this.Conexion();
-            String sql = "SELECT IdEstuSuper ,EduSuper,EspeSuper,CentrEstuSuper,CONVERT(nvarchar(10),DesdSuper,103) AS Desd,CONVERT(nvarchar(10),HastSuper,103) AS Has,CulmiSuper,GradAcadObte,EstadoSuper,Empleado_idEmpl FROM EstudiosSuperiores WHERE IdEstuSuper=?";
+            String sql = "SELECT IdEstuSuper ,EduSuper,EspeSuper,CentrEstuSuper,CONVERT(nvarchar(10),DesdSuper,103) AS DesdSuper,CONVERT(nvarchar(10),HastSuper,103) AS HastSuper,CulmiSuper,GradAcadObte,EstadoSuper,UPPER(CONCAT (Empleado.Nom,',',Empleado.ApelPate,',',Empleado.ApelMate)) AS 'Empleado'  FROM EstudiosSuperior LEFT OUTER JOIN Empleado on EstudiosSuperior.Empleado_idEmpl = Empleado.idEmpl WHERE IdEstuSuper=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setInt(1, sup.getIdEstuSuper());
+            st.setString(1, Codigo);
             rs = st.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 supe = new EstudiosSuperior();
-                supe.setIdEstuSuper(rs.getInt("IdEstuSuper"));
+                supe.setIdEstuSuper(rs.getString("IdEstuSuper"));
                 supe.setEduSuper(rs.getString("EduSuper"));
                 supe.setEspe(rs.getString("EspeSuper"));
                 supe.setCentrEstu(rs.getString("CentrEstuSuper"));
@@ -166,7 +164,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
                 supe.setCulmi(rs.getString("CulmiSuper"));
                 supe.setGradAcadObte(rs.getString("GradAcadObte"));
                 supe.setEstado(rs.getString("EstadoSuper"));
-                supe.setEmpleado(rs.getString("idEmpl"));
+                supe.setEmpleado(rs.getString("Empleado"));
 
             }
         } catch (SQLException e) {
@@ -181,17 +179,19 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
     public void modificar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE EstudiosSuperiores SET EduSuper = ?, EspeSuper=?,CentrEstuSuper =?, DesdSuper = convert(date, ?, 103), HastSuper = convert(date, ?, 103),CulmiSuper=?,GradAcadObte=? ,EstadoSuper = ?,Empleado_idEmpl=? WHERE IdEstuSuper = ?";
+            String sql = "SP_ESTUDIOS_SUPER_UPDATE ?,?,?,?,?,?,?,?,?,?";
+//            String sql = "UPDATE EstudiosSuperiores SET EduSuper = ?, EspeSuper=?,CentrEstuSuper =?, DesdSuper = convert(date, ?, 103), HastSuper = convert(date, ?, 103),CulmiSuper=?,GradAcadObte=? ,EstadoSuper = ?,Empleado_idEmpl=? WHERE IdEstuSuper = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, sup.getEduSuper());
-            st.setString(2, sup.getEspe());
-            st.setString(3, sup.getCentrEstu());
-            st.setString(4, sup.getDesd());
-            st.setString(5, sup.getHast());
-            st.setString(6, sup.getCulmi());
-            st.setString(7, sup.getGradAcadObte());
-            st.setString(8, sup.getEstado());
-            st.setString(9, sup.getCodiEmpleado());
+            st.setString(1, sup.getIdEstuSuper());
+            st.setString(2, sup.getEduSuper());
+            st.setString(3, sup.getEspe());
+            st.setString(4, sup.getCentrEstu());
+            st.setString(5, sup.getDesd());
+            st.setString(6, sup.getHast());
+            st.setString(7, sup.getCulmi());
+            st.setString(8, sup.getGradAcadObte());
+            st.setString(9, sup.getEstado());
+            st.setString(10, sup.getCodiEmpleado());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -206,7 +206,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             this.Conexion();
             String sql = " Update EstudiosSuperiores set Estado = 'I' Where IdEstuSuper =? ";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setInt(1, sup.getIdEstuSuper());
+            st.setString(1, sup.getIdEstuSuper());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -214,4 +214,5 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             this.Cerrar();
         }
     }
+
 }

@@ -22,12 +22,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pr-wrap">
-                        <div class="pass-reset">
+<!--                        <div class="pass-reset">
                             <label>
                                 Enter the email you signed up with</label>
                             <input type="email" placeholder="Email" />
                             <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
-                        </div>
+                        </div>-->
                     </div>
                     <div class="wrap">
                         <p class="form-title">Login</p> 
@@ -35,7 +35,7 @@
                         <form class="login">
                             <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
                             <h:form id="form">
-                                <p:inputText value="#{Login.DNI}" required="true" placeholder="Usuario" />
+                                <p:inputText value="#{Login.DNI}" required="true" placeholder="Usuario" maxlength="8" />
                                 <p:password value="#{Login.pass}" required="true" placeholder="Contraseña" />
                                 <p:commandButton id="BtnIniciarSesion" type="submit" value="Ingresar" class="btn btn-primary btn-block btn-large" actionListener="#{Login.startSessionEmpleado()}"/>
                                 <p:blockUI block="form" trigger="BtnIniciarSesion"/>

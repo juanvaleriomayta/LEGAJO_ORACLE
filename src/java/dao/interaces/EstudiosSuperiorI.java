@@ -24,7 +24,7 @@ public interface EstudiosSuperiorI {
     public List<EstudiosSuperior> listar() throws Exception;
     
     //Este metodo sirve para leer el codigo identificador de los datos del empleado
-    public EstudiosSuperior leerID(EstudiosSuperior sup) throws Exception;
+    public EstudiosSuperior leerID(String sup) throws Exception;
     
     //Este metodo sirve para modificar los datos superiores del empleado
     public void modificar(EstudiosSuperior sup) throws Exception;

@@ -5,8 +5,10 @@ import dao.EstudiosSuperiorDao;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import modelo.EstudiosSuperior;
 
 @ManagedBean
@@ -30,8 +32,8 @@ public class EstudiosSuperiorC implements Serializable {
 
         }
     }
-    
-    public List<String> completeText (String query) throws SQLException{
+
+    public List<String> completeText(String query) throws SQLException {
         EstudiosSuperiorDao dao = new EstudiosSuperiorDao();
         return dao.autocompleteEmpleado(query);
     }
@@ -78,8 +80,8 @@ public class EstudiosSuperiorC implements Serializable {
             throw e;
         }
     }
-    
-     public void listarInactivos() throws Exception {
+
+    public void listarInactivos() throws Exception {
         EstudiosSuperiorDao dao;
 
         try {
@@ -90,18 +92,12 @@ public class EstudiosSuperiorC implements Serializable {
         }
     }
 
-    public void leerID(EstudiosSuperior sup) throws Exception {
+    public void leerID(String Codigo) throws Exception {
         EstudiosSuperiorDao dao;
-        EstudiosSuperior temp;
-
         try {
             dao = new EstudiosSuperiorDao();
-            temp = dao.leerID(sup);
-
-            if (temp != null) {
-                this.estudiosSuperior = temp;
-                this.accion = "Modificar";
-            }
+            this.estudiosSuperior = dao.leerID(Codigo);
+            this.accion = "Modificar";
         } catch (Exception e) {
             throw e;
         }
@@ -109,12 +105,17 @@ public class EstudiosSuperiorC implements Serializable {
 
     public void modificar() throws Exception {
         EstudiosSuperiorDao dao;
-
+        EmpleadoDao dao2;
         try {
             dao = new EstudiosSuperiorDao();
+            dao2 = new EmpleadoDao();
+            estudiosSuperior.setCodiEmpleado(dao2.obtenerCodigoEmpleado(estudiosSuperior.getEmpleado()));
             dao.modificar(estudiosSuperior);
-            this.listar();
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "CORREGIR LOS DATOS"));
             throw e;
         }
     }

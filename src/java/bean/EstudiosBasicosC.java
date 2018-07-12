@@ -1,6 +1,5 @@
 package bean;
 
-import com.sun.istack.logging.Logger;
 import dao.EmpleadoDao;
 import dao.EstudiosBasicosDao;
 import java.io.Serializable;
@@ -10,7 +9,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import modelo.Empleado;
 import modelo.EstudiosBasicos;
 
 @ManagedBean

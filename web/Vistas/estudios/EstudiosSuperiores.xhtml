@@ -29,16 +29,21 @@
                                  rowsPerPageTemplate="5,10,15,10000">
                         <f:facet name="header">
                             <h:commandLink>
-                                <p:graphicImage value="/resources/icon/image.png" width="24"/>
-                                <p:dataExporter type="pdf" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                                <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                                <p:dataExporter type="pdf" target="data" fileName="Estudios superiores del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
                             <h:commandLink>
-                                <p:graphicImage value="/resources/icon/CSV.png" width="24"/>
-                                <p:dataExporter type="xls" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                                <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                                <p:dataExporter type="csv" target="data" fileName="Estudios superiores del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
                             <h:commandLink>
-                                <p:graphicImage value="/resources/icon/Doc.png" width="24"/>
-                                <p:dataExporter type="doc" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                                
+                                <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                                <p:dataExporter type="xml" target="data" fileName="Estudios superiores del Empleado Activos" pageOnly="true"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                                <p:dataExporter type="xls" target="data" fileName="Estudios superiores del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
                             <h1>Estudios Superiores del Empleado</h1> 
 
@@ -73,7 +78,7 @@
 
 
                         <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior.idEstuSuper)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
                         <p:column headerText="Eliminar" exportable="false">
                             <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
@@ -138,7 +143,7 @@
 
                        
 
-                            <p:commandButton value="#{estudiosSuperiorC.accion}" actionListener="#{estudiosSuperiorC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton value="#{estudiosSuperiorC.accion}" actionListener="#{estudiosSuperiorC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>

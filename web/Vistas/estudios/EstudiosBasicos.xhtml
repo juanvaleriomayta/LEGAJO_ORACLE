@@ -28,7 +28,7 @@
                                 <p:dataExporter type="csv" target="data" fileName="Estudios basicos del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
                             <h:commandLink>
-                                <a href="EstudiosBasicosWEB.xhtml"></a>
+                                
                                 <p:graphicImage value="/resources/icon/xml.png" width="50"/>
                                 <p:dataExporter type="xml" target="data" fileName="Estudios basicos del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
@@ -89,9 +89,10 @@
                             </p:selectOneMenu>
 
                             <p:outputLabel value="Culminacion" />
-                            <p:inputText value="#{estudiosBasicosC.estudiosBasicos.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
-                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                            </p:inputText>
+                            <p:selectOneRadio id="Culminacion" value="#{estudiosBasicosC.estudiosBasicos.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
+                                <f:selectItem itemLabel="Completa" itemValue="C"/>
+                                <f:selectItem itemLabel="Incompleta" itemValue="I" /> 
+                            </p:selectOneRadio>
 
                             <p:outputLabel for="txtCentroEstudios" value="Centro de Estudios"/>
                             <p:inputText id="txtCentroEstudios" value="#{estudiosBasicosC.estudiosBasicos.centrEstu}" required="true" requiredMessage="Ingrese Centro de Estudios">

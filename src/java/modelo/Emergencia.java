@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Emergencia {
 
-    private int IdEmerg;
+    private String IdEmerg;
     private String NomEmer;
     private String ApeEmer;
     private String ParenEmer;
@@ -14,8 +14,8 @@ public class Emergencia {
     private String EstadoEmer;
     
     //Empleado
-    private String EmpleadoNombr;
-    private String EmpleadoApell;
+    private String Empleado;
+    private String CodEmpleado;
     
     
 

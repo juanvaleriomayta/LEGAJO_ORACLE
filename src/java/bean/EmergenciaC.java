@@ -1,10 +1,14 @@
 package bean;
 
 import dao.EmergenciaDao;
+import dao.EmpleadoDao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import modelo.Emergencia;
 
 @ManagedBean
@@ -21,10 +25,19 @@ public class EmergenciaC implements Serializable {
         try {
             dao = new EmergenciaDao();
             dao.registrarEmergencia(emergencia);
-            this.listar();
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
             throw e;
         }
+    }
+
+    public List<String> completeText(String query) throws SQLException {
+        EmergenciaDao dao = new EmergenciaDao();
+        return dao.autocompleteEmpleado(query);
+
     }
 
     public void operar() throws Exception {
@@ -40,14 +53,17 @@ public class EmergenciaC implements Serializable {
 
     public void limpiar() {
         emergencia = new Emergencia();
-      
+
     }
 
     private void registrar() throws Exception {
         EmergenciaDao dao;
+        EmpleadoDao dao2;
 
         try {
             dao = new EmergenciaDao();
+            dao2 = new EmpleadoDao();
+            emergencia.setCodEmpleado(dao2.obtenerCodigoEmpleado(emergencia.getEmpleado()));
             dao.registrar(emergencia);
             this.listar();
         } catch (Exception e) {
@@ -66,18 +82,13 @@ public class EmergenciaC implements Serializable {
         }
     }
 
-    public void leerID(Emergencia eme) throws Exception {
+    public void leerID(String Codigo) throws Exception {
         EmergenciaDao dao;
-        Emergencia temp;
-
         try {
             dao = new EmergenciaDao();
-            temp = dao.leerID(eme);
+            this.emergencia = dao.leerID(Codigo);
+            this.accion = "Modificar";
 
-            if (temp != null) {
-                this.emergencia = temp;
-                this.accion = "Modificar";
-            }
         } catch (Exception e) {
             throw e;
         }
@@ -85,12 +96,18 @@ public class EmergenciaC implements Serializable {
 
     private void modificar() throws Exception {
         EmergenciaDao dao;
+        EmpleadoDao dao2;
 
         try {
             dao = new EmergenciaDao();
+            dao2 = new EmpleadoDao();
+            emergencia.setCodEmpleado(dao2.obtenerCodigoEmpleado(emergencia.getEmpleado()));
             dao.modificar(emergencia);
-            this.listar();
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "CORREGIR LOS DATOS"));
             throw e;
         }
     }
