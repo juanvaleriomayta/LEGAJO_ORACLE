@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Familiares {
 
-    private int CodFami;
+    private String CodFami;
     private String NomFami;
     private String Ape;
     private String Par;

@@ -10,13 +10,11 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="Emergencias">
-
+                <f:event type="preRenderView" listener="#{estudiosSuperiorC.listar()}" />
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
 
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{emergenciaC.setAccion('Registrar')}" update=":dlgDatos"/>
-
-                    <p:commandButton value="Listar" actionListener="#{emergenciaC.listar()}" update="data"/>
 
                     <p:dataTable id="data" value="#{emergenciaC.lstEmergencia}" var="emergencias" rows="10"
                                  paginator="true"

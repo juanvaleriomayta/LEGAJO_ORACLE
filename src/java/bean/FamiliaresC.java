@@ -1,10 +1,14 @@
 package bean;
 
+import dao.EmpleadoDao;
 import dao.FamiliaresDao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import modelo.Familiares;
 
 @ManagedBean
@@ -17,15 +21,22 @@ public class FamiliaresC implements Serializable {
 
     public void registrarFamiliar() throws Exception {
         FamiliaresDao dao;
-        
+
         try {
             dao = new FamiliaresDao();
             dao.registrarFamiliar(familiar);
-            this.limpiar();
-            this.listar();
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
             throw e;
         }
+    }
+
+    public List<String> completeText(String query) throws SQLException {
+        FamiliaresDao dao = new FamiliaresDao();
+        return dao.autocompleteEmpleado(query);
     }
 
     public void operar() throws Exception {
@@ -45,8 +56,11 @@ public class FamiliaresC implements Serializable {
 
     private void registrar() throws Exception {
         FamiliaresDao dao;
+        EmpleadoDao dao2;
         try {
             dao = new FamiliaresDao();
+            dao2 = new EmpleadoDao();
+            familiar.setCodiEmpleado(dao2.obtenerCodigoEmpleado(familiar.getEmpleado()));
             dao.registrar(familiar);
             this.listar();
         } catch (Exception e) {
@@ -63,8 +77,8 @@ public class FamiliaresC implements Serializable {
             throw e;
         }
     }
-    
-        public void listarInactivos() throws Exception {
+
+    public void listarInactivos() throws Exception {
         FamiliaresDao dao;
         try {
             dao = new FamiliaresDao();
@@ -74,17 +88,12 @@ public class FamiliaresC implements Serializable {
         }
     }
 
-    public void leerID(Familiares fam) throws Exception {
+    public void leerID(String Codigo) throws Exception {
         FamiliaresDao dao;
-        Familiares temp;
         try {
             dao = new FamiliaresDao();
-            temp = dao.leerID(fam);
-
-            if (temp != null) {
-                this.familiar = temp;
-                this.accion = "Modificar";
-            }
+            this.familiar = dao.leerID(Codigo);
+            this.accion = "Modificar";
         } catch (Exception e) {
             throw e;
         }
@@ -92,11 +101,17 @@ public class FamiliaresC implements Serializable {
 
     private void modificar() throws Exception {
         FamiliaresDao dao;
+        EmpleadoDao dao2;
         try {
             dao = new FamiliaresDao();
+            dao2 = new EmpleadoDao();
+            familiar.setCodiEmpleado(dao2.obtenerCodigoEmpleado(familiar.getEmpleado()));
             dao.modificar(familiar);
-            this.listar();
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "CORREGIR LOS DATOS"));
             throw e;
         }
     }
