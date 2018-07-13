@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>INICIO DE SESSION</title>
+
+    </h:head>
+    <h:body>
+        
+            
+                <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
+
+                <h:form id="form">
+                    <p:inputText value="#{Login.DNI}" placeholder="Usuario"/>
+                    <p:password value="#{Login.pass}" placeholder="Contraseña"/>
+                    <p:commandButton id="BtnIniciarSesion" value="Ingresar" actionListener="#{Login.startSessionEmpleado()}"/>
+                    <p:blockUI block="form" trigger="BtnIniciarSesion" />
+                </h:form>
+            
+        
+    </h:body>
+</html>
