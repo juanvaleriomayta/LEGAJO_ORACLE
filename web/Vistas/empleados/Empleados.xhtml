@@ -21,7 +21,7 @@
             <h:form id="frm">
                 <h3 align="center">DATOS PERSONALES</h3>
                 <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
-                
+
                 <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
                              paginator="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -43,7 +43,11 @@
                             <p:graphicImage value="/resources/icon/xls.png" width="50"/>
                             <p:dataExporter type="xls" target="data" fileName="lstEmpleado" pageOnly="true"/>
                         </h:commandLink>
-
+                        <center>
+                            <h:commandLink actionListener="#{empleadoC.decargar()}">
+                                <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
+                            </h:commandLink>
+                        </center> 
                         <h1>Empleado</h1> 
 
                         <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -131,7 +135,7 @@
                         EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.
                     </f:facet>
                 </p:dataTable>
-                
+
             </h:form>
 
 
@@ -254,9 +258,9 @@
                 </h:form>
 
             </p:dialog>
-            
+
         </ui:define>
-        
+
     </ui:composition>
 
 </body>

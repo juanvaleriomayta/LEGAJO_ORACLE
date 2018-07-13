@@ -1,10 +1,13 @@
 package bean;
 
 import dao.EmpleadoDao;
+import dao.ReportEmpleadoDao;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -140,5 +143,17 @@ public class EmpleadoC implements Serializable {
     public void limpiar() {
         empleado = new Empleado();
     }
-
+    
+    
+    //    Funcionalidad generar eh madar a descargar reportes
+    public void decargar() throws Exception {
+        ReportEmpleadoDao report = new ReportEmpleadoDao();
+        try {
+            Map<String, Object> parameters = new HashMap();
+            report.exportarPDF(parameters);
+            report.exportarPDF2(parameters);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
