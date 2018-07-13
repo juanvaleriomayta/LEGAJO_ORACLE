@@ -6,8 +6,10 @@ import dao.EmpleadoDao;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import modelo.DetalleDialecto;
 
 @ManagedBean
@@ -28,6 +30,7 @@ public class DetalleDialectoC implements Serializable {
                 break;
         }
     }
+
     public void limpiar() {
         detalleDialecto = new DetalleDialecto();
     }
@@ -77,18 +80,12 @@ public class DetalleDialectoC implements Serializable {
         }
     }
 
-    public void leerID(DetalleDialecto detdia) throws Exception {
+    public void leerID(String Codigo) throws Exception {
         DetalleDialectoDao dao;
-        DetalleDialecto temp;
-
         try {
             dao = new DetalleDialectoDao();
-            temp = dao.leerID(detdia);
-
-            if (temp != null) {
-                this.detalleDialecto = temp;
-                this.accion = "Modificar";
-            }
+            this.detalleDialecto = dao.leerID(Codigo);
+            this.accion = "Modificar";
         } catch (Exception e) {
             throw e;
         }
@@ -96,11 +93,20 @@ public class DetalleDialectoC implements Serializable {
 
     public void modificar() throws Exception {
         DetalleDialectoDao dao;
+        EmpleadoDao dao2;
+        DialectoDao dao3;
         try {
             dao = new DetalleDialectoDao();
+            dao2 = new EmpleadoDao();
+            dao3 = new DialectoDao();
+            detalleDialecto.setCodEmpleado(dao2.obtenerCodigoEmpleado(detalleDialecto.getEmpleado()));
+            detalleDialecto.setCodDialecto(dao3.obtenerCodigoDialecto(detalleDialecto.getDialecto()));
             dao.modificar(detalleDialecto);
-            this.listarActivos();
+            listarActivos();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "CORREGIR LOS DATOS"));
             throw e;
         }
     }
@@ -110,7 +116,7 @@ public class DetalleDialectoC implements Serializable {
         try {
             dao = new DetalleDialectoDao();
             dao.eliminar(detdia);
-            this.listarActivos();
+            listarActivos();
         } catch (Exception e) {
             throw e;
         }

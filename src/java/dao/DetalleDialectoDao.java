@@ -12,16 +12,15 @@ public class DetalleDialectoDao extends DAO {
     public void registrar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-            String sql = "EXEC SP_DETALLEDIALECTO ?,?,?,?,?,?,?";
+            String sql = "EXEC SP_DETALLEDIALECTO ?,?,?,?,?,?";
 //            String sql = "INSERT INTO DetalleDialecto (Lee,Habla,Escribe,Estado,Empleado_idEmpl,Dialecto_idDial) values(?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, detdia.getIdDetDial());
-            st.setString(2, detdia.getLee());
-            st.setString(3, detdia.getHabla());
-            st.setString(4, detdia.getEscribe());
-            st.setString(5, "A");
-            st.setString(6, detdia.getCodEmpleado());
-            st.setString(7, detdia.getCodDialecto());
+            st.setString(1, detdia.getLee());
+            st.setString(2, detdia.getHabla());
+            st.setString(3, detdia.getEscribe());
+            st.setString(4, "A");
+            st.setString(5, detdia.getCodEmpleado());
+            st.setString(6, detdia.getCodDialecto());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -29,8 +28,7 @@ public class DetalleDialectoDao extends DAO {
             this.Cerrar();
         }
     }
-    
-    
+
     public List<String> autocompleteDialecto(String Dialecto) throws SQLException {
         this.Conexion();
         ResultSet rs;
@@ -125,25 +123,24 @@ public class DetalleDialectoDao extends DAO {
         return lista;
     }
 
-    public DetalleDialecto leerID(DetalleDialecto detdia) throws Exception {
-
+    public DetalleDialecto leerID(String Codigo) throws Exception {
         DetalleDialecto detdial = null;
         ResultSet rs;
-
         try {
             this.Conexion();
-            String sql = "SELECT idDetDial,Lee,Habla,Escribe,Estado  FROM DetalleDialecto WHERE idDetDial=?";
+            String sql = "SELECT idDetDial,Lee,Habla,Escribe,Estado,CONCAT(Empleado.Nom,',',Empleado.ApelPate,',',Empleado.ApelMate) AS 'Empleado',Dialecto.NomDial AS 'Dialecto'  FROM DetalleDialecto LEFT OUTER JOIN Empleado ON DetalleDialecto.Empleado_idEmpl = Empleado.idEmpl  LEFT OUTER JOIN Dialecto on DetalleDialecto.Dialecto_IdDial = Dialecto.IdDial WHERE idDetDial=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, detdia.getIdDetDial());
+            st.setString(1, Codigo);
             rs = st.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 detdial = new DetalleDialecto();
                 detdial.setIdDetDial(rs.getString("idDetDial"));
                 detdial.setLee(rs.getString("Lee"));
                 detdial.setHabla(rs.getString("Habla"));
                 detdial.setEscribe(rs.getString("Escribe"));
-                detdia.setEstado(rs.getString("Estado"));
-
+                detdial.setEstado(rs.getString("Estado"));
+                detdial.setEmpleado(rs.getString("Empleado"));
+                detdial.setDialecto(rs.getString("Dialecto"));
             }
         } catch (SQLException e) {
             throw e;
@@ -156,16 +153,16 @@ public class DetalleDialectoDao extends DAO {
     public void modificar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-            String sql ="EXEC SP_DetalleDialectoUpdate @idDetDial=?,@Lee=?,@Habla=?,@Escribe=?,@Estado=?,@Empleado_idEmpl=?,@Dialecto_IdDial=? ";
+            String sql = "EXEC SP_DetalleDialectoUpdate ?,?,?,?,?,?,?";
 //            String sql = "UPDATE DetalleDialecto SET Lee = ?, Habla = ?, Escribe = ?,Estado=?, Empleado_idEmpl=?,Dialecto_IdDial=? WHERE idDetDial = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, detdia.getLee());
-            st.setString(2, detdia.getHabla());
-            st.setString(3, detdia.getEscribe());
-            st.setString(4, detdia.getEstado());
-            st.setString(5, detdia.getCodEmpleado());
-            st.setString(6, detdia.getCodDialecto());
-            st.setString(7, detdia.getIdDetDial());
+            st.setString(1, detdia.getIdDetDial());
+            st.setString(2, detdia.getLee());
+            st.setString(3, detdia.getHabla());
+            st.setString(4, detdia.getEscribe());
+            st.setString(5, detdia.getEstado());
+            st.setString(6, detdia.getCodEmpleado());
+            st.setString(7, detdia.getCodDialecto());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

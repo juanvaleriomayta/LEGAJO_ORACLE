@@ -61,7 +61,7 @@
                             <p:outputLabel value="#{basicos.empleado}"/>
                         </p:column>
                         <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton value="Modificar" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton icon="ui-icon-pencil" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
                         <p:column headerText="Eliminar" exportable="false">
                             <p:commandButton value="Eliminar" actionListener="#{estudiosBasicosC.eliminar(basicos)}" update="data" style="background-color:red;color:red;">

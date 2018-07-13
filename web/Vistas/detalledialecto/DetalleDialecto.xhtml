@@ -10,16 +10,14 @@
     <body>
 
         <ui:composition template="./../template/Template.xhtml">
-            
-            <ui:define name="DetalleDialecto">
-                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
+
+            <ui:define name="DetalleDialecto">               
                 <f:event type="preRenderView" listener="#{detalleDialectoC.listarActivos()}" />
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
 
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
-
-
 
                     <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detdial" rows="10"
                                  paginator="true"
@@ -64,14 +62,9 @@
                         <p:column headerText="Dialecto">
                             <p:outputLabel value="#{detdial.dialecto}"/>
                         </p:column>
-                        <p:column headerText="Estado" >
-                            <p:outputLabel value="#{detdial.estado}"/>
-                        </p:column>             
-
-
 
                         <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial.idDetDial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
                         <p:column headerText="Eliminar" exportable="false">
                             <p:growl id="message" showDetail="true" />
@@ -117,16 +110,13 @@
 
                             <p:outputLabel value="Empleado"/>
                             <p:autoComplete value="#{detalleDialectoC.detalleDialecto.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
-                                <p:ajax event="itemSelect" listener="#{detalleDialectoC.lstDetalleDialecto}" update="frm" />
                             </p:autoComplete>
 
                             <p:outputLabel value="Dialectos"/>
                             <p:autoComplete value="#{detalleDialectoC.detalleDialecto.dialecto}" completeMethod="#{dialectoC.completeTextDialecto}" forceSelection="true">
-                                <p:ajax event="itemSelect" listener="#{detalleDialectoC.lstDetalleDialecto}" update="frm" />
                             </p:autoComplete>
 
-                            <p:commandButton value="Modificar" actionListener="#{detalleDialectoC.modificar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                            <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>

@@ -35,9 +35,9 @@
                         <form class="login">
                             <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
                             <h:form id="form">
-                                <p:inputText value="#{Login.DNI}" required="true" placeholder="Usuario" maxlength="8" />
-                                <p:password value="#{Login.pass}" required="true" placeholder="Contraseña" />
-                                <p:commandButton id="BtnIniciarSesion" type="submit" value="Ingresar" class="btn btn-primary btn-block btn-large" actionListener="#{Login.startSessionEmpleado()}"/>
+                                <p:inputText value="#{Login.DNI}" required="true" placeholder="Usuario" maxlength="8" requiredMessage="USUARIO INCORRECTO"/>
+                                <p:password value="#{Login.pass}" required="true" placeholder="Contraseña" requiredMessage="CONTRASEÑA INCORRECTA"/>
+                                <p:commandButton id="BtnIniciarSesion" type="submit" value="INGRESAR" class="btn btn-primary btn-block btn-large" actionListener="#{Login.startSessionEmpleado()}"/>
                                 <p:blockUI block="form" trigger="BtnIniciarSesion"/>
                             </h:form>
 

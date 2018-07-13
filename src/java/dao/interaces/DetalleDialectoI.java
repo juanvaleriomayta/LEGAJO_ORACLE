@@ -11,7 +11,7 @@ public interface DetalleDialectoI {
 
     public List<DetalleDialecto> listarInactivos() throws Exception;
 
-    public DetalleDialecto leerID(DetalleDialecto detdia) throws Exception;
+    public DetalleDialecto leerID(String detdia) throws Exception;
 
     public void modificar(DetalleDialecto detdia) throws Exception;
 
