@@ -117,6 +117,7 @@ public class DetalleDialectoC implements Serializable {
             dao = new DetalleDialectoDao();
             dao.eliminar(detdia);
             listarActivos();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;
         }

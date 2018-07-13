@@ -260,6 +260,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             lista = new ArrayList();
             while (rs.next()) {
                 Empleado emp = new Empleado();
+                emp.setIdEmpl(rs.getString("idEmpl"));
                 emp.setDNI(rs.getString("DNI"));
                 emp.setNom(rs.getString("Nom"));
                 emp.setApelPate(rs.getString("ApelPate"));
@@ -386,10 +387,9 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     public void eliminar(Empleado emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update Empleado set Est=? WHERE idEmpl = ?";
-            PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, "I");
-            st.setString(2, emp.getIdEmpl());
+            String sql = "Update Empleado set Est='I' WHERE idEmpl = ?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);            
+            st.setString(1, emp.getIdEmpl());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

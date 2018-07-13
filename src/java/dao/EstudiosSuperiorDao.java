@@ -204,7 +204,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
     public void eliminar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = " Update EstudiosSuperiores set Estado = 'I' Where IdEstuSuper =? ";
+            String sql = " Update EstudiosSuperior set Estado = 'I' Where IdEstuSuper =? ";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getIdEstuSuper());
             st.executeUpdate();

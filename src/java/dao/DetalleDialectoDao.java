@@ -174,10 +174,9 @@ public class DetalleDialectoDao extends DAO {
     public void eliminar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update DetalleDialecto set Estado =? WHERE idDetDial = ?";
+            String sql = "Update DetalleDialecto set Estado ='I' WHERE idDetDial = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, "I");
-            st.setString(2, detdia.getIdDetDial());
+            st.setString(1, detdia.getIdDetDial());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

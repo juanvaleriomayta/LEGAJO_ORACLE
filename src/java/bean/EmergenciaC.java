@@ -114,11 +114,11 @@ public class EmergenciaC implements Serializable {
 
     public void eliminar(Emergencia eme) throws Exception {
         EmergenciaDao dao;
-
         try {
             dao = new EmergenciaDao();
             dao.eliminar(eme);
-            this.listar();
+            listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;
         }

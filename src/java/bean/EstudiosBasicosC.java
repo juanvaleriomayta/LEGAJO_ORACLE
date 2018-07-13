@@ -65,7 +65,10 @@ public class EstudiosBasicosC implements Serializable {
             estudiosBasicos.setCodEmpleado(dao2.obtenerCodigoEmpleado(estudiosBasicos.getEmpleado()));
             dao.registrar(estudiosBasicos);
             this.listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
             throw e;
 
         }
@@ -73,7 +76,6 @@ public class EstudiosBasicosC implements Serializable {
 
     public void listar() throws Exception {
         EstudiosBasicosDao dao;
-
         try {
             dao = new EstudiosBasicosDao();
             lstEstudiosBasicos = dao.listar();
@@ -123,11 +125,11 @@ public class EstudiosBasicosC implements Serializable {
 
     public void eliminar(EstudiosBasicos bas) throws Exception {
         EstudiosBasicosDao dao;
-
         try {
             dao = new EstudiosBasicosDao();
             dao.eliminar(bas);
             listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;
         }

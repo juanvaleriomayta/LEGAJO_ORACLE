@@ -122,11 +122,11 @@ public class EstudiosSuperiorC implements Serializable {
 
     public void eliminar(EstudiosSuperior sup) throws Exception {
         EstudiosSuperiorDao dao;
-
         try {
             dao = new EstudiosSuperiorDao();
             dao.eliminar(sup);
-            this.listar();
+            listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;
         }

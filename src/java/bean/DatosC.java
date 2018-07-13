@@ -1,13 +1,16 @@
 package bean;
 
 import dao.DatosDao;
+import dao.EmpleadoDao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import modelo.Datos;
+import modelo.Empleado;
 
 @ManagedBean
 @SessionScoped
@@ -35,70 +38,83 @@ public class DatosC implements Serializable {
 
     private void registrar() throws Exception {
         DatosDao dao;
-
+        EmpleadoDao dao2;
         try {
             dao = new DatosDao();
+            dao2 = new EmpleadoDao();
+            datos.setCodEmpleado(dao2.obtenerCodigoEmpleado(datos.getEmpleado()));
             dao.registrar(datos);
-            this.limpiar();
             this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Agregado con Exito"));
+            this.limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
             throw e;
 
         }
+    }
+
+    public List<String> completeText(String query) throws SQLException {
+        DatosDao dao = new DatosDao();
+        return dao.autocompleteEmpleado(query);
     }
 
     public void listar() throws Exception {
         DatosDao dao;
-
         try {
             dao = new DatosDao();
             lstDatos = dao.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Listado con Exito"));
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public void leerID(Datos dat) throws Exception {
+    public void leerID(String Codigo) throws Exception {
         DatosDao dao;
-        Datos temp;
-
         try {
             dao = new DatosDao();
-            temp = dao.leerID(dat);
-
-            if (temp != null) {
-                this.datos = temp;
-                this.accion = "Modificar";
-            }
+            this.datos = dao.leerID(Codigo);
+            this.accion = "Modificar";
         } catch (Exception e) {
             throw e;
         }
     }
 
-    private void modificar() throws Exception {
+    public void listarInactivos() throws Exception {
         DatosDao dao;
 
         try {
             dao = new DatosDao();
+            lstDatos = dao.listarInactivos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void modificar() throws Exception {
+        DatosDao dao;
+        EmpleadoDao dao2;
+        try {
+            dao = new DatosDao();
+            dao2 = new EmpleadoDao();
+            datos.setCodEmpleado(dao2.obtenerCodigoEmpleado(datos.getEmpleado()));
             dao.modificar(datos);
-            this.listar();
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Modificado con Exito"));
+            listar();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR", "CORREGIR LOS DATOS"));
             throw e;
         }
     }
 
     public void eliminar(Datos dat) throws Exception {
         DatosDao dao;
-
         try {
             dao = new DatosDao();
             dao.eliminar(dat);
-            this.listar();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Eliminado con Exito"));
+            listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;
         }

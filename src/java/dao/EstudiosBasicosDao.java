@@ -167,7 +167,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void modificar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql =" EXEC SP_EstudiosBasicosUpdate ?,?,?,?,?,?,?,?";
+            String sql = " EXEC SP_EstudiosBasicosUpdate ?,?,?,?,?,?,?,?";
 //            String sql = "SP_EstudiosBasicosUpdate @IdEstuBasi=?,@EducBasi=?,@CulmiBasi=?,@CentrEstuBasi=?,@DesdBasi=?,@HasBasi=?,@EstadoBasi=?,@Empleado_idEmpl=? ";
 //            String sql = "UPDATE EstudioBasicos SET EducBasi = ?, CulmiBasi=?,CentrEstuBasi=? , DesdBasi = convert(date, ?, 103), HasBasi = convert(date, ?, 103),EstadoBasi=?,Empleado_idEmpl  WHERE IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
@@ -191,9 +191,8 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void eliminar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update EstudioBasicos set Estado =? where = IdEstuBasi = ?";
+            String sql = "Update EstudioBasicos set Estado ='I' where = IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, "I");
             st.setString(1, bas.getIdEstuBasi());
             st.executeUpdate();
         } catch (SQLException e) {

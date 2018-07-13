@@ -1,0 +1,148 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="contenido">
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
+
+                <f:event type="preRenderView" listener="#{datosC.listar()}" />
+
+                <p:growl autoUpdate="true"/>
+                <h:form id="frm">
+                    <h3 align="center">DATOS ADICIONALES</h3>
+
+                    <p:commandButton value="NUEVO" oncomplete="PF('wdlgDatos').show();" actionListener="#{datosC.setAccion('Registrar')}" update=":dlgDatos"/>
+
+                    <p:dataTable id="data" value="#{datosC.lstDatos}" var="Datos" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
+                        <f:facet name="header">
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                                <p:dataExporter type="pdf" target="data" fileName="lstDatos" pageOnly="true"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                                <p:dataExporter type="csv" target="data" fileName="lstDatos" pageOnly="true"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                                <p:dataExporter type="xml" target="data" fileName="lstDatos" pageOnly="true"/>
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                                <p:dataExporter type="xls" target="data" fileName="lstDatos" pageOnly="true"/>
+                            </h:commandLink>
+                        </f:facet>
+
+                        <p:column style="width: 16px">
+                            <p:rowToggler/>
+                        </p:column>
+                        <p:column headerText="Empleado">
+                            <h:outputText value="#{Datos.empleado}"/>
+                        </p:column>                           
+                        <p:column headerText="Referencia Personal">
+                            <h:outputText value="#{Datos.refPer}"/>
+                        </p:column>
+                        <p:column headerText="Instrucción-Profesión-Capacitación-Perfeccionamiento">
+                            <h:outputText value="#{Datos.intProCapPerf}"/>
+                        </p:column>
+                        <p:column headerText="Servicios Prestados">
+                            <h:outputText value="#{Datos.serPre}"/>
+                        </p:column>
+                        <p:column headerText="Apreciación-Calificación">
+                            <h:outputText value="#{Datos.apreCali}"/>
+                        </p:column>                    
+
+                        <p:rowExpansion >
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width: 500px">
+                                <h:outputText value="Conducta"/>
+                                <h:outputText value="#{Datos.con}"/>
+                                <h:outputText value="Bonificación Personal"/>
+                                <h:outputText value="#{Datos.bonPer}"/>
+                                <h:outputText value="Bonificación Familiar"/>
+                                <h:outputText value="#{Datos.bonFam}"/>
+                                <h:outputText value="Comisiones-Informes y Trabajos Personales"/>
+                                <h:outputText value="#{Datos.comInfTper}"/>
+                            </p:panelGrid>
+                        </p:rowExpansion>  
+
+                        <p:column headerText="MODIFICAR"  exportable="false">
+                            <p:commandButton value="MODIFICAR" id="ui-icon-pencil" actionListener="#{datosC.leerID(Datos.idLegajo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
+                            </p:commandButton>
+                        </p:column> 
+                        <p:column>
+                            <p:growl id="message" showDetail="true"/>
+                            <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{datosC.eliminar(Datos)}" update="data" style="background-color: red;color: red;">
+                                <p:confirm header="Confirmación" message=" ¿Deseas Eliminar? " icon="ui-icon-alert"/>
+                                <p:tooltip trackMouse="true"/>
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="face" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialo-no" icon="ui-icon-close"/>
+                            </p:confirmDialog>
+                        </p:column>
+                        <f:facet name="footer">
+                            EN TOTAL HAY #{fn:length(datosC.lstDatos)} REGISTRADOS.
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+
+                <p:dialog showEffect="explode"  modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+                    <h:form>
+                        <p:panelGrid columns="4">
+                            <p:outputLabel value="Empleado"/>
+                            <p:autoComplete value="#{datosC.datos.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                            </p:autoComplete>
+                            <p:outputLabel for="txtRefePer" value="Referencia Personal"/>
+                            <p:inputText id="txtRefePer" value="#{datosC.datos.refPer}" requiredMessage="INGRESAR REFERENCIA PERSONAL" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtInstruccion" value="Instrucción-Profesión-Capacitación-Perfeccionamiento"/>
+                            <p:inputText id="txtInstruccion" value="#{datosC.datos.intProCapPerf}" requiredMessage="INGRESAR EL DATO" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtServicios" value="Servicios Prestados"/>
+                            <p:inputText id="txtServicios" value="#{datosC.datos.serPre}" requiredMessage="INGRESAR SERVICIOS PRESTADOS" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtApreciacion" value="Apreciación-Calificación"/>
+                            <p:inputText id="txtApreciacion" value="#{datosC.datos.apreCali}" requiredMessage="INGRESAR EL DATO" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtConducta" value="Conducta"/>
+                            <p:inputText id="txtConducta" value="#{datosC.datos.con}" requiredMessage="INGRESAR CONDUCTA" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtBonificacionPer" value="Bonificación Personal"/>
+                            <p:inputText id="txtBonificacionPer" value="#{datosC.datos.bonPer}" requiredMessage="INGRESAR EL DATO" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtBonificacionFam" value="Bonificación Familiar"/>
+                            <p:inputText id="txtBonificacionFam" value="#{datosC.datos.bonFam}" requiredMessage="INGRESAR EL DATO" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtComisiones" value="Comisiones-Informes y Trabajos Personales"/>
+                            <p:inputText id="txtComisiones" value="#{datosC.datos.comInfTper}" requiredMessage="INGRESAR EL DATO" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+
+                            <p:commandButton value="#{datosC.accion}" actionListener="#{datosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

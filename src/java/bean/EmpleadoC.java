@@ -44,7 +44,9 @@ public class EmpleadoC implements Serializable {
             dao.registrarEmpleado(empleado);
             this.limpiar();
             this.listarActivos();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("REGISTRADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR AL MOMENTO DE INGRESAR"));
             throw e;
         }
     }
@@ -67,7 +69,9 @@ public class EmpleadoC implements Serializable {
             dao = new EmpleadoDao();
             dao.registrar(empleado);
             this.listarActivos();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("REGISTRADO", "CORRECTAMENTE"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR AL MOMENTO DE INGRESAR"));
             throw e;
 
         }
@@ -123,11 +127,11 @@ public class EmpleadoC implements Serializable {
 
     public void eliminar(Empleado emp) throws Exception {
         EmpleadoDao dao;
-
         try {
             dao = new EmpleadoDao();
             dao.eliminar(emp);
-            this.listarActivos();
+            listarActivos();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;
         }

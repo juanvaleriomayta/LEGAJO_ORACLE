@@ -121,7 +121,8 @@ public class FamiliaresC implements Serializable {
         try {
             dao = new FamiliaresDao();
             dao.eliminar(fam);
-            this.listar();
+            listar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;
         }

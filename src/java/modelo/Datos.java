@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Datos {
 
-    private int IdLegajo;
+    private String IdLegajo;
     private String Con;
     private String ApreCali;
     private String SerPre;
@@ -14,5 +14,10 @@ public class Datos {
     private String BonPer;
     private String ComInfTper;
     private String BonFam;
+    private String Estado;
+    
+    //Empleado
+    private String Empleado;
+    private String CodEmpleado;
 
     }
