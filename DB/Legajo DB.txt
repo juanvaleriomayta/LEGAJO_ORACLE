@@ -1,0 +1,218 @@
+CREATE TABLE Datos (
+    IdLeagajo int  ,
+    Con varchar(50)  ,
+    ApreCali varchar(50)  ,
+    SerPre varchar(50)  ,
+    IntProCapPerf varchar(50)  ,
+    RefPer varchar(50)  ,
+    BonPer varchar(50)  ,
+    ComInfTper varchar(50)  ,
+    BonFam varchar(50)  ,
+    Empleado_idEmpl int  ,
+    CONSTRAINT Datos_pk PRIMARY KEY  (IdLeagajo)
+);
+
+-- Table: DetalleDialecto
+CREATE TABLE DetalleDialecto (
+    idDetDial int  ,
+    Lee varchar(50)  ,
+    Habla varchar(50)  ,
+    Escribe varchar(50)  ,
+    Estado varchar(50)  ,
+    Empleado_idEmpl int  ,
+    Dialecto_IdDial int  ,
+    CONSTRAINT DetalleDialecto_pk PRIMARY KEY  (idDetDial)
+);
+
+-- Table: Dialecto
+CREATE TABLE Dialecto (
+    IdDial int  ,
+    NomDial varchar(50)  ,
+    DetalleDialecto_idDetDial int  ,
+    CONSTRAINT Dialecto_pk PRIMARY KEY  (IdDial)
+);
+
+-- Table: Emergencia
+CREATE TABLE Emergencia (
+    IdEmerg int  ,
+    Nom varchar(50)  ,
+    Ape varchar(50)  ,
+    Paren varchar(50)  ,
+    Tel varchar(50)  ,
+    Cel varchar(50)  ,
+    Estado varchar(50)  ,
+    Empleado_idEmpl int  ,
+    CONSTRAINT Emergencia_pk PRIMARY KEY  (IdEmerg)
+);
+
+-- Table: Empleado
+CREATE TABLE Empleado (
+    idEmpl int  ,
+    DNI char(8)  ,
+    Nom varchar(50)  ,
+    ApelPate varchar(50)  ,
+    ApelMate varchar(50)  ,
+    RUC char(11)  ,
+    Email varchar(100)  ,
+    Telf char(7)  ,
+    Cel char(9)  ,
+    FecNac date  ,
+    GrupSang varchar(50)  ,
+    EstCiv varchar(50)  ,
+    ConLab varchar(50)  ,
+    CarnAseg varchar(50)  ,
+    Refe varchar(50)  ,
+    Leye varchar(50)  ,
+    FecIng date  ,
+    FecNom date  ,
+    DatCony varchar(50)  ,
+    UbigActu varchar(50)  ,
+    UbigOrig varchar(50)  ,
+    Est varchar(50)  ,
+    Ubigeo_CodigoUbigeo int  ,
+    EstudiosSuperior_IdEstuSuper int  ,
+    Datos_IdLeagajo int  ,
+    DetalleDialecto_idDetDial int  ,
+    Emergencia_IdEmerg int  ,
+    Familiares_CodFami int  ,
+    EstudiosBasicos_IdEstuBasi int  ,
+    CONSTRAINT Empleado_pk PRIMARY KEY  (idEmpl)
+);
+
+-- Table: EstudiosBasicos
+CREATE TABLE EstudiosBasicos (
+    IdEstuBasi int  ,
+    Educ varchar(50)  ,
+    Culmi varchar(50)  ,
+    CentrEstu varchar(50)  ,
+    Desd date  ,
+    Has date  ,
+    Estado varchar(50)  ,
+    Empleado_idEmpl int  ,
+    CONSTRAINT EstudiosBasicos_pk PRIMARY KEY  (IdEstuBasi)
+);
+
+-- Table: EstudiosSuperior
+CREATE TABLE EstudiosSuperior (
+    IdEstuSuper int  ,
+    EduSuper varchar(50)  ,
+    Espe varchar(50)  ,
+    CentrEstu varchar(50)  ,
+    Desd date  ,
+    Hast date  ,
+    Culmi varchar(50)  ,
+    GradAcadObte varchar(50)  ,
+    Estado varchar(50)  ,
+    Empleado_idEmpl int  ,
+    CONSTRAINT EstudiosSuperior_pk PRIMARY KEY  (IdEstuSuper)
+);
+
+-- Table: Familiares
+CREATE TABLE Familiares (
+    CodFami int  ,
+    Nom varchar(50)  ,
+    Ape varchar(50)  ,
+    Par varchar(50)  ,
+    Ocu varchar(50)  ,
+    FecNac date  ,
+    Tel char(7)  ,
+    Cel char(9)  ,
+    EstCiv varchar(50)  ,
+    vive varchar(10)  ,
+    Estado varchar(50)  ,
+    Empleado_idEmpl int  ,
+    CONSTRAINT Familiares_pk PRIMARY KEY  (CodFami)
+);
+
+-- Table: Ubigeo
+CREATE TABLE Ubigeo (
+    CodigoUbigeo int  ,
+    departamento varchar(50)  ,
+    provincia varchar(50)  ,
+    distrito varchar(50)  ,
+    Empleado_idEmpl int  ,
+    CONSTRAINT Ubigeo_pk PRIMARY KEY  (CodigoUbigeo)
+);
+
+-- foreign keys
+-- Reference: Datos_Empleado (table: Datos)
+ALTER TABLE Datos ADD CONSTRAINT Datos_Empleado
+    FOREIGN KEY (Empleado_idEmpl)
+    REFERENCES Empleado (idEmpl);
+
+-- Reference: DetalleDialecto_Dialecto (table: DetalleDialecto)
+ALTER TABLE DetalleDialecto ADD CONSTRAINT DetalleDialecto_Dialecto
+    FOREIGN KEY (Dialecto_IdDial)
+    REFERENCES Dialecto (IdDial);
+
+-- Reference: DetalleDialecto_Empleado (table: DetalleDialecto)
+ALTER TABLE DetalleDialecto ADD CONSTRAINT DetalleDialecto_Empleado
+    FOREIGN KEY (Empleado_idEmpl)
+    REFERENCES Empleado (idEmpl);
+
+-- Reference: Dialecto_DetalleDialecto (table: Dialecto)
+ALTER TABLE Dialecto ADD CONSTRAINT Dialecto_DetalleDialecto
+    FOREIGN KEY (DetalleDialecto_idDetDial)
+    REFERENCES DetalleDialecto (idDetDial);
+
+-- Reference: Emergencia_Empleado (table: Emergencia)
+ALTER TABLE Emergencia ADD CONSTRAINT Emergencia_Empleado
+    FOREIGN KEY (Empleado_idEmpl)
+    REFERENCES Empleado (idEmpl);
+
+-- Reference: Empleado_Datos (table: Empleado)
+ALTER TABLE Empleado ADD CONSTRAINT Empleado_Datos
+    FOREIGN KEY (Datos_IdLeagajo)
+    REFERENCES Datos (IdLeagajo);
+
+-- Reference: Empleado_DetalleDialecto (table: Empleado)
+ALTER TABLE Empleado ADD CONSTRAINT Empleado_DetalleDialecto
+    FOREIGN KEY (DetalleDialecto_idDetDial)
+    REFERENCES DetalleDialecto (idDetDial);
+
+-- Reference: Empleado_Emergencia (table: Empleado)
+ALTER TABLE Empleado ADD CONSTRAINT Empleado_Emergencia
+    FOREIGN KEY (Emergencia_IdEmerg)
+    REFERENCES Emergencia (IdEmerg);
+
+-- Reference: Empleado_EstudiosBasicos (table: Empleado)
+ALTER TABLE Empleado ADD CONSTRAINT Empleado_EstudiosBasicos
+    FOREIGN KEY (EstudiosBasicos_IdEstuBasi)
+    REFERENCES EstudiosBasicos (IdEstuBasi);
+
+-- Reference: Empleado_EstudiosSuperior (table: Empleado)
+ALTER TABLE Empleado ADD CONSTRAINT Empleado_EstudiosSuperior
+    FOREIGN KEY (EstudiosSuperior_IdEstuSuper)
+    REFERENCES EstudiosSuperior (IdEstuSuper);
+
+-- Reference: Empleado_Familiares (table: Empleado)
+ALTER TABLE Empleado ADD CONSTRAINT Empleado_Familiares
+    FOREIGN KEY (Familiares_CodFami)
+    REFERENCES Familiares (CodFami);
+
+-- Reference: Empleado_Ubigeo (table: Empleado)
+ALTER TABLE Empleado ADD CONSTRAINT Empleado_Ubigeo
+    FOREIGN KEY (Ubigeo_CodigoUbigeo)
+    REFERENCES Ubigeo (CodigoUbigeo);
+
+-- Reference: EstudiosBasicos_Empleado (table: EstudiosBasicos)
+ALTER TABLE EstudiosBasicos ADD CONSTRAINT EstudiosBasicos_Empleado
+    FOREIGN KEY (Empleado_idEmpl)
+    REFERENCES Empleado (idEmpl);
+
+-- Reference: EstudiosSuperior_Empleado (table: EstudiosSuperior)
+ALTER TABLE EstudiosSuperior ADD CONSTRAINT EstudiosSuperior_Empleado
+    FOREIGN KEY (Empleado_idEmpl)
+    REFERENCES Empleado (idEmpl);
+
+-- Reference: Familiares_Empleado (table: Familiares)
+ALTER TABLE Familiares ADD CONSTRAINT Familiares_Empleado
+    FOREIGN KEY (Empleado_idEmpl)
+    REFERENCES Empleado (idEmpl);
+
+-- Reference: Ubigeo_Empleado (table: Ubigeo)
+ALTER TABLE Ubigeo ADD CONSTRAINT Ubigeo_Empleado
+    FOREIGN KEY (Empleado_idEmpl)
+    REFERENCES Empleado (idEmpl);
+
+-- End of file.
