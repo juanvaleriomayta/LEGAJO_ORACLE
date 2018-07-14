@@ -221,7 +221,7 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
     public void eliminar(Familiares fam) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update Familiares set Estado = 'I' Where CodFami = ?";
+            String sql = "Update Familiares set EstadoFami = 'I' Where CodFami = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getCodFami());
             st.executeUpdate();

@@ -82,7 +82,7 @@
                             <p:outputLabel value="#{familiar.empleado}"/>
                         </p:column>
                         <p:column headerText="Activar" exportable="false">
-                            <p:commandButton icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar.codFami)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
 
                     </p:dataTable>

@@ -124,6 +124,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
             listar = new ArrayList();
             while (rs.next()) {
                 EstudiosSuperior sup = new EstudiosSuperior();
+                sup.setIdEstuSuper(rs.getString("IdEstuSuper"));
                 sup.setEduSuper(rs.getString("EduSuper"));
                 sup.setEspe(rs.getString("EspeSuper"));
                 sup.setCentrEstu(rs.getString("CentrEstuSuper"));
@@ -204,7 +205,7 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
     public void eliminar(EstudiosSuperior sup) throws Exception {
         try {
             this.Conexion();
-            String sql = " Update EstudiosSuperior set Estado = 'I' Where IdEstuSuper =? ";
+            String sql = " Update EstudiosSuperior set EstadoSuper = 'I' Where IdEstuSuper =? ";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getIdEstuSuper());
             st.executeUpdate();

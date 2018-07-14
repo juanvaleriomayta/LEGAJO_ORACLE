@@ -117,6 +117,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
             lista = new ArrayList();
             while (rs.next()) {
                 EstudiosBasicos bas = new EstudiosBasicos();
+                bas.setIdEstuBasi(rs.getString("IdEstuBasi"));
                 bas.setEduc(rs.getString("EducBasi"));
                 bas.setCulmi(rs.getString("CulmiBasi"));
                 bas.setCentrEstu(rs.getString("CentrEstuBasi"));
@@ -191,7 +192,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void eliminar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update EstudioBasicos set Estado ='I' where = IdEstuBasi = ?";
+            String sql = "Update EstudioBasicos set EstadoBasi ='I' where = IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getIdEstuBasi());
             st.executeUpdate();

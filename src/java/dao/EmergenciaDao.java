@@ -23,7 +23,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             st.setString(5, eme.getCelEmer());
             st.setString(6, "A");
             st.setString(7, eme.getCodEmpleado());
-       
+
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -51,10 +51,10 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             throw e;
         }
     }
-    
+
     @Override
     public void registrar(Emergencia eme) throws Exception {
-         try {
+        try {
             this.Conexion();
             String sql = "EXEC SP_EMERGENCIA ?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
@@ -65,7 +65,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             st.setString(5, eme.getCelEmer());
             st.setString(6, "A");
             st.setString(7, eme.getCodEmpleado());
-       
+
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -96,9 +96,6 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
                 eme.setCelEmer(rs.getString("CelularEmer"));
                 eme.setEstadoEmer(rs.getString("EstadoEmer"));
                 eme.setEmpleado(rs.getString("Empleado"));
-//                eme.setEmpleadoNombr(rs.getString("Nom"));
-//                eme.setEmpleadoApell(rs.getString("Apellido del Empleado"));
-
                 lista.add(eme);
 
             }
@@ -130,10 +127,6 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
                 eme.setCelEmer(rs.getString("CelularEmer"));
                 eme.setEstadoEmer(rs.getString("EstadoEmer"));
                 eme.setEmpleado(rs.getString("Empleado"));
-                
-//                eme.setEmpleadoNombr(rs.getString("Nom"));
-//                eme.setEmpleadoApell(rs.getString("Apellido del Empleado"));
-
                 lista.add(eme);
 
             }
@@ -145,6 +138,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
         return lista;
     }
 
+    @Override
     public Emergencia leerID(String Codigo) throws Exception {
         Emergencia emer = null;
         ResultSet rs;
@@ -165,8 +159,6 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
                 emer.setCelEmer(rs.getString("CelularEmer"));
                 emer.setEstadoEmer(rs.getString("EstadoEmer"));
                 emer.setEmpleado(rs.getString("Empleado"));
-//                emer.setEmpleadoNombr(rs.getString("Nom"));
-//                emer.setEmpleadoApell(rs.getString("Apellido del Empleado"));
             }
         } catch (SQLException e) {
             throw e;
@@ -190,8 +182,6 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             st.setString(6, eme.getCelEmer());
             st.setString(7, eme.getEstadoEmer());
             st.setString(8, eme.getCodEmpleado());
-//            st.setString(7, eme.getEmpleadoNombr());
-//            st.setString(8, eme.getEmpleadoApell());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -204,7 +194,7 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
     public void eliminar(Emergencia eme) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update Emergencia set Estado = 'I' where IdEmerg=?";
+            String sql = "Update Emergencia set EstadoEmer = 'I' where IdEmerg=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, eme.getIdEmerg());
             st.executeUpdate();
@@ -213,10 +203,5 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
         } finally {
             this.Cerrar();
         }
-    }
-
-    @Override
-    public Emergencia leerID(Emergencia eme) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

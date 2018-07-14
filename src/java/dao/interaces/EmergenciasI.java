@@ -24,7 +24,7 @@ public interface EmergenciasI {
     public List<Emergencia> listar() throws Exception;
 
     //Este metodo permite leer el codigo identificador de los datos emergente o contactos del empleado
-    public Emergencia leerID(Emergencia eme) throws Exception;
+    public Emergencia leerID(String eme) throws Exception;
 
     //Este metodo permite modificar los datos emergentes o contactos del empleado
     public void modificar(Emergencia eme) throws Exception;

@@ -40,15 +40,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(20, "A");
             st.setString(21, emp.getOrigen());
 
-//            st.setString(22, emp.getFamiliaresNom());
-//            st.setString(23, emp.getFamiliaresApe());
-//            st.setString(24, emp.getEmergenciaNom());
-//            st.setString(25, emp.getEmergenciaApe());
-//            st.setString(26, emp.getEstuBasiEducacion());
-//            st.setString(27, emp.getEstuBasiCentroEstudos());
-//            st.setString(28, emp.getEstuSuperEducacion());
-//            st.setString(29, emp.getEstuSuperCentroEstudios());
-            st.setString(30, emp.getPass());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -84,16 +75,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(19, emp.getUbigActu());
             st.setString(20, "A");
             st.setString(21, emp.getOrigen());
-
-//            st.setString(22, emp.getFamiliaresNom());
-//            st.setString(23, emp.getFamiliaresApe());
-//            st.setString(24, emp.getEmergenciaNom());
-//            st.setString(25, emp.getEmergenciaApe());
-//            st.setString(26, emp.getEstuBasiEducacion());
-//            st.setString(27, emp.getEstuBasiCentroEstudos());
-//            st.setString(28, emp.getEstuSuperEducacion());
-//            st.setString(29, emp.getEstuSuperCentroEstudios());
-//            st.setString(30, emp.getPass());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -142,7 +123,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setFecNac(rs.getString("FecNac"));
                 emp.setGrupSang(rs.getString("GrupSang"));
                 emp.setEstCiv(rs.getString("EstCiv"));
-                emp.setConLab(rs.getString("ConLab"));  
+                emp.setConLab(rs.getString("ConLab"));
                 emp.setCarnAseg(rs.getString("CarnAseg"));
                 emp.setRefe(rs.getString("Refe"));
                 emp.setLeye(rs.getString("Leye"));
@@ -154,14 +135,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setOrigen(rs.getString("Origen"));
                 emp.setDNI(DNI);
                 emp.setPass(Pass);
-//                emp.setFamiliaresNom(rs.getString("NomFami"));
-//                emp.setFamiliaresApe(rs.getString("ApelFami"));
-//                emp.setEmergenciaNom(rs.getString("NomEmer"));
-//                emp.setEmergenciaApe(rs.getString("ApeEmer"));
-//                emp.setEstuBasiEducacion(rs.getString("EducBasi"));
-//                emp.setEstuBasiCentroEstudos(rs.getString("CentrEstuBasi"));
-//                emp.setEstuSuperEducacion(rs.getString("EduSuper"));
-//                emp.setEstuSuperCentroEstudios(rs.getString("CentrEstuSuper"));
             }
             return emp;
         } catch (SQLException e) {
@@ -169,7 +142,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         }
 
     }
-    
+
     public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
         this.Conexion();
         ResultSet rs;
@@ -212,6 +185,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setApelMate(rs.getString("ApelMate"));
                 emp.setRUC(rs.getString("RUC"));
                 emp.setEmail(rs.getString("Email"));
+                emp.setTelf(rs.getString("Telf"));
                 emp.setCel(rs.getString("Cel"));
                 emp.setFecNac(rs.getString("FecNac"));
                 emp.setGrupSang(rs.getString("GrupSang"));
@@ -223,18 +197,9 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setFecIng(rs.getString("FecIng"));
                 emp.setFecNom(rs.getString("FecNom"));
                 emp.setDatCony(rs.getString("DatCony"));
-                emp.setTelf(rs.getString("Telf"));
                 emp.setUbigActu(rs.getString("Direccion"));
-                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
                 emp.setEst(rs.getString("Est"));
-//                emp.setFamiliaresNom(rs.getString("NomFami"));
-//                emp.setFamiliaresApe(rs.getString("ApelFami"));
-//                emp.setEmergenciaNom(rs.getString("NomEmer"));
-//                emp.setEmergenciaApe(rs.getString("ApeEmer"));
-//                emp.setEstuBasiEducacion(rs.getString("EducBasi"));
-//                emp.setEstuBasiCentroEstudos(rs.getString("CentrEstuBasi"));
-//                emp.setEstuSuperEducacion(rs.getString("EduSuper"));
-//                emp.setEstuSuperCentroEstudios(rs.getString("CentrEstuSuper"));
+                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -252,9 +217,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
 
         try {
             this.Conexion();
-
             String sql = "SELECT * FROM vw_EmpleadosInac";
-
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -267,6 +230,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setApelMate(rs.getString("ApelMate"));
                 emp.setRUC(rs.getString("RUC"));
                 emp.setEmail(rs.getString("Email"));
+                emp.setTelf(rs.getString("Telf"));
                 emp.setCel(rs.getString("Cel"));
                 emp.setFecNac(rs.getString("FecNac"));
                 emp.setGrupSang(rs.getString("GrupSang"));
@@ -278,18 +242,9 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
                 emp.setFecIng(rs.getString("FecIng"));
                 emp.setFecNom(rs.getString("FecNom"));
                 emp.setDatCony(rs.getString("DatCony"));
-                emp.setTelf(rs.getString("Telf"));
                 emp.setUbigActu(rs.getString("Direccion"));
-                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
                 emp.setEst(rs.getString("Est"));
-//                emp.setFamiliaresNom(rs.getString("NomFami"));
-//                emp.setFamiliaresApe(rs.getString("ApelFami"));
-//                emp.setEmergenciaNom(rs.getString("NomEmer"));
-//                emp.setEmergenciaApe(rs.getString("ApeEmer"));
-//                emp.setEstuBasiEducacion(rs.getString("EducBasi"));
-//                emp.setEstuBasiCentroEstudos(rs.getString("CentrEstuBasi"));
-//                emp.setEstuSuperEducacion(rs.getString("EduSuper"));
-//                emp.setEstuSuperCentroEstudios(rs.getString("CentrEstuSuper"));
+                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -388,7 +343,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         try {
             this.Conexion();
             String sql = "Update Empleado set Est='I' WHERE idEmpl = ?";
-            PreparedStatement st = this.getCn().prepareStatement(sql);            
+            PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getIdEmpl());
             st.executeUpdate();
         } catch (SQLException e) {

@@ -72,7 +72,7 @@
 
 
                         <p:column headerText="Activar" exportable="false">
-                            <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial.idDetDial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
 
                     </p:dataTable>

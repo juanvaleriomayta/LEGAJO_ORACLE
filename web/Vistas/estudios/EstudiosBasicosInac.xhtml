@@ -15,9 +15,6 @@
                 <f:event type="preRenderView" listener="#{estudiosBasicosC.listarInactivos()}" />
                 <p:growl autoUpdate="true" />
                 <h:form id="frm">
-<!--                    <p:button outcome="index" value="Salir" icon="ui-icon-exit">
-                        <f:param name="productId" value="50" />
-                    </p:button>-->
                     <p:dataTable id="data"  value="#{estudiosBasicosC.lstEstudiosBasicos}" var="basicos" rows="10"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -70,7 +67,7 @@
                         
 
                         <p:column headerText="Activar" exportable="false">
-                            <p:commandButton value="Activar" actionListener="#{estudiosBasicosC.leerID(basicos)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                            <p:commandButton value="Activar" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
 
                     </p:dataTable>               

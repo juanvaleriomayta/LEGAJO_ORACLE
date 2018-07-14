@@ -74,7 +74,8 @@ public class UbigeoDao extends DAO implements UbigeoI {
 
         try {
             this.Conexion();
-            String sql = "select * from Ubigeo";
+            String sql = "SELECT * FROM VIEW VW_UBIGEO";
+//            String sql = "select * from Ubigeo";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();

@@ -80,6 +80,7 @@ public class DetalleDialectoDao extends DAO {
             lista = new ArrayList();
             while (rs.next()) {
                 DetalleDialecto detdia = new DetalleDialecto();
+                detdia.setIdDetDial(rs.getString("idDetDial"));
                 detdia.setLee(rs.getString("Lee"));
                 detdia.setHabla(rs.getString("Habla"));
                 detdia.setEscribe(rs.getString("Escribe"));
@@ -107,6 +108,7 @@ public class DetalleDialectoDao extends DAO {
             lista = new ArrayList();
             while (rs.next()) {
                 DetalleDialecto detdia = new DetalleDialecto();
+                detdia.setIdDetDial(rs.getString("idDetDial"));
                 detdia.setLee(rs.getString("Lee"));
                 detdia.setHabla(rs.getString("Habla"));
                 detdia.setEscribe(rs.getString("Escribe"));

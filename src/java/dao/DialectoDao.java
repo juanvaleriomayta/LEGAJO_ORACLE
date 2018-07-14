@@ -72,7 +72,8 @@ public class DialectoDao extends DAO implements DialectoI {
 
         try {
             this.Conexion();
-            String sql = "SELECT IdDial, NomDial FROM Dialecto";
+            String sql = "SELECT * FROM VW_LISTAR_DIALECTO";
+//            String sql = "SELECT IdDial, NomDial FROM Dialecto";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();

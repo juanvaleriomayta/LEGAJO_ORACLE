@@ -81,6 +81,18 @@ public class EmergenciaC implements Serializable {
             throw e;
         }
     }
+    
+     public void listarInactivos() throws Exception {
+        EmergenciaDao dao;
+
+        try {
+            dao = new EmergenciaDao();
+            lstEmergencia = dao.listarInactivos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
 
     public void leerID(String Codigo) throws Exception {
         EmergenciaDao dao;
