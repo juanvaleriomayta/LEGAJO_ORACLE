@@ -8,7 +8,7 @@
     <h:head>
         <meta charset="UTF-8"/>
         <title>LOGIN LEGAJO</title>
-
+        <link rel="icon" type="image/png" href="resources/icon/sbs.png" />
         <link href="resources/css/style_Login.css" rel="stylesheet" type="text/css"/>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -22,23 +22,33 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="pr-wrap">
-<!--                        <div class="pass-reset">
-                            <label>
-                                Enter the email you signed up with</label>
-                            <input type="email" placeholder="Email" />
-                            <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
-                        </div>-->
+                        <!--                        <div class="pass-reset">
+                                                    <label>
+                                                        Enter the email you signed up with</label>
+                                                    <input type="email" placeholder="Email" />
+                                                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                                                </div>-->
                     </div>
                     <div class="wrap">
-                        <p class="form-title">Login</p> 
+                        <p class="form-title"></p> 
+
+                        <!--                        <img class="responsive-img" style="max-width: 300px;" src="" />-->
+                        <div align="center"><img src="resources/icon/sbs.png"/></div>
 
                         <form class="login">
                             <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
+                            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
                             <h:form id="form">
-                                <p:inputText value="#{Login.DNI}" required="true" placeholder="Usuario" maxlength="8" requiredMessage="USUARIO INCORRECTO"/>
-                                <p:password value="#{Login.pass}" required="true" placeholder="Contraseña" requiredMessage="CONTRASEÑA INCORRECTA"/>
-                                <p:commandButton id="BtnIniciarSesion" type="submit" value="INGRESAR" class="btn btn-primary btn-block btn-large" actionListener="#{Login.startSessionEmpleado()}"/>
+                                <h:outputLabel for="dni" value="DNI"/>
+                                <p:inputText id="dni" value="#{Login.DNI}" required="true" placeholder="DNI" maxlength="8" requiredMessage="USUARIO INCORRECTO"/>
+                                <h:outputLabel for="pass" value="PASSWORD"/>
+                                <p:password id="pass" value="#{Login.pass}" required="true" placeholder="PASSWORD" requiredMessage="CONTRASEÑA INCORRECTA"/>
+
+                                <p:commandButton id="BtnIniciarSesion" update="growl" type="submit" value="INGRESAR"  class="btn btn-primary btn-block btn-large" actionListener="#{Login.startSessionEmpleado()}"/>
                                 <p:blockUI block="form" trigger="BtnIniciarSesion"/>
+
+
+
                             </h:form>
 
 

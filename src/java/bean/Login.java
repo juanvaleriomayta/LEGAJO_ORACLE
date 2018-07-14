@@ -36,7 +36,7 @@ public class Login implements Serializable {
             } else {
                 setPass(null);
                 empleado = new Empleado();
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Contraseña/Usuario Incorrecto"));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("CONTRASEÑA O USUARIO INCORRECTO"));
             }
         } catch (Exception e) {
             throw e;
