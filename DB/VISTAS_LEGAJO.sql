@@ -172,11 +172,11 @@ AS
 GO
 
 /* VISTA DONDE ESTAN RELACIONADAS TODAS LAS TABLAS EN ESTADO ACTIVO */
-CREATE VIEW vw_EmpleadoReport
+CREATE VIEW vw_Empleado
 AS
 SELECT DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac, GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu AS 'Direccion',Est,
 CONCAT(Ubigeo.Dep,',',Ubigeo.Pro,',',Ubigeo.Dis) AS 'Lugar de Nacimiento',
-Familiares.NomFami,Familiares.ApelFami,Familiares.CelularFami,Familiares.FecNacFami,Familiares.EstadoFami,Familiares.EstCivFami,Familiares.OcuFami,Familiares.ParFami,
+Familiares.NomFami,Familiares.ApelFami,Familiares.CelularFami,Familiares.FecNacFami,Familiares.EstadoFami,Familiares.EstCivFami,Familiares.OcuFami,Familiares.ParFami,Familiares.viveFami,
 Emergencia.NomEmer,Emergencia.ApeEmer,Emergencia.CelularEmer,Emergencia.EstadoEmer,Emergencia.ParenEmer,Emergencia.TelEmer,
 EstudioBasicos.CentrEstuBasi,EstudioBasicos.CulmiBasi,EstudioBasicos.DesdBasi,EstudioBasicos.EducBasi,EstudioBasicos.EstadoBasi,EstudioBasicos.HasBasi,
 EstudiosSuperior.CentrEstuSuper,EstudiosSuperior.CulmiSuper,EstudiosSuperior.DesdSuper,EstudiosSuperior.EduSuper,EstudiosSuperior.EspeSuper,EstudiosSuperior.EstadoSuper,EstudiosSuperior.GradAcadObte,EstudiosSuperior.HastSuper,
