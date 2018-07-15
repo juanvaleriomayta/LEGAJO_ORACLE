@@ -107,7 +107,7 @@ AS
 GO
 
 /* VISTA DONDE SE MUESTRA LA INFORMACION DE LA TABLA ESTUDIOS BASICOS EN ESTADO INACTIVO */
-ALTER VIEW vw_EstuBasiEmplInac
+CREATE VIEW vw_EstuBasiEmplInac
 AS
     SELECT IdEstuBasi, EducBasi, CulmiBasi, CentrEstuBasi,
         FORMAT(CONVERT(date,DesdBasi,103),'dd/MM/yyyy','en-gb') AS DesdBasi,
@@ -172,23 +172,24 @@ AS
 GO
 
 /* VISTA DONDE ESTAN RELACIONADAS TODAS LAS TABLAS EN ESTADO ACTIVO */
-ALTER VIEW vw_Empleado
+CREATE VIEW vw_EmpleadoReport
 AS
-    SELECT DNI, Nom, ApelPate, ApelMate, RUC, Email, Telf, Cel, FecNac, GrupSang, EstCiv, ConLab, CarnAseg, Refe, Leye, FecIng, FecNom, DatCony, UbigActu AS 'Direccion', Est,
-        CONCAT(Ubigeo.Dep,',',Ubigeo.Pro,',',Ubigeo.Dis) AS 'Lugar de Nacimiento',
-        Familiares.NomFami, Familiares.ApelFami, Familiares.CelularFami, Familiares.FecNacFami, Familiares.EstadoFami, Familiares.EstCivFami, Familiares.OcuFami, Familiares.ParFami,
-        Emergencia.NomEmer, Emergencia.ApeEmer, Emergencia.CelularEmer, Emergencia.EstadoEmer, Emergencia.ParenEmer, Emergencia.TelEmer,
-        EstudioBasicos.CentrEstuBasi, EstudioBasicos.CulmiBasi, EstudioBasicos.DesdBasi, EstudioBasicos.EducBasi, EstudioBasicos.EstadoBasi, EstudioBasicos.HasBasi,
-        EstudiosSuperior.CentrEstuSuper, EstudiosSuperior.CulmiSuper, EstudiosSuperior.DesdSuper, EstudiosSuperior.EduSuper, EstudiosSuperior.EspeSuper, EstudiosSuperior.EstadoSuper, EstudiosSuperior.GradAcadObte, EstudiosSuperior.HastSuper,
-        Empleado.Pass
-    FROM Empleado
-        LEFT OUTER JOIN Familiares ON Empleado.Familiares_CodContEmp = Familiares.CodContEmp
-        LEFT OUTER JOIN Emergencia ON Empleado.Emergencia_IdEmerg = Emergencia.IdEmerg
-        LEFT OUTER JOIN EstudioBasicos ON Empleado.EstudioBasicos_IdEstuBasi = EstudioBasicos.IdEstuBasi
-        LEFT OUTER JOIN EstudiosSuperior ON Empleado.EstudiosSuperior_IdEstusuper = EstudiosSuperior.IdEstusuper
-        LEFT OUTER JOIN Ubigeo ON Empleado.Ubigeo_CodUbi = Ubigeo.CodUbi
-    WHERE Empleado.Est like 'A' AND Familiares.EstadoFami like 'A' AND Emergencia.EstadoEmer like 'A'
-        AND EstudioBasicos.EstadoBasi like 'A' AND EstudiosSuperior.EstadoSuper like 'A'
+SELECT DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac, GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu AS 'Direccion',Est,
+CONCAT(Ubigeo.Dep,',',Ubigeo.Pro,',',Ubigeo.Dis) AS 'Lugar de Nacimiento',
+Familiares.NomFami,Familiares.ApelFami,Familiares.CelularFami,Familiares.FecNacFami,Familiares.EstadoFami,Familiares.EstCivFami,Familiares.OcuFami,Familiares.ParFami,
+Emergencia.NomEmer,Emergencia.ApeEmer,Emergencia.CelularEmer,Emergencia.EstadoEmer,Emergencia.ParenEmer,Emergencia.TelEmer,
+EstudioBasicos.CentrEstuBasi,EstudioBasicos.CulmiBasi,EstudioBasicos.DesdBasi,EstudioBasicos.EducBasi,EstudioBasicos.EstadoBasi,EstudioBasicos.HasBasi,
+EstudiosSuperior.CentrEstuSuper,EstudiosSuperior.CulmiSuper,EstudiosSuperior.DesdSuper,EstudiosSuperior.EduSuper,EstudiosSuperior.EspeSuper,EstudiosSuperior.EstadoSuper,EstudiosSuperior.GradAcadObte,EstudiosSuperior.HastSuper,
+Empleado.Pass, DetalleDialecto.Lee,DetalleDialecto.Habla,DetalleDialecto.Escribe,DetalleDialecto.Estado
+FROM Empleado
+LEFT OUTER JOIN Familiares ON Empleado.Familiares_CodContEmp = Familiares.CodContEmp
+LEFT OUTER JOIN Emergencia ON Empleado.Emergencia_IdEmerg = Emergencia.IdEmerg
+LEFT OUTER JOIN EstudioBasicos ON Empleado.EstudioBasicos_IdEstuBasi = EstudioBasicos.IdEstuBasi
+LEFT OUTER JOIN EstudiosSuperior ON Empleado.EstudiosSuperior_IdEstusuper = EstudiosSuperior.IdEstusuper
+LEFT OUTER JOIN Ubigeo ON Empleado.Ubigeo_CodUbi = Ubigeo.CodUbi
+LEFT OUTER JOIN DetalleDialecto ON Empleado.DetalleDialecto_idDetDial = DetalleDialecto.idDetDial
+WHERE Empleado.Est like 'A' AND Familiares.EstadoFami like 'A' AND Emergencia.EstadoEmer like 'A'
+AND EstudioBasicos.EstadoBasi like 'A' AND EstudiosSuperior.EstadoSuper like 'A' AND DetalleDialecto.Estado like 'A'
 GO
 
 
