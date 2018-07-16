@@ -11,12 +11,8 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="EmpleadosInactivos">
-                <!--<f:event type="preRenderView" listener="#{empleadoC.listarInactivos()}"/>-->
+                <f:event type="preRenderView" listener="#{empleadoC.listarInactivos()}"/>
                 <h:form id="frm">
-                    <!--            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
-                                    <f:param name="productId" value="50" />
-                                </p:button>-->
-
                     <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                     <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
                                  paginator="true"
@@ -111,7 +107,7 @@
                             <p:commandButton  icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
 
-                        
+
                     </p:dataTable>
                 </h:form>
 
@@ -129,7 +125,7 @@
 
                             </p:selectOneRadio>
 
-                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
 
                         </p:panelGrid>

@@ -111,7 +111,7 @@
                             <p:inputMask id="Hasta" value="#{estudiosBasicosC.estudiosBasicos.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
 
                             <p:commandButton value="#{estudiosBasicosC.accion}" actionListener="#{estudiosBasicosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton value="CANCELAR" icon="ui-icon-close" immediate="true" onclick="PF('wdlgDatos').hide();"/>
+                            <p:commandButton value="CANCELAR" icon="ui-icon-close" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>
 

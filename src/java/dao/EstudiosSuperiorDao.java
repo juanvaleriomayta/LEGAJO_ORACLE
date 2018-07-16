@@ -181,7 +181,6 @@ public class EstudiosSuperiorDao extends DAO implements EstudiosSuperiorI {
         try {
             this.Conexion();
             String sql = "SP_ESTUDIOS_SUPER_UPDATE ?,?,?,?,?,?,?,?,?,?";
-//            String sql = "UPDATE EstudiosSuperiores SET EduSuper = ?, EspeSuper=?,CentrEstuSuper =?, DesdSuper = convert(date, ?, 103), HastSuper = convert(date, ?, 103),CulmiSuper=?,GradAcadObte=? ,EstadoSuper = ?,Empleado_idEmpl=? WHERE IdEstuSuper = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, sup.getIdEstuSuper());
             st.setString(2, sup.getEduSuper());

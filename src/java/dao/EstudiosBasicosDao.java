@@ -192,7 +192,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
     public void eliminar(EstudiosBasicos bas) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update EstudioBasicos set EstadoBasi ='I' where = IdEstuBasi = ?";
+            String sql = "Update EstudioBasicos set EstadoBasi ='I' where IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getIdEstuBasi());
             st.executeUpdate();
