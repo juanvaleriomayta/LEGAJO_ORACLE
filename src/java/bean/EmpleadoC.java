@@ -151,7 +151,7 @@ public class EmpleadoC implements Serializable {
         try {
             Map<String, Object> parameters = new HashMap();
             report.exportarPDF(parameters);
-            report.exportarPDF2(parameters);
+//            report.exportarPDF2(parameters);
         } catch (Exception e) {
             throw e;
         }
