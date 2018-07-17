@@ -115,8 +115,8 @@
                         </p:panelGrid>
                     </p:rowExpansion>
 
-                    <p:column headerText="Modificar" exportable="false" >
-                        <p:commandButton  value="Modificar" icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
+                    <p:column style="width:50px" exportable="false" >
+                        <p:commandButton icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
                         </p:commandButton>
                     </p:column>
 
