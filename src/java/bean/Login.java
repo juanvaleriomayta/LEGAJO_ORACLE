@@ -22,6 +22,15 @@ public class Login implements Serializable {
     //Variables de Logeo
     private String DNI;
     private String Pass;
+    private int intentos, number;
+    
+    public void increment(){
+        number++;
+        if (number > 5) {
+            number = 0;
+            intentos = 0;            
+        }
+    }
 
     public void startSessionEmpleado() throws Exception {
         EmpleadoDao dao;
@@ -29,6 +38,7 @@ public class Login implements Serializable {
             dao = new EmpleadoDao();
             empleado = dao.sessionEmpleado(DNI, Pass);
             if (empleado != null) {
+                intentos = 0;
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("DNI", empleado);
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
@@ -36,6 +46,7 @@ public class Login implements Serializable {
             } else {
                 setPass(null);
                 empleado = new Empleado();
+                intentos++;
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("CONTRASEÑA O USUARIO INCORRECTO"));
             }
         } catch (Exception e) {
