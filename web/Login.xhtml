@@ -4,83 +4,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-
     <h:head>
-        <meta charset="UTF-8"/>
-        <title>LOGIN LEGAJO</title>
-        <link rel="icon" type="image/png" href="resources/icon/sbs.png" />
+        <title>Facelet Title</title>
+        <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
         <link href="resources/css/style_Login.css" rel="stylesheet" type="text/css"/>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="resources/js/index_Login.js" type="text/javascript"></script>
+
     </h:head>
-
     <h:body>
+       
+            <h1>Employer Log in</h1>
+           
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pr-wrap">
-                        <!--                        <div class="pass-reset">
-                                                    <label>
-                                                        Enter the email you signed up with</label>
-                                                    <input type="email" placeholder="Email" />
-                                                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
-                                                </div>-->
-                    </div>
-                    <div class="wrap">
-                        <p class="form-title"></p> 
+        <h:form id="form">
+            <h:panelGroup >
+                <p:inputText value="#{Login.DNI}" placeholder="Usuario" disabled="#{Login.intentos le 2 ? false:true}" required="true"/>
+                <p:password value="#{Login.pass}" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}"/>
+                <p:commandButton id="BtnIniciarSesion" value="Ingresar" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" />
+                <p:blockUI block="form" trigger="BtnIniciarSesion" />
+            </h:panelGroup>
+            <h:panelGroup rendered="#{Login.intentos >= 3 ? true:false}">
+                <h:outputText id="txt_count" value="#{Login.number}" />
+                <p:poll interval="3" listener="#{Login.increment}" update="form" oncomplete="refresh();" />
+            </h:panelGroup>
 
-                        <!--                        <img class="responsive-img" style="max-width: 300px;" src="" />-->
-                        <div align="center"><img src="resources/icon/sbs.png"/></div>
-
-                        <form class="login">
-                            <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
-                            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-                            <h:form id="form">
-                                <h:outputLabel for="dni" value="DNI"/>
-                                <p:inputText id="dni" value="#{Login.DNI}" required="true" placeholder="DNI" maxlength="8" requiredMessage="USUARIO INCORRECTO"/>
-                                <h:outputLabel for="pass" value="PASSWORD"/>
-                                <p:password id="pass" value="#{Login.pass}" required="true" placeholder="PASSWORD" requiredMessage="CONTRASEÑA INCORRECTA"/>
-
-                                <p:commandButton id="BtnIniciarSesion" update="growl" type="submit" value="INGRESAR"  class="btn btn-primary btn-block btn-large" actionListener="#{Login.startSessionEmpleado()}"/>
-                                <p:blockUI block="form" trigger="BtnIniciarSesion"/>
-
-
-
-                            </h:form>
-
-
-
-
-
-
-
-                            <div class="remember-forgot">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" />
-                                                Recordarme
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 forgot-pass-content">
-                                        <a href="Vistas/template/Template.xhtml" class="forgot-pass">Crear Cuenta</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <a href="Vistas/template/Template.xhtml"></a>
-                </div>
-            </div>
-
-        </div>
+            <p:remoteCommand name="refresh" update="form"/>
+        </h:form>   
 
 
 
