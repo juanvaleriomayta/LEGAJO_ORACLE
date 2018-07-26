@@ -60,11 +60,11 @@
                         <p:column headerText="Empleado">
                             <p:outputLabel value="#{basicos.empleado}"/>
                         </p:column>
-                        <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton icon="ui-icon-pencil" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        <p:column style="width:50px" exportable="false">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
-                        <p:column headerText="Eliminar" exportable="false">
-                            <p:commandButton value="Eliminar" actionListener="#{estudiosBasicosC.eliminar(basicos)}" update="data" style="background-color:red;color:red;">
+                        <p:column style="width:54px" exportable="false">
+                            <p:commandButton title="ELIMINAR" icon="ui-icon-circle-close" actionListener="#{estudiosBasicosC.eliminar(basicos)}" update="data" style="background-color:red;color:red;">
                                 <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

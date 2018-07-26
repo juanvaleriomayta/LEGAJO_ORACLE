@@ -74,8 +74,8 @@
                         </p:column>
 
                       
-                        <p:column headerText="Activar" exportable="false">
-                            <p:commandButton value="Activar" actionListener="#{estudiosSuperiorC.leerID(superior.idEstuSuper)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        <p:column style="width:50px" exportable="false">
+                            <p:commandButton title="ACTIVAR" icon="ui-icon-pencil" actionListener="#{estudiosSuperiorC.leerID(superior.idEstuSuper)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
 
                     </p:dataTable>               

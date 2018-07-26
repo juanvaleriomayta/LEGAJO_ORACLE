@@ -77,11 +77,11 @@
                         </p:column>
 
 
-                        <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton value="Modificar" actionListener="#{estudiosSuperiorC.leerID(superior.idEstuSuper)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        <p:column style="width:50px" exportable="false">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{estudiosSuperiorC.leerID(superior.idEstuSuper)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
-                        <p:column headerText="Eliminar" exportable="false">
-                            <p:commandButton value="Eliminar" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
+                        <p:column style="width:54px" exportable="false">
+                            <p:commandButton title="ELIMINAR" icon="ui-icon-circle-close" actionListener="#{estudiosSuperiorC.eliminar(superior)}" update="data" style="background-color:red;color:red;">
                                 <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

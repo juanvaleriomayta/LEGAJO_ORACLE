@@ -20,7 +20,7 @@
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
 
- 
+
 
 
 
@@ -62,7 +62,7 @@
                         <p:column headerText="Nombre del Empleado">
                             <p:outputLabel value="#{detdial.empleado}"/>
                         </p:column>
-                       
+
                         <p:column headerText="Dialecto">
                             <p:outputLabel value="#{detdial.dialecto}"/>
                         </p:column>
@@ -71,8 +71,8 @@
                         </p:column>
 
 
-                        <p:column headerText="Activar" exportable="false">
-                            <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial.idDetDial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        <p:column exportable="false" style="width:50px">
+                            <p:commandButton title="ACTIVAR" icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial.idDetDial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
 
                     </p:dataTable>

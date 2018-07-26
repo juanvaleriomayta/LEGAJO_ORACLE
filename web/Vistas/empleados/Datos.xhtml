@@ -75,11 +75,10 @@
                                 <h:outputText value="#{Datos.comInfTper}"/>
                             </p:panelGrid>
                         </p:rowExpansion>  
-                        <p:column headerText="MODIFICAR"  exportable="false">
-                            <p:commandButton value="MODIFICAR" id="ui-icon-pencil" actionListener="#{datosC.leerID(Datos.idLegajo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
-                            </p:commandButton>
+                        <p:column style="width:50px"  exportable="false">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{datosC.leerID(Datos.idLegajo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos"/>
                         </p:column> 
-                        <p:column>
+                        <p:column style="width:54px">
                             <p:growl id="message" showDetail="true"/>
                             <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{datosC.eliminar(Datos)}" update="data" style="background-color: red;color: red;">
                                 <p:confirm header="Confirmación" message=" ¿Deseas Eliminar? " icon="ui-icon-alert"/>

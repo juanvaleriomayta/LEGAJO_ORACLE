@@ -83,11 +83,11 @@
                                 </p:panelGrid>
                             </p:rowExpansion>
 
-                        <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton value="MODIFICAR" icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar.codFami)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        <p:column style="width:50px" exportable="false">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar.codFami)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
-                        <p:column headerText="Eliminar" exportable="false">
-                            <p:commandButton icon="ui-icon-circle-close" actionListener="#{familiaresC.eliminar(familiar)}" update="data" style="background-color:red;color:red;">
+                        <p:column style="width:54px" exportable="false">
+                            <p:commandButton title="ELIMINAR" icon="ui-icon-circle-close" actionListener="#{familiaresC.eliminar(familiar)}" update="data" style="background-color:red;color:red;">
                                 <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                             </p:commandButton>
 

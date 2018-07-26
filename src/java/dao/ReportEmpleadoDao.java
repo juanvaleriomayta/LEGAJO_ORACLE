@@ -15,7 +15,7 @@ public class ReportEmpleadoDao extends DAO {
 
     public void exportarPDF(Map parameters) throws JRException, IOException, Exception {
         this.Conexion();
-        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Vistas/REPORTES/EMPLEADO_FORMULARIO_REPORT.jasper"));
+        File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Vistas/REPORTES/EMPLEADOREPORT_4.jasper"));
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), parameters, this.getCn());
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         response.addHeader("Content-disposition", "attachment; filename=FICHA DEL TRABAJADOR.pdf");

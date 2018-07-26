@@ -43,11 +43,11 @@
                             <h:outputText value="#{empleado.nombre}"/>
                         </p:column>
 
-                        <p:column headerText="MODIFICAR"  exportable="false">
-                            <p:commandButton value="MODIFICAR" id="ui-icon-pencil" actionListener="#{Login.leerID(empleado.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
+                        <p:column style="width:50px"  exportable="false">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{Login.leerID(empleado.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
                             </p:commandButton>
                         </p:column> 
-                        <p:column>
+                        <p:column style="width:54px">
                             <p:growl id="message" showDetail="true"/>
                             <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{Login.eliminar(empleado)}" update="data" style="background-color: red;color: red;">
                                 <p:confirm header="Confirmación" message=" ¿Deseas Eliminar? " icon="ui-icon-alert"/>

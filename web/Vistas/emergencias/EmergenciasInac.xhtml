@@ -71,8 +71,8 @@
 
 
 
-                        <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton icon="ui-icon-pencil" actionListener="#{emergenciaC.leerID(emergencias.idEmerg)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        <p:column style="width:50px" exportable="false">
+                            <p:commandButton title="ACTIVAR" icon="ui-icon-pencil" actionListener="#{emergenciaC.leerID(emergencias.idEmerg)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>                       
                     </p:dataTable>
                 </h:form>  

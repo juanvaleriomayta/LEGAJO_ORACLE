@@ -63,13 +63,13 @@
                             <p:outputLabel value="#{detdial.dialecto}"/>
                         </p:column>
 
-                        <p:column headerText="Modificar" exportable="false">
-                            <p:commandButton  icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial.idDetDial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        <p:column exportable="false" style="width:50px">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial.idDetDial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
-                        <p:column headerText="Eliminar" exportable="false">
+                        <p:column exportable="false" style="width:54px">
                             <p:growl id="message" showDetail="true" />
 
-                            <p:commandButton icon="ui-icon-circle-close" actionListener="#{detalleDialectoC.eliminar(detdial)}" update="data" style="background-color:red;color:red;">
+                            <p:commandButton title="ELIMINAR" icon="ui-icon-circle-close" actionListener="#{detalleDialectoC.eliminar(detdial)}" update="data" style="background-color:red;color:red;">
                                 <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                             </p:commandButton>
 

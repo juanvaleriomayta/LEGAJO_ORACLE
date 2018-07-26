@@ -116,11 +116,11 @@
                     </p:rowExpansion>
 
                     <p:column style="width:50px" exportable="false" >
-                        <p:commandButton icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
+                        <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
                         </p:commandButton>
                     </p:column>
 
-                    <p:column >
+                    <p:column style="width:54px">
                         <p:growl id="message" showDetail="true" />
                         <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
                             <p:confirm header="Confirmación" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
