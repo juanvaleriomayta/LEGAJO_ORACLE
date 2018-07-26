@@ -101,47 +101,47 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         }
     }
 
-    public Empleado sessionEmpleado(String DNI, String Pass) throws Exception {
-        this.Conexion();
-        ResultSet rs;
-        Empleado emp = null;
-        try {
-            String sql = "select idEmpl,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,Origen from Empleado where DNI like ? and Pass like ? AND Est like 'A'";
-            PreparedStatement st = this.getCn().prepareStatement(sql);
-            st.setString(1, DNI);
-            st.setString(2, Pass);
-            rs = st.executeQuery();
-            if (rs.next()) {
-                emp = new Empleado();
-                emp.setNom(rs.getString("idEmpl"));
-                emp.setNom(rs.getString("Nom"));
-                emp.setApelPate(rs.getString("ApelPate"));
-                emp.setApelMate(rs.getString("ApelMate"));
-                emp.setRUC(rs.getString("RUC"));
-                emp.setEmail(rs.getString("Email"));
-                emp.setCel(rs.getString("Cel"));
-                emp.setFecNac(rs.getString("FecNac"));
-                emp.setGrupSang(rs.getString("GrupSang"));
-                emp.setEstCiv(rs.getString("EstCiv"));
-                emp.setConLab(rs.getString("ConLab"));
-                emp.setCarnAseg(rs.getString("CarnAseg"));
-                emp.setRefe(rs.getString("Refe"));
-                emp.setLeye(rs.getString("Leye"));
-                emp.setFecIng(rs.getString("FecIng"));
-                emp.setFecNom(rs.getString("FecNom"));
-                emp.setDatCony(rs.getString("DatCony"));
-                emp.setTelf(rs.getString("Telf"));
-                emp.setUbigActu(rs.getString("UbigActu"));
-                emp.setOrigen(rs.getString("Origen"));
-                emp.setDNI(DNI);
-                emp.setPass(Pass);
-            }
-            return emp;
-        } catch (SQLException e) {
-            throw e;
-        }
-
-    }
+//    public Empleado sessionEmpleado(String DNI, String Pass) throws Exception {
+//        this.Conexion();
+//        ResultSet rs;
+//        Empleado emp = null;
+//        try {
+//            String sql = "select idEmpl,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,Origen from Empleado where DNI like ? and Pass like ? AND Est like 'A'";
+//            PreparedStatement st = this.getCn().prepareStatement(sql);
+//            st.setString(1, DNI);
+//            st.setString(2, Pass);
+//            rs = st.executeQuery();
+//            if (rs.next()) {
+//                emp = new Empleado();
+//                emp.setNom(rs.getString("idEmpl"));
+//                emp.setNom(rs.getString("Nom"));
+//                emp.setApelPate(rs.getString("ApelPate"));
+//                emp.setApelMate(rs.getString("ApelMate"));
+//                emp.setRUC(rs.getString("RUC"));
+//                emp.setEmail(rs.getString("Email"));
+//                emp.setCel(rs.getString("Cel"));
+//                emp.setFecNac(rs.getString("FecNac"));
+//                emp.setGrupSang(rs.getString("GrupSang"));
+//                emp.setEstCiv(rs.getString("EstCiv"));
+//                emp.setConLab(rs.getString("ConLab"));
+//                emp.setCarnAseg(rs.getString("CarnAseg"));
+//                emp.setRefe(rs.getString("Refe"));
+//                emp.setLeye(rs.getString("Leye"));
+//                emp.setFecIng(rs.getString("FecIng"));
+//                emp.setFecNom(rs.getString("FecNom"));
+//                emp.setDatCony(rs.getString("DatCony"));
+//                emp.setTelf(rs.getString("Telf"));
+//                emp.setUbigActu(rs.getString("UbigActu"));
+//                emp.setOrigen(rs.getString("Origen"));
+//                emp.setDNI(DNI);
+//                emp.setPass(Pass);
+//            }
+//            return emp;
+//        } catch (SQLException e) {
+//            throw e;
+//        }
+//
+//    }
 
     public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
         this.Conexion();

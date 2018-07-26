@@ -1,27 +1,28 @@
 package services;
 
-import modelo.Empleado;
+
 import javax.faces.context.FacesContext;
+import modelo.Usuario;
 
 public class SessionUtils {
 
-    public static Empleado obtenerObjetoSesion() {
-        return (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("DNI");
+    public static Usuario obtenerObjetoSesion() {
+        return (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
     }
 
     public static String ObtenerNombreSesion() {
-        Empleado us = (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("DNI");
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
         if (us != null) {
-            return us.getNom();
+            return us.getNombre();
         } else {
             return null;
         }
     }
 
     public static String ObtenerCodigoSesion() {
-        Empleado us = (Empleado) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("DNI");
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
         if (us != null) {
-            return us.getIdEmpl();
+            return us.getIdUsuario();
         } else {
             return null;
         }
