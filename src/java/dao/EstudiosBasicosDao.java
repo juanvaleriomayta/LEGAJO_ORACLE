@@ -141,7 +141,7 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "SELECT IdEstuBasi, EducBasi,CulmiBasi,CentrEstuBasi,CONVERT(date,DesdBasi,103) AS DesdBasi,CONVERT(date,HasBasi,103) AS HasBasi,EstadoBasi,UPPER(CONCAT (Empleado.Nom,',',Empleado.ApelPate,',',Empleado.ApelMate)) AS 'Empleado'  FROM EstudioBasicos LEFT OUTER JOIN Empleado ON EstudioBasicos.Empleado_idEmpl = Empleado.idEmpl WHERE IdEstuBasi=? ";
+            String sql = "SELECT IdEstuBasi, EducBasi,CulmiBasi,CentrEstuBasi,FORMAT(CONVERT(date,DesdBasi,103),'dd/MM/yyyy','en-gb') AS DesdBasi,FORMAT(CONVERT(date,HasBasi,103),'dd/MM/yyyy','en-gb') AS HasBasi,EstadoBasi,UPPER(CONCAT (Empleado.Nom,',',Empleado.ApelPate,',',Empleado.ApelMate)) AS 'Empleado'  FROM EstudioBasicos LEFT OUTER JOIN Empleado ON EstudioBasicos.Empleado_idEmpl = Empleado.idEmpl WHERE IdEstuBasi=? ";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, Codigo);
             rs = st.executeQuery();

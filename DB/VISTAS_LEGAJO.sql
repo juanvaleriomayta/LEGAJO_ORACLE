@@ -171,26 +171,26 @@ AS
     FROM Ubigeo
 GO
 
-/* VISTA DONDE ESTAN RELACIONADAS TODAS LAS TABLAS EN ESTADO ACTIVO */
-CREATE VIEW vw_EmpleadoComplet
+/* VISTA QUE MUESTRA TODOS LOS DATOS DE TODAS LAS TABLAS Y SACAR REPORTES*/
+CREATE VIEW vw_EmpleadoReporte
 AS
-SELECT DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac, GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu AS 'Direccion',Est,
-CONCAT(Ubigeo.Dep,',',Ubigeo.Pro,',',Ubigeo.Dis) AS 'Lugar de Nacimiento',
-Familiares.NomFami,Familiares.ApelFami,Familiares.CelularFami,Familiares.FecNacFami,Familiares.EstadoFami,Familiares.EstCivFami,Familiares.OcuFami,Familiares.ParFami,Familiares.viveFami,
-Emergencia.NomEmer,Emergencia.ApeEmer,Emergencia.CelularEmer,Emergencia.EstadoEmer,Emergencia.ParenEmer,Emergencia.TelEmer,
-EstudioBasicos.CentrEstuBasi,EstudioBasicos.CulmiBasi,EstudioBasicos.DesdBasi,EstudioBasicos.EducBasi,EstudioBasicos.EstadoBasi,EstudioBasicos.HasBasi,
-EstudiosSuperior.CentrEstuSuper,EstudiosSuperior.CulmiSuper,EstudiosSuperior.DesdSuper,EstudiosSuperior.EduSuper,EstudiosSuperior.EspeSuper,EstudiosSuperior.EstadoSuper,EstudiosSuperior.GradAcadObte,EstudiosSuperior.HastSuper,
-DetalleDialecto.Lee,DetalleDialecto.Habla,DetalleDialecto.Escribe,DetalleDialecto.Estado
-
-FROM Empleado
-RIGHT OUTER JOIN Familiares ON Empleado.Familiares_CodContEmp = Familiares.CodContEmp
-RIGHT OUTER JOIN Emergencia ON Empleado.Emergencia_IdEmerg = Emergencia.IdEmerg
-RIGHT OUTER JOIN EstudioBasicos ON Empleado.EstudioBasicos_IdEstuBasi = EstudioBasicos.IdEstuBasi
-RIGHT OUTER JOIN EstudiosSuperior ON Empleado.EstudiosSuperior_IdEstusuper = EstudiosSuperior.IdEstusuper
-RIGHT OUTER JOIN Ubigeo ON Empleado.Ubigeo_CodUbi = Ubigeo.CodUbi
-RIGHT OUTER JOIN DetalleDialecto ON Empleado.DetalleDialecto_idDetDial = DetalleDialecto.idDetDial
-WHERE Empleado.Est like 'A' AND Familiares.EstadoFami like 'A' AND Emergencia.EstadoEmer like 'A'
-AND EstudioBasicos.EstadoBasi like 'A' AND EstudiosSuperior.EstadoSuper like 'A' AND DetalleDialecto.Estado like 'A'
+    SELECT DNI, Nom, ApelPate, ApelMate, RUC, Email, Telf, Cel, FecNac, GrupSang, EstCiv, ConLab, CarnAseg, Refe, Leye, FecIng, FecNom, DatCony, UbigActu AS 'Direccion', Est,
+        CONCAT(Ubigeo.Dep,',',Ubigeo.Pro,',',Ubigeo.Dis) AS 'Lugar de Nacimiento',
+        Familiares.NomFami, Familiares.ApelFami, Familiares.CelularFami, Familiares.FecNacFami, Familiares.EstadoFami, Familiares.EstCivFami, Familiares.OcuFami, Familiares.ParFami, Familiares.viveFami,
+        Emergencia.NomEmer, Emergencia.ApeEmer, Emergencia.CelularEmer, Emergencia.EstadoEmer, Emergencia.ParenEmer, Emergencia.TelEmer,
+        EstudioBasicos.CentrEstuBasi, EstudioBasicos.CulmiBasi, EstudioBasicos.DesdBasi, EstudioBasicos.EducBasi, EstudioBasicos.EstadoBasi, EstudioBasicos.HasBasi,
+        EstudiosSuperior.CentrEstuSuper, EstudiosSuperior.CulmiSuper, EstudiosSuperior.DesdSuper, EstudiosSuperior.EduSuper, EstudiosSuperior.EspeSuper, EstudiosSuperior.EstadoSuper, EstudiosSuperior.GradAcadObte, EstudiosSuperior.HastSuper,
+        DetalleDialecto.Lee, DetalleDialecto.Habla, DetalleDialecto.Escribe, DetalleDialecto.Estado, Dialecto.NomDial
+    FROM Empleado
+        RIGHT OUTER JOIN Familiares ON Empleado.Familiares_idFami= Familiares.idFami
+        RIGHT OUTER JOIN Emergencia ON Empleado.Emergencia_IdEmerg = Emergencia.IdEmerg
+        RIGHT OUTER JOIN EstudioBasicos ON Empleado.EstudioBasicos_IdEstuBasi = EstudioBasicos.IdEstuBasi
+        RIGHT OUTER JOIN EstudiosSuperior ON Empleado.EstudiosSuperior_IdEstusuper = EstudiosSuperior.IdEstusuper
+        RIGHT OUTER JOIN Ubigeo ON Empleado.Ubigeo_CodUbi = Ubigeo.CodUbi
+        RIGHT OUTER JOIN DetalleDialecto ON Empleado.DetalleDialecto_idDetDial = DetalleDialecto.idDetDial
+        RIGHT OUTER JOIN Dialecto ON Empleado.Dialecto_IdDial = Dialecto.IdDial
+    WHERE Empleado.Est like 'A' AND Familiares.EstadoFami like 'A' AND Emergencia.EstadoEmer like 'A'
+        AND EstudioBasicos.EstadoBasi like 'A' AND EstudiosSuperior.EstadoSuper like 'A' AND DetalleDialecto.Estado like 'A'
 GO
 
 

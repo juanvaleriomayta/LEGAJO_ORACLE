@@ -168,8 +168,10 @@ public class DatosDao extends DAO {
             st.setString(7, dat.getBonPer());
             st.setString(8, dat.getComInfTper());
             st.setString(9, dat.getBonFam());
-            st.setString(10, dat.getCodEmpleado());
-            st.setString(11, dat.getEstado());
+            st.setString(10, dat.getEstado());
+            st.setString(11, dat.getCodEmpleado());
+
+            st.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {
