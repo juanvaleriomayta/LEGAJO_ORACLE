@@ -15,7 +15,6 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
         this.Conexion();
         try {
             String sql = "EXEC SP_FAMILIARES ?,?,?,?,?,?,?,?,?,?,?";
-//            String sql = "INSERT INTO Familiares  (NomFami,ApelFami,ParFami,OcuFami,FecNacFami,TelfFami,CelelularFami,EstCivFami,viveFami,EstadoFami, Empleado_idEmpl) values(?,?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getNomFami());
             st.setString(2, fam.getApe());
@@ -43,7 +42,6 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
             this.Conexion();
 
             String sql = "EXEC SP_FAMILIARES ?,?,?,?,?,?,?,?,?,?,?";
-//            String sql = "INSERT INTO Familiares  (NomFami,ApelFami,ParFami,OcuFami,FecNacFami,TelfFami,CelelularFami,EstCivFami,viveFami,EstadoFami, Empleado_idEmpl) values(?,?,?,?,?,CONVERT(DATE,?, 103),?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getNomFami());
             st.setString(2, fam.getApe());
@@ -195,7 +193,6 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
         try {
             this.Conexion();
             String sql = "SP_FAMILIARES_UPDATE ?,?,?,?,?,?,?,?,?,?,?,?";
-//            String sql = "UPDATE Familiares SET  NomFami = ?, ApelFami = ?,ParFami = ?, OcuFami = ?, FecNacFami = convert(date, ?, 103),TelfFami = ?, CelularFami = ?, EstCivFami = ?, viveFami = ?,EstadoFami = ?,Empleado_idEmpl WHERE CodFami = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, fam.getCodFami());
             st.setString(2, fam.getNomFami());

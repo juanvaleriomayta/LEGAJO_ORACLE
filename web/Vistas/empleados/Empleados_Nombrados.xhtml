@@ -5,8 +5,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:p="http://primefaces.org/ui">
-
-    <body>
+    <h:head>
+        
+    </h:head>
+        
+    <h:body>
 
     <ui:composition template="./../template/Template.xhtml">
 
@@ -48,7 +51,7 @@
                                 <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
                             </h:commandLink>
                         </center> 
-                        <h1>Empleado</h1> 
+                        <h1>EMPLEADOS NOMBRADOS</h1> 
 
                         <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                         <p:columnToggler datasource="data" trigger="toggler"/>
@@ -263,5 +266,5 @@
 
     </ui:composition>
 
-</body>
+</h:body>
 </html>

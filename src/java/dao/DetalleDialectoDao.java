@@ -13,7 +13,6 @@ public class DetalleDialectoDao extends DAO {
         try {
             this.Conexion();
             String sql = "EXEC SP_DETALLEDIALECTO ?,?,?,?,?,?";
-//            String sql = "INSERT INTO DetalleDialecto (Lee,Habla,Escribe,Estado,Empleado_idEmpl,Dialecto_idDial) values(?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, detdia.getLee());
             st.setString(2, detdia.getHabla());
@@ -156,7 +155,6 @@ public class DetalleDialectoDao extends DAO {
         try {
             this.Conexion();
             String sql = "EXEC SP_DetalleDialectoUpdate ?,?,?,?,?,?,?";
-//            String sql = "UPDATE DetalleDialecto SET Lee = ?, Habla = ?, Escribe = ?,Estado=?, Empleado_idEmpl=?,Dialecto_IdDial=? WHERE idDetDial = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, detdia.getIdDetDial());
             st.setString(2, detdia.getLee());

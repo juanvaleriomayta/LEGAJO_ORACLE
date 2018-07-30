@@ -13,7 +13,6 @@ public class DatosDao extends DAO {
         try {
             this.Conexion();
             String sql = "SP_DATOS_ADD ?,?,?,?,?,?,?,?,?,?";
-//            String sql = "INSERT INTO Datos (Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam) values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, dat.getCon());
             st.setString(2, dat.getApreCali());
@@ -61,7 +60,6 @@ public class DatosDao extends DAO {
         try {
             this.Conexion();
             String sql = "SELECT * FROM VW_LISTAR_DATOS";
-//            String sql = "SELECT IdLegajo, Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam FROM Datos";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -95,7 +93,6 @@ public class DatosDao extends DAO {
         try {
             this.Conexion();
             String sql = "SELECT * FROM VW_LISTAR_DATOS_INACTIVOS";
-//            String sql = "SELECT IdLegajo, Con, ApreCali, SerPre, IntProCapPerf, RefPer, BonPer, ComInfTper, BonFam FROM Datos";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -157,7 +154,6 @@ public class DatosDao extends DAO {
         try {
             this.Conexion();
             String sql = "EXEC SP_DATOS_UPDATE ?,?,?,?,?,?,?,?,?,?,?";
-//            String sql = "UPDATE Datos SET Con = ?, ApreCali = ?, SerPre = ?,IntProCapPerf = ?, RefPer = ?, BonPer = ?,ComInfTper = ?, BonFam = ? WHERE IdLegajo = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, dat.getIdLegajo());
             st.setString(2, dat.getCon());

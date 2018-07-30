@@ -23,7 +23,6 @@ public class EmergenciaDao extends DAO implements EmergenciasI {
             st.setString(5, eme.getCelEmer());
             st.setString(6, "A");
             st.setString(7, eme.getCodEmpleado());
-
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

@@ -101,48 +101,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         }
     }
 
-//    public Empleado sessionEmpleado(String DNI, String Pass) throws Exception {
-//        this.Conexion();
-//        ResultSet rs;
-//        Empleado emp = null;
-//        try {
-//            String sql = "select idEmpl,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,FecIng,FecNom,DatCony,UbigActu,Origen from Empleado where DNI like ? and Pass like ? AND Est like 'A'";
-//            PreparedStatement st = this.getCn().prepareStatement(sql);
-//            st.setString(1, DNI);
-//            st.setString(2, Pass);
-//            rs = st.executeQuery();
-//            if (rs.next()) {
-//                emp = new Empleado();
-//                emp.setNom(rs.getString("idEmpl"));
-//                emp.setNom(rs.getString("Nom"));
-//                emp.setApelPate(rs.getString("ApelPate"));
-//                emp.setApelMate(rs.getString("ApelMate"));
-//                emp.setRUC(rs.getString("RUC"));
-//                emp.setEmail(rs.getString("Email"));
-//                emp.setCel(rs.getString("Cel"));
-//                emp.setFecNac(rs.getString("FecNac"));
-//                emp.setGrupSang(rs.getString("GrupSang"));
-//                emp.setEstCiv(rs.getString("EstCiv"));
-//                emp.setConLab(rs.getString("ConLab"));
-//                emp.setCarnAseg(rs.getString("CarnAseg"));
-//                emp.setRefe(rs.getString("Refe"));
-//                emp.setLeye(rs.getString("Leye"));
-//                emp.setFecIng(rs.getString("FecIng"));
-//                emp.setFecNom(rs.getString("FecNom"));
-//                emp.setDatCony(rs.getString("DatCony"));
-//                emp.setTelf(rs.getString("Telf"));
-//                emp.setUbigActu(rs.getString("UbigActu"));
-//                emp.setOrigen(rs.getString("Origen"));
-//                emp.setDNI(DNI);
-//                emp.setPass(Pass);
-//            }
-//            return emp;
-//        } catch (SQLException e) {
-//            throw e;
-//        }
-//
-//    }
-
     public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
         this.Conexion();
         ResultSet rs;
@@ -166,13 +124,100 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
     }
 
     @Override
-
-    public List<Empleado> listarActivos() throws Exception {
+    public List<Empleado> listarActivosNombrados() throws Exception {
         List<Empleado> lista;
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "SELECT * FROM vw_Empleados";
+            String sql = "SELECT * FROM vw_EmpleadosNombrados";
+            PreparedStatement st = this.getCn().prepareCall(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Empleado emp = new Empleado();
+                emp.setIdEmpl(rs.getString("idEmpl"));
+                emp.setDNI(rs.getString("DNI"));
+                emp.setNom(rs.getString("Nom"));
+                emp.setApelPate(rs.getString("ApelPate"));
+                emp.setApelMate(rs.getString("ApelMate"));
+                emp.setRUC(rs.getString("RUC"));
+                emp.setEmail(rs.getString("Email"));
+                emp.setTelf(rs.getString("Telf"));
+                emp.setCel(rs.getString("Cel"));
+                emp.setFecNac(rs.getString("FecNac"));
+                emp.setGrupSang(rs.getString("GrupSang"));
+                emp.setEstCiv(rs.getString("EstCiv"));
+                emp.setConLab(rs.getString("ConLab"));
+                emp.setCarnAseg(rs.getString("CarnAseg"));
+                emp.setRefe(rs.getString("Refe"));
+                emp.setLeye(rs.getString("Leye"));
+                emp.setFecIng(rs.getString("FecIng"));
+                emp.setFecNom(rs.getString("FecNom"));
+                emp.setDatCony(rs.getString("DatCony"));
+                emp.setUbigActu(rs.getString("Direccion"));
+                emp.setEst(rs.getString("Est"));
+                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
+                lista.add(emp);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Empleado> listarActivosCas() throws Exception {
+        List<Empleado> lista;
+        ResultSet rs;
+        try {
+            this.Conexion();
+            String sql = "SELECT * FROM vw_EmpleadosCas";
+            PreparedStatement st = this.getCn().prepareCall(sql);
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Empleado emp = new Empleado();
+                emp.setIdEmpl(rs.getString("idEmpl"));
+                emp.setDNI(rs.getString("DNI"));
+                emp.setNom(rs.getString("Nom"));
+                emp.setApelPate(rs.getString("ApelPate"));
+                emp.setApelMate(rs.getString("ApelMate"));
+                emp.setRUC(rs.getString("RUC"));
+                emp.setEmail(rs.getString("Email"));
+                emp.setTelf(rs.getString("Telf"));
+                emp.setCel(rs.getString("Cel"));
+                emp.setFecNac(rs.getString("FecNac"));
+                emp.setGrupSang(rs.getString("GrupSang"));
+                emp.setEstCiv(rs.getString("EstCiv"));
+                emp.setConLab(rs.getString("ConLab"));
+                emp.setCarnAseg(rs.getString("CarnAseg"));
+                emp.setRefe(rs.getString("Refe"));
+                emp.setLeye(rs.getString("Leye"));
+                emp.setFecIng(rs.getString("FecIng"));
+                emp.setFecNom(rs.getString("FecNom"));
+                emp.setDatCony(rs.getString("DatCony"));
+                emp.setUbigActu(rs.getString("Direccion"));
+                emp.setEst(rs.getString("Est"));
+                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
+                lista.add(emp);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Empleado> listarActivosCesante() throws Exception {
+        List<Empleado> lista;
+        ResultSet rs;
+        try {
+            this.Conexion();
+            String sql = "SELECT * FROM vw_EmpleadosCesante";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -328,8 +373,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(20, emp.getUbigActu());
             st.setString(21, emp.getEst());
             st.setString(22, emp.getOrigen());
-
-            //            st.setString(23, emp.getPass());
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
@@ -352,4 +395,5 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             this.Cerrar();
         }
     }
+
 }

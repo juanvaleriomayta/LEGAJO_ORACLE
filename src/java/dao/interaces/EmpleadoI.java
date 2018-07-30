@@ -21,7 +21,14 @@ public interface EmpleadoI {
     public void registrar(Empleado emp) throws Exception;
 
     //Este metodo permite listar la cantidad de empleados que estan activos
-    public List<Empleado> listarActivos() throws Exception;
+    public List<Empleado> listarActivosNombrados() throws Exception;
+    
+    //Este metodo permite listar la cantidad de empleados que estan activos
+    public List<Empleado> listarActivosCas() throws Exception;
+    
+    //Este metodo permite listar la cantidad de empleados que estan activos
+    
+    public List<Empleado> listarActivosCesante() throws Exception;
 
     //Este metodo permite listar la cantidad de empleados que estan inactivos
     public List<Empleado> listarInactivos() throws Exception;

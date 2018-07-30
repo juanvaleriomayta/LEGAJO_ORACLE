@@ -10,6 +10,7 @@ public class Usuario {
     private String Pass;
     private String Nombre;
     private String Estado;
+    private String Nivel;
     
     
 }

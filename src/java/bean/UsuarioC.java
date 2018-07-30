@@ -125,6 +125,17 @@ public class UsuarioC implements Serializable {
             throw e;
         }
     }
+    
+    public void listarInactivos() throws Exception {
+        UsuarioDao dao;
+        try {
+            dao = new UsuarioDao();
+            lstUsuario = dao.ListarInactivos();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
 
     public void modificar() throws Exception {
         UsuarioDao dao;

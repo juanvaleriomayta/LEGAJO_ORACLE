@@ -46,7 +46,7 @@ public class EmpleadoC implements Serializable {
             dao = new EmpleadoDao();
             dao.registrarEmpleado(empleado);
             this.limpiar();
-            this.listarActivos();
+            this.listarActivosNombrados();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("REGISTRADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR AL MOMENTO DE INGRESAR"));
@@ -71,7 +71,7 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.registrar(empleado);
-            this.listarActivos();
+            this.listarActivosNombrados();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("REGISTRADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR AL MOMENTO DE INGRESAR"));
@@ -80,12 +80,34 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-    public void listarActivos() throws Exception {
+    public void listarActivosNombrados() throws Exception {
         EmpleadoDao dao;
 
         try {
             dao = new EmpleadoDao();
-            lstEmpleado = dao.listarActivos();
+            lstEmpleado = dao.listarActivosNombrados();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void listarActivosCas() throws Exception {
+        EmpleadoDao dao;
+
+        try {
+            dao = new EmpleadoDao();
+            lstEmpleado = dao.listarActivosCas();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void listarActivosCesante() throws Exception {
+        EmpleadoDao dao;
+
+        try {
+            dao = new EmpleadoDao();
+            lstEmpleado = dao.listarActivosCesante();
         } catch (Exception e) {
             throw e;
         }
@@ -119,7 +141,7 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.modificar(empleado);
-            listarActivos();
+            listarActivosNombrados();
             limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));
         } catch (Exception e) {
@@ -133,7 +155,7 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.eliminar(emp);
-            listarActivos();
+            listarActivosNombrados();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ELIMINADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             throw e;

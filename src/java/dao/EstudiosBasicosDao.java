@@ -169,8 +169,6 @@ public class EstudiosBasicosDao extends DAO implements EstudiosBasicosI {
         try {
             this.Conexion();
             String sql = " EXEC SP_EstudiosBasicosUpdate ?,?,?,?,?,?,?,?";
-//            String sql = "SP_EstudiosBasicosUpdate @IdEstuBasi=?,@EducBasi=?,@CulmiBasi=?,@CentrEstuBasi=?,@DesdBasi=?,@HasBasi=?,@EstadoBasi=?,@Empleado_idEmpl=? ";
-//            String sql = "UPDATE EstudioBasicos SET EducBasi = ?, CulmiBasi=?,CentrEstuBasi=? , DesdBasi = convert(date, ?, 103), HasBasi = convert(date, ?, 103),EstadoBasi=?,Empleado_idEmpl  WHERE IdEstuBasi = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, bas.getIdEstuBasi());
             st.setString(2, bas.getEduc());

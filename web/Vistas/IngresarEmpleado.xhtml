@@ -14,103 +14,84 @@
             <H1 align="center">FICHA DE DATOS PERSONALES DEL TRABAJADOR</H1>
 
             <H2>DATOS PERSONALES</H2>
+            
             <p:fieldset legend="Empleado">
                 <p:panelGrid style="border: none" columns="4">
                     <p:outputLabel for="txtDNI" value="DNI" />
                     <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
                         <p:keyFilter regEx="/[\d\-]/"/>
-                        <p:ajax event="blur" update="txtDNI" immediate="true"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtNombre" value="Nombre" />
-                    <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}" style="text-transform: uppercase" requiredMessage="Ingresar Nombre" required="true">
+                    <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}"  requiredMessage="Ingresar Nombre" required="true">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtNombre" immediate="true"/>
-
                     </p:inputText>
 
                     <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno" />
                     <p:inputText id="txtApellidoPaterno" value="#{empleadoC.empleado.apelPate}" required="true" requiredMessage="Ingresar Apellido Paterno">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtApellidoPaterno" immediate="true"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno" />
                     <p:inputText id="txtApellidoMaterno" value="#{empleadoC.empleado.apelMate}" required="true" requiredMessage="Ingresar Apellido Materno">
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtApellidoMaterno" immediate="true"/>
+                    </p:inputText>
+
+
+                    <p:outputLabel for="txtDir" value="Dirección"/>
+                    <p:inputText id="txtDir" value="#{empleadoC.empleado.ubigActu}"  >                  
                     </p:inputText>
 
                     <p:outputLabel for="txtRUC" value="RUC" />
                     <p:inputText id="txtRUC" value="#{empleadoC.empleado.RUC}" maxlength="11">
                         <p:keyFilter regEx="/[\d\-]/"/>
-                        <p:ajax event="blur" update="txtRUC"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtCel" value="Celular"/>
                     <p:inputText id="txtCel" value="#{empleadoC.empleado.cel}" maxlength="9">
                         <p:keyFilter regEx="/[\d\-]/"/>
-                        <p:ajax event="blur" update="txtCel"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtTelf" value="Telefono"/>
                     <p:inputText id="txtTelf" value="#{empleadoC.empleado.telf}" maxlength="7">
                         <p:keyFilter regEx="/[\d\-]/"/>
-                        <p:ajax event="blur" update="txtTelf"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtEmail" value="Correo Electronico"/>
-                    <p:inputText id="txtEmail" value="#{empleadoC.empleado.email}"  >
-                        <p:ajax event="blur" update="txtEmail"/>
+                    <p:inputText id="txtEmail" value="#{empleadoC.empleado.email}"  >                  
                     </p:inputText>
 
                     <p:outputLabel for="txtCarnAseg" value="Carnet Asegurado"/>
-                    <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15">
-                        <p:ajax event="blur" update="txtCarnAseg"/>
-                    </p:inputText>
+                    <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15"/>
 
                     <p:outputLabel for="txtRefe" value="Referencia"/>
                     <p:inputText id="txtRefe" value="#{empleadoC.empleado.refe}">
-                        <p:ajax event="blur" update="txtRefe"/>
                     </p:inputText>
 
                     <p:outputLabel for="txtLeye" value="Leyes"/>
                     <p:inputText id="txtLeye" value="#{empleadoC.empleado.leye}" maxlength="10">
-                        <p:ajax event="blur" update="txtLeye"/>
                     </p:inputText>                    
 
                     <p:outputLabel for="txtDatCony" value="Datos del Conyugue"/>
                     <p:inputText id="txtDatCony" value="#{empleadoC.empleado.datCony}">
-                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtDatCony"/>
                     </p:inputText>
 
-                    <p:outputLabel for="txtUbigActu" value="Dirección"/>
-                    <p:inputText id="txtUbigActu" value="#{empleadoC.empleado.ubigActu}">
-                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        <p:ajax event="blur" update="txtUbigActu"/>
-                    </p:inputText>
-
-                    <p:outputLabel for="LugardeNacimiento" value="Lugar de Nacimiento(Ubigeo)"/>
-                    <p:autoComplete id="LugardeNacimiento" value="#{empleadoC.empleado.ubigOrig}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
-                        <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="form" />
+                    <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
+                    <p:autoComplete value="#{empleadoC.empleado.origen}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
+                        <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
                     </p:autoComplete>
 
+
                     <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
-                    <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999">
-                        <p:ajax event="blur" update="txtFecNac"/>
-                    </p:inputMask>
+                    <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
 
                     <p:outputLabel for="txtFecIng" value="Fecha De Ingreso SBS"/>
-                    <p:inputMask id="txtFecIng" value="#{empleadoC.empleado.fecIng}" mask="99/99/9999">
-                        <p:ajax event="blur" update="txtFecIng"/>
-                    </p:inputMask>
+                    <p:inputMask id="txtFecIng" value="#{empleadoC.empleado.fecIng}" mask="99/99/9999"/>
 
 
                     <p:outputLabel for="txtFecNom" value="Fecha de Nombramineto: " />
-                    <p:inputMask id="txtFecNom" value="#{empleadoC.empleado.fecNom}" mask="99/99/9999">
-                        <p:ajax event="blur" update="txtFecNom"/>
-                    </p:inputMask>
+                    <p:inputMask id="txtFecNom" value="#{empleadoC.empleado.fecNom}" mask="99/99/9999"/>
+
 
                     <p:outputLabel value="Grupo Sanguineo" />
                     <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}" required="true" requiredMessage="Seleccione el Tipo de Sangre ">
@@ -123,7 +104,6 @@
                         <f:selectItem itemLabel="B-" itemValue="B+" />
                         <f:selectItem itemLabel="AB-" itemValue="AB-" />
                         <f:selectItem itemLabel="AB+" itemValue="AB+" />
-                        <p:ajax event="change" update="GrupoSanguineo"/>
                     </p:selectOneMenu>
 
                     <p:outputLabel value="Condición Laboral:"   />
@@ -133,40 +113,28 @@
                         <f:selectItem itemLabel="CAS" itemValue="CAS"/>
                         <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
                         <f:selectItem itemLabel="Cesante" itemValue="Cesante" /> 
-                        <p:ajax event="change" update="CondicionLaboral"/>
                     </p:selectOneRadio>
 
                     <p:outputLabel value="Estado civil"/>
 
-                    <p:selectOneRadio id="Estado" value="#{empleadoC.empleado.estCiv}" required="true" requiredMessage="Seleccione su Estado c">                        
+                    <p:selectOneRadio id="Estado" value="#{empleadoC.empleado.estCiv}" required="true" requiredMessage="Seleccione su Estado Laboral">                        
 
                         <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
                         <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
                         <f:selectItem itemLabel="Casado" itemValue="Casado"/>
                         <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
-                        <p:ajax event="change" update="Estado"/>
-                    </p:selectOneRadio>
 
-
-
-                    <p:outputLabel value="Estado Laboral" />
-
-                    <p:selectOneRadio id="EstadoLaboral" value="#{empleadoC.empleado.est}" required="true" requiredMessage="Seleccione su Estado Laboral">
-
-                        <f:selectItem itemLabel="Activo" itemValue="Activo"/>
-                        <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
-                        <p:ajax event="change" update="EstadoLaboral"/>
                     </p:selectOneRadio>
                 </p:panelGrid>
             </p:fieldset>
-        </h:form>
-        <h:form>
+
+
             <H2>DATOS EN CASO DE EMERGENCIAS</H2>
             <p:fieldset legend="Contacto">
                 <p:panelGrid style="border: none" columns="4">
 
                     <p:outputLabel for="nomb" value="Nombre" />
-                    <p:inputText id="nomb" value="#{emergenciaC.emergencia.nom}" >
+                    <p:inputText id="nomb" value="#{emergenciaC.emergencia.nomEmer}" >
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                         <p:ajax event="blur" update="nomb"/>
 
@@ -174,33 +142,32 @@
 
 
                     <p:outputLabel for="apel" value="Apellido" />
-                    <p:inputText id="apel" value="#{emergenciaC.emergencia.ape}" >
+                    <p:inputText id="apel" value="#{emergenciaC.emergencia.apeEmer}" >
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                         <p:ajax event="blur" update="apel"/>
                     </p:inputText>
 
                     <p:outputLabel for="parent" value="Parentesco" />
-                    <p:inputText id="parent" value="#{emergenciaC.emergencia.paren}" >
+                    <p:inputText id="parent" value="#{emergenciaC.emergencia.parenEmer}" >
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                         <p:ajax event="blur" update="parent"/>
                     </p:inputText>           
 
                     <p:outputLabel for="telf" value="Telefono" />
-                    <p:inputText id="telf" value="#{emergenciaC.emergencia.tel}" maxlength="7" >
+                    <p:inputText id="telf" value="#{emergenciaC.emergencia.telEmer}" maxlength="7" >
                         <p:keyFilter regEx="/[\d\-]/"/>
                         <p:ajax event="blur" update="telf"/>
                     </p:inputText>
 
 
                     <p:outputLabel for="celul" value="Celular" />
-                    <p:inputText id="celul" value="#{emergenciaC.emergencia.cel}" maxlength="9">
+                    <p:inputText id="celul" value="#{emergenciaC.emergencia.celEmer}" maxlength="9">
                         <p:keyFilter regEx="/[\d\-]/"/>
                         <p:ajax event="blur" update="celul"/>
                     </p:inputText> 
                 </p:panelGrid>
             </p:fieldset>
-        </h:form>
-        <h:form>
+
             <H2>DATOS REFRENTES A LOS PADRES E HIJOS DEL TRABAJADOR</H2>
             <p:fieldset legend="Familiar">
                 <p:panelGrid style="border: none" columns="4">
@@ -273,8 +240,7 @@
 
 
 
-        </h:form>
-        <h:form>
+
 
 
 
@@ -316,9 +282,6 @@
             </p:fieldset>
 
 
-
-        </h:form>
-        <h:form>
 
 
 
