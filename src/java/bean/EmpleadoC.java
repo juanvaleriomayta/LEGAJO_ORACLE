@@ -71,7 +71,8 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.registrar(empleado);
-            this.listarActivosNombrados();
+            listarActivosNombrados();
+            limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("REGISTRADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR AL MOMENTO DE INGRESAR"));

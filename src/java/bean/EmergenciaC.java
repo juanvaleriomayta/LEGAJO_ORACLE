@@ -65,7 +65,8 @@ public class EmergenciaC implements Serializable {
             dao2 = new EmpleadoDao();
             emergencia.setCodEmpleado(dao2.obtenerCodigoEmpleado(emergencia.getEmpleado()));
             dao.registrar(emergencia);
-            this.listar();
+            listar();
+            limpiar();
         } catch (Exception e) {
             throw e;
         }
@@ -81,8 +82,8 @@ public class EmergenciaC implements Serializable {
             throw e;
         }
     }
-    
-     public void listarInactivos() throws Exception {
+
+    public void listarInactivos() throws Exception {
         EmergenciaDao dao;
 
         try {
@@ -92,7 +93,6 @@ public class EmergenciaC implements Serializable {
             throw e;
         }
     }
-
 
     public void leerID(String Codigo) throws Exception {
         EmergenciaDao dao;

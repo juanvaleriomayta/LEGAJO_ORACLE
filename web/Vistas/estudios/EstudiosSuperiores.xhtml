@@ -19,10 +19,6 @@
                 <h:form id="frm">
 
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosSuperiorC.setAccion('Registrar')}" update=":dlgDatos"/>
-                    <!--<p:commandButton value="Listar" actionListener="#{estudiosSuperiorC.listar()}" update="data"/>-->
-
-
-
                     <p:dataTable id="data"  value="#{estudiosSuperiorC.lstEstudiosSuperior}" var="superior" rows="10"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -37,7 +33,6 @@
                                 <p:dataExporter type="csv" target="data" fileName="Estudios superiores del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
                             <h:commandLink>
-                                
                                 <p:graphicImage value="/resources/icon/xml.png" width="50"/>
                                 <p:dataExporter type="xml" target="data" fileName="Estudios superiores del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
@@ -45,6 +40,7 @@
                                 <p:graphicImage value="/resources/icon/xls.png" width="50"/>
                                 <p:dataExporter type="xls" target="data" fileName="Estudios superiores del Empleado Activos" pageOnly="true"/>
                             </h:commandLink>
+
                             <h1>Estudios Superiores del Empleado</h1> 
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -71,12 +67,9 @@
                         <p:column headerText="Graduacion Academica Obtenida" >
                             <p:outputLabel value="#{superior.gradAcadObte}"/>
                         </p:column>
-
                         <p:column headerText="Empleado" >
                             <p:outputLabel value="#{superior.empleado}"/>
                         </p:column>
-
-
                         <p:column style="width:50px" exportable="false">
                             <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{estudiosSuperiorC.leerID(superior.idEstuSuper)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
@@ -108,41 +101,31 @@
                                 <f:selectItem itemLabel="Maestria" itemValue="MAESTRIA" />
                                 <f:selectItem itemLabel="Doctorado" itemValue="DOCTORADO" />
                             </p:selectOneMenu>
-
                             <p:outputLabel value="Especialidad" />
                             <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.espe}" required="true" requiredMessage="Ingrese la Especialidad">
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
-
                             <p:outputLabel for="txtCentroEstudios" value="Centro de Estudios"/>
                             <p:inputText id="txtCentroEstudios" value="#{estudiosSuperiorC.estudiosSuperior.centrEstu}" required="true" requiredMessage="Ingrese Centro de Estudios">
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
-
                             <p:outputLabel for="txtDesde" value="Desde"/>
                             <p:inputMask id="txtDesde" value="#{estudiosSuperiorC.estudiosSuperior.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>
-
                             <p:outputLabel value="Hasta" />
                             <p:inputMask id="Hasta" value="#{estudiosSuperiorC.estudiosSuperior.hast}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
-
                             <p:outputLabel value="Culminacion" />
                             <p:selectOneRadio id="Culminacion" value="#{estudiosSuperiorC.estudiosSuperior.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
                                 <f:selectItem itemLabel="Completa" itemValue="C"/>
                                 <f:selectItem itemLabel="Incompleta" itemValue="I" /> 
                             </p:selectOneRadio>
-
                             <p:outputLabel value="Graduacion Academica Obtenida" />
                             <p:inputText value="#{estudiosSuperiorC.estudiosSuperior.gradAcadObte}" required="true" requiredMessage="Ingrese la Graduacion Academica Obtenida">
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
-
                             <p:outputLabel value="Empleado"/>
                             <p:autoComplete value="#{estudiosSuperiorC.estudiosSuperior.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
                                 <p:ajax event="itemSelect" listener="#{estudiosSuperiorC.lstEstudiosSuperior}" update="frm" />
                             </p:autoComplete>
-
-                       
-
                             <p:commandButton value="#{estudiosSuperiorC.accion}" actionListener="#{estudiosSuperiorC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>

@@ -113,7 +113,7 @@ public class UsuarioC implements Serializable {
     }
 
     public void limpiar() {
-        setUsuario(new Usuario());
+        usuario = new Usuario();
     }
 
     public void listar() throws Exception {

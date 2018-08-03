@@ -46,8 +46,8 @@ public class DetalleDialectoC implements Serializable {
             detalleDialecto.setCodEmpleado(dao2.obtenerCodigoEmpleado(detalleDialecto.getEmpleado()));
             detalleDialecto.setCodDialecto(dao3.obtenerCodigoDialecto(detalleDialecto.getDialecto()));
             dao.registrar(detalleDialecto);
-            this.listarActivos();
-            this.limpiar();
+            listarActivos();
+            limpiar();
         } catch (Exception e) {
             throw e;
         }

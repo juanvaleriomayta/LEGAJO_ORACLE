@@ -63,7 +63,8 @@ public class EstudiosSuperiorC implements Serializable {
             dao2 = new EmpleadoDao();
             estudiosSuperior.setCodiEmpleado(dao2.obtenerCodigoEmpleado(estudiosSuperior.getEmpleado()));
             dao.registrar(estudiosSuperior);
-            this.listar();
+            listar();
+            limpiar();
         } catch (Exception e) {
             throw e;
 

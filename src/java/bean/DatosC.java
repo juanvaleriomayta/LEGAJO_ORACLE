@@ -32,7 +32,6 @@ public class DatosC implements Serializable {
     }
 
     public void limpiar() {
-
         datos = new Datos();
     }
 
@@ -44,13 +43,12 @@ public class DatosC implements Serializable {
             dao2 = new EmpleadoDao();
             datos.setCodEmpleado(dao2.obtenerCodigoEmpleado(datos.getEmpleado()));
             dao.registrar(datos);
-            this.listar();
-            this.limpiar();
+            listar();
+            limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO", "CORRECTAMENTE"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
             throw e;
-
         }
     }
 

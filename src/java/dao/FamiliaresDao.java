@@ -143,7 +143,6 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
                 fam.setVive(rs.getString("viveFami"));
                 fam.setEstado(rs.getString("EstadoFami"));
                 fam.setEmpleado(rs.getString("Empleado"));
-
                 lista.add(fam);
             }
         } catch (SQLException e) {

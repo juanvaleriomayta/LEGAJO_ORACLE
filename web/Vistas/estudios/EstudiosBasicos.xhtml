@@ -84,14 +84,14 @@
                             <p:outputLabel value="Educacion" />
                             <p:selectOneMenu id="Educacion" value="#{estudiosBasicosC.estudiosBasicos.educ}" required="true" requiredMessage="Seleccione la Educacion ">
                                 <f:selectItem itemLabel="Seleccione"/>
-                                <f:selectItem itemLabel="Secundaria" itemValue="S" />
-                                <f:selectItem itemLabel="Primaria" itemValue="P" />
+                                <f:selectItem itemLabel="Secundaria" itemValue="SECUNDARIA" />
+                                <f:selectItem itemLabel="Primaria" itemValue="PPRIMARIA" />
                             </p:selectOneMenu>
 
                             <p:outputLabel value="Culminacion" />
                             <p:selectOneRadio id="Culminacion" value="#{estudiosBasicosC.estudiosBasicos.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
-                                <f:selectItem itemLabel="Completa" itemValue="C"/>
-                                <f:selectItem itemLabel="Incompleta" itemValue="I" /> 
+                                <f:selectItem itemLabel="Completa" itemValue="COMPLETA"/>
+                                <f:selectItem itemLabel="Incompleta" itemValue="INCOMPLETA" /> 
                             </p:selectOneRadio>
 
                             <p:outputLabel for="txtCentroEstudios" value="Centro de Estudios"/>
