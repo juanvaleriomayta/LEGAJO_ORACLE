@@ -45,14 +45,21 @@ public class UsuarioC implements Serializable {
         UsuarioDao dao;
         try {
             dao = new UsuarioDao();
-            setUsuario(dao.IniciarSesion(NombreUsuario, Pass));
+            usuario = dao.IniciarSesion(NombreUsuario, Pass);
             if (getUsuario() != null) {
                 intentos = 0;
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario", getUsuario());
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
+                switch (usuario.getNivel()) {
+                    case "admin":
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
+                        break;
+                    case "user":
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Datos.xhtml");
+                        break;
+                }
             } else {
                 setPass(null);
-                setUsuario(new Usuario());
+                usuario = new Usuario();
                 intentos++;
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("CONTRASEÑA O USUARIO INCORRECTO"));
             }
@@ -69,9 +76,12 @@ public class UsuarioC implements Serializable {
     public void securityLogin() throws IOException {
         Usuario us = SessionUtils.obtenerObjetoSesion();
         if (us != null) {
-            switch (us.getEstado()) {
-                case "A":
+            switch (us.getNivel()) {
+                case "admin":
                     FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
+                    break;
+                case "user":
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Datos.xhtml");
                     break;
             }
         }
@@ -93,8 +103,8 @@ public class UsuarioC implements Serializable {
         try {
             dao = new UsuarioDao();
             dao.Registrar(getUsuario());
-            listar();
             limpiar();
+            listar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
@@ -125,7 +135,7 @@ public class UsuarioC implements Serializable {
             throw e;
         }
     }
-    
+
     public void listarInactivos() throws Exception {
         UsuarioDao dao;
         try {
@@ -135,7 +145,6 @@ public class UsuarioC implements Serializable {
             throw e;
         }
     }
-
 
     public void modificar() throws Exception {
         UsuarioDao dao;

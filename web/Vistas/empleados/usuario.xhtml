@@ -43,6 +43,10 @@
                             <h:outputText value="#{empleado.nombre}"/>
                         </p:column>
 
+                        <p:column headerText="Nivel">
+                            <h:outputText value="#{empleado.nivel}"/>
+                        </p:column>
+
                         <p:column style="width:50px"  exportable="false">
                             <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{Login.leerID(empleado.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
                             </p:commandButton>
@@ -75,6 +79,14 @@
                             <p:outputLabel for="txtNombre" value="Nombre">
                                 <p:inputText id="txtNombre" value="#{Login.usuario.nombre}"/>
                             </p:outputLabel>
+
+                            <p:outputLabel value="Nivel" />
+                            <p:selectOneMenu id="GrupoSanguineo" value="#{Login.usuario.nivel}" required="true" requiredMessage="Seleccione el Nivel de Usuario ">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItem itemLabel="ADMINISTRADOR" itemValue="ADMINISTRADOR" />
+                                <f:selectItem itemLabel="USUARIO" itemValue="USUARIO" />
+                            </p:selectOneMenu>
+
 
                             <p:commandButton value="#{Login.accion}" actionListener="#{Login.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
