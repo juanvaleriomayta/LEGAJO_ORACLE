@@ -12,8 +12,9 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-        <link href="../../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="../../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/MyStyles.css" rel="stylesheet" type="text/css"/>
         <link href="../../resources/vendor/linearicons/style.css" rel="stylesheet" type="text/css"/>
         <link href="../../resources/vendor/chartist/css/chartist-custom.css" rel="stylesheet" type="text/css"/>
         <link href="../../resources/css/main.css" rel="stylesheet" type="text/css"/>
@@ -35,20 +36,6 @@
                     </div>
                     <div id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                                    <i class="lnr lnr-alarm"></i>
-                                    <span class="badge bg-danger">5</span>
-                                </a>
-                                <!--                                <ul class="dropdown-menu notifications">
-                                                                    <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-                                                                    <li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-                                                                    <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-                                                                    <li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-                                                                    <li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-                                                                    <li><a href="#" class="more">See all notifications</a></li>
-                                                                </ul>-->
-                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>INACTIVOS</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                                 <ul class="dropdown-menu">
@@ -92,7 +79,8 @@
 
                             <li><a href="../estudios/EstudiosBasicos.xhtml" class="active"><i class="lnr lnr-code"></i> <span>ESTUDIOS BASICOS</span></a></li>
                             <li><a href="../estudios/EstudiosSuperiores.xhtml" class="active"><i class="lnr lnr-chart-bars"></i> <span>ESTUDIOS SUPERIORES</span></a></li>
-                            <li><a href="../familiares/Familiares.xhtml" class="active"><i class="lnr lnr-cog"></i> <span>FAMILIARES</span></a></li>
+                            <!--<li class="#{Login.usuario.nivel == 'admin' ? null:'ocultar'}"><a href="../familiares/Familiares.xhtml" class="active"><i class="lnr lnr-cog"></i> <span>FAMILIARES</span></a></li>-->
+                            <h:panelGroup rendered="#{Login.usuario.nivel == 'user' ? true:false}"><li><a href="../familiares/Familiares.xhtml" class="active"><i class="lnr lnr-cog"></i> <span>FAMILIARES</span></a></li></h:panelGroup>
                             <li><a href="../emergencias/Emergencias.xhtml" class="active"><i class="lnr lnr-alarm"></i> <span>EMERGENCIAS</span></a></li>
                             <li><a href="../detalledialecto/DetalleDialecto.xhtml" class="active"><i class="lnr lnr-alarm"></i> <span>DETALLE DEL DIALECTO</span></a></li>
                             <li><a href="../empleados/Datos.xhtml" class="active"><i class="lnr lnr-alarm"></i> <span>DATOS</span></a></li>

@@ -9,13 +9,13 @@
 
         <ui:composition template="./../template/Template.xhtml">
 
-            <ui:define name="Familiares">
+            <ui:define name="Familiares" rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
                 <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                 <f:event type="preRenderView" listener="#{familiaresC.listar()}" />
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
 
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" update=":dlgDatos"/>
+                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" rendered="true" update=":dlgDatos"/>
 
                     <p:dataTable id="data" value="#{familiaresC.lstFamiliares}" var="familiar" rows="10"
                                  paginator="true"
@@ -147,6 +147,12 @@
                         </p:panelGrid>
                     </h:form>
                 </p:dialog>
+            </ui:define>
+
+            <ui:define name="Familiares" rendered="#{!Login.usuario.nivel == 'admin' ? true:false}">
+                <center>
+                    <h1 style="color: red">NO TIENES PERMISO</h1>
+                </center>
             </ui:define>
         </ui:composition>
     </body>
