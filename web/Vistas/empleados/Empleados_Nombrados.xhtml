@@ -138,6 +138,11 @@
                                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                         </p:column>
+                        <p:column headerText="Reporte" rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                            <h:commandLink actionListener="#{empleadoC.decargar(empleado.idEmpl)}">
+                                <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
+                            </h:commandLink>
+                        </p:column>
                         <f:facet name="footer">
                             EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.
                         </f:facet>

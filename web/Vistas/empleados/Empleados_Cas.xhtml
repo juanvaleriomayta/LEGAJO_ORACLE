@@ -30,14 +30,7 @@
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
                         <f:facet name="header">
-
-                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-                                <center>
-                                    <h:commandLink actionListener="#{empleadoC.decargar()}">
-                                        <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
-                                    </h:commandLink>
-                                </center> 
-                            </h:panelGroup>
+                            
                             <h1>EMPLEADOS CAS</h1> 
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -120,6 +113,11 @@
                                 <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
+                        </p:column>
+                        <p:column headerText="Reporte" rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                            <h:commandLink actionListener="#{empleadoC.decargar(empleado.idEmpl)}">
+                                <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
+                            </h:commandLink>
                         </p:column>
                         <f:facet name="footer">
                             EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.

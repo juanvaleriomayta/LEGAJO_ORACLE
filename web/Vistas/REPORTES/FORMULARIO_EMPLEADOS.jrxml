@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FORMULARIO_EMPLEADOS" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="066f470d-58e9-4e6f-a577-0bd0289313ed">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JCONDORI_Legajo"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Legajo"/>
 	<parameter name="Codigo" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM vw_EmpleadoReport where idempl =   $P{Codigo} ]]>
+		<![CDATA[SELECT * FROM vw_EmpleadoReport where idempl =   $P{Codigo}]]>
 	</queryString>
 	<field name="idempl" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="idempl"/>
