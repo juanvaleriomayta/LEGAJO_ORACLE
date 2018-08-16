@@ -5,17 +5,26 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Inicio de Sesion</title>
+        <link rel="icon" href="resources/icon/th.png" sizes="32x32" />
         <link href="resources/css/styleLogin1.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
+
+
         <div class="cont">
+
+            <center ><h1 style="font-size:50px;">ACCESO LEGAJO</h1></center>
+<!--            <h1 style="font-size:8px;">Este texto es más grande</h1>-->
             <div class="demo">
                 <div class="login">
                     <div class="login__check"></div>
                     <div class="login__form">
+
                         <h:form id="form">
+
                             <h:panelGroup >
+
                                 <div class="login__row">
                                     <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
                                         <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
@@ -34,7 +43,7 @@
                                 <!--<button type="button" class="login__submit">Sign in</button>-->
                                 <p:commandButton id="BtnIniciarSesion" value="Ingresar" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/>
                                 <p:blockUI block="form" trigger="BtnIniciarSesion" />
-                                <p class="login__signup">Don't have an account? <a>Sign up</a></p>
+                                <!--<p class="login__signup">Don't have an account? <a>Sign up</a></p>-->
                             </h:panelGroup>
                             <h:panelGroup rendered="#{Login.intentos >= 3 ? true:false}">
                                 <h:outputText id="txt_count" value="#{Login.number}" />
@@ -45,7 +54,7 @@
                     </div>
                 </div>
                 <div class="app">
-                    
+
                 </div>
             </div>
         </div>
