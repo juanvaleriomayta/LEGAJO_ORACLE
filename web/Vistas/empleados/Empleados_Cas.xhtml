@@ -115,7 +115,11 @@
                                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                         </p:column>
+<<<<<<< HEAD
                         <p:column style="width:65px" headerText="Reporte" rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+=======
+                        <p:column headerText="Reporte" rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+>>>>>>> origin/master
                             <h:commandLink actionListener="#{empleadoC.decargar(empleado.idEmpl)}">
                                 <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
                             </h:commandLink>
