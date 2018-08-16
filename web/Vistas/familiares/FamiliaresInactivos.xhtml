@@ -23,26 +23,28 @@
                                  rowsPerPageTemplate="5,10,15,10000"
                                  rowStyleClass="#{contactos.tipDeFami == 'F' ? 'familiar':'contacto'}">
                         <f:facet name="header">
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                <p:dataExporter type="pdf" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                <p:dataExporter type="csv" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <a href="EstudiosBasicosWEB.xhtml"></a>
-                                <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                <p:dataExporter type="xml" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                <p:dataExporter type="xls" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
-                            </h:commandLink>
-                            
+                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                                    <p:dataExporter type="pdf" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                                    <p:dataExporter type="csv" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <a href="EstudiosBasicosWEB.xhtml"></a>
+                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                                    <p:dataExporter type="xml" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                                    <p:dataExporter type="xls" target="data" fileName="Familiares Inactivos" pageOnly="true"/>
+                                </h:commandLink>
+                            </h:panelGroup>
+
                             <h1>Familiares del Empleado</h1>
-                            
+
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
                         </f:facet>

@@ -10,20 +10,21 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="Familiares">
-                <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+<!--                <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">-->
 
-                    <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
-                    <f:event type="preRenderView" listener="#{familiaresC.listar()}" />
-                    <p:growl id="msj" autoUpdate="true"/>
-                    <h:form id="frm">
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
+                <f:event type="preRenderView" listener="#{familiaresC.listar()}" />
+                <p:growl id="msj" autoUpdate="true"/>
+                <h:form id="frm">
 
-                        <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" rendered="true" update=":dlgDatos"/>
+                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" rendered="true" update=":dlgDatos"/>
 
-                        <p:dataTable id="data" value="#{familiaresC.lstFamiliares}" var="familiar" rows="10"
-                                     paginator="true"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="5,10,15,10000">
-                            <f:facet name="header">
+                    <p:dataTable id="data" value="#{familiaresC.lstFamiliares}" var="familiar" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,10000">
+                        <f:facet name="header">
+                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
                                 <h:commandLink>
                                     <p:graphicImage value="/resources/icon/image.png" width="50"/>
                                     <p:dataExporter type="pdf" target="data" fileName="Familiares Del Empleado" pageOnly="true"/>
@@ -41,120 +42,121 @@
                                     <p:graphicImage value="/resources/icon/xls.png" width="50"/>
                                     <p:dataExporter type="xls" target="data" fileName="Familiares Del Empleado" pageOnly="true"/>
                                 </h:commandLink>
+                            </h:panelGroup>
 
-                                <h1>Familiares del Empleado</h1> 
+                            <h1>Familiares del Empleado</h1> 
 
-                                <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
-                                <p:columnToggler datasource="data" trigger="toggler" />
-                            </f:facet>
+                            <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                            <p:columnToggler datasource="data" trigger="toggler" />
+                        </f:facet>
 
-                            <p:column style="width:16px">
-                                <p:rowToggler/>
-                            </p:column>
+                        <p:column style="width:16px">
+                            <p:rowToggler/>
+                        </p:column>
 
-                            <p:column headerText="Nombre" >
-                                <h:outputText value="#{familiar.nomFami}"/>
-                            </p:column>
-                            <p:column headerText="Apellido" >
-                                <h:outputText value="#{familiar.ape}"/>
-                            </p:column>
-                            <p:column headerText="Parentesco" >
-                                <h:outputText value="#{familiar.par}"/>
-                            </p:column>
-                            <p:column headerText="Ocupacion" >
-                                <h:outputText value="#{familiar.ocu}"/>
-                            </p:column>
-                            <p:column headerText="Fecha de Nacimiento" >
-                                <h:outputText value="#{familiar.fecNac}"/>
-                            </p:column>
+                        <p:column headerText="Nombre" >
+                            <h:outputText value="#{familiar.nomFami}"/>
+                        </p:column>
+                        <p:column headerText="Apellido" >
+                            <h:outputText value="#{familiar.ape}"/>
+                        </p:column>
+                        <p:column headerText="Parentesco" >
+                            <h:outputText value="#{familiar.par}"/>
+                        </p:column>
+                        <p:column headerText="Ocupacion" >
+                            <h:outputText value="#{familiar.ocu}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de Nacimiento" >
+                            <h:outputText value="#{familiar.fecNac}"/>
+                        </p:column>
 
-                            <p:rowExpansion >
-                                <p:panelGrid columns="2" columnClasses="label,value" style="width:500px " >
-                                    <h:outputText value="Telefono" />
-                                    <h:outputText value="#{familiar.tel}"/>                       
-                                    <h:outputText value="Celular" />
-                                    <h:outputText value="#{familiar.cel}"/>                             
-                                    <h:outputText value="Estado Civil" />
-                                    <h:outputText value="#{familiar.estCiv}"/>                           
-                                    <h:outputText value="Vive" />
-                                    <h:outputText value="#{familiar.vive}"/>                                 
-                                    <h:outputText value="Empleado"/>
-                                    <h:outputText value="#{familiar.empleado}"/>
-                                </p:panelGrid>
-                            </p:rowExpansion>
-
-                            <p:column style="width:50px" exportable="false">
-                                <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar.codFami)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
-                            </p:column>
-                            <p:column style="width:54px" exportable="false">
-                                <p:commandButton title="ELIMINAR" icon="ui-icon-circle-close" actionListener="#{familiaresC.eliminar(familiar)}" update="data" style="background-color:red;color:red;">
-                                    <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
-                                </p:commandButton>
-                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                </p:confirmDialog>
-                            </p:column>
-                        </p:dataTable>
-                    </h:form>
-
-                    <p:dialog  showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
-                        <h:form>
-                            <p:panelGrid columns="2">
-                                <p:outputLabel value="Nombre" />
-                                <p:inputText value="#{familiaresC.familiar.nomFami}" >
-                                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                </p:inputText>
-                                <p:outputLabel value="Apellido" />
-                                <p:inputText value="#{familiaresC.familiar.ape}" >
-                                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                </p:inputText>
-                                <p:outputLabel value="Parentesco" />
-                                <p:inputText value="#{familiaresC.familiar.par}" >
-                                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                </p:inputText>
-                                <p:outputLabel value="Ocupacion" />
-                                <p:inputText value="#{familiaresC.familiar.ocu}" >
-                                    <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                </p:inputText>
-                                <p:outputLabel value="Fecha de Nacimiento" />
-                                <p:inputMask id="txtFecNac" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999"/>
-                                <p:outputLabel value="Telefono" />
-                                <p:inputText value="#{familiaresC.familiar.tel}" maxlength="7" >
-                                    <p:keyFilter regEx="/[\d\-]/"/>
-                                </p:inputText>
-                                <p:outputLabel value="Celular" />
-                                <p:inputText value="#{familiaresC.familiar.cel}" maxlength="9">
-                                    <p:keyFilter regEx="/[\d\-]/"/>
-                                </p:inputText>
-                                <p:outputLabel value="Estado Civil" />              
-                                <p:selectOneMenu id="EstadoCivil" value="#{familiaresC.familiar.estCiv}">
-                                    <f:selectItem itemLabel="Seleccione"/>
-                                    <f:selectItem itemLabel="Soltero" itemValue="SOLTERO"/>
-                                    <f:selectItem itemLabel="Casado" itemValue="CASADO"/>
-                                    <f:selectItem itemLabel="Viudo" itemValue="VIUDO"/>
-                                    <f:selectItem itemLabel="Divorciado" itemValue="DIVORCIADO"/>
-                                </p:selectOneMenu>   
-                                <p:outputLabel value="Vive" />
-                                <p:selectOneRadio id="Vive" value="#{familiaresC.familiar.vive}" >                      
-                                    <f:selectItem itemLabel="Si" itemValue="SI"/>
-                                    <f:selectItem itemLabel="No" itemValue="NO"/>                                          
-                                </p:selectOneRadio>
-                                <p:outputLabel value="Nombre del Empleado"/>
-                                <p:autoComplete value="#{familiaresC.familiar.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">                               
-                                </p:autoComplete>
-
-                                <p:commandButton value="#{familiaresC.accion}" actionListener="#{familiaresC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                        <p:rowExpansion >
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width:500px " >
+                                <h:outputText value="Telefono" />
+                                <h:outputText value="#{familiar.tel}"/>                       
+                                <h:outputText value="Celular" />
+                                <h:outputText value="#{familiar.cel}"/>                             
+                                <h:outputText value="Estado Civil" />
+                                <h:outputText value="#{familiar.estCiv}"/>                           
+                                <h:outputText value="Vive" />
+                                <h:outputText value="#{familiar.vive}"/>                                 
+                                <h:outputText value="Empleado"/>
+                                <h:outputText value="#{familiar.empleado}"/>
                             </p:panelGrid>
-                        </h:form>
-                    </p:dialog>
-                </h:panelGroup>
-                <h:panelGroup rendered="#{!Login.usuario.nivel == 'admin' ? true:false}">
-                    <center>
-                        <h1 style="color: red">NO TIENES PERMISO</h1>
-                    </center>
-                </h:panelGroup>
+                        </p:rowExpansion>
+
+                        <p:column style="width:50px" exportable="false">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{familiaresC.leerID(familiar.codFami)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
+                        </p:column>
+                        <p:column style="width:54px" exportable="false">
+                            <p:commandButton title="ELIMINAR" icon="ui-icon-circle-close" actionListener="#{familiaresC.eliminar(familiar)}" update="data" style="background-color:red;color:red;">
+                                <p:confirm header="Confirmation" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <p:dialog  showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+                    <h:form>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nombre" />
+                            <p:inputText value="#{familiaresC.familiar.nomFami}" >
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel value="Apellido" />
+                            <p:inputText value="#{familiaresC.familiar.ape}" >
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel value="Parentesco" />
+                            <p:inputText value="#{familiaresC.familiar.par}" >
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel value="Ocupacion" />
+                            <p:inputText value="#{familiaresC.familiar.ocu}" >
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+                            <p:outputLabel value="Fecha de Nacimiento" />
+                            <p:inputMask id="txtFecNac" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999"/>
+                            <p:outputLabel value="Telefono" />
+                            <p:inputText value="#{familiaresC.familiar.tel}" maxlength="7" >
+                                <p:keyFilter regEx="/[\d\-]/"/>
+                            </p:inputText>
+                            <p:outputLabel value="Celular" />
+                            <p:inputText value="#{familiaresC.familiar.cel}" maxlength="9">
+                                <p:keyFilter regEx="/[\d\-]/"/>
+                            </p:inputText>
+                            <p:outputLabel value="Estado Civil" />              
+                            <p:selectOneMenu id="EstadoCivil" value="#{familiaresC.familiar.estCiv}">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItem itemLabel="Soltero" itemValue="SOLTERO"/>
+                                <f:selectItem itemLabel="Casado" itemValue="CASADO"/>
+                                <f:selectItem itemLabel="Viudo" itemValue="VIUDO"/>
+                                <f:selectItem itemLabel="Divorciado" itemValue="DIVORCIADO"/>
+                            </p:selectOneMenu>   
+                            <p:outputLabel value="Vive" />
+                            <p:selectOneRadio id="Vive" value="#{familiaresC.familiar.vive}" >                      
+                                <f:selectItem itemLabel="Si" itemValue="SI"/>
+                                <f:selectItem itemLabel="No" itemValue="NO"/>                                          
+                            </p:selectOneRadio>
+                            <p:outputLabel value="Nombre del Empleado"/>
+                            <p:autoComplete value="#{familiaresC.familiar.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">                               
+                            </p:autoComplete>
+
+                            <p:commandButton value="#{familiaresC.accion}" actionListener="#{familiaresC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+
+<!--                <h:panelGroup rendered="#{!Login.usuario.nivel == 'admin' ? true:false}">
+     <center>
+         <h1 style="color: red">NO TIENES PERMISO</h1>
+     </center>
+ </h:panelGroup>-->
             </ui:define>
         </ui:composition>
     </body>

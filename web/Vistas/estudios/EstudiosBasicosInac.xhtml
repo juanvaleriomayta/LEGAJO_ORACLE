@@ -20,22 +20,24 @@
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000">
                         <f:facet name="header">
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                <p:dataExporter type="pdf" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                <p:dataExporter type="csv" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                <p:dataExporter type="xml" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                <p:dataExporter type="xls" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
-                            </h:commandLink>
+                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                                    <p:dataExporter type="pdf" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                                    <p:dataExporter type="csv" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                                    <p:dataExporter type="xml" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                                    <p:dataExporter type="xls" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
+                                </h:commandLink>
+                            </h:panelGroup>
                             <h1>Estudios Basicos del Empleado</h1> 
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -60,11 +62,11 @@
                         <p:column headerText="Estado" >
                             <p:outputLabel value="#{basicos.estado}"/>
                         </p:column>
-                        
+
                         <p:column headerText="Nombre del Empleado" >
                             <p:outputLabel value="#{basicos.empleado}"/>
                         </p:column>
-                        
+
 
                         <p:column style="width:50px" exportable="false">
                             <p:commandButton title="ACTIVAR" icon="ui-icon-pencil" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />

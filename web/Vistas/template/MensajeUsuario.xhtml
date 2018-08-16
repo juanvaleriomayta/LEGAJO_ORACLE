@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
+        <link href="../../resources/css/MyStyles.css" rel="stylesheet" type="text/css"/>
+
+    </h:head>
+
+    <h:body>
+
+
+
+        <ui:composition template="./../template/Template.xhtml">
+            <h:form>
+                <center><p:fieldset legend="ADMINISTRADOR" class="#{Login.usuario.nivel != 'admin' ? 'ocultar':null}">
+
+
+
+                        <center><h1>ERES UN ADMINISTRADOR</h1></center>
+
+                    </p:fieldset>
+                </center>
+            </h:form>
+        </ui:composition>
+
+        <p:fieldset legend="USUARIO" class="#{Login.usuario.nivel != 'user' ? 'ocultar':null}">
+            <h1>ERES UN USUARIO</h1>
+        </p:fieldset>
+
+        <p:growl autoUpdate="true" />
+        <h:form id="frm">
+
+        </h:form>
+
+
+
+
+
+    </h:body>
+</html>

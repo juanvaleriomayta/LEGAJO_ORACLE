@@ -45,6 +45,7 @@
                                     <li><a href="../detalledialecto/DetalleDialectoInac.xhtml" class="active">DETALLE DIALECTO INACTIVOS</a></li>
                                     <li><a href="../familiares/FamiliaresInactivos.xhtml" class="active">FAMILIARES INACTIVOS</a></li>
                                     <li><a href="../emergencias/EmergenciasInac.xhtml" class="active">EMERGENCIAS INACTIVOS</a></li>  
+
                                 </ul>
                             </li> 
                             <li class="dropdown">
@@ -52,7 +53,9 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                                     <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                                    <li><a href="../empleados/usuario.xhtml"><i class="lnr lnr-cog"></i> <span>Crear Nuevo Usuario</span></a></li>
+                                    <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}"> 
+                                        <li><a href="../empleados/usuario.xhtml"><i class="lnr lnr-cog"></i> <span>Crear Nuevo Usuario</span></a></li>
+                                    </h:panelGroup>
                                     <li><a href="#"> <h:form><p:commandButton  class="lnr lnr-exit" value="Cerrar Session" actionListener="#{Login.finishSession()}"/></h:form> </a></li>
 
                                 </ul>
@@ -80,14 +83,21 @@
                             <li><a href="../estudios/EstudiosBasicos.xhtml" class="active"><i class="lnr lnr-code"></i> <span>ESTUDIOS BASICOS</span></a></li>
                             <li><a href="../estudios/EstudiosSuperiores.xhtml" class="active"><i class="lnr lnr-chart-bars"></i> <span>ESTUDIOS SUPERIORES</span></a></li>
                             <!--<li class="#{Login.usuario.nivel == 'admin' ? null:'ocultar'}"><a href="../familiares/Familiares.xhtml" class="active"><i class="lnr lnr-cog"></i> <span>FAMILIARES</span></a></li>-->
-                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}"><li><a href="../familiares/Familiares.xhtml" class="active"><i class="lnr lnr-cog"></i> <span>FAMILIARES</span></a></li></h:panelGroup>
+                            <!--<h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}"><li><a href="../familiares/Familiares.xhtml" class="active"><i class="lnr lnr-cog"></i> <span>FAMILIARES</span></a></li></h:panelGroup>-->
+                            <li><a href="../familiares/Familiares.xhtml" class="active"><i class="lnr lnr-cog"></i> <span>FAMILIARES</span></a></li>
                             <li><a href="../emergencias/Emergencias.xhtml" class="active"><i class="lnr lnr-alarm"></i> <span>EMERGENCIAS</span></a></li>
                             <li><a href="../detalledialecto/DetalleDialecto.xhtml" class="active"><i class="lnr lnr-alarm"></i> <span>DETALLE DEL DIALECTO</span></a></li>
                             <li><a href="../empleados/Datos.xhtml" class="active"><i class="lnr lnr-alarm"></i> <span>DATOS</span></a></li>
+                            <li><a style="cursor: pointer" onclick="PF('dialog').show()" class="active"><i class="lnr lnr-alarm"></i> <span>MANUAL</span></a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
+            <p:dialog widgetVar="dialog" width="50%" height="100%" modal="true">
+                <object type="application/pdf" data="../REPORTES/MANUAL.pdf?pfdrid_c=true" height="500px" width="100%" internalinstanceid="6">
+                    Your browser can't display pdf, <a href="../REPORTES/MANUAL.pdf">click</a> to download pdf instead.
+                </object>
+            </p:dialog>
             <div class="main">
                 <div class="main-content">
                     <ui:insert name="contenido"></ui:insert>

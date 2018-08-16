@@ -31,11 +31,13 @@
                                  rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
                         <f:facet name="header">
 
-                            <center>
-                                <h:commandLink actionListener="#{empleadoC.decargar()}">
-                                    <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
-                                </h:commandLink>
-                            </center> 
+                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                                <center>
+                                    <h:commandLink actionListener="#{empleadoC.decargar()}">
+                                        <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
+                                    </h:commandLink>
+                                </center> 
+                            </h:panelGroup>
                             <h1>EMPLEADOS CAS</h1> 
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />

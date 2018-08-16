@@ -51,10 +51,10 @@ public class UsuarioC implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario", getUsuario());
                 switch (usuario.getNivel()) {
                     case "admin":
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/template/MensajeUsuario.xhtml");
                         break;
                     case "user":
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Datos.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/template/MensajeUsuario.xhtml");
                         break;
                 }
             } else {
@@ -78,10 +78,10 @@ public class UsuarioC implements Serializable {
         if (us != null) {
             switch (us.getNivel()) {
                 case "admin":
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Empleados.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/template/MensajeUsuario.xhtml");
                     break;
                 case "user":
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/empleados/Datos.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/template/MensajeUsuario.xhtml");
                     break;
             }
         }

@@ -1,3 +1,7 @@
 .ocultar{
     display: none !important
 }
+
+.no-mostrar{
+    visibility: hidden !important;
+}

@@ -6,265 +6,269 @@
       xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        
+
     </h:head>
-        
+
     <h:body>
 
-    <ui:composition template="./../template/Template.xhtml">
+        <ui:composition template="./../template/Template.xhtml">
 
-        <ui:define name="contenido">
-            <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
+            <ui:define name="contenido">
+                <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
 
-            <f:event type="preRenderView" listener="#{empleadoC.listarActivosNombrados()}" />
-
-
-
-            <p:growl autoUpdate="true" />
-            <h:form id="frm">
-                <h3 align="center">DATOS PERSONALES</h3>
-                <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
-
-                <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
-                    <f:facet name="header">
-                        <h:commandLink>
-                            <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                            <p:dataExporter type="pdf" target="data" fileName="lstEmpleado" pageOnly="true"/>
-                        </h:commandLink>
-                        <h:commandLink>
-                            <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                            <p:dataExporter type="csv" target="data" fileName="lstEmpleado" pageOnly="true"/>
-                        </h:commandLink>
-                        <h:commandLink>
-                            <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                            <p:dataExporter type="xml" target="data" fileName="lstEmpleado" pageOnly="true"/>
-                        </h:commandLink>
-                        <h:commandLink>
-                            <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                            <p:dataExporter type="xls" target="data" fileName="lstEmpleado" pageOnly="true"/>
-                        </h:commandLink>
-                        <center>
-                            <h:commandLink actionListener="#{empleadoC.decargar()}">
-                                <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
-                            </h:commandLink>
-                        </center> 
-                        <h1>EMPLEADOS NOMBRADOS</h1> 
-
-                        <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
-                        <p:columnToggler datasource="data" trigger="toggler"/>
-                    </f:facet>
-                    <p:column style="width:16px">
-                        <p:rowToggler/>
-                    </p:column>
-                    <p:column headerText="DNI" >
-                        <h:outputText value="#{empleado.DNI}"/>
-                    </p:column>
-                    <p:column headerText="Nombre" >
-                        <h:outputText value="#{empleado.nom}"/>
-                    </p:column>
-                    <p:column headerText="Apellido Paterno">
-                        <h:outputText value="#{empleado.apelPate}"/>
-                    </p:column>
-                    <p:column headerText="Apellido Materno">
-                        <h:outputText value="#{empleado.apelMate}"/>
-                    </p:column>
-                    <p:column headerText="Dirección">
-                        <h:outputText value="#{empleado.ubigActu}"/>
-                    </p:column>
-
-                    <style>
-                        .label{
-                            background-color: red
-                        }
-                    </style>
+                <f:event type="preRenderView" listener="#{empleadoC.listarActivosNombrados()}" />
 
 
-                    <p:rowExpansion>
-                        <p:panelGrid columns="2" columnClasses="label,value" style="width:500px " >
-                            <h:outputText value="Telefono"/>
-                            <h:outputText value="#{empleado.telf}"/>
-                            <h:outputText value="Grupo Sanguineo"/>
-                            <h:outputText value="#{empleado.grupSang}"/>
-                            <h:outputText value="RUC"/>
-                            <h:outputText value="#{empleado.RUC}"/>
-                            <h:outputText value="Fecha de Nacimiento"/>
-                            <h:outputText value="#{empleado.fecNac}"/>
-                            <h:outputText value="Correo ELectronico"/>
-                            <h:outputText value="#{empleado.email}"/>
-                            <h:outputText value="Celular"/>
-                            <h:outputText value="#{empleado.cel}"/>
-                            <h:outputText value="Estado Civil"/>
-                            <h:outputText value="#{empleado.estCiv}"/>
-                            <h:outputText value="Condición Laboral"/>
-                            <h:outputText value="#{empleado.conLab}"/>
-                            <h:outputText value="Fecha de Ingreso"/>
-                            <h:outputText value="#{empleado.fecIng}"/>
-                            <h:outputText value="Carnet Asegurado"/>
-                            <h:outputText value="#{empleado.carnAseg}"/>
-                            <h:outputText value="Referencia"/>
-                            <h:outputText value="#{empleado.refe}"/>
-                            <h:outputText value="Leyes"/>
-                            <h:outputText value="#{empleado.leye}"/>
-                            <h:outputText value="Fecha de Nombramiento"/>
-                            <h:outputText value="#{empleado.fecNom}"/>
-                            <h:outputText value="Datos del Conyugue"/>
-                            <h:outputText value="#{empleado.datCony}"/>
-                            <h:outputText value="Lugar de Nacimiento"/>
-                            <h:outputText value="#{empleado.origen}"/>
 
-                        </p:panelGrid>
-                    </p:rowExpansion>
+                <p:growl autoUpdate="true" />
+                <h:form id="frm">
+                    <h3 align="center">DATOS PERSONALES</h3>
+                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
-                    <p:column style="width:50px" exportable="false" >
-                        <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
-                        </p:commandButton>
-                    </p:column>
+                    <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
+                        <f:facet name="header">
+                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                                    <p:dataExporter type="pdf" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                                    <p:dataExporter type="csv" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                                    <p:dataExporter type="xml" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                                    <p:dataExporter type="xls" target="data" fileName="lstEmpleado" pageOnly="true"/>
+                                </h:commandLink>
+                                <center>
+                                    <h:commandLink actionListener="#{empleadoC.decargar()}">
+                                        <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
+                                    </h:commandLink>
 
-                    <p:column style="width:54px">
-                        <p:growl id="message" showDetail="true" />
-                        <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
-                            <p:confirm header="Confirmación" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
-                            <p:tooltip trackMouse="true"/>
-                        </p:commandButton>
-                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                        </p:confirmDialog>
-                    </p:column>
-                    <f:facet name="footer">
-                        EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.
-                    </f:facet>
-                </p:dataTable>
+                                </center>
+                            </h:panelGroup>
 
-            </h:form>
+                            <h1>EMPLEADOS NOMBRADOS</h1> 
 
+                            <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                            <p:columnToggler datasource="data" trigger="toggler"/>
+                        </f:facet>
+                        <p:column style="width:16px">
+                            <p:rowToggler/>
+                        </p:column>
+                        <p:column headerText="DNI" >
+                            <h:outputText value="#{empleado.DNI}"/>
+                        </p:column>
+                        <p:column headerText="Nombre" >
+                            <h:outputText value="#{empleado.nom}"/>
+                        </p:column>
+                        <p:column headerText="Apellido Paterno">
+                            <h:outputText value="#{empleado.apelPate}"/>
+                        </p:column>
+                        <p:column headerText="Apellido Materno">
+                            <h:outputText value="#{empleado.apelMate}"/>
+                        </p:column>
+                        <p:column headerText="Dirección">
+                            <h:outputText value="#{empleado.ubigActu}"/>
+                        </p:column>
 
-            <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
-                <h:form>
-                    <p:panelGrid columns="4">
-                        <p:outputLabel for="txtDNI" value="DNI" />
-                        <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
-                            <p:keyFilter regEx="/[\d\-]/"/>
-                        </p:inputText>
-
-                        <p:outputLabel for="txtNombre" value="Nombre" />
-                        <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}"  requiredMessage="Ingresar Nombre" required="true">
-                            <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        </p:inputText>
-
-                        <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno" />
-                        <p:inputText id="txtApellidoPaterno" value="#{empleadoC.empleado.apelPate}" required="true" requiredMessage="Ingresar Apellido Paterno">
-                            <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        </p:inputText>
-
-                        <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno" />
-                        <p:inputText id="txtApellidoMaterno" value="#{empleadoC.empleado.apelMate}" required="true" requiredMessage="Ingresar Apellido Materno">
-                            <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                        </p:inputText>
+                        <style>
+                            .label{
+                                background-color: red
+                            }
+                        </style>
 
 
-                        <p:outputLabel for="txtDir" value="Dirección"/>
-                        <p:inputText id="txtDir" value="#{empleadoC.empleado.ubigActu}"  >                  
-                        </p:inputText>
+                        <p:rowExpansion>
+                            <p:panelGrid columns="2" columnClasses="label,value" style="width:500px " >
+                                <h:outputText value="Telefono"/>
+                                <h:outputText value="#{empleado.telf}"/>
+                                <h:outputText value="Grupo Sanguineo"/>
+                                <h:outputText value="#{empleado.grupSang}"/>
+                                <h:outputText value="RUC"/>
+                                <h:outputText value="#{empleado.RUC}"/>
+                                <h:outputText value="Fecha de Nacimiento"/>
+                                <h:outputText value="#{empleado.fecNac}"/>
+                                <h:outputText value="Correo ELectronico"/>
+                                <h:outputText value="#{empleado.email}"/>
+                                <h:outputText value="Celular"/>
+                                <h:outputText value="#{empleado.cel}"/>
+                                <h:outputText value="Estado Civil"/>
+                                <h:outputText value="#{empleado.estCiv}"/>
+                                <h:outputText value="Condición Laboral"/>
+                                <h:outputText value="#{empleado.conLab}"/>
+                                <h:outputText value="Fecha de Ingreso"/>
+                                <h:outputText value="#{empleado.fecIng}"/>
+                                <h:outputText value="Carnet Asegurado"/>
+                                <h:outputText value="#{empleado.carnAseg}"/>
+                                <h:outputText value="Referencia"/>
+                                <h:outputText value="#{empleado.refe}"/>
+                                <h:outputText value="Leyes"/>
+                                <h:outputText value="#{empleado.leye}"/>
+                                <h:outputText value="Fecha de Nombramiento"/>
+                                <h:outputText value="#{empleado.fecNom}"/>
+                                <h:outputText value="Datos del Conyugue"/>
+                                <h:outputText value="#{empleado.datCony}"/>
+                                <h:outputText value="Lugar de Nacimiento"/>
+                                <h:outputText value="#{empleado.origen}"/>
 
-                        <p:outputLabel for="txtRUC" value="RUC" />
-                        <p:inputText id="txtRUC" value="#{empleadoC.empleado.RUC}" maxlength="11">
-                            <p:keyFilter regEx="/[\d\-]/"/>
-                        </p:inputText>
+                            </p:panelGrid>
+                        </p:rowExpansion>
 
-                        <p:outputLabel for="txtCel" value="Celular"/>
-                        <p:inputText id="txtCel" value="#{empleadoC.empleado.cel}" maxlength="9">
-                            <p:keyFilter regEx="/[\d\-]/"/>
-                        </p:inputText>
+                        <p:column style="width:50px" exportable="false" >
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{empleadoC.leerID(empleado.idEmpl)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" >
+                            </p:commandButton>
+                        </p:column>
 
-                        <p:outputLabel for="txtTelf" value="Telefono"/>
-                        <p:inputText id="txtTelf" value="#{empleadoC.empleado.telf}" maxlength="7">
-                            <p:keyFilter regEx="/[\d\-]/"/>
-                        </p:inputText>
-
-                        <p:outputLabel for="txtEmail" value="Correo Electronico"/>
-                        <p:inputText id="txtEmail" value="#{empleadoC.empleado.email}"  >                  
-                        </p:inputText>
-
-                        <p:outputLabel for="txtCarnAseg" value="Carnet Asegurado"/>
-                        <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15"/>
-
-                        <p:outputLabel for="txtRefe" value="Referencia"/>
-                        <p:inputText id="txtRefe" value="#{empleadoC.empleado.refe}">
-                        </p:inputText>
-
-                        <p:outputLabel for="txtLeye" value="Leyes"/>
-                        <p:inputText id="txtLeye" value="#{empleadoC.empleado.leye}" maxlength="10">
-                        </p:inputText>                    
-
-                        <p:outputLabel for="txtDatCony" value="Datos del Conyugue"/>
-                        <p:inputText id="txtDatCony" value="#{empleadoC.empleado.datCony}">
-                        </p:inputText>
-
-                        <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
-                        <p:autoComplete value="#{empleadoC.empleado.origen}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
-                            <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
-                        </p:autoComplete>
-
-
-                        <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
-                        <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
-
-                        <p:outputLabel for="txtFecIng" value="Fecha De Ingreso SBS"/>
-                        <p:inputMask id="txtFecIng" value="#{empleadoC.empleado.fecIng}" mask="99/99/9999"/>
-
-
-                        <p:outputLabel for="txtFecNom" value="Fecha de Nombramineto: " />
-                        <p:inputMask id="txtFecNom" value="#{empleadoC.empleado.fecNom}" mask="99/99/9999"/>
-
-
-                        <p:outputLabel value="Grupo Sanguineo" />
-                        <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}" required="true" requiredMessage="Seleccione el Tipo de Sangre ">
-                            <f:selectItem itemLabel="Seleccione"/>
-                            <f:selectItem itemLabel="O-" itemValue="O-" />
-                            <f:selectItem itemLabel="O+" itemValue="O+" />
-                            <f:selectItem itemLabel="A-" itemValue="A-" />
-                            <f:selectItem itemLabel="A+" itemValue="A+" />
-                            <f:selectItem itemLabel="B-" itemValue="B-" />
-                            <f:selectItem itemLabel="B-" itemValue="B+" />
-                            <f:selectItem itemLabel="AB-" itemValue="AB-" />
-                            <f:selectItem itemLabel="AB+" itemValue="AB+" />
-                        </p:selectOneMenu>
-
-                        <p:outputLabel value="Condición Laboral:"   />
-
-                        <p:selectOneRadio id="CondicionLaboral" value="#{empleadoC.empleado.conLab}" required="true" requiredMessage="Seleccione su Estado Laboral">
-
-                            <f:selectItem itemLabel="CAS" itemValue="CAS"/>
-                            <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
-                            <f:selectItem itemLabel="Cesante" itemValue="Cesante" /> 
-                        </p:selectOneRadio>
-
-                        <p:outputLabel value="Estado civil"/>
-
-                        <p:selectOneRadio id="Estado" value="#{empleadoC.empleado.estCiv}" required="true" requiredMessage="Seleccione su Estado Laboral">                        
-
-                            <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
-                            <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
-                            <f:selectItem itemLabel="Casado" itemValue="Casado"/>
-                            <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
-
-                        </p:selectOneRadio>
-                        <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                        <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
-
-                    </p:panelGrid>
+                        <p:column style="width:54px">
+                            <p:growl id="message" showDetail="true" />
+                            <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{empleadoC.eliminar(empleado)}" update="data" style="background-color:red;color:red;">
+                                <p:confirm header="Confirmación" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
+                                <p:tooltip trackMouse="true"/>
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </p:column>
+                        <f:facet name="footer">
+                            EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.
+                        </f:facet>
+                    </p:dataTable>
 
                 </h:form>
 
-            </p:dialog>
 
-        </ui:define>
+                <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
+                    <h:form>
+                        <p:panelGrid columns="4">
+                            <p:outputLabel for="txtDNI" value="DNI" />
+                            <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
+                                <p:keyFilter regEx="/[\d\-]/"/>
+                            </p:inputText>
 
-    </ui:composition>
+                            <p:outputLabel for="txtNombre" value="Nombre" />
+                            <p:inputText id="txtNombre" value="#{empleadoC.empleado.nom}"  requiredMessage="Ingresar Nombre" required="true">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
 
-</h:body>
+                            <p:outputLabel for="txtApellidoPaterno" value="Apellido Paterno" />
+                            <p:inputText id="txtApellidoPaterno" value="#{empleadoC.empleado.apelPate}" required="true" requiredMessage="Ingresar Apellido Paterno">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="txtApellidoMaterno" value="Apellido Materno" />
+                            <p:inputText id="txtApellidoMaterno" value="#{empleadoC.empleado.apelMate}" required="true" requiredMessage="Ingresar Apellido Materno">
+                                <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                            </p:inputText>
+
+
+                            <p:outputLabel for="txtDir" value="Dirección"/>
+                            <p:inputText id="txtDir" value="#{empleadoC.empleado.ubigActu}"  >                  
+                            </p:inputText>
+
+                            <p:outputLabel for="txtRUC" value="RUC" />
+                            <p:inputText id="txtRUC" value="#{empleadoC.empleado.RUC}" maxlength="11">
+                                <p:keyFilter regEx="/[\d\-]/"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="txtCel" value="Celular"/>
+                            <p:inputText id="txtCel" value="#{empleadoC.empleado.cel}" maxlength="9">
+                                <p:keyFilter regEx="/[\d\-]/"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="txtTelf" value="Telefono"/>
+                            <p:inputText id="txtTelf" value="#{empleadoC.empleado.telf}" maxlength="7">
+                                <p:keyFilter regEx="/[\d\-]/"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="txtEmail" value="Correo Electronico"/>
+                            <p:inputText id="txtEmail" value="#{empleadoC.empleado.email}"  >                  
+                            </p:inputText>
+
+                            <p:outputLabel for="txtCarnAseg" value="Carnet Asegurado"/>
+                            <p:inputText id="txtCarnAseg" value="#{empleadoC.empleado.carnAseg}" maxlength="15"/>
+
+                            <p:outputLabel for="txtRefe" value="Referencia"/>
+                            <p:inputText id="txtRefe" value="#{empleadoC.empleado.refe}">
+                            </p:inputText>
+
+                            <p:outputLabel for="txtLeye" value="Leyes"/>
+                            <p:inputText id="txtLeye" value="#{empleadoC.empleado.leye}" maxlength="10">
+                            </p:inputText>                    
+
+                            <p:outputLabel for="txtDatCony" value="Datos del Conyugue"/>
+                            <p:inputText id="txtDatCony" value="#{empleadoC.empleado.datCony}">
+                            </p:inputText>
+
+                            <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
+                            <p:autoComplete value="#{empleadoC.empleado.origen}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
+                                <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
+                            </p:autoComplete>
+
+
+                            <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento"/>
+                            <p:inputMask id="txtFecNac" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
+
+                            <p:outputLabel for="txtFecIng" value="Fecha De Ingreso SBS"/>
+                            <p:inputMask id="txtFecIng" value="#{empleadoC.empleado.fecIng}" mask="99/99/9999"/>
+
+
+                            <p:outputLabel for="txtFecNom" value="Fecha de Nombramineto: " />
+                            <p:inputMask id="txtFecNom" value="#{empleadoC.empleado.fecNom}" mask="99/99/9999"/>
+
+
+                            <p:outputLabel value="Grupo Sanguineo" />
+                            <p:selectOneMenu id="GrupoSanguineo" value="#{empleadoC.empleado.grupSang}" required="true" requiredMessage="Seleccione el Tipo de Sangre ">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItem itemLabel="O-" itemValue="O-" />
+                                <f:selectItem itemLabel="O+" itemValue="O+" />
+                                <f:selectItem itemLabel="A-" itemValue="A-" />
+                                <f:selectItem itemLabel="A+" itemValue="A+" />
+                                <f:selectItem itemLabel="B-" itemValue="B-" />
+                                <f:selectItem itemLabel="B-" itemValue="B+" />
+                                <f:selectItem itemLabel="AB-" itemValue="AB-" />
+                                <f:selectItem itemLabel="AB+" itemValue="AB+" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Condición Laboral:"   />
+
+                            <p:selectOneRadio id="CondicionLaboral" value="#{empleadoC.empleado.conLab}" required="true" requiredMessage="Seleccione su Estado Laboral">
+
+                                <f:selectItem itemLabel="CAS" itemValue="CAS"/>
+                                <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
+                                <f:selectItem itemLabel="Cesante" itemValue="Cesante" /> 
+                            </p:selectOneRadio>
+
+                            <p:outputLabel value="Estado civil"/>
+
+                            <p:selectOneRadio id="Estado" value="#{empleadoC.empleado.estCiv}" required="true" requiredMessage="Seleccione su Estado Laboral">                        
+
+                                <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
+                                <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/> 
+                                <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                                <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
+
+                            </p:selectOneRadio>
+                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+
+                        </p:panelGrid>
+
+                    </h:form>
+
+                </p:dialog>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
 </html>

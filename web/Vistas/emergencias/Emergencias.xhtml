@@ -22,22 +22,24 @@
                                  rowsPerPageTemplate="5,10,15,10000">
 
                         <f:facet name="header">
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                <p:dataExporter type="pdf" target="data" fileName="Emergencia" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                <p:dataExporter type="csv" target="data" fileName="Emergencia" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                <p:dataExporter type="xml" target="data" fileName="Emergencia" pageOnly="true"/>
-                            </h:commandLink>
-                            <h:commandLink>
-                                <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                <p:dataExporter type="xls" target="data" fileName="Emergencia" pageOnly="true"/>
-                            </h:commandLink>
+                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
+                                    <p:dataExporter type="pdf" target="data" fileName="Emergencia" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
+                                    <p:dataExporter type="csv" target="data" fileName="Emergencia" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
+                                    <p:dataExporter type="xml" target="data" fileName="Emergencia" pageOnly="true"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
+                                    <p:dataExporter type="xls" target="data" fileName="Emergencia" pageOnly="true"/>
+                                </h:commandLink>
+                            </h:panelGroup>
 
                             <h1>Datos Emergentes</h1> 
 
@@ -68,7 +70,7 @@
                             <p:outputLabel value="#{emergencias.empleado}"/>
                         </p:column>
 
-                        
+
 
 
                         <p:column style="width:50px" exportable="false">
