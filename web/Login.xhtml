@@ -7,7 +7,7 @@
     <h:head>
         <title>Facelet Title</title>
         <link rel="icon" href="resources/icon/th.png" sizes="32x32" />
-       
+
         <f:event type="preRenderView" listener="#{Login.securityLogin()}"/>
         <meta charset="UTF-8"/>
         <title>Login Form</title>
@@ -32,14 +32,19 @@
                     <p:password value="#{Login.pass}" style="background: #ffffff" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}"/>
                     <br/>
                     <br/>
-                    <center><p:commandButton id="BtnIniciarSesion" value="Ingresar" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/></center>
+                    <center><p:commandButton onclick="PF('dlg').show();" id="BtnIniciarSesion" value="Ingresar" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/></center>
                     <p:blockUI block="form" trigger="BtnIniciarSesion" />
                 </h:panelGroup>
                 <h:panelGroup rendered="#{Login.intentos >= 3 ? true:false}">
                     <h:outputText id="txt_count" value="#{Login.number}" />
                     <p:poll interval="3" listener="#{Login.increment}" update="form" oncomplete="refresh();" />
+                    <p:dialog header="Dialog" widgetVar="dlg" dynamic="true">
+                        <h:outputText value="This content is loaded lazy." />
+                    </p:dialog>
                 </h:panelGroup>
-
+                <p:panel rendered="#{Login.intentos >= 3 ? true:false}">
+                    bgvfsgjsfdsg
+                </p:panel>
                 <p:remoteCommand name="refresh" update="form"/>
             </h:form>
         </div>

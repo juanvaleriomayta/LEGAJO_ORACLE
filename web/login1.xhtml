@@ -15,40 +15,49 @@
         <div class="cont">
 
             <center ><h1 style="font-size:50px;">ACCESO LEGAJO</h1></center>
-<!--            <h1 style="font-size:8px;">Este texto es más grande</h1>-->
+            <!--            <h1 style="font-size:8px;">Este texto es más grande</h1>-->
             <div class="demo">
                 <div class="login">
                     <div class="login__check"></div>
                     <div class="login__form">
 
                         <h:form id="form">
+                            <center>
+                                <p:panel rendered="#{Login.intentos >= 3 ? true:false}" id="basic" header=" ¿ NECESITAS AYUDA ? " style="margin-bottom:50px">
+                                    <h:panelGrid columns="1" cellpadding="10" >
+                                        Correos y Números de Celular:<br/>
+                                        jvaleriom@vallegrande.edu.pe - 986595248<br/>
+                                        jcastilla@vallegrande.edu.pe - 935557273<br/>                                     
+                                    </h:panelGrid>
+                                </p:panel>
+                            </center>
 
-                            <h:panelGroup >
+
+                            <h:panelGroup rendered="#{Login.intentos >= 3 ? false:true}">
 
                                 <div class="login__row">
                                     <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
                                         <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
                                     </svg>
 
-                                    <!--<input type="text" class="login__input name" placeholder="Username"/>-->
                                     <p:inputText value="#{Login.nombreUsuario}" style="background: #ffffff" placeholder="Usuario" disabled="#{Login.intentos le 2 ? false:true}" required="true"/>
                                 </div>
                                 <div class="login__row">
                                     <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
                                         <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
                                     </svg>
-                                    <!--<input type="password" class="login__input pass" placeholder="Password"/>-->
                                     <p:password value="#{Login.pass}" style="background: #ffffff" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}"/>
                                 </div>
-                                <!--<button type="button" class="login__submit">Sign in</button>-->
                                 <p:commandButton id="BtnIniciarSesion" value="Ingresar" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/>
                                 <p:blockUI block="form" trigger="BtnIniciarSesion" />
-                                <!--<p class="login__signup">Don't have an account? <a>Sign up</a></p>-->
                             </h:panelGroup>
+
+
                             <h:panelGroup rendered="#{Login.intentos >= 3 ? true:false}">
                                 <h:outputText id="txt_count" value="#{Login.number}" />
                                 <p:poll interval="3" listener="#{Login.increment}" update="form" oncomplete="refresh();" />
-                            </h:panelGroup>
+                            </h:panelGroup>                          
+
                             <p:remoteCommand name="refresh" update="form"/>
                         </h:form>
                     </div>
