@@ -43,11 +43,6 @@
                             <p:graphicImage value="/resources/icon/xls.png" width="50"/>
                             <p:dataExporter type="xls" target="data" fileName="lstEmpleado" pageOnly="true"/>
                         </h:commandLink>
-                        <center>
-                            <h:commandLink actionListener="#{empleadoC.decargar()}">
-                                <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
-                            </h:commandLink>
-                        </center> 
                         <h1>Empleado</h1> 
 
                         <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -130,6 +125,11 @@
                             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                         </p:confirmDialog>
+                    </p:column>
+                    <p:column headerText="Reporte">
+                        <h:commandLink actionListener="#{empleadoC.decargar(empleado.idEmpl)}">
+                            <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
+                        </h:commandLink>
                     </p:column>
                     <f:facet name="footer">
                         EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.

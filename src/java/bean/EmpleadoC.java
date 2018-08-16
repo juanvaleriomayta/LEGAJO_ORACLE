@@ -91,7 +91,7 @@ public class EmpleadoC implements Serializable {
             throw e;
         }
     }
-    
+
     public void listarActivosCas() throws Exception {
         EmpleadoDao dao;
 
@@ -102,7 +102,7 @@ public class EmpleadoC implements Serializable {
             throw e;
         }
     }
-    
+
     public void listarActivosCesante() throws Exception {
         EmpleadoDao dao;
 
@@ -166,14 +166,15 @@ public class EmpleadoC implements Serializable {
     public void limpiar() {
         empleado = new Empleado();
     }
-    
-    
+
     //    Funcionalidad generar eh madar a descargar reportes
-    public void decargar() throws Exception {
+    // Recibe el codigo del empleado
+    public void decargar(String CodigoEmpleado) throws Exception {
         ReportEmpleadoDao report = new ReportEmpleadoDao();
         try {
-            Map<String, Object> parameters = new HashMap();
-            report.exportarPDF(parameters);
+            Map<String, Object> parameters = new HashMap(); // Libro de parametros
+            parameters.put("Codigo", CodigoEmpleado); //Insertamos un parametro
+            report.exportarPDF(parameters); //Pido exportar Reporte con los parametros
 //            report.exportarPDF2(parameters);
         } catch (Exception e) {
             throw e;
