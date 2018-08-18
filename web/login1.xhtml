@@ -15,15 +15,23 @@
         <div class="cont">
 
             <center ><h1 style="font-size:50px;">ACCESO LEGAJO</h1></center>
-<!--            <h1 style="font-size:8px;">Este texto es más grande</h1>-->
+            <!--            <h1 style="font-size:8px;">Este texto es más grande</h1>-->
             <div class="demo">
                 <div class="login">
                     <div class="login__check"></div>
                     <div class="login__form">
 
                         <h:form id="form">
-
-                            <h:panelGroup >
+                            <center>
+                                <p:panel rendered="#{Login.intentos >= 3 ? true:false}" id="basic" header=" ¿ NECESITAS AYUDA ? " style="margin-bottom:50px">
+                                    <h:panelGrid columns="1" cellpadding="10" >
+                                        Correos y Números de Celular:<br/>
+                                        jvaleriom@vallegrande.edu.pe - 986595248<br/>
+                                        jcastilla@vallegrande.edu.pe - 935557273<br/>                                     
+                                    </h:panelGrid>
+                                </p:panel>
+                            </center>
+                            <h:panelGroup rendered="#{Login.intentos >= 3 ? false:true}">
 
                                 <div class="login__row">
                                     <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
