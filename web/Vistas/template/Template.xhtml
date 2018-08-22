@@ -87,10 +87,12 @@
                             </ul>
                         </li>
 
+
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>DETALLE DIALECTOS</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>DETALLE DIALECTO DEL EMPLEADO</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fa fa-th"></i><a href="../detalledialecto/DetalleDialecto.xhtml">DETALLE DIALECTOS DEL EMPLEADO</a></li>
+                                <li><i class="menu-icon fa fa-th"></i><a href="../detalledialecto/DetalleDialecto.xhtml">DETALLE DIALECTO</a></li>
+                                <!--<li><i class="menu-icon fa fa-th"></i><a href="#">Advanced Form</a></li>-->
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
@@ -110,11 +112,27 @@
                                 <!--<li><i class="menu-icon ti-themify-logo"></i><a href="#">Themefy Icons</a></li>-->
                             </ul>
                         </li>
+
                         <p:dialog widgetVar="dialog" width="50%" height="100%" modal="true">
                             <object type="application/pdf" data="../REPORTES/MANUAL_1.pdf?pfdrid_c=true" height="500px" width="100%" internalinstanceid="6">
                                 Your browser can't display pdf, <a href="../REPORTES/MANUAL_1.pdf">click</a> to download pdf instead.
                             </object>
                         </p:dialog>
+
+                        <h3 class="menu-title">SECCIONES INACTIVAS</h3>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>INACTIVOS</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <br/>
+                                <br/>  
+                                <li><i class="menu-icon fa fa-th"></i><a href="../empleados/EmpleadosInac.xhtml">EMPLEADOS</a></li>
+                                <li><i class="menu-icon fa fa-th"></i><a href="../familiares/FamiliaresInactivos.xhtml">FAMILIARES</a></li>
+                                <li><i class="menu-icon fa fa-th"></i><a href="../estudios/EstudiosSuperioresInac.xhtml">ESTUDIOS SUPERIORES</a></li>
+                                <li><i class="menu-icon fa fa-th"></i><a href="../estudios/EstudiosBasicosInac.xhtml">ESTUDIOS BASICOS</a></li>
+                                <li><i class="menu-icon fa fa-th"></i><a href="../emergencias/EmergenciasInac.xhtml">EMERGENCIAS</a></li>
+                            </ul>
+                        </li>
+                        
                         <!--                        <li>
                                                     <a href="#"> <i class="menu-icon ti-email"></i>Widgets </a>
                                                 </li>
@@ -253,9 +271,9 @@
                                 <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}"> 
                                     <li><a href="../empleados/usuario.xhtml"><i class="lnr lnr-cog"></i> <span>Crear Nuevo Usuario</span></a></li>
                                 </h:panelGroup>
-                                
+
                                 <li><a href="#"> <h:form><p:commandButton  class="lnr lnr-exit" value="Cerrar Session" actionListener="#{Login.finishSession()}"/></h:form> </a></li>
-                                
+
                                 <!--<a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>-->
                             </div>
                         </div>
