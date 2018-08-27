@@ -31,7 +31,7 @@
                                     </h:panelGrid>
                                 </p:panel>
                             </center>
-                            <h:panelGroup rendered="#{Login.intentos >= 3 ? false:true}">
+                            <h:panelGroup style="background-color: #000000;" rendered="#{Login.intentos >= 3 ? false:true}">
 
                                 <div class="login__row">
                                     <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
@@ -49,9 +49,14 @@
                                     <p:password value="#{Login.pass}" style="background: #ffffff" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}"/>
                                 </div>
                                 <!--<button type="button" class="login__submit">Sign in</button>-->
-                                <p:commandButton id="BtnIniciarSesion" value="Ingresar" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="buttons">
+                                <p:commandButton style="color: #002e44; border-bottom: 2px dotted #002e44; height: 40px; width: 230px; background: #00aa00;" id="BtnIniciarSesion" value="INGRESAR" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/>
                                 <p:blockUI block="form" trigger="BtnIniciarSesion" />
-                                <!--<p class="login__signup">Don't have an account? <a>Sign up</a></p>-->
+                                </div><!--<p class="login__signup">Don't have an account? <a>Sign up</a></p>-->
                             </h:panelGroup>
                             <h:panelGroup rendered="#{Login.intentos >= 3 ? true:false}">
                                 <h:outputText id="txt_count" value="#{Login.number}" />
