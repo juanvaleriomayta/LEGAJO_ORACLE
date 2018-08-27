@@ -22,7 +22,7 @@
 
                 <p:growl autoUpdate="true" />
                 <h:form id="frm">
-                    
+
                     <h3 align="center">DATOS PERSONALES</h3>
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
@@ -31,7 +31,7 @@
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
                         <f:facet name="header">
-                            
+
                             <h1>EMPLEADOS CAS</h1> 
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
@@ -116,14 +116,15 @@
                             </p:confirmDialog>
                         </p:column>
 
-                        <p:column style="width:65px" headerText="Reporte" rendered="#{Login.usuario.nivel == 'admin' ? true:false}"/>
 
-                        <p:column headerText="Reporte" rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-
-                            <h:commandLink actionListener="#{empleadoC.decargar(empleado.idEmpl)}">
-                                <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
-                            </h:commandLink>
+                        <p:column style="width: 65px" headerText="Reporte" rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+                            <center>
+                                <h:commandLink actionListener="#{empleadoC.decargar(empleado.idEmpl)}" >
+                                    <p:graphicImage url="../../resources/icon/pdf.png" width="50" title="Descargar Reporte"/>
+                                </h:commandLink>
+                            </center>
                         </p:column>
+
                         <f:facet name="footer">
                             EN TOTAL HAY #{fn:length(empleadoC.lstEmpleado)} REGISTRADOS.
                         </f:facet>
