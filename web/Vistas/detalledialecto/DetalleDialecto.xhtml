@@ -49,6 +49,12 @@
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
                         </f:facet>
+                        <p:column headerText="Empleado">
+                            <p:outputLabel value="#{detdial.empleado}"/>
+                        </p:column>                       
+                        <p:column headerText="Dialecto">
+                            <p:outputLabel value="#{detdial.dialecto}"/>
+                        </p:column>
                         <p:column headerText="Lee" >
                             <p:outputLabel value="#{detdial.lee}"/>
                         </p:column>
@@ -58,12 +64,7 @@
                         <p:column headerText="Escribe" >
                             <p:outputLabel value="#{detdial.escribe}"/>
                         </p:column>
-                        <p:column headerText="Empleado">
-                            <p:outputLabel value="#{detdial.empleado}"/>
-                        </p:column>                       
-                        <p:column headerText="Dialecto">
-                            <p:outputLabel value="#{detdial.dialecto}"/>
-                        </p:column>
+
 
                         <p:column exportable="false" style="width:50px">
                             <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{detalleDialectoC.leerID(detdial.idDetDial)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
