@@ -349,7 +349,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         try {
             this.Conexion();
             String sql = "EXEC SP_EMPLEADO_UPDATE ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
-//            String sql = "UPDATE Empleado SET DNI = ?, Nom = ?, ApelPate = ?, ApelMate = ?,RUC = ?, Email = ?,Telf = ?,Cel = ?,FecNac=to_date(?,'DD/MM/YYYY'),GrupSang = ?,EstCiv = ?,ConLab = ?,CarnAseg = ?,Refe = ?,Leye = ?,FecIng=to_date('DD/MM/YYYY'),FecNom=to_date('DD/MM/YYYY'),DatCony = ?,UbigActu = ?,UbigOrig = ?,Est = ? WHERE idEmpl = ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getIdEmpl());
             st.setString(2, emp.getDNI());
