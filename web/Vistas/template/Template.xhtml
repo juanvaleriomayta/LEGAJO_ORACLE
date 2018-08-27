@@ -112,6 +112,23 @@
                                 <!--<li><i class="menu-icon ti-themify-logo"></i><a href="#">Themefy Icons</a></li>-->
                             </ul>
                         </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>MANUAL DE USUARIO</a>
+                            <ul class="sub-menu children dropdown-menu">
+
+                                <li><a style="cursor: pointer" onclick="PF('pdfview').show();" class="active"><i class="menu-icon fa fa-tasks"></i> <span>IR AL MANUAL</span></a></li>  
+
+                            </ul>
+                        </li>
+                        <p:dialog modal="true" header="Manual" widgetVar="pdfview" resizable="false" class="estiloheader">
+                            <iframe src="https://cdn.flipsnack.com/widget/v2/widget.html?hash=fv7myj33z" 
+                                    width="940" 
+                                    height="685" 
+                                    seamless="seamless" 
+                                    scrolling="no" 
+                                    frameBorder="0"       
+                                    allowFullScreen="true"></iframe>
+                        </p:dialog>
 
                         <p:dialog widgetVar="dialog" width="50%" height="100%" modal="true">
                             <object type="application/pdf" data="../REPORTES/MANUAL_1.pdf?pfdrid_c=true" height="500px" width="100%" internalinstanceid="6">
@@ -132,7 +149,7 @@
                                 <li><i class="menu-icon fa fa-th"></i><a href="../emergencias/EmergenciasInac.xhtml">EMERGENCIAS</a></li>
                             </ul>
                         </li>
-                        
+
                         <!--                        <li>
                                                     <a href="#"> <i class="menu-icon ti-email"></i>Widgets </a>
                                                 </li>
@@ -271,8 +288,7 @@
                                 <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}"> 
                                     <li><a href="../empleados/usuario.xhtml"><i class="lnr lnr-cog"></i> <span>Crear Nuevo Usuario</span></a></li>
                                 </h:panelGroup>
-
-                                <li><a href="#"> <h:form><p:commandButton  class="lnr lnr-exit" value="Cerrar Session" actionListener="#{Login.finishSession()}"/></h:form> </a></li>
+                                <h:form><p:commandButton  class="lnr lnr-exit" value="Cerrar Session" actionListener="#{Login.finishSession()}"/></h:form> 
 
                                 <!--<a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>-->
                             </div>
