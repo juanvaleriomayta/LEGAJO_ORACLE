@@ -108,6 +108,7 @@ public class UsuarioC implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
+            throw e;
         }
     }
 

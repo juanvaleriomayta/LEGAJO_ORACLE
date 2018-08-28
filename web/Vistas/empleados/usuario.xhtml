@@ -20,9 +20,9 @@
                     <h3 align="center">DATOS PERSONALES</h3>
                     <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{Login.setAccion('Registrar')}" update=":dlgDatos"/>
 
-                    <p:dataTable id="data" value="#{Login.lstUsuario}" var="empleado" rows="10"
+                    <p:dataTable id="data" value="#{Login.lstUsuario}" var="usuario" rows="10"
                                  paginator="true"
-                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
                         <f:facet name="header">
                             <h1>USUARIOS</h1> 
@@ -32,34 +32,34 @@
                         </f:facet>
 
                         <p:column headerText="Usuario">
-                            <h:outputText value="#{empleado.usuario}"/>
+                            <h:outputText value="#{usuario.usuario}"/>
                         </p:column>
 
                         <p:column headerText="Password">
-                            <h:outputText value="#{empleado.pass}"/>
+                            <h:outputText value="#{usuario.pass}"/>
                         </p:column>
 
                         <p:column headerText="Nombre">
-                            <h:outputText value="#{empleado.nombre}"/>
+                            <h:outputText value="#{usuario.nombre}"/>
                         </p:column>
 
                         <p:column headerText="Nivel">
-                            <h:outputText value="#{empleado.nivel}"/>
+                            <h:outputText value="#{usuario.nivel}"/>
                         </p:column>
 
                         <p:column style="width:50px"  exportable="false">
-                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{Login.leerID(empleado.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{Login.leerID(usuario.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
                             </p:commandButton>
                         </p:column> 
-                        <p:column style="width:54px">
-                            <p:growl id="message" showDetail="true"/>
-                            <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{Login.eliminar(empleado)}" update="data" style="background-color: red;color: red;">
-                                <p:confirm header="Confirmación" message=" ¿Deseas Eliminar? " icon="ui-icon-alert"/>
+                       <p:column style="width:54px">
+                            <p:growl id="message" showDetail="true" />
+                            <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{Login.eliminar(usuario)}" update="data" style="background-color:red;color:red;">
+                                <p:confirm header="Confirmación" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                                 <p:tooltip trackMouse="true"/>
                             </p:commandButton>
-                            <p:confirmDialog global="true" showEffect="face" hideEffect="fade">
-                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialo-no" icon="ui-icon-close"/>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                         </p:column>
                         <f:facet name="footer">
