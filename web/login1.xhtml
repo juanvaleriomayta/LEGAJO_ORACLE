@@ -18,7 +18,12 @@
             <!--            <h1 style="font-size:8px;">Este texto es más grande</h1>-->
             <div class="demo">
                 <div class="login">
-                    <div class="login__check"></div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <center ><img style="height: 200px; width: 230px;" src="resources/icon/Red SBS1.jpg" alt=""/></center>
                     <div class="login__form">
 
                         <h:form id="form">
@@ -39,14 +44,14 @@
                                     </svg>
 
                                     <!--<input type="text" class="login__input name" placeholder="Username"/>-->
-                                    <p:inputText value="#{Login.nombreUsuario}" style="background: #ffffff" placeholder="Usuario" disabled="#{Login.intentos le 2 ? false:true}" required="true"/>
+                                    <p:inputText value="#{Login.nombreUsuario}" style="background: #ffffff;height: 35px; width: 210px;" placeholder="Usuario" disabled="#{Login.intentos le 2 ? false:true}" required="true"/>
                                 </div>
                                 <div class="login__row">
                                     <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
                                         <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
                                     </svg>
                                     <!--<input type="password" class="login__input pass" placeholder="Password"/>-->
-                                    <p:password value="#{Login.pass}" style="background: #ffffff" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}"/>
+                                    <p:password value="#{Login.pass}" style="background: #ffffff; height: 35px; width: 210px;" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}"/>
                                 </div>
                                 <!--<button type="button" class="login__submit">Sign in</button>-->
                                 <br/>
@@ -54,8 +59,8 @@
                                 <br/>
                                 <br/>
                                 <div class="buttons">
-                                <p:commandButton style="color: #002e44; border-bottom: 2px dotted #002e44; height: 40px; width: 230px; background: #00aa00;" id="BtnIniciarSesion" value="INGRESAR" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/>
-                                <p:blockUI block="form" trigger="BtnIniciarSesion" />
+                                    <p:commandButton style="color: #002e44; border-bottom: 2px dotted #002e44; height: 40px; width: 230px; background: #00aa00;" id="BtnIniciarSesion" value="INGRESAR" actionListener="#{Login.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{Login.intentos le 2 ? false:true}"/>
+                                    <p:blockUI block="form" trigger="BtnIniciarSesion" />
                                 </div><!--<p class="login__signup">Don't have an account? <a>Sign up</a></p>-->
                             </h:panelGroup>
                             <h:panelGroup rendered="#{Login.intentos >= 3 ? true:false}">
@@ -64,12 +69,21 @@
                             </h:panelGroup>
                             <p:remoteCommand name="refresh" update="form"/>
                         </h:form>
+
                     </div>
+
                 </div>
                 <div class="app">
 
                 </div>
+
             </div>
+
+
+            <marquee style="margin:585px;" width="900px" height="100px" align="bottom" >
+                <img style="width: 5%; right: 5%;" src="https://photo.isu.pub/vallegrande/photo_large.jpg" alt=""/>
+                <h1 style="width: 5%; right: 5%;">DESARROLADO POR ANALISTAS DE SISTEMAS DE <h1> <a href="http://www.vallegrande.edu.pe/">VALLE GRANDE</a></h1></h1> 
+            </marquee> 
         </div>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
