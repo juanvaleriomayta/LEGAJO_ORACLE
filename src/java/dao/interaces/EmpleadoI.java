@@ -18,7 +18,7 @@ public interface EmpleadoI {
     public void registrarEmpleado(Empleado emp) throws Exception;
 
     //Este metodo permite registrar los datos del empleado
-    public void registrar(Empleado emp) throws Exception;
+  
 
     //Este metodo permite listar la cantidad de empleados que estan activos
     public List<Empleado> listarActivosNombrados() throws Exception;

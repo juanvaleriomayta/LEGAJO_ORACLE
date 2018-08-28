@@ -220,14 +220,14 @@
                                 <f:selectItem itemLabel="AB+" itemValue="AB+" />
                             </p:selectOneMenu>
 
-                            <p:outputLabel value="Condición Laboral:"   />
+<!--                            <p:outputLabel value="Condición Laboral:"   />
 
                             <p:selectOneRadio id="CondicionLaboral" value="#{empleadoC.empleado.conLab}" required="true" requiredMessage="Seleccione su Estado Laboral">
 
                                 <f:selectItem itemLabel="CAS" itemValue="CAS"/>
                                 <f:selectItem itemLabel="Nombrado" itemValue="Nombrado"/>
                                 <f:selectItem itemLabel="Cesante" itemValue="Cesante" /> 
-                            </p:selectOneRadio>
+                            </p:selectOneRadio>-->
 
                             <p:outputLabel value="Estado civil"/>
 
@@ -239,7 +239,7 @@
                                 <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
 
                             </p:selectOneRadio>
-                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operarCesante()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
 
                         </p:panelGrid>

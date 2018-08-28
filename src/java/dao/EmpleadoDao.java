@@ -48,8 +48,7 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         }
     }
 
-    @Override
-    public void registrar(Empleado emp) throws Exception {
+    public void registrarNombrado(Empleado emp) throws Exception {
         try {
             this.Conexion();
             String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
@@ -65,7 +64,77 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(9, emp.getFecNac());
             st.setString(10, emp.getGrupSang());
             st.setString(11, emp.getEstCiv());
-            st.setString(12, emp.getConLab());
+            st.setString(12, "NOMBRADO");
+            st.setString(13, emp.getCarnAseg());
+            st.setString(14, emp.getRefe());
+            st.setString(15, emp.getLeye());
+            st.setString(16, emp.getFecIng());
+            st.setString(17, emp.getFecNom());
+            st.setString(18, emp.getDatCony());
+            st.setString(19, emp.getUbigActu());
+            st.setString(20, "A");
+            st.setString(21, emp.getOrigen());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+
+    }
+
+    public void registrarCAS(Empleado emp) throws Exception {
+        try {
+            this.Conexion();
+            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
+            st.setString(1, emp.getDNI());
+            st.setString(2, emp.getNom());
+            st.setString(3, emp.getApelPate());
+            st.setString(4, emp.getApelMate());
+            st.setString(5, emp.getRUC());
+            st.setString(6, emp.getEmail());
+            st.setString(7, emp.getTelf());
+            st.setString(8, emp.getCel());
+            st.setString(9, emp.getFecNac());
+            st.setString(10, emp.getGrupSang());
+            st.setString(11, emp.getEstCiv());
+            st.setString(12, "CAS");
+            st.setString(13, emp.getCarnAseg());
+            st.setString(14, emp.getRefe());
+            st.setString(15, emp.getLeye());
+            st.setString(16, emp.getFecIng());
+            st.setString(17, emp.getFecNom());
+            st.setString(18, emp.getDatCony());
+            st.setString(19, emp.getUbigActu());
+            st.setString(20, "A");
+            st.setString(21, emp.getOrigen());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+
+    }
+
+    public void registrarCESANTE(Empleado emp) throws Exception {
+        try {
+            this.Conexion();
+            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
+            st.setString(1, emp.getDNI());
+            st.setString(2, emp.getNom());
+            st.setString(3, emp.getApelPate());
+            st.setString(4, emp.getApelMate());
+            st.setString(5, emp.getRUC());
+            st.setString(6, emp.getEmail());
+            st.setString(7, emp.getTelf());
+            st.setString(8, emp.getCel());
+            st.setString(9, emp.getFecNac());
+            st.setString(10, emp.getGrupSang());
+            st.setString(11, emp.getEstCiv());
+            st.setString(12, "CESANTE");
             st.setString(13, emp.getCarnAseg());
             st.setString(14, emp.getRefe());
             st.setString(15, emp.getLeye());
@@ -395,4 +464,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         }
     }
 
+
+   
 }
