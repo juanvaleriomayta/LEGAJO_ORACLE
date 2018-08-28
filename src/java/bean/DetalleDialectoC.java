@@ -48,7 +48,9 @@ public class DetalleDialectoC implements Serializable {
             dao.registrar(detalleDialecto);
             listarActivos();
             limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR"));
             throw e;
         }
     }
