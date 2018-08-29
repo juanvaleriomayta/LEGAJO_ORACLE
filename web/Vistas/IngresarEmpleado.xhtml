@@ -9,6 +9,9 @@
     </h:head>
     <h:body>
         <h:form id="form">
+           
+            <p:growl autoUpdate="true"/>    
+            
             <H1 align="center">UNIDAD DE RECURSOS HUMANOS</H1>
             <H2 align="center">Sección Registros</H2>
             <H1 align="center">FICHA DE DATOS PERSONALES DEL TRABAJADOR</H1>
@@ -52,8 +55,8 @@
                         <p:keyFilter regEx="/[\d\-]/"/>
                     </p:inputText>
 
-                    <p:outputLabel for="txtTelf" value="Telefono"/>
-                    <p:inputText id="txtTelf" value="#{empleadoC.empleado.telf}" maxlength="7">
+                    <p:outputLabel for="txtTelf2" value="Telefono"/>
+                    <p:inputText id="txtTelf2" value="#{empleadoC.empleado.telf}" maxlength="7">
                         <p:keyFilter regEx="/[\d\-]/"/>
                     </p:inputText>
 
@@ -78,7 +81,7 @@
 
                     <p:outputLabel value="Lugar de Nacimiento(Ubigeo)"/>
                     <p:autoComplete value="#{empleadoC.empleado.origen}" completeMethod="#{ubigeoBean.completeText}" forceSelection="true">
-                        <p:ajax event="itemSelect" listener="#{empleadoC.lstEmpleado}" update="frm" />
+                        <p:ajax event="itemSelect" update="form" />
                     </p:autoComplete>
 
 
@@ -153,10 +156,10 @@
                         <p:ajax event="blur" update="parent"/>
                     </p:inputText>           
 
-                    <p:outputLabel for="telf" value="Telefono" />
-                    <p:inputText id="telf" value="#{emergenciaC.emergencia.telEmer}" maxlength="7" >
+                    <p:outputLabel for="telf3" value="Telefono" />
+                    <p:inputText id="telf3" value="#{emergenciaC.emergencia.telEmer}" maxlength="7" >
                         <p:keyFilter regEx="/[\d\-]/"/>
-                        <p:ajax event="blur" update="telf"/>
+                        <p:ajax event="blur" update="telf3"/>
                     </p:inputText>
 
 
@@ -173,7 +176,7 @@
                 <p:panelGrid style="border: none" columns="4">
 
                     <p:outputLabel for="nom" value="Nombre" />
-                    <p:inputText id="nom" value="#{familiaresC.familiar.nom}" >
+                    <p:inputText id="nom" value="#{familiaresC.familiar.nomFami}" >
                         <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                         <p:ajax event="blur" update="nom"/>
 
@@ -198,16 +201,16 @@
 
                     </p:inputText>
 
-                    <p:outputLabel for="txtFecNac" value="Fecha de Nacimiento" />
-                    <p:inputMask id="txtFecNac" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999">
-                        <p:ajax event="blur" update="txtFecNac"/>
+                    <p:outputLabel for="txtFecNac2" value="Fecha de Nacimiento" />
+                    <p:inputMask id="txtFecNac2" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999">
+                        <p:ajax event="blur" update="txtFecNac2"/>
                     </p:inputMask>
 
 
-                    <p:outputLabel for="telf" value="Telefono" />
-                    <p:inputText id="telf" value="#{familiaresC.familiar.tel}" maxlength="7" >
+                    <p:outputLabel for="telf4" value="Telefono" />
+                    <p:inputText id="telf4" value="#{familiaresC.familiar.tel}" maxlength="7" >
                         <p:keyFilter regEx="/[\d\-]/"/>
-                        <p:ajax event="blur" update="telf"/>
+                        <p:ajax event="blur" update="telf4"/>
                     </p:inputText>
 
                     <p:outputLabel for="celu" value="Celular" />
@@ -339,14 +342,11 @@
             </p:fieldset>
             <p:growl id="msg" autoUpdate="true"/>
 
-            <p:commandButton value="ingresar" immediate="true" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();" />
-            <p:remoteCommand name="registrarEmergencia" actionListener="#{emergenciaC.registrarEmergencia()}" />
+            <p:commandButton value="Ingresar" immediate="true" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();" update="form"/>
+            <p:remoteCommand name="registrarEmergencia" actionListener="#{emergenciaC.registrarEmergencia(empleadoC.codigoTemporal)}" />
             <p:remoteCommand name="registrarFamiliar" actionListener="#{familiaresC.registrarFamiliar()}" />
             <p:remoteCommand name="registrarEstudiosBasicos" actionListener="#{estudiosBasicosC.registrarEstudiosBasicos()}" />
             <p:remoteCommand name="registrarEstudiosSuperiores" actionListener="#{estudiosSuperiorC.registrarEstudiosSuperiores()}" />
-            <p:button outcome="index" value="Salir" icon="ui-icon-exit">
-                <f:param name="productId" value="50" />
-            </p:button>
         </h:form>
     </h:body>
 </html>

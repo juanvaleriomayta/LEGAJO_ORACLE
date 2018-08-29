@@ -19,12 +19,13 @@ public class EmergenciaC implements Serializable {
     private List<Emergencia> lstEmergencia;
     private String accion;
 
-    public void registrarEmergencia() throws Exception {
+    public void registrarEmergencia(String CodigoEmpleado) throws Exception {
         EmergenciaDao dao;
 
         try {
             dao = new EmergenciaDao();
             dao.registrarEmergencia(emergencia);
+            emergencia.setCodEmpleado(CodigoEmpleado);
             listar();
             limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));

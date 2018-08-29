@@ -25,6 +25,8 @@ public class EmpleadoC implements Serializable {
     private Empleado empleado = new Empleado();
     private List<Empleado> lstEmpleado;
     private String accion;
+    
+    private String CodigoTemporal;
 
     public void redireccion() {
         try {
