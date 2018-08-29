@@ -47,6 +47,7 @@ public class EmpleadoC implements Serializable {
         try {
             dao = new EmpleadoDao();
             dao.registrarEmpleado(empleado);
+            CodigoTemporal = dao.CodigoEmpleado(empleado.getDNI());
             this.limpiar();
             this.listarActivosNombrados();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("REGISTRADO", "CORRECTAMENTE"));

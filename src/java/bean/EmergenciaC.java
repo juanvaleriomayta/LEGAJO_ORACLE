@@ -24,8 +24,8 @@ public class EmergenciaC implements Serializable {
 
         try {
             dao = new EmergenciaDao();
-            dao.registrarEmergencia(emergencia);
             emergencia.setCodEmpleado(CodigoEmpleado);
+            dao.registrarEmergencia(emergencia);
             listar();
             limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));

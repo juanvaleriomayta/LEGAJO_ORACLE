@@ -174,16 +174,18 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
         this.Conexion();
         ResultSet rs;
         try {
-            String sql = "SELECT DNI FROM Empleado WHERE idEmpl = ?";
+            String sql = "SELECT idEmpl FROM Empleado WHERE DNI = ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, Empleado);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getString("DNI");
+                return rs.getString("idEmpl");
             }
             return null;
         } catch (SQLException e) {
             throw e;
+        }finally{
+            this.Cerrar();
         }
     }
 

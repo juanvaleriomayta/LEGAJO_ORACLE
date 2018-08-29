@@ -27,6 +27,7 @@ public class DAO {
         if (cn != null) {
             if (cn.isClosed() == false) {
                 cn.close();
+                cn = null;
             }
         }
     }
