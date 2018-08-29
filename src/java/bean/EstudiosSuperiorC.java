@@ -19,11 +19,11 @@ public class EstudiosSuperiorC implements Serializable {
     private List<EstudiosSuperior> lstEstudiosSuperior;
     private String accion;
 
-    public void registrarEstudiosSuperiores() throws Exception {
+    public void registrarEstudiosSuperiores(String CodigoEmpleado) throws Exception {
         EstudiosSuperiorDao dao;
-
         try {
             dao = new EstudiosSuperiorDao();
+            estudiosSuperior.setCodiEmpleado(CodigoEmpleado);
             dao.registrarEstudiosSuperiores(estudiosSuperior);
             this.limpiar();
             this.listar();

@@ -20,6 +20,19 @@ public class DetalleDialectoC implements Serializable {
     private List<DetalleDialecto> lstDetalleDialecto;
     private String accion;
 
+    public void registrarDialecto(String CodigoEmpleado) throws Exception {
+        DetalleDialectoDao dao;
+        try {
+            dao = new DetalleDialectoDao();
+            detalleDialecto.setCodEmpleado(CodigoEmpleado);
+            dao.registrarDetalle(detalleDialecto);
+            this.limpiar();
+            this.listarActivos();
+        } catch (Exception e) {
+            throw e;
+
+        }
+    }
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":

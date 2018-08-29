@@ -9,6 +9,25 @@ import modelo.DetalleDialecto;
 
 public class DetalleDialectoDao extends DAO {
 
+    public void registrarDetalle(DetalleDialecto detdia) throws Exception {
+        try {
+            this.Conexion();
+            String sql = "EXEC SP_DETALLEDIALECTO ?,?,?,?,?,?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
+            st.setString(1, detdia.getLee());
+            st.setString(2, detdia.getHabla());
+            st.setString(3, detdia.getEscribe());
+            st.setString(4, "A");
+            st.setString(5, detdia.getCodEmpleado());
+            st.setString(6, detdia.getCodDialecto());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
+
     public void registrar(DetalleDialecto detdia) throws Exception {
         try {
             this.Conexion();

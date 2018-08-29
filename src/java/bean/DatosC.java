@@ -20,6 +20,20 @@ public class DatosC implements Serializable {
     private List<Datos> lstDatos;
     private String accion;
 
+    public void registrarDatos(String CodigoEmpleado) throws Exception {
+        DatosDao dao;
+        try {
+            dao = new DatosDao();
+            datos.setCodEmpleado(CodigoEmpleado);
+            dao.registrarDatos(datos);
+            this.limpiar();
+            this.listar();
+        } catch (Exception e) {
+            throw e;
+
+        }
+    }
+    
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
