@@ -169,6 +169,23 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             throw e;
         }
     }
+    
+     public String CodigoEmpleado(String Empleado) throws SQLException {
+        this.Conexion();
+        ResultSet rs;
+        try {
+            String sql = "SELECT DNI FROM Empleado WHERE idEmpl = ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, Empleado);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("DNI");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 
     public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
         this.Conexion();

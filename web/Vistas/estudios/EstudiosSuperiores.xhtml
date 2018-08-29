@@ -113,8 +113,10 @@
                             </p:inputText>
                             <p:outputLabel for="txtDesde" value="Desde"/>
                             <p:inputMask id="txtDesde" value="#{estudiosSuperiorC.estudiosSuperior.desd}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha "/>
+                            
                             <p:outputLabel value="Hasta" />
                             <p:inputMask id="Hasta" value="#{estudiosSuperiorC.estudiosSuperior.hast}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
+                          
                             <p:outputLabel value="Culminacion" />
                             <p:selectOneRadio id="Culminacion" value="#{estudiosSuperiorC.estudiosSuperior.culmi}" required="true" requiredMessage="Ingrese la Culminacion">
                                 <f:selectItem itemLabel="COMPLETA" itemValue="C"/>

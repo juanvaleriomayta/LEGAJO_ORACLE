@@ -19,11 +19,12 @@ public class FamiliaresC implements Serializable {
     private List<Familiares> lstFamiliares;
     private String accion;
 
-    public void registrarFamiliar() throws Exception {
+    public void registrarFamiliar(String CodigoEmpleado) throws Exception {
         FamiliaresDao dao;
 
         try {
             dao = new FamiliaresDao();
+            familiar.setCodiEmpleado(CodigoEmpleado);
             dao.registrarFamiliar(familiar);
             listar();
             limpiar();

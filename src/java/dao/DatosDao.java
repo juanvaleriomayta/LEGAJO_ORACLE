@@ -9,6 +9,31 @@ import modelo.Datos;
 
 public class DatosDao extends DAO {
 
+       public void registrarDatos(Datos dat) throws Exception {
+        try {
+            this.Conexion();
+            String sql = "SP_DATOS_ADD ?,?,?,?,?,?,?,?,?,?";
+            PreparedStatement st = this.getCn().prepareStatement(sql);
+            st.setString(1, dat.getCon());
+            st.setString(2, dat.getApreCali());
+            st.setString(3, dat.getSerPre());
+            st.setString(4, dat.getIntProCapPerf());
+            st.setString(5, dat.getRefPer());
+            st.setString(6, dat.getBonPer());
+            st.setString(7, dat.getComInfTper());
+            st.setString(8, dat.getBonFam());
+            st.setString(9, dat.getCodEmpleado());
+            st.setString(10, "A");
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+
+    }
+
+       
     public void registrar(Datos dat) throws Exception {
         try {
             this.Conexion();
