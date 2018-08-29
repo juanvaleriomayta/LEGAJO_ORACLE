@@ -20,7 +20,7 @@
                                  paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000">
                         <f:facet name="header">
-                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
+<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
                                 <h:commandLink>
                                     <p:graphicImage value="/resources/icon/image.png" width="50"/>
                                     <p:dataExporter type="pdf" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
@@ -37,7 +37,7 @@
                                     <p:graphicImage value="/resources/icon/xls.png" width="50"/>
                                     <p:dataExporter type="xls" target="data" fileName="Estudios del Empleado Inactivo" pageOnly="true"/>
                                 </h:commandLink>
-                            </h:panelGroup>
+                            </h:panelGroup>-->
                             <h1>Estudios Basicos del Empleado</h1> 
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
