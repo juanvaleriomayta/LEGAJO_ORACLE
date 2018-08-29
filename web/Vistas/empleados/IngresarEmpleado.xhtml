@@ -16,15 +16,17 @@
 
                     <p:growl autoUpdate="true"/>    
 
-                    <H1 align="center">UNIDAD DE RECURSOS HUMANOS</H1>
-                    <H2 align="center">Sección Registros</H2>
-                    <H1 align="center">FICHA DE DATOS PERSONALES DEL TRABAJADOR</H1>
+                    <H2 align="center">UNIDAD DE RECURSOS HUMANOS</H2>
+                    <H3 align="center">Sección Registros</H3>
+                    <H2 align="center">FICHA DE DATOS PERSONALES DEL TRABAJADOR</H2>
+                    <br/>
+                    <br/>
+                    <br/>
 
 
+                    <H4>DATOS PERSONALES</H4>
 
-                    <H2>DATOS PERSONALES</H2>
-
-                    <p:fieldset legend="Empleado" style="background: #05cc47;">
+                    <p:fieldset legend="Empleado" style="background: #f7f9ff;">
                         <p:panelGrid style="border: none" columns="4">
                             <p:outputLabel for="form" value="DNI" />
                             <p:inputText id="txtDNIEmpleado" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
@@ -153,8 +155,8 @@
                         </p:panelGrid>
                     </p:fieldset>
 
-                    <H2>DATOS DE ESTUDIOS BASICOS</H2>
-                    <p:fieldset legend="Datos Secundarios">
+                    <H4>DATOS DE ESTUDIOS BASICOS</H4>
+                    <p:fieldset legend="Datos Secundarios" style="background: #f7f9ff;">
                         <p:panelGrid style="border: none" columns="4">
 
                             <p:outputLabel for="txtEducacionBasica" value="Educacion" />
@@ -192,8 +194,8 @@
                         </p:panelGrid>
                     </p:fieldset>
 
-                    <H2>DATOS DE ESTUDIO SUPERIORES</H2>
-                    <p:fieldset legend="Datos Superiores">
+                    <H4>DATOS DE ESTUDIO SUPERIORES</H4>
+                    <p:fieldset legend="Datos Superiores" style="background: #f7f9ff;">
 
                         <p:panelGrid style="border: none" columns="4">
 
@@ -246,8 +248,8 @@
                         </p:panelGrid>
                     </p:fieldset>
 
-                    <H2>DATOS REFRENTES A LOS PADRES E HIJOS DEL TRABAJADOR</H2>
-                    <p:fieldset legend="Familiar">
+                    <H4>DATOS REFRENTES A LOS PADRES E HIJOS DEL TRABAJADOR</H4>
+                    <p:fieldset legend="Familiar" style="background: #f7f9ff;">
                         <p:panelGrid style="border: none" columns="4">
 
                             <p:outputLabel for="txtNombreFami" value="Nombre" />
@@ -312,8 +314,8 @@
                         </p:panelGrid>                               
                     </p:fieldset>
 
-                    <H2>DATOS EN CASO DE EMERGENCIAS</H2>
-                    <p:fieldset legend="Contacto">
+                    <H4>DATOS EN CASO DE EMERGENCIAS</H4>
+                    <p:fieldset legend="Contacto" style="background: #f7f9ff;">
                         <p:panelGrid style="border: none" columns="4">
 
                             <p:outputLabel for="txtNombreEmer" value="Nombre" />
@@ -349,8 +351,8 @@
                         </p:panelGrid>
                     </p:fieldset>
 
-                    <H2>DIALECTO DEL EMPLEADO</H2>
-                    <p:fieldset legend="Dialecto">
+                    <H4>DIALECTO DEL EMPLEADO</H4>
+                    <p:fieldset legend="Dialecto" style="background: #f7f9ff;">
                         <p:panelGrid style="border: none" columns="4">
                             <p:outputLabel value="Lee" />
                             <p:selectOneMenu id="Lee" value="#{detalleDialectoC.detalleDialecto.lee}" required="true" requiredMessage="Seleccione ">
@@ -379,9 +381,9 @@
                         </p:panelGrid>
                     </p:fieldset>
 
-                    <H2>DATOS ADICIONALES</H2>
-                    <p:fieldset legend="Datos">
-                        <p:panelGrid style="border: none" columns="4">
+                    <H4>DATOS ADICIONALES</H4>
+                    <p:fieldset legend="Datos" style="background: #f7f9ff;">
+                        <p:panelGrid style="border: none" columns="4" >
                             <p:outputLabel for="txtRefePer" value="Referencia Personal"/>
                             <p:inputText id="txtRefePer" value="#{datosC.datos.refPer}" requiredMessage="INGRESAR REFERENCIA PERSONAL" required="true">
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
@@ -422,13 +424,41 @@
 
                     <p:growl id="msg" autoUpdate="true"/>
 
-                    <p:commandButton value="INGRESAR" immediate="true" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();registrarDialecto();registrarDatos();" update="form"/>
+                    <p:commandButton title="REGISTRAR COMPLETO" style="width: 1200px ;" class="button button1" immediate="true" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();registrarDialecto();registrarDatos();" update="form">
+                        
+                    </p:commandButton>
                     <p:remoteCommand name="registrarEmergencia" actionListener="#{emergenciaC.registrarEmergencia(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarFamiliar" actionListener="#{familiaresC.registrarFamiliar(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarEstudiosBasicos" actionListener="#{estudiosBasicosC.registrarEstudiosBasicos(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarEstudiosSuperiores" actionListener="#{estudiosSuperiorC.registrarEstudiosSuperiores(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarDialecto" actionListener="#{detalleDialectoC.registrarDialecto(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarDatos" actionListener="#{datosC.registrarDatos(empleadoC.codigoTemporal)}" />
+
+                    
+                    
+<!--/*estilos de botones-->
+                    <style>
+                        .button {
+                            background-color: #4CAF50; /* Green */
+                            border: none;
+                            color: white;
+                            padding: 16px 32px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 16px;
+                            margin: 4px 2px;
+                            -webkit-transition-duration: 0.4s; /* Safari */
+                            transition-duration: 0.4s;
+                            cursor: pointer;
+                        }
+
+                        .button1 {
+                            background-color: black; 
+                            color: #ce7d00; 
+                            border: 5px solid #4CAF50;
+                        }
+                    </style>
                 </h:form>
             </ui:define>
         </ui:composition>
