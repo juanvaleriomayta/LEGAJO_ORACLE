@@ -46,6 +46,7 @@ public class UsuarioC implements Serializable {
         try {
             dao = new UsuarioDao();
             usuario = dao.IniciarSesion(NombreUsuario, Pass);
+
             if (getUsuario() != null) {
                 intentos = 0;
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario", getUsuario());
@@ -57,6 +58,7 @@ public class UsuarioC implements Serializable {
                         FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/template/MensajeUsuario.xhtml");
                         break;
                 }
+
             } else {
                 setPass(null);
                 usuario = new Usuario();
