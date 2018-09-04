@@ -106,9 +106,10 @@
                                 <p:ajax event="itemSelect" update="@this" />
                             </p:autoComplete>
 
-
                             <p:outputLabel for="txtFecNacEmpleado" value="Fecha de Nacimiento (Dia/Mes/Año)"/>
-                            <p:inputMask id="txtFecNacEmpleado" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999"/>
+                            <p:inputMask id="txtFecNacEmpleado" value="#{empleadoC.empleado.fecNac}" mask="99/99/9999">
+                                <p:ajax event="blur" update="@this"/>
+                            </p:inputMask>
 
                             <p:outputLabel for="txtFecIngEmpleado" value="Fecha De Ingreso SBS (Dia/Mes/Año)"/>
                             <p:inputMask id="txtFecIngEmpleado" value="#{empleadoC.empleado.fecIng}" mask="99/99/9999">
@@ -354,30 +355,36 @@
                     <H4>DIALECTO DEL EMPLEADO</H4>
                     <p:fieldset legend="Dialecto" style="background: #f7f9ff;">
                         <p:panelGrid style="border: none" columns="4">
-                            <p:outputLabel value="Lee" />
-                            <p:selectOneMenu id="Lee" value="#{detalleDialectoC.detalleDialecto.lee}" required="true" requiredMessage="Seleccione ">
+                            <p:outputLabel for="txtLee" value="Lee" />
+                            <p:selectOneMenu id="txtLee" value="#{detalleDialectoC.detalleDialecto.lee}" required="true" requiredMessage="Seleccione ">
                                 <f:selectItem itemLabel="Seleccione"/>
                                 <f:selectItem itemLabel="Con Facilidad" itemValue="CON FACILIDAD" />
                                 <f:selectItem itemLabel="Sin Facilidad" itemValue="SIN FACILIDAD" />
+                                <p:ajax event="change" update="txtLee"/>
                             </p:selectOneMenu>
 
-                            <p:outputLabel value="Habla" />
-                            <p:selectOneMenu id="Habla" value="#{detalleDialectoC.detalleDialecto.habla}" required="true" requiredMessage="Seleccione ">
+                            <p:outputLabel for="txtHabla" value="Habla" />
+                            <p:selectOneMenu id="txtHabla" value="#{detalleDialectoC.detalleDialecto.habla}" required="true" requiredMessage="Seleccione ">
                                 <f:selectItem itemLabel="Seleccione"/>
                                 <f:selectItem itemLabel="Con Facilidad" itemValue="CON FACILIDAD" />
                                 <f:selectItem itemLabel="Sin Facilidad" itemValue="SIN FACILIDAD" />
+                                <p:ajax event="change" update="txtHabla"/>
                             </p:selectOneMenu>
 
-                            <p:outputLabel value="Escribe" />
-                            <p:selectOneMenu id="Escribe" value="#{detalleDialectoC.detalleDialecto.escribe}" required="true" requiredMessage="Seleccione ">
+                            <p:outputLabel for="txtEscribe" value="Escribe" />
+                            <p:selectOneMenu id="txtEscribe" value="#{detalleDialectoC.detalleDialecto.escribe}" required="true" requiredMessage="Seleccione ">
                                 <f:selectItem itemLabel="Seleccione"/>
                                 <f:selectItem itemLabel="Con Facilidad" itemValue="CON FACILIDAD" />
                                 <f:selectItem itemLabel="Sin Facilidad" itemValue="SIN FACILIDAD" />
+                                <p:ajax event="change" update="txtEscribe"/>
                             </p:selectOneMenu>
 
-                            <p:outputLabel value="Dialectos"/>
-                            <p:autoComplete value="#{detalleDialectoC.detalleDialecto.dialecto}" completeMethod="#{dialectoC.completeTextDialecto}" forceSelection="true">
+                            <p:outputLabel  value="Dialecto"/>
+                            <p:autoComplete  value="#{detalleDialectoC.detalleDialecto.dialecto}" completeMethod="#{dialectoC.completeTextDialecto}" forceSelection="true">
+                                <p:ajax event="itemSelect" update="@this"/>
                             </p:autoComplete>
+
+
                         </p:panelGrid>
                     </p:fieldset>
 
@@ -425,7 +432,7 @@
                     <p:growl id="msg" autoUpdate="true"/>
 
                     <p:commandButton title="REGISTRAR COMPLETO" style="width: 1200px ;" class="button button1" immediate="true" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();registrarDialecto();registrarDatos();" update="form">
-                        
+
                     </p:commandButton>
                     <p:remoteCommand name="registrarEmergencia" actionListener="#{emergenciaC.registrarEmergencia(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarFamiliar" actionListener="#{familiaresC.registrarFamiliar(empleadoC.codigoTemporal)}" />
@@ -434,9 +441,9 @@
                     <p:remoteCommand name="registrarDialecto" actionListener="#{detalleDialectoC.registrarDialecto(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarDatos" actionListener="#{datosC.registrarDatos(empleadoC.codigoTemporal)}" />
 
-                    
-                    
-<!--/*estilos de botones-->
+
+
+                    <!--/*estilos de botones-->
                     <style>
                         .button {
                             background-color: #4CAF50; /* Green */

@@ -39,7 +39,6 @@ public class EmpleadoDao extends DAO implements EmpleadoI {
             st.setString(19, emp.getUbigActu());
             st.setString(20, "A");
             st.setString(21, emp.getOrigen());
-
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;
