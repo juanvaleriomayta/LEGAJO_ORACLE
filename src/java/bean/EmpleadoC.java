@@ -25,7 +25,7 @@ public class EmpleadoC implements Serializable {
     private Empleado empleado = new Empleado();
     private List<Empleado> lstEmpleado;
     private String accion;
-    
+
     private String CodigoTemporal;
 
     public void redireccion() {
@@ -67,18 +67,29 @@ public class EmpleadoC implements Serializable {
                 break;
         }
     }
-    
+
     public void operarCesante() throws Exception {
         switch (accion) {
             case "Registrar":
-                this.registrarCesante();
+                this.registrarCas();
                 break;
             case "Modificar":
                 this.modificar();
                 break;
         }
     }
-    
+
+    public void operar() throws Exception {
+        switch (accion) {
+            case "Registrar":
+                this.registrar();
+                break;
+            case "Modificar":
+                this.modificar();
+                break;
+        }
+    }
+
     public void operarNombrado() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -89,11 +100,9 @@ public class EmpleadoC implements Serializable {
                 break;
         }
     }
-    
 
     public void registrarCas() throws Exception {
         EmpleadoDao dao;
-
         try {
             dao = new EmpleadoDao();
             dao.registrarCAS(empleado);
@@ -106,7 +115,7 @@ public class EmpleadoC implements Serializable {
 
         }
     }
-    
+
     public void registrarCesante() throws Exception {
         EmpleadoDao dao;
 
@@ -122,7 +131,23 @@ public class EmpleadoC implements Serializable {
 
         }
     }
-    
+
+    public void registrar() throws Exception {
+        EmpleadoDao dao;
+
+        try {
+            dao = new EmpleadoDao();
+            dao.registrarEmpleado(empleado);
+            listarActivosNombrados();
+            limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("REGISTRADO", "CORRECTAMENTE"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ERROR AL MOMENTO DE INGRESAR"));
+            throw e;
+
+        }
+    }
+
     public void registrarNombrado() throws Exception {
         EmpleadoDao dao;
 

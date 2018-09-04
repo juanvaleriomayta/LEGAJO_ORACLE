@@ -27,7 +27,6 @@ public class FamiliaresDao extends DAO implements FamiliaresI {
             st.setString(9, fam.getVive());
             st.setString(10, "A");
             st.setString(11, fam.getCodiEmpleado());
-
             st.executeUpdate();
         } catch (SQLException e) {
             throw e;

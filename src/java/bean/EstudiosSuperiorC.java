@@ -65,6 +65,7 @@ public class EstudiosSuperiorC implements Serializable {
             dao.registrar(estudiosSuperior);
             listar();
             limpiar();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
         } catch (Exception e) {
             throw e;
 
