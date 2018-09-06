@@ -17,35 +17,15 @@
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
 
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
                     <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detdial" rows="10"
                                  paginator="true"
                                  paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000">
                         <f:facet name="header">
-<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                    <p:dataExporter type="pdf" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                    <p:dataExporter type="csv" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <a href="EstudiosBasicosWEB.xhtml"></a>
-                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                    <p:dataExporter type="xml" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                    <p:dataExporter type="xls" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                            </h:panelGroup>-->
-
                             <h1>DETALLE DIALECTO</h1> 
 
+                            <p:commandButton style="float: left" icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{detalleDialectoC.setAccion('Registrar')}" update=":dlgDatos"/>
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
                         </f:facet>
@@ -89,7 +69,7 @@
                 </h:form>
                 <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
-                        <p:panelGrid columns="1">
+                        <p:panelGrid columns="2">
                             <p:outputLabel value="Lee" />
                             <p:selectOneMenu id="Lee" value="#{detalleDialectoC.detalleDialecto.lee}" required="true" requiredMessage="Seleccione ">
                                 <f:selectItem itemLabel="Seleccione"/>
@@ -119,8 +99,8 @@
                             <p:autoComplete value="#{detalleDialectoC.detalleDialecto.dialecto}" completeMethod="#{dialectoC.completeTextDialecto}" forceSelection="true">
                             </p:autoComplete>
 
-                            <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton icon="fa fa-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>
 

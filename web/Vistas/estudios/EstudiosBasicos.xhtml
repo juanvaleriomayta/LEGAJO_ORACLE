@@ -13,33 +13,15 @@
                 <h:form id="frm">
                     <f:event type="preRenderView" listener="#{estudiosBasicosC.listar()}" />
                     <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosBasicosC.setAccion('Registrar')}" update=":dlgDatos"/>
+
                     <p:dataTable id="data"  value="#{estudiosBasicosC.lstEstudiosBasicos}" var="basicos" rows="10"
                                  paginator="true"
                                  paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000">
                         <f:facet name="header">
-<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                    <p:dataExporter type="pdf" target="data" fileName="Estudios basicos del Empleado Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                    <p:dataExporter type="csv" target="data" fileName="Estudios basicos del Empleado Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
+                            <h1>ESTUDIOS BASICOS DEL EMPLEADO</h1> 
 
-                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                    <p:dataExporter type="xml" target="data" fileName="Estudios basicos del Empleado Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                    <p:dataExporter type="xls" target="data" fileName="Estudios basicos del Empleado Activos" pageOnly="true"/>
-                                </h:commandLink>
-                            </h:panelGroup>-->
-                            <h1>Estudios Basicos del Empleado</h1> 
-
+                            <p:commandButton style="float: left" icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{estudiosBasicosC.setAccion('Registrar')}" update=":dlgDatos"/>
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
                         </f:facet>
@@ -59,9 +41,10 @@
                             <p:outputLabel value="#{basicos.has}"/>
                         </p:column>
 
-                        <p:column headerText="Empleado">
+                        <p:column headerText="Empleado" >
                             <p:outputLabel value="#{basicos.empleado}"/>
                         </p:column>
+                        
                         <p:column style="width:50px" exportable="false">
                             <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{estudiosBasicosC.leerID(basicos.idEstuBasi)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos" />
                         </p:column>
@@ -79,6 +62,7 @@
                         </f:facet>
                     </p:dataTable>               
                 </h:form>
+
 
                 <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
@@ -102,7 +86,7 @@
                             </p:inputText>
 
                             <p:outputLabel value="Nombre del Empleado"/>
-                            <p:autoComplete value="#{estudiosBasicosC.estudiosBasicos.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                            <p:autoComplete value="#{estudiosBasicosC.estudiosBasicos.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true" required="true" requiredMessage="INGRESE EL EMPLEADO">
                             </p:autoComplete>
 
 
@@ -112,9 +96,10 @@
                             <p:outputLabel value="Hasta" />
                             <p:inputMask id="Hasta" value="#{estudiosBasicosC.estudiosBasicos.has}" mask="99/99/9999" required="true" requiredMessage="Ingrese La Fecha"/>
 
-                            <p:commandButton value="#{estudiosBasicosC.accion}" actionListener="#{estudiosBasicosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{estudiosBasicosC.accion}" actionListener="#{estudiosBasicosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="CANCELAR" icon="ui-icon-close" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
+
                     </h:form>
 
                 </p:dialog>

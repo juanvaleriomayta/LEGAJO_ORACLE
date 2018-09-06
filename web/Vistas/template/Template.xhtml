@@ -66,7 +66,7 @@
                                 <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}"> 
                                     <li><a href="../empleados/usuario.xhtml"><i class="menu-icon fa fa-user-plus" ></i> <span>Crear Nuevo Usuario</span></a></li>
                                 </h:panelGroup>
-                                <li><a href="#"> <h:form><p:commandButton  class="lnr lnr-exit" value="Cerrar Session" actionListener="#{Login.finishSession()}"/></h:form> </a></li>
+                                <li><a href="#"> <h:form><p:commandButton  value="Cerrar Session"  class="lnr lnr-exit fa fa-reply"  actionListener="#{Login.finishSession()}"/></h:form> </a></li>
 
 
                             </ul>
@@ -75,25 +75,26 @@
                         </li>
                         <h3 class="menu-title">SECCIONES DEL LEGAJO</h3><!-- /.menu-title -->
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>TIPOS DE EMPLEADOS</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-male"></i>TIPOS DE EMPLEADOS</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="fa fa-puzzle-piece"></i><a href="../empleados/Empleados_Cas.xhtml">CAS</a></li>
-                                <li><i class="fa fa-id-badge"></i><a href="../empleados/Empleados_Nombrados.xhtml">NOMBRADOS</a></li>
-                                <li><i class="fa fa-bars"></i><a href="../empleados/Empleados_Cesante.xhtml">CESANTES</a></li>
+                                <li><i class="fa fa-male"></i><a href="../empleados/Empleados_Cas.xhtml">CAS</a></li>
+                                <li><i class="fa fa-male"></i><a href="../empleados/Empleados_Nombrados.xhtml">NOMBRADOS</a></li>
+                                <li><i class="fa fa-male"></i><a href="../empleados/Empleados_Cesante.xhtml">CESANTES</a></li>
                             </ul>
                         </li>
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>TIPOS DE ESTUDIOS</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>TIPOS DE ESTUDIOS</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fa fa-th"></i><a href="../estudios/EstudiosBasicos.xhtml">BASICOS</a></li>
-                                <li><i class="menu-icon fa fa-th"></i><a href="../estudios/EstudiosSuperiores.xhtml">SUPERIORES</a></li>
+                                <li><i class="menu-icon fa fa-mortar-board"></i><a href="../estudios/EstudiosBasicos.xhtml">BASICOS</a></li>
+                                <li><i class="menu-icon fa fa-university"></i><a href="../estudios/EstudiosSuperiores.xhtml">SUPERIORES</a></li>
+                           fa-mortar-board
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>FAMILIARES</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>FAMILIARES</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fa fa-th"></i><a href="../familiares/Familiares.xhtml">FAMILIARES</a></li>
+                                <li><i class="menu-icon fa fa-users"></i><a href="../familiares/Familiares.xhtml">FAMILIARES</a></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
@@ -121,9 +122,9 @@
                         </li>
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>INGRESAR</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-plus"></i>INGRESAR</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fa fa-th"></i><a href="../empleados/IngresarEmpleado.xhtml">INGRESAR</a></li>
+                                <li><i class="menu-icon fa fa-user-plus"></i><a href="../empleados/IngresarEmpleado.xhtml">INGRESAR</a></li>
                                 <!--<li><i class="menu-icon fa fa-th"></i><a href="#">Advanced Form</a></li>-->
                             </ul>
 
@@ -132,17 +133,17 @@
                         <h3 class="menu-title">MANUAL DEL SISTEMA</h3><!-- /.menu-title -->
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>MANUAL</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-info"></i>MANUAL</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><a style="cursor: pointer" onclick="PF('dialog').show()" class="active"><i class="menu-icon fa fa-tasks"></i> <span>IR AL MANUAL</span></a></li>  
+                                <li><a style="cursor: pointer" onclick="PF('dialog').show()" class="active"><i class="menu-icon fa fa-info"></i> <span>IR AL MANUAL</span></a></li>  
                                 <!--<li><i class="menu-icon ti-themify-logo"></i><a href="#">Themefy Icons</a></li>-->
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>MANUAL DE USUARIO</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-info"></i>MANUAL DE USUARIO</a>
                             <ul class="sub-menu children dropdown-menu">
 
-                                <li><a style="cursor: pointer" onclick="PF('pdfview').show();" class="active"><i class="menu-icon fa fa-tasks"></i> <span>IR AL MANUAL</span></a></li>  
+                                <li><a style="cursor: pointer" onclick="PF('pdfview').show();" class="active"><i class="menu-icon fa fa-info"></i> <span>IR AL MANUAL</span></a></li>  
 
                             </ul>
                         </li>
@@ -169,6 +170,7 @@
                                 <li><i class="menu-icon fa fa-th"></i><a href="../estudios/EstudiosSuperioresInac.xhtml">ESTUDIOS SUPERIORES</a></li>
                                 <li><i class="menu-icon fa fa-th"></i><a href="../estudios/EstudiosBasicosInac.xhtml">ESTUDIOS BASICOS</a></li>
                                 <li><i class="menu-icon fa fa-th"></i><a href="../emergencias/EmergenciasInac.xhtml">EMERGENCIAS</a></li>
+                                <li><i class="menu-icon fa fa-th"></i><a href="../detalledialecto/DetalleDialectoInac.xhtml">DIALECTO</a></li>
                             </ul>
                         </li>
 

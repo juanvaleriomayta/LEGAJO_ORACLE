@@ -26,7 +26,8 @@ public class DialectoDao extends DAO implements DialectoI {
         }
 
     }
-   public String obtenerCodigoDialecto(String Dialecto) throws SQLException {
+
+    public String obtenerCodigoDialecto(String Dialecto) throws SQLException {
         this.Conexion();
         ResultSet rs;
         try {
@@ -42,8 +43,6 @@ public class DialectoDao extends DAO implements DialectoI {
             throw e;
         }
     }
-    
-
 
     public List<String> autocompleteDialecto(String Consulta) throws SQLException {
         this.Conexion();
@@ -72,7 +71,7 @@ public class DialectoDao extends DAO implements DialectoI {
 
         try {
             this.Conexion();
-            String sql = "SELECT * FROM VW_LISTAR_DIALECTO";
+            String sql = "SELECT * FROM Dialecto";
 //            String sql = "SELECT IdDial, NomDial FROM Dialecto";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
@@ -81,7 +80,6 @@ public class DialectoDao extends DAO implements DialectoI {
                 Dialecto dia = new Dialecto();
                 dia.setIdDial(rs.getInt("IdDial"));
                 dia.setNomDial(rs.getString("NomDial"));
-
                 lista.add(dia);
             }
         } catch (SQLException e) {

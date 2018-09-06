@@ -10,42 +10,21 @@
         <ui:composition template="./../template/Template.xhtml">
 
             <ui:define name="Familiares">
-<!--                <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">-->
 
                 <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
                 <f:event type="preRenderView" listener="#{familiaresC.listar()}" />
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
 
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" rendered="true" update=":dlgDatos"/>
-
                     <p:dataTable id="data" value="#{familiaresC.lstFamiliares}" var="familiar" rows="10"
                                  paginator="true"
                                  paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000">
                         <f:facet name="header">
-<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                    <p:dataExporter type="pdf" target="data" fileName="Familiares Del Empleado" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                    <p:dataExporter type="csv" target="data" fileName="Familiares Del Empleado" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <a href="EstudiosBasicosWEB.xhtml"></a>
-                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                    <p:dataExporter type="xml" target="data" fileName="Familiares Del Empleado" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                    <p:dataExporter type="xls" target="data" fileName="Familiares Del Empleado" pageOnly="true"/>
-                                </h:commandLink>
-                            </h:panelGroup>-->
 
                             <h1>Familiares del Empleado</h1> 
 
+                            <p:commandButton style="float: left" icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{familiaresC.setAccion('Registrar')}" rendered="true" update=":dlgDatos"/>
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
                         </f:facet>
@@ -121,7 +100,7 @@
                             </p:inputText>
                             <p:outputLabel value="Fecha de Nacimiento" />
                             <p:inputMask id="txtFecNac" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999"/>
-                         
+
                             <p:outputLabel value="Telefono" />
                             <p:inputText value="#{familiaresC.familiar.tel}" maxlength="7" >
                                 <p:keyFilter regEx="/[\d\-]/"/>
@@ -144,20 +123,15 @@
                                 <f:selectItem itemLabel="No" itemValue="NO"/>                                          
                             </p:selectOneRadio>
                             <p:outputLabel value="Nombre del Empleado"/>
-                            <p:autoComplete value="#{familiaresC.familiar.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">                               
+                            <p:autoComplete required="true" resultsMessage="INGRESE EL EMPLEADO" value="#{familiaresC.familiar.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">                               
                             </p:autoComplete>
 
-                            <p:commandButton value="#{familiaresC.accion}" actionListener="#{familiaresC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{familiaresC.accion}" actionListener="#{familiaresC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton icon="fa fa-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>
                 </p:dialog>
 
-<!--                <h:panelGroup rendered="#{!Login.usuario.nivel == 'admin' ? true:false}">
-     <center>
-         <h1 style="color: red">NO TIENES PERMISO</h1>
-     </center>
- </h:panelGroup>-->
             </ui:define>
         </ui:composition>
     </body>

@@ -17,35 +17,15 @@
 
                 <p:growl autoUpdate="true"/>
                 <h:form id="frm">
-                    
-
-                    <p:commandButton value="NUEVO" oncomplete="PF('wdlgDatos').show();" actionListener="#{datosC.setAccion('Registrar')}" update=":dlgDatos"/>
-
                     <p:dataTable id="data" value="#{datosC.lstDatos}" var="Datos" rows="10"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No esta la Lista">
                         <f:facet name="header">
-                            <h3 align="center">DATOS ADICIONALES</h3>
-<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                    <p:dataExporter type="pdf" target="data" fileName="lstDatos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                    <p:dataExporter type="csv" target="data" fileName="lstDatos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                    <p:dataExporter type="xml" target="data" fileName="lstDatos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                    <p:dataExporter type="xls" target="data" fileName="lstDatos" pageOnly="true"/>
-                                </h:commandLink>
-                            </h:panelGroup>-->
+                            <h1 align="center">DATOS ADICIONALES</h1>
+                            <p:commandButton style="float: left" icon="fa fa-user-plus" value="NUEVO" oncomplete="PF('wdlgDatos').show();" actionListener="#{datosC.setAccion('Registrar')}" update=":dlgDatos"/>
+                            <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
+                            <p:columnToggler datasource="data" trigger="toggler"/>
                         </f:facet>
 
                         <p:column style="width: 16px">
@@ -63,12 +43,12 @@
                         <p:column headerText="Servicios Prestados">
                             <h:outputText value="#{Datos.serPre}"/>
                         </p:column>
-                        <p:column headerText="Apreciación-Calificación">
-                            <h:outputText value="#{Datos.apreCali}"/>
-                        </p:column>                    
+                                     
 
                         <p:rowExpansion >
                             <p:panelGrid columns="2" columnClasses="label,value" style="width: 500px">
+                                <h:outputText value="Apreciación-Calificación"/>
+                                <h:outputText value="#{Datos.apreCali}"/>
                                 <h:outputText value="Conducta"/>
                                 <h:outputText value="#{Datos.con}"/>
                                 <h:outputText value="Bonificación Personal"/>
@@ -84,7 +64,7 @@
                         </p:column> 
                         <p:column style="width:54px">
                             <p:growl id="message" showDetail="true"/>
-                            <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{datosC.eliminar(Datos)}" update="data" style="background-color: red;color: red;">
+                            <p:commandButton title="ELIMINAR DATO" icon="ui-icon-circle-close" actionListener="#{datosC.eliminar(Datos)}" update="data" style="background-color: red;color: red;">
                                 <p:confirm header="Confirmación" message=" ¿Deseas Eliminar? " icon="ui-icon-alert"/>
                                 <p:tooltip trackMouse="true"/>
                             </p:commandButton>
@@ -99,7 +79,7 @@
                     </p:dataTable>
                 </h:form>
 
-                <p:dialog showEffect="explode"  modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
+                <p:dialog showEffect="explode"  modal="true" hideEffect="explode" header="DATOS ADICIONALES" widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
                         <p:panelGrid columns="4">
                             <p:outputLabel value="Empleado"/>
@@ -138,8 +118,8 @@
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
 
-                            <p:commandButton value="#{datosC.accion}" actionListener="#{datosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton  icon="fa fa-user-plus" value="#{datosC.accion}" actionListener="#{datosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton  icon="fa fa-close" value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>
                 </p:dialog>

@@ -17,8 +17,7 @@
 
                 <p:growl autoUpdate="true" />
                 <h:form id="frm">
-                    <h3 align="center">DATOS PERSONALES</h3>
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{Login.setAccion('Registrar')}" update=":dlgDatos"/>
+
 
                     <p:dataTable id="data" value="#{Login.lstUsuario}" var="usuario" rows="10"
                                  paginator="true"
@@ -27,6 +26,7 @@
                         <f:facet name="header">
                             <h1>USUARIOS</h1> 
 
+                            <p:commandButton icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" style="float: left" actionListener="#{Login.setAccion('Registrar')}" update=":dlgDatos"/>
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler"/>
                         </f:facet>
@@ -51,9 +51,9 @@
                             <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{Login.leerID(usuario.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
                             </p:commandButton>
                         </p:column> 
-                       <p:column style="width:54px">
+                        <p:column style="width:54px">
                             <p:growl id="message" showDetail="true" />
-                            <p:commandButton title="ELIMINAR EMPLEADO" icon="ui-icon-circle-close" actionListener="#{Login.eliminar(usuario)}" update="data" style="background-color:red;color:red;">
+                            <p:commandButton title="ELIMINAR USUARIO" icon="ui-icon-circle-close" actionListener="#{Login.eliminar(usuario)}" update="data" style="background-color:red;color:red;">
                                 <p:confirm header="Confirmación" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                                 <p:tooltip trackMouse="true"/>
                             </p:commandButton>
@@ -90,8 +90,8 @@
 
 
 
-                            <p:commandButton value="#{Login.accion}" actionListener="#{Login.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{Login.accion}" actionListener="#{Login.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();" icon="fa fa-close"/>
 
                         </p:panelGrid>
                     </h:form>

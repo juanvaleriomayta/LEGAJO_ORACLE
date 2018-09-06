@@ -20,11 +20,15 @@ public class DetalleDialectoC implements Serializable {
     private List<DetalleDialecto> lstDetalleDialecto;
     private String accion;
 
+    private String codigoDialecto;
+
+   
     public void registrarDialecto(String CodigoEmpleado) throws Exception {
         DetalleDialectoDao dao;
         try {
             dao = new DetalleDialectoDao();
             detalleDialecto.setCodEmpleado(CodigoEmpleado);
+           // codigoDialecto = dao.CodigoDialecto(detalleDialecto.getDialecto());
             dao.registrarDetalle(detalleDialecto);
             this.limpiar();
             this.listarActivos();
@@ -33,6 +37,7 @@ public class DetalleDialectoC implements Serializable {
 
         }
     }
+
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -162,5 +167,13 @@ public class DetalleDialectoC implements Serializable {
 
     public void setLstDetalleDialecto(List<DetalleDialecto> lstDetalleDialecto) {
         this.lstDetalleDialecto = lstDetalleDialecto;
+    }
+
+    public String getCodigoDialecto() {
+        return codigoDialecto;
+    }
+
+    public void setCodigoDialecto(String codigoDialecto) {
+        this.codigoDialecto = codigoDialecto;
     }
 }

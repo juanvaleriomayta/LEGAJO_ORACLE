@@ -41,14 +41,14 @@
                                     </svg>
 
                                     <!--<input type="text" class="login__input name" placeholder="Username"/>-->
-                                    <p:inputText value="#{Login.nombreUsuario}" style="background: #000000; color: #ffffff;height: 35px; width: 210px;"  placeholder="Usuario" disabled="#{Login.intentos le 2 ? false:true}" required="true" requiredMessage="INGRESAR USUARIO"/>
+                                    <p:inputText value="#{Login.nombreUsuario}" style="background: #000000; color: #ffffff;height: 35px; width: 210px;"  placeholder="Usuario" disabled="#{Login.intentos le 2 ? false:true}" required="true" requiredMessage="USUARIO INCORRECTO"/>
                                 </div>
                                 <div class="login__row">
                                     <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
                                         <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
                                     </svg>
                                     <!--<input type="password" class="login__input pass" placeholder="Password"/>-->
-                                    <p:password value="#{Login.pass}" style="background: #000000; color: #ffffff ; height: 35px; width: 210px;" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}" required="true" requiredMessage="INGRESAR CONTRASEÑA"/>
+                                    <p:password value="#{Login.pass}" style="background: #000000; color: #ffffff ; height: 35px; width: 210px;" placeholder="Contraseña" disabled="#{Login.intentos le 2 ? false:true}" required="true" requiredMessage="CONTRASEÑA INCORRECTA"/>
                                 </div>
                                 <!--<button type="button" class="login__submit">Sign in</button>-->
                                 <br/>

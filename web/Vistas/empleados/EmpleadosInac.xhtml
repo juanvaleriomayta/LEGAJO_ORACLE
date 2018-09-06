@@ -20,24 +20,7 @@
                                  rowsPerPageTemplate="5,10,15,10000"  emptyMessage="No estas la Lista">
                         <f:facet name="header">
 
-<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                    <p:dataExporter type="pdf" target="data" fileName="Inactivo" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                    <p:dataExporter type="csv" target="data" fileName="Inactivo" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                    <p:dataExporter type="xml" target="data" fileName="Inactivo" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                    <p:dataExporter type="xls" target="data" fileName="Inactivo" pageOnly="true"/>
-                                </h:commandLink>
-                            </h:panelGroup>-->
+
                             <h1>Empleados Inactivos</h1> 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
@@ -117,7 +100,7 @@
 
                 <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
-                        <p:panelGrid columns="4">
+                        <p:panelGrid columns="2">
 
                             <p:outputLabel value="Estado Laboral" />
 
@@ -128,9 +111,9 @@
 
                             </p:selectOneRadio>
 
-                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
-
+                            <p:commandButton icon="fa fa-edit" value="#{empleadoC.accion}" actionListener="#{empleadoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton icon="fa fa-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                          
                         </p:panelGrid>
                     </h:form>
 

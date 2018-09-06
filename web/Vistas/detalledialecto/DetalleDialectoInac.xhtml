@@ -19,35 +19,12 @@
 
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
-
-
-
-
-
                     <p:dataTable id="data" value="#{detalleDialectoC.lstDetalleDialecto}" var="detdial" rows="10"
                                  paginator="true"
                                  paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15,10000">
                         <f:facet name="header">
-<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                    <p:dataExporter type="pdf" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                    <p:dataExporter type="csv" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <a href="EstudiosBasicosWEB.xhtml"></a>
-                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                    <p:dataExporter type="xml" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                    <p:dataExporter type="xls" target="data" fileName="Detalle Dialecto Activos" pageOnly="true"/>
-                                </h:commandLink>
-                            </h:panelGroup>-->
+
                             <h1>DETALLE DIALECTO INACTIVOS</h1> 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
@@ -81,7 +58,7 @@
                 </h:form>
                 <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Datos" widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
-                        <p:panelGrid columns="1">
+                        <p:panelGrid columns="2">
 
 
                             <p:outputLabel value="Estado" />
@@ -91,8 +68,8 @@
                                 <f:selectItem itemLabel="Inactivo" itemValue="I" /> 
                             </p:selectOneRadio>
 
-                            <p:commandButton value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton icon="fa fa-edit" value="#{detalleDialectoC.accion}" actionListener="#{detalleDialectoC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton icon="fa fa-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>
 

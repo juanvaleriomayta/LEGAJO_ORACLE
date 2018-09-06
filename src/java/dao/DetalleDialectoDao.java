@@ -115,6 +115,25 @@ public class DetalleDialectoDao extends DAO {
         return lista;
     }
 
+    public String CodigoDialecto(String Dialecto) throws SQLException {
+        this.Conexion();
+        ResultSet rs;
+        try {
+            String sql = "SELECT IdDial FROM Dialecto WHERE NomDial = ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, Dialecto);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("IdDial");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
+
     public List<DetalleDialecto> listarInactivos() throws Exception {
         List<DetalleDialecto> lista;
         ResultSet rs;

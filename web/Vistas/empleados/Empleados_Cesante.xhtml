@@ -22,8 +22,6 @@
 
                 <p:growl autoUpdate="true" />
                 <h:form id="frm">
-                    <h3 align="center">DATOS PERSONALES</h3>
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
                     <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
                                  paginator="true"
@@ -34,6 +32,7 @@
 
                             <h1>EMPLEADOS CESANTE</h1> 
 
+                            <p:commandButton style="float: left" icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler"/>
                         </f:facet>
@@ -128,7 +127,7 @@
                 </h:form>
 
 
-                <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
+                <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="DATOS PERSONALES" widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
                         <p:panelGrid columns="4">
                             <p:outputLabel for="txtDNI" value="DNI" />
@@ -230,8 +229,8 @@
                                 <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
 
                             </p:selectOneRadio>
-                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operarCesante()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{empleadoC.accion}" actionListener="#{empleadoC.operarCesante()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();" icon="fa fa-close"/>
 
                         </p:panelGrid>
 

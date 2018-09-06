@@ -14,7 +14,6 @@
                 <p:growl id="msj" autoUpdate="true"/>
                 <h:form id="frm">
                     <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{emergenciaC.setAccion('Registrar')}" update=":dlgDatos"/>
 
                     <p:dataTable id="data" value="#{emergenciaC.lstEmergencia}" var="emergencias" rows="10"
                                  paginator="true"
@@ -22,27 +21,9 @@
                                  rowsPerPageTemplate="5,10,15,10000">
 
                         <f:facet name="header">
-<!--                            <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}">
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/image.png" width="50"/>
-                                    <p:dataExporter type="pdf" target="data" fileName="Emergencia" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/CSV.png" width="50"/>
-                                    <p:dataExporter type="csv" target="data" fileName="Emergencia" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xml.png" width="50"/>
-                                    <p:dataExporter type="xml" target="data" fileName="Emergencia" pageOnly="true"/>
-                                </h:commandLink>
-                                <h:commandLink>
-                                    <p:graphicImage value="/resources/icon/xls.png" width="50"/>
-                                    <p:dataExporter type="xls" target="data" fileName="Emergencia" pageOnly="true"/>
-                                </h:commandLink>
-                            </h:panelGroup>-->
+                            <h1>DATOS EMERGENTES</h1> 
 
-                            <h1>Datos Emergentes</h1> 
-
+                            <p:commandButton style="float: left" icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{emergenciaC.setAccion('Registrar')}" update=":dlgDatos"/>
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler" />
                         </f:facet>
@@ -93,12 +74,12 @@
                         <p:panelGrid columns="2">
 
                             <p:outputLabel value="Nombre" />
-                            <p:inputText value="#{emergenciaC.emergencia.nomEmer}" >
+                            <p:inputText value="#{emergenciaC.emergencia.nomEmer}" required="true" requiredMessage="INGRESE EL NOMBRE">
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
 
                             <p:outputLabel value="Apellido" />
-                            <p:inputText value="#{emergenciaC.emergencia.apeEmer}" >
+                            <p:inputText value="#{emergenciaC.emergencia.apeEmer}"  required="true" requiredMessage="INGRESE EL APELLIDO" >
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
 
@@ -115,18 +96,15 @@
                             <p:outputLabel value="Celular" />
                             <p:inputText value="#{emergenciaC.emergencia.celEmer}" maxlength="9">
                                 <p:keyFilter regEx="/[\d\-]/"/>
-
-
-
                             </p:inputText>   
 
-                            <p:outputLabel value="Nombre del Empleado"/>
-                            <p:autoComplete value="#{emergenciaC.emergencia.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
+                            <p:outputLabel value="Nombre del Empleado" />
+                            <p:autoComplete required="true" resultsMessage="INGRESE EL EMPLEADO" value="#{emergenciaC.emergencia.empleado}" completeMethod="#{empleadoC.completeText}" forceSelection="true">
                             </p:autoComplete>
 
 
-                            <p:commandButton value="#{emergenciaC.accion}" actionListener="#{emergenciaC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{emergenciaC.accion}" actionListener="#{emergenciaC.operar()}" oncomplete="PF('wdlgDatos').hide();" update=":frm:data"/>
+                            <p:commandButton icon="fa fa-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
 
                     </h:form>

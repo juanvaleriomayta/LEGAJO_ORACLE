@@ -18,13 +18,9 @@
 
                 <f:event type="preRenderView" listener="#{empleadoC.listarActivosCas()}" />
 
-
-
                 <p:growl autoUpdate="true" />
                 <h:form id="frm">
 
-                    <h3 align="center">DATOS PERSONALES</h3>
-                    <p:commandButton value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos"/>
 
                     <p:dataTable id="data" value="#{empleadoC.lstEmpleado}" var="empleado" rows="10"
                                  paginator="true"
@@ -33,6 +29,7 @@
                         <f:facet name="header">
 
                             <h1>EMPLEADOS CAS</h1> 
+                            <p:commandButton style="float: left" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos" icon="fa fa-user-plus"/>
 
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler"/>
@@ -131,12 +128,16 @@
 
                 </h:form>
 
+                
+                 
+                 
 
-                <p:dialog showEffect="explode" modal="true" hideEffect="explode" header="Empleado" widgetVar="wdlgDatos" id="dlgDatos">
+                <p:dialog showEffect="explode" modal="true" hideEffect="explode"  header="DATOS PERSONALES"  widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
                         <p:panelGrid columns="4">
-                            <p:outputLabel for="txtDNI" value="DNI" />
-                            <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingresar DNI">
+
+                            <p:outputLabel for="txtDNI" value="DNI" style="align-content: center"/>
+                            <p:inputText id="txtDNI" value="#{empleadoC.empleado.DNI}" title="INGRESE DNI" maxlength="8" required="true" requiredMessage="Ingresar DNI">
                                 <p:keyFilter regEx="/[\d\-]/"/>
                             </p:inputText>
 
@@ -234,8 +235,8 @@
                                 <f:selectItem itemLabel="Soltero" itemValue="Soltero" />
 
                             </p:selectOneRadio>
-                            <p:commandButton value="#{empleadoC.accion}" actionListener="#{empleadoC.operarCas()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{empleadoC.accion}" actionListener="#{empleadoC.operarCas()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton icon="ui-icon-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
 
                         </p:panelGrid>
 

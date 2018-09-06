@@ -384,6 +384,8 @@
                                 <p:ajax event="itemSelect" update="@this"/>
                             </p:autoComplete>
 
+                      
+
 
                         </p:panelGrid>
                     </p:fieldset>
@@ -431,7 +433,7 @@
 
                     <p:growl id="msg" autoUpdate="true"/>
 
-                    <p:commandButton title="REGISTRAR COMPLETO" style="width: 1200px ;" class="button button1" immediate="true" actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();registrarDialecto();registrarDatos();" update="form">
+                    <p:commandButton title="REGISTRAR COMPLETO" style="width: 1200px ;" class="button button1" immediate="true"  actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();registrarDialecto();registrarDatos();" update="form">
 
                     </p:commandButton>
                     <p:remoteCommand name="registrarEmergencia" actionListener="#{emergenciaC.registrarEmergencia(empleadoC.codigoTemporal)}" />
