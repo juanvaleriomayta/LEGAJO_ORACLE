@@ -29,8 +29,8 @@
                         <f:facet name="header">
 
                             <h1>EMPLEADOS CAS</h1> 
-                            <p:commandButton style="float: left" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos" icon="fa fa-user-plus"/>
-
+                            <p:commandButton id="BtnIniciarSesion" style="float: left" value="Nuevo" oncomplete="PF('wdlgDatos').show();" actionListener="#{empleadoC.setAccion('Registrar')}" update=":dlgDatos" icon="fa fa-user-plus"/>
+                            
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler"/>
                         </f:facet>
@@ -128,9 +128,9 @@
 
                 </h:form>
 
-                
-                 
-                 
+
+
+
 
                 <p:dialog showEffect="explode" modal="true" hideEffect="explode"  header="DATOS PERSONALES"  widgetVar="wdlgDatos" id="dlgDatos">
                     <h:form>
@@ -236,8 +236,8 @@
 
                             </p:selectOneRadio>
                             <p:commandButton icon="fa fa-user-plus" value="#{empleadoC.accion}" actionListener="#{empleadoC.operarCas()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
-                            <p:commandButton icon="ui-icon-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
-
+                            <p:commandButton id="BtnIniciarSesion" icon="ui-icon-close" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
+                            
                         </p:panelGrid>
 
                     </h:form>

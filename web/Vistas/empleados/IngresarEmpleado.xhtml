@@ -25,7 +25,7 @@
 
                     <p:tabView dynamic="true" cache="true" effect="fold">
                         <p:tab title="DATOS PERSONALES">
-                           
+
                             <p:fieldset legend="Empleado" style="background: #f7f9ff;">
                                 <p:panelGrid style="border: none" columns="2">
                                     <p:outputLabel for="form" value="DNI" />
@@ -158,7 +158,7 @@
                         </p:tab>
 
                         <p:tab title="DATOS DE ESTUDIOS BASICOS">
-                            
+
                             <p:fieldset legend="Datos Secundarios" style="background: #f7f9ff;">
                                 <p:panelGrid style="border: none" columns="4">
 
@@ -254,73 +254,73 @@
                         </p:tab>
 
                         <p:tab title="DATOS REFRENTES A LOS PADRES E HIJOS DEL TRABAJADOR">
-                           
-                                <H4></H4>
-                                <p:fieldset legend="Familiar" style="background: #f7f9ff;">
-                                    <p:panelGrid style="border: none" columns="4">
 
-                                        <p:outputLabel for="txtNombreFami" value="Nombre" />
-                                        <p:inputText id="txtNombreFami" value="#{familiaresC.familiar.nomFami}" >
-                                            <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                            <p:ajax event="blur" update="txtNombreFami"/>
-                                        </p:inputText>
+                            <H4></H4>
+                            <p:fieldset legend="Familiar" style="background: #f7f9ff;">
+                                <p:panelGrid style="border: none" columns="4">
 
-                                        <p:outputLabel for="txtApellidoFami" value="Apellido" />
-                                        <p:inputText id="txtApellidoFami" value="#{familiaresC.familiar.ape}" >
-                                            <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                            <p:ajax event="blur" update="txtApellidoFami"/>
-                                        </p:inputText>
+                                    <p:outputLabel for="txtNombreFami" value="Nombre" />
+                                    <p:inputText id="txtNombreFami" value="#{familiaresC.familiar.nomFami}" >
+                                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                                        <p:ajax event="blur" update="txtNombreFami"/>
+                                    </p:inputText>
 
-                                        <p:outputLabel for="txtParentescoFami" value="Parentesco" />
-                                        <p:inputText id="txtParentescoFami" value="#{familiaresC.familiar.par}" >
-                                            <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                            <p:ajax event="blur" update="txtParentescoFami"/>
-                                        </p:inputText>
+                                    <p:outputLabel for="txtApellidoFami" value="Apellido" />
+                                    <p:inputText id="txtApellidoFami" value="#{familiaresC.familiar.ape}" >
+                                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                                        <p:ajax event="blur" update="txtApellidoFami"/>
+                                    </p:inputText>
 
-                                        <p:outputLabel for="txtOcupacionFami" value="Ocupacion" />
-                                        <p:inputText id="txtOcupacionFami" value="#{familiaresC.familiar.ocu}" >
-                                            <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
-                                            <p:ajax event="blur" update="txtOcupacionFami"/>
-                                        </p:inputText>
+                                    <p:outputLabel for="txtParentescoFami" value="Parentesco" />
+                                    <p:inputText id="txtParentescoFami" value="#{familiaresC.familiar.par}" >
+                                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                                        <p:ajax event="blur" update="txtParentescoFami"/>
+                                    </p:inputText>
 
-                                        <p:outputLabel for="txtFecNacFami" value="Fecha de Nacimiento" />
-                                        <p:inputMask id="txtFecNacFami" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999">
-                                            <p:ajax event="blur" update="txtFecNacFami"/>
-                                        </p:inputMask>
+                                    <p:outputLabel for="txtOcupacionFami" value="Ocupacion" />
+                                    <p:inputText id="txtOcupacionFami" value="#{familiaresC.familiar.ocu}" >
+                                        <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
+                                        <p:ajax event="blur" update="txtOcupacionFami"/>
+                                    </p:inputText>
+
+                                    <p:outputLabel for="txtFecNacFami" value="Fecha de Nacimiento" />
+                                    <p:inputMask id="txtFecNacFami" value="#{familiaresC.familiar.fecNac}" mask="99/99/9999">
+                                        <p:ajax event="blur" update="txtFecNacFami"/>
+                                    </p:inputMask>
 
 
-                                        <p:outputLabel for="txtTelFami" value="Telefono" />
-                                        <p:inputText id="txtTelFami" value="#{familiaresC.familiar.tel}" maxlength="7" >
-                                            <p:keyFilter regEx="/[\d\-]/"/>
-                                            <p:ajax event="blur" update="txtTelFami"/>
-                                        </p:inputText>
+                                    <p:outputLabel for="txtTelFami" value="Telefono" />
+                                    <p:inputText id="txtTelFami" value="#{familiaresC.familiar.tel}" maxlength="7" >
+                                        <p:keyFilter regEx="/[\d\-]/"/>
+                                        <p:ajax event="blur" update="txtTelFami"/>
+                                    </p:inputText>
 
-                                        <p:outputLabel for="txtCelFami" value="Celular" />
-                                        <p:inputText id="txtCelFami" value="#{familiaresC.familiar.cel}" maxlength="9">
-                                            <p:keyFilter regEx="/[\d\-]/"/>
-                                            <p:ajax event="blur" update="txtCelFami"/>
-                                        </p:inputText>
+                                    <p:outputLabel for="txtCelFami" value="Celular" />
+                                    <p:inputText id="txtCelFami" value="#{familiaresC.familiar.cel}" maxlength="9">
+                                        <p:keyFilter regEx="/[\d\-]/"/>
+                                        <p:ajax event="blur" update="txtCelFami"/>
+                                    </p:inputText>
 
-                                        <p:outputLabel for="txtEstadoCivilFami" value="Estado Civil" />              
-                                        <p:selectOneMenu id="txtEstadoCivilFami" value="#{familiaresC.familiar.estCiv}">
-                                            <f:selectItem itemLabel="Seleccione"/>
-                                            <f:selectItem itemLabel="Soltero" itemValue="Soltero"/>
-                                            <f:selectItem itemLabel="Casado" itemValue="Casado"/>
-                                            <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
-                                            <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
-                                            <p:ajax event="change" update="txtEstadoCivilFami"/>
-                                        </p:selectOneMenu>   
+                                    <p:outputLabel for="txtEstadoCivilFami" value="Estado Civil" />              
+                                    <p:selectOneMenu id="txtEstadoCivilFami" value="#{familiaresC.familiar.estCiv}">
+                                        <f:selectItem itemLabel="Seleccione"/>
+                                        <f:selectItem itemLabel="Soltero" itemValue="Soltero"/>
+                                        <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                                        <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
+                                        <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
+                                        <p:ajax event="change" update="txtEstadoCivilFami"/>
+                                    </p:selectOneMenu>   
 
-                                        <p:outputLabel for="txtViveFami" value="Vive" />
-                                        <p:selectOneRadio id="txtViveFami" value="#{familiaresC.familiar.vive}" >                      
-                                            <f:selectItem itemLabel="Si" itemValue="SI"/>
-                                            <f:selectItem itemLabel="No" itemValue="NO"/>   
-                                            <p:ajax event="blur" update="txtViveFami"/>
+                                    <p:outputLabel for="txtViveFami" value="Vive" />
+                                    <p:selectOneRadio id="txtViveFami" value="#{familiaresC.familiar.vive}" >                      
+                                        <f:selectItem itemLabel="Si" itemValue="SI"/>
+                                        <f:selectItem itemLabel="No" itemValue="NO"/>   
+                                        <p:ajax event="blur" update="txtViveFami"/>
 
-                                        </p:selectOneRadio>
-                                    </p:panelGrid>                               
-                                </p:fieldset>
-                            
+                                    </p:selectOneRadio>
+                                </p:panelGrid>                               
+                            </p:fieldset>
+
                         </p:tab>
 
                         <p:tab title="DATOS EN CASO DE EMERGENCIAS">
@@ -448,9 +448,13 @@
 
                     <p:growl id="msg" autoUpdate="true"/>
 
-                    <p:commandButton title="REGISTRAR COMPLETO" style="width: 1200px ;" class="button button1" immediate="true"  actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();registrarDialecto();registrarDatos();" update="form">
+                    <p:commandButton id="BtnIniciarSesion" title="REGISTRAR COMPLETO" style="width: 1200px ;" class="button button1" immediate="true"  actionListener="#{empleadoC.ingresarEmpleado()}" oncomplete="registrarEmergencia();registrarFamiliar();registrarEstudiosBasicos();registrarEstudiosSuperiores();registrarDialecto();registrarDatos();" update="form">
 
                     </p:commandButton>
+                    <p:blockUI block="form" trigger="BtnIniciarSesion">
+                        <!--<img src="../../resources/icon/loader_seq.gif" alt=""/>-->
+                        <img src="../../resources/icon/loading.gif" alt="" style="width: 100px;"/>
+                    </p:blockUI>
                     <p:remoteCommand name="registrarEmergencia" actionListener="#{emergenciaC.registrarEmergencia(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarFamiliar" actionListener="#{familiaresC.registrarFamiliar(empleadoC.codigoTemporal)}" />
                     <p:remoteCommand name="registrarEstudiosBasicos" actionListener="#{estudiosBasicosC.registrarEstudiosBasicos(empleadoC.codigoTemporal)}" />
