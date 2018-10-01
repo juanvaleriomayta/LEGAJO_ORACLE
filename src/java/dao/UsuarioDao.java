@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import services.Encriptar;
 
 public class UsuarioDao extends DAO {
 
@@ -17,7 +18,7 @@ public class UsuarioDao extends DAO {
             String sql = "Select IdUsuario,Nombre,Estado,Nivel from Usuario where Usuario like ? and Pass like ? and Estado like 'A'";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, User);
-            ps.setString(2, Passw);
+            ps.setString(2, Encriptar.encriptar(Passw));
             rs = ps.executeQuery();
             if (rs.next()) {
                 usuario = new Usuario();
@@ -42,7 +43,7 @@ public class UsuarioDao extends DAO {
             String sql = "INSERT INTO Usuario (Usuario,Pass,Nombre,Estado,Nivel) VALUES(?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, user.getUsuario());
-            st.setString(2, user.getPass());
+            st.setString(2, Encriptar.encriptar(user.getPass()));
             st.setString(3, user.getNombre());
             st.setString(4, "A");
             st.setString(5, user.getNivel());
@@ -143,7 +144,7 @@ public class UsuarioDao extends DAO {
             PreparedStatement st = this.getCn().prepareStatement(sql);
            
             st.setString(1, user.getUsuario());
-            st.setString(2, user.getPass());
+            st.setString(2, Encriptar.encriptar(user.getPass()));
             st.setString(3, user.getNombre());
             st.setString(4, user.getEstado());
             st.setString(5, user.getNivel());

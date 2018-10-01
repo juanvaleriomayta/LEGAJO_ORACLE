@@ -12,6 +12,7 @@ import lombok.Data;
 import modelo.Usuario;
 import org.primefaces.context.RequestContext;
 import services.SessionUtils;
+import services.Encriptar;
 
 @Data
 @Named(value = "Login")
