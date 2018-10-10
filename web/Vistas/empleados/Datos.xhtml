@@ -13,7 +13,7 @@
             <ui:define name="contenido">
                 <f:event type="preRenderView" listener="#{Login.securitySession()}"/>
 
-                <f:event type="preRenderView" listener="#{datosC.listar()}" />
+                <f:event type="preRenderView" listener="#{datosC.listarDatos()}" />
 
                 <p:growl autoUpdate="true"/>
                 <h:form id="frm">
@@ -60,11 +60,11 @@
                             </p:panelGrid>
                         </p:rowExpansion>  
                         <p:column style="width:50px"  exportable="false">
-                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{datosC.leerID(Datos.idLegajo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos"/>
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{datosC.leerDatosID(Datos.idLegajo)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos"/>
                         </p:column> 
                         <p:column style="width:54px">
                             <p:growl id="message" showDetail="true"/>
-                            <p:commandButton title="ELIMINAR DATO" icon="ui-icon-circle-close" actionListener="#{datosC.eliminar(Datos)}" update="data" style="background-color: red;color: red;">
+                            <p:commandButton title="ELIMINAR DATO" icon="ui-icon-circle-close" actionListener="#{datosC.eliminarDatos(Datos)}" update="data" style="background-color: red;color: red;">
                                 <p:confirm header="Confirmación" message=" ¿Deseas Eliminar? " icon="ui-icon-alert"/>
                                 <p:tooltip trackMouse="true"/>
                             </p:commandButton>
@@ -118,7 +118,7 @@
                                 <p:keyFilter regEx="/[ABCDEFGHIJKLMN ÑOPQRSTUVWXYZ]/i"/>
                             </p:inputText>
 
-                            <p:commandButton  icon="fa fa-user-plus" value="#{datosC.accion}" actionListener="#{datosC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton  icon="fa fa-user-plus" value="#{datosC.accion}" actionListener="#{datosC.operarDatos()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton  icon="fa fa-close" value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();"/>
                         </p:panelGrid>
                     </h:form>

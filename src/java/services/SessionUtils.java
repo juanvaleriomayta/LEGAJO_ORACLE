@@ -2,16 +2,17 @@ package services;
 
 
 import javax.faces.context.FacesContext;
-import modelo.Usuario;
+
+import modelo.UsuarioM;
 
 public class SessionUtils {
 
-    public static Usuario obtenerObjetoSesion() {
-        return (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
+    public static UsuarioM obtenerObjetoSesion() {
+        return (UsuarioM) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
     }
 
     public static String ObtenerNombreSesion() {
-        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
+        UsuarioM us = (UsuarioM) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
         if (us != null) {
             return us.getNombre();
         } else {
@@ -20,7 +21,7 @@ public class SessionUtils {
     }
 
     public static String ObtenerCodigoSesion() {
-        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
+        UsuarioM us = (UsuarioM) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario");
         if (us != null) {
             return us.getIdUsuario();
         } else {
