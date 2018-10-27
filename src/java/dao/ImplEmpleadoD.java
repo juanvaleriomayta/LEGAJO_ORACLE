@@ -152,7 +152,7 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
 
     }
 
-    public String obtenerCodigoEmpleado(String Empleado) throws SQLException {
+    public String obtenerCodigoEmpleado(String Empleado) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         try {
@@ -169,7 +169,7 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         }
     }
     
-     public String CodigoEmpleado(String Empleado) throws SQLException {
+     public String CodigoEmpleado(String Empleado) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         try {
@@ -188,7 +188,7 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         }
     }
 
-    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;

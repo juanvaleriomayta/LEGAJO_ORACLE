@@ -10,8 +10,7 @@ import modelo.UbigeoM;
 
 public class ImplUbigeoD extends ImplDAO implements UbigeoI {
 
-    @Override
-    public String obtenerCodigoUbigeo(String Ubigeo) throws SQLException {
+    public String obtenerCodigoUbigeo(String Ubigeo) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         try {
@@ -28,8 +27,7 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
         }
     }
 
-    @Override
-    public List<String> autocompleteUbigeo(String Consulta) throws SQLException {
+    public List<String> autocompleteUbigeo(String Consulta) throws SQLException, Exception{
         this.Conexion();
         ResultSet rs;
         List<String> Lista;

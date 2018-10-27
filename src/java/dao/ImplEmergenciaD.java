@@ -31,7 +31,7 @@ public class ImplEmergenciaD extends ImplDAO implements EmergenciasI {
         }
     }
 
-    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;

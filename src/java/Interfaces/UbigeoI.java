@@ -7,10 +7,10 @@ import modelo.UbigeoM;
 public interface UbigeoI {
 
     //Metodo para poder convertir el Nombre del automcomplete en su codigo
-    public String obtenerCodigoUbigeo(String Ubigeo) throws SQLException;
+//    public String obtenerCodigoUbigeo(String Ubigeo) throws SQLException;
 
     //Lista las coincidencias del automcomplete de Ubigeo    
-    public List<String> autocompleteUbigeo(String Consulta) throws SQLException;
+//    public List<String> autocompleteUbigeo(String Consulta) throws SQLException;
 
     //Este metodo registra los datos de ubigeo
     public void registrar(UbigeoM ubi) throws Exception;

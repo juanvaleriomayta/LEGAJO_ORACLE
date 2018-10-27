@@ -98,7 +98,7 @@ public class ImplFamiliaresD extends ImplDAO implements FamiliaresI {
         return lista;
     }
 
-    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;
