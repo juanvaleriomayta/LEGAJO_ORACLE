@@ -47,7 +47,7 @@ public class ImplDetalleDialectoD extends ImplDAO {
         }
     }
 
-    public List<String> autocompleteDialecto(String Dialecto) throws SQLException {
+    public List<String> autocompleteDialecto(String Dialecto) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;
@@ -67,7 +67,7 @@ public class ImplDetalleDialectoD extends ImplDAO {
         }
     }
 
-    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;
@@ -115,7 +115,7 @@ public class ImplDetalleDialectoD extends ImplDAO {
         return lista;
     }
 
-    public String CodigoDialecto(String Dialecto) throws SQLException {
+    public String CodigoDialecto(String Dialecto) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         try {

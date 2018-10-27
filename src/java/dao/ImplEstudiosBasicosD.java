@@ -54,7 +54,7 @@ public class ImplEstudiosBasicosD extends ImplDAO implements EstudiosBasicosI {
 
     }
 
-    public List<String> autocompleteEmpleado(String Consulta) throws SQLException {
+    public List<String> autocompleteEmpleado(String Consulta) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;

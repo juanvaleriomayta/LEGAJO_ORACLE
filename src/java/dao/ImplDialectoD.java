@@ -28,7 +28,7 @@ public class ImplDialectoD extends ImplDAO implements DialectoI {
 
     }
 
-    public String obtenerCodigoDialecto(String Dialecto) throws SQLException {
+    public String obtenerCodigoDialecto(String Dialecto) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         try {
@@ -45,7 +45,7 @@ public class ImplDialectoD extends ImplDAO implements DialectoI {
         }
     }
 
-    public List<String> autocompleteDialecto(String Consulta) throws SQLException {
+    public List<String> autocompleteDialecto(String Consulta) throws SQLException, Exception {
         this.Conexion();
         ResultSet rs;
         List<String> Lista;
