@@ -51,10 +51,10 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-street-view"></i>USUARIO</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <h:panelGroup rendered="#{Login.usuario.nivel == 'admin' ? true:false}"> 
+                                <h:panelGroup rendered="#{usuarioC.usuario.nivel == 'admin' ? true:false}"> 
                                     <li><a href="../empleados/usuario.xhtml"><i class="menu-icon fa fa-user-plus" ></i> <span>Crear Nuevo Usuario</span></a></li>
                                 </h:panelGroup>
-                                <li><a href="#"> <h:form><p:commandButton  value="Cerrar Session"  class="lnr lnr-exit fa fa-reply"  actionListener="#{Login.finishSession()}"/></h:form> </a></li>
+                                <li><a href="#"> <h:form><p:commandButton  value="Cerrar Session"  class="lnr lnr-exit fa fa-reply"  actionListener="#{usuarioC.finishSession()}"/></h:form> </a></li>
 
 
                             </ul>

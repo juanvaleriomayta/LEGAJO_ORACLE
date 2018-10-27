@@ -16,7 +16,8 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
     public void registrarEmpleado(EmpleadoM emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+            String sql = "INSERT INTO EMPLEADO (DNIEMPL,NOMEMPL,APEPATEEMPL,APEMATEEMPL,RUCEMPL,EMAILEMPL,TELEMPL,CELEMPL,FECNACEMPL,GRUPSANGEMPL,ESTCIVEMPL,CONLABEMPL,CARASEEMPL,REFEEMPL,LEYEMPL,FEUNGEMPL,FECNONEMPL,DATCONYEMPL,UBIGEMPL,ESTEMPL,ORIEMPL) VALUES (?,?,?,?,?,?,?,?,TO_DATE(FECNACEMPL,'DD/MM/YYYY'),?,?,?,?,?,?,TO_DATE(FEUNGEMPL,'DD/MM/YYYY'),TO_DATE(FECNONEMPL,'DD/MM/YYYY'),?,?,?,?)";
+//            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -50,7 +51,8 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
     public void registrarNombrado(EmpleadoM emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+            String sql = "INSERT INTO EMPLEADO (DNIEMPL,NOMEMPL,APEPATEEMPL,APEMATEEMPL,RUCEMPL,EMAILEMPL,TELEMPL,CELEMPL,FECNACEMPL,GRUPSANGEMPL,ESTCIVEMPL,CONLABEMPL,CARASEEMPL,REFEEMPL,LEYEMPL,FEUNGEMPL,FECNONEMPL,DATCONYEMPL,UBIGEMPL,ESTEMPL,ORIEMPL) VALUES (?,?,?,?,?,?,?,?,TO_DATE(FECNACEMPL,'DD/MM/YYYY'),?,?,?,?,?,?,TO_DATE(FEUNGEMPL,'DD/MM/YYYY'),TO_DATE(FECNONEMPL,'DD/MM/YYYY'),?,?,?,?)";
+//            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -85,7 +87,8 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
     public void registrarCAS(EmpleadoM emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+            String sql = "INSERT INTO EMPLEADO (DNIEMPL,NOMEMPL,APEPATEEMPL,APEMATEEMPL,RUCEMPL,EMAILEMPL,TELEMPL,CELEMPL,FECNACEMPL,GRUPSANGEMPL,ESTCIVEMPL,CONLABEMPL,CARASEEMPL,REFEEMPL,LEYEMPL,FEUNGEMPL,FECNONEMPL,DATCONYEMPL,UBIGEMPL,ESTEMPL,ORIEMPL) VALUES (?,?,?,?,?,?,?,?,TO_DATE(FECNACEMPL,'DD/MM/YYYY'),?,?,?,?,?,?,TO_DATE(FEUNGEMPL,'DD/MM/YYYY'),TO_DATE(FECNONEMPL,'DD/MM/YYYY'),?,?,?,?)";
+//            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -120,7 +123,8 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
     public void registrarCESANTE(EmpleadoM emp) throws Exception {
         try {
             this.Conexion();
-            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+            String sql = "INSERT INTO EMPLEADO (DNIEMPL,NOMEMPL,APEPATEEMPL,APEMATEEMPL,RUCEMPL,EMAILEMPL,TELEMPL,CELEMPL,FECNACEMPL,GRUPSANGEMPL,ESTCIVEMPL,CONLABEMPL,CARASEEMPL,REFEEMPL,LEYEMPL,FEUNGEMPL,FECNONEMPL,DATCONYEMPL,UBIGEMPL,ESTEMPL,ORIEMPL) VALUES (?,?,?,?,?,?,?,?,TO_DATE(FECNACEMPL,'DD/MM/YYYY'),?,?,?,?,?,?,TO_DATE(FEUNGEMPL,'DD/MM/YYYY'),TO_DATE(FECNONEMPL,'DD/MM/YYYY'),?,?,?,?)";
+//            String sql = "EXEC sp_Empleados ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, emp.getDNI());
             st.setString(2, emp.getNom());
@@ -156,12 +160,12 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         this.Conexion();
         ResultSet rs;
         try {
-            String sql = "select idEmpl from Empleado where concat(Nom,',',ApelPate,',',ApelMate) like ?";
+            String sql = "SELECT CODEMPL FROM EMPLEADO WHERE NOMEMPL| |APEPATEEMPL| |APEMATEEMPL like ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, Empleado);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getString("idEmpl");
+                return rs.getString("CODEMPL");
             }
             return null;
         } catch (SQLException e) {
@@ -173,12 +177,12 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         this.Conexion();
         ResultSet rs;
         try {
-            String sql = "SELECT idEmpl FROM Empleado WHERE DNI = ?";
+            String sql = "SELECT CODEMPL FROM EMPLEADO WHERE DNIEMPL LIKE ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, Empleado);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getString("idEmpl");
+                return rs.getString("CODEMPL");
             }
             return null;
         } catch (SQLException e) {
@@ -193,7 +197,7 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         ResultSet rs;
         List<String> Lista;
         try {
-            String sql = "select concat(Nom,',',ApelPate,',',ApelMate) AS Apellidos from Empleado where UPPER(Nom) like UPPER(?) or UPPER(ApelPate) like UPPER(?)  or UPPER(ApelMate) like UPPER(?)";
+            String sql = "SELECT NOMEMPL| |APEPATEEMPL| |APEMATEEMPL AS APELLIDOS FROM EMPLEADO WHERE UPPER(NOMEMPL) LIKE UPPER(?) OR UPPER(APEPATEEMPL) LIKE UPPER(?)  OR UPPER(APEMATEEMPL) LIKE UPPER(?)";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, "%" + Consulta + "%");
             ps.setString(2, "%" + Consulta + "%");
@@ -202,7 +206,7 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
             rs = ps.executeQuery();
             while (rs.next()) {
 
-                Lista.add(rs.getString("Apellidos"));
+                Lista.add(rs.getString("APELLIDOS"));
             }
             return Lista;
         } catch (SQLException e) {
@@ -216,34 +220,34 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "SELECT * FROM vw_EmpleadosNombrados";
+            String sql = "SELECT * FROM VW_EMPLEADOSNOMBRADOS";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 EmpleadoM emp = new EmpleadoM();
-                emp.setIdEmpl(rs.getString("idEmpl"));
-                emp.setDNI(rs.getString("DNI"));
-                emp.setNom(rs.getString("Nom"));
-                emp.setApelPate(rs.getString("ApelPate"));
-                emp.setApelMate(rs.getString("ApelMate"));
-                emp.setRUC(rs.getString("RUC"));
-                emp.setEmail(rs.getString("Email"));
-                emp.setTelf(rs.getString("Telf"));
-                emp.setCel(rs.getString("Cel"));
-                emp.setFecNac(rs.getString("FecNac"));
-                emp.setGrupSang(rs.getString("GrupSang"));
-                emp.setEstCiv(rs.getString("EstCiv"));
-                emp.setConLab(rs.getString("ConLab"));
-                emp.setCarnAseg(rs.getString("CarnAseg"));
-                emp.setRefe(rs.getString("Refe"));
-                emp.setLeye(rs.getString("Leye"));
-                emp.setFecIng(rs.getString("FecIng"));
-                emp.setFecNom(rs.getString("FecNom"));
-                emp.setDatCony(rs.getString("DatCony"));
-                emp.setUbigActu(rs.getString("Direccion"));
-                emp.setEst(rs.getString("Est"));
-                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
+                emp.setIdEmpl(rs.getString("CODEMPL"));
+                emp.setDNI(rs.getString("DNIEMPL"));
+                emp.setNom(rs.getString("NOMEMPL"));
+                emp.setApelPate(rs.getString("APEPATEEMPL"));
+                emp.setApelMate(rs.getString("APEMATEEMPL"));
+                emp.setRUC(rs.getString("RUCEMPL"));
+                emp.setEmail(rs.getString("EMAILEMPL"));
+                emp.setTelf(rs.getString("TELEMPL"));
+                emp.setCel(rs.getString("CELEMPL"));
+                emp.setFecNac(rs.getString("FECNACEMPL"));
+                emp.setGrupSang(rs.getString("GRUPSANGEMPL"));
+                emp.setEstCiv(rs.getString("ESTCIVEMPL"));
+                emp.setConLab(rs.getString("CONLABEMPL"));
+                emp.setCarnAseg(rs.getString("CARASEEMPL"));
+                emp.setRefe(rs.getString("REFEEMPL"));
+                emp.setLeye(rs.getString("LEYEMPL"));
+                emp.setFecIng(rs.getString("FEUNGEMPL"));
+                emp.setFecNom(rs.getString("FECNONEMPL"));
+                emp.setDatCony(rs.getString("DATCONYEMPL"));
+                emp.setUbigActu(rs.getString("DIRECCION"));
+                emp.setEst(rs.getString("ESTEMPL"));
+                emp.setOrigen(rs.getString("LUGAR DE NACIMIENTO"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -260,34 +264,34 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "SELECT * FROM vw_EmpleadosCas";
+            String sql = "SELECT * FROM VW_EMPLEADOSCAS";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 EmpleadoM emp = new EmpleadoM();
-                emp.setIdEmpl(rs.getString("idEmpl"));
-                emp.setDNI(rs.getString("DNI"));
-                emp.setNom(rs.getString("Nom"));
-                emp.setApelPate(rs.getString("ApelPate"));
-                emp.setApelMate(rs.getString("ApelMate"));
-                emp.setRUC(rs.getString("RUC"));
-                emp.setEmail(rs.getString("Email"));
-                emp.setTelf(rs.getString("Telf"));
-                emp.setCel(rs.getString("Cel"));
-                emp.setFecNac(rs.getString("FecNac"));
-                emp.setGrupSang(rs.getString("GrupSang"));
-                emp.setEstCiv(rs.getString("EstCiv"));
-                emp.setConLab(rs.getString("ConLab"));
-                emp.setCarnAseg(rs.getString("CarnAseg"));
-                emp.setRefe(rs.getString("Refe"));
-                emp.setLeye(rs.getString("Leye"));
-                emp.setFecIng(rs.getString("FecIng"));
-                emp.setFecNom(rs.getString("FecNom"));
-                emp.setDatCony(rs.getString("DatCony"));
-                emp.setUbigActu(rs.getString("Direccion"));
-                emp.setEst(rs.getString("Est"));
-                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
+                emp.setIdEmpl(rs.getString("CODEMPL"));
+                emp.setDNI(rs.getString("DNIEMPL"));
+                emp.setNom(rs.getString("NOMEMPL"));
+                emp.setApelPate(rs.getString("APEPATEEMPL"));
+                emp.setApelMate(rs.getString("APEMATEEMPL"));
+                emp.setRUC(rs.getString("RUCEMPL"));
+                emp.setEmail(rs.getString("EMAILEMPL"));
+                emp.setTelf(rs.getString("TELEMPL"));
+                emp.setCel(rs.getString("CELEMPL"));
+                emp.setFecNac(rs.getString("FECNACEMPL"));
+                emp.setGrupSang(rs.getString("GRUPSANGEMPL"));
+                emp.setEstCiv(rs.getString("ESTCIVEMPL"));
+                emp.setConLab(rs.getString("CONLABEMPL"));
+                emp.setCarnAseg(rs.getString("CARASEEMPL"));
+                emp.setRefe(rs.getString("REFEEMPL"));
+                emp.setLeye(rs.getString("LEYEMPL"));
+                emp.setFecIng(rs.getString("FEUNGEMPL"));
+                emp.setFecNom(rs.getString("FECNONEMPL"));
+                emp.setDatCony(rs.getString("DATCONYEMPL"));
+                emp.setUbigActu(rs.getString("DIRECCION"));
+                emp.setEst(rs.getString("ESTEMPL"));
+                emp.setOrigen(rs.getString("LUGAR DE NACIMIENTO"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -304,34 +308,34 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "SELECT * FROM vw_EmpleadosCesante";
+            String sql = "SELECT * FROM VW_EMPLEADOSCESANTE";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 EmpleadoM emp = new EmpleadoM();
-                emp.setIdEmpl(rs.getString("idEmpl"));
-                emp.setDNI(rs.getString("DNI"));
-                emp.setNom(rs.getString("Nom"));
-                emp.setApelPate(rs.getString("ApelPate"));
-                emp.setApelMate(rs.getString("ApelMate"));
-                emp.setRUC(rs.getString("RUC"));
-                emp.setEmail(rs.getString("Email"));
-                emp.setTelf(rs.getString("Telf"));
-                emp.setCel(rs.getString("Cel"));
-                emp.setFecNac(rs.getString("FecNac"));
-                emp.setGrupSang(rs.getString("GrupSang"));
-                emp.setEstCiv(rs.getString("EstCiv"));
-                emp.setConLab(rs.getString("ConLab"));
-                emp.setCarnAseg(rs.getString("CarnAseg"));
-                emp.setRefe(rs.getString("Refe"));
-                emp.setLeye(rs.getString("Leye"));
-                emp.setFecIng(rs.getString("FecIng"));
-                emp.setFecNom(rs.getString("FecNom"));
-                emp.setDatCony(rs.getString("DatCony"));
-                emp.setUbigActu(rs.getString("Direccion"));
-                emp.setEst(rs.getString("Est"));
-                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
+                emp.setIdEmpl(rs.getString("CODEMPL"));
+                emp.setDNI(rs.getString("DNIEMPL"));
+                emp.setNom(rs.getString("NOMEMPL"));
+                emp.setApelPate(rs.getString("APEPATEEMPL"));
+                emp.setApelMate(rs.getString("APEMATEEMPL"));
+                emp.setRUC(rs.getString("RUCEMPL"));
+                emp.setEmail(rs.getString("EMAILEMPL"));
+                emp.setTelf(rs.getString("TELEMPL"));
+                emp.setCel(rs.getString("CELEMPL"));
+                emp.setFecNac(rs.getString("FECNACEMPL"));
+                emp.setGrupSang(rs.getString("GRUPSANGEMPL"));
+                emp.setEstCiv(rs.getString("ESTCIVEMPL"));
+                emp.setConLab(rs.getString("CONLABEMPL"));
+                emp.setCarnAseg(rs.getString("CARASEEMPL"));
+                emp.setRefe(rs.getString("REFEEMPL"));
+                emp.setLeye(rs.getString("LEYEMPL"));
+                emp.setFecIng(rs.getString("FEUNGEMPL"));
+                emp.setFecNom(rs.getString("FECNONEMPL"));
+                emp.setDatCony(rs.getString("DATCONYEMPL"));
+                emp.setUbigActu(rs.getString("DIRECCION"));
+                emp.setEst(rs.getString("ESTEMPL"));
+                emp.setOrigen(rs.getString("LUGAR DE NACIMIENTO"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -349,34 +353,34 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
 
         try {
             this.Conexion();
-            String sql = "SELECT * FROM vw_EmpleadosInac";
+            String sql = "SELECT * FROM VW_EMPLEADOSINAC";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 EmpleadoM emp = new EmpleadoM();
-                emp.setIdEmpl(rs.getString("idEmpl"));
-                emp.setDNI(rs.getString("DNI"));
-                emp.setNom(rs.getString("Nom"));
-                emp.setApelPate(rs.getString("ApelPate"));
-                emp.setApelMate(rs.getString("ApelMate"));
-                emp.setRUC(rs.getString("RUC"));
-                emp.setEmail(rs.getString("Email"));
-                emp.setTelf(rs.getString("Telf"));
-                emp.setCel(rs.getString("Cel"));
-                emp.setFecNac(rs.getString("FecNac"));
-                emp.setGrupSang(rs.getString("GrupSang"));
-                emp.setEstCiv(rs.getString("EstCiv"));
-                emp.setConLab(rs.getString("ConLab"));
-                emp.setCarnAseg(rs.getString("CarnAseg"));
-                emp.setRefe(rs.getString("Refe"));
-                emp.setLeye(rs.getString("Leye"));
-                emp.setFecIng(rs.getString("FecIng"));
-                emp.setFecNom(rs.getString("FecNom"));
-                emp.setDatCony(rs.getString("DatCony"));
-                emp.setUbigActu(rs.getString("Direccion"));
-                emp.setEst(rs.getString("Est"));
-                emp.setOrigen(rs.getString("Lugar de Nacimiento"));
+                emp.setIdEmpl(rs.getString("CODEMPL"));
+                emp.setDNI(rs.getString("DNIEMPL"));
+                emp.setNom(rs.getString("NOMEMPL"));
+                emp.setApelPate(rs.getString("APEPATEEMPL"));
+                emp.setApelMate(rs.getString("APEMATEEMPL"));
+                emp.setRUC(rs.getString("RUCEMPL"));
+                emp.setEmail(rs.getString("EMAILEMPL"));
+                emp.setTelf(rs.getString("TELEMPL"));
+                emp.setCel(rs.getString("CELEMPL"));
+                emp.setFecNac(rs.getString("FECNACEMPL"));
+                emp.setGrupSang(rs.getString("GRUPSANGEMPL"));
+                emp.setEstCiv(rs.getString("ESTCIVEMPL"));
+                emp.setConLab(rs.getString("CONLABEMPL"));
+                emp.setCarnAseg(rs.getString("CARASEEMPL"));
+                emp.setRefe(rs.getString("REFEEMPL"));
+                emp.setLeye(rs.getString("LEYEMPL"));
+                emp.setFecIng(rs.getString("FEUNGEMPL"));
+                emp.setFecNom(rs.getString("FECNONEMPL"));
+                emp.setDatCony(rs.getString("DATCONYEMPL"));
+                emp.setUbigActu(rs.getString("DIRECCION"));
+                emp.setEst(rs.getString("ESTEMPL"));
+                emp.setOrigen(rs.getString("LUGAR DE NACIMIENTO"));
                 lista.add(emp);
             }
         } catch (SQLException e) {
@@ -394,34 +398,34 @@ public class ImplEmpleadoD extends ImplDAO implements EmpleadoI {
 
         try {
             this.Conexion();
-            String sql = "SELECT idEmpl, DNI,Nom,ApelPate,ApelMate,RUC,Email,Telf,Cel,CONVERT(nvarchar(10),FecNac,103) AS FecNac,GrupSang,EstCiv,ConLab,CarnAseg,Refe,Leye,CONVERT(nvarchar(10),FecIng,103) AS FecIng,CONVERT(nvarchar(10),FecNom,103) AS FecNom,DatCony,UbigActu,Est,Origen FROM Empleado WHERE idEmpl=?";
+            String sql = "SELECT CODEMPL, DNIEMPL,NOMEMPL,APEPATEEMPL,APEMATEEMPL,RUCEMPL,EMAILEMPL,TELEMPL,CELEMPL,TO_CHAR(FECNACEMPL,'DD/MM/YYYY') AS FECNACEMPL,GRUPSANGEMPL,ESTCIVEMPL,CONLABEMPL,CARASEEMPL,REFEEMPL,LEYEMPL,TO_CHAR(FEUNGEMPL,'DD/MM/YYYY') AS FEUNGEMPL,TO_CHAR(FECNONEMPL,'DD/MM/YYYY') AS FECNONEMPL,DATCONYEMPL,UBIGEMPL,ESTEMPL,ORIEMPL FROM EMPLEADO WHERE CODEMPL LIKE ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, codigo);
             rs = st.executeQuery();
             if (rs.next()) {
                 emple = new EmpleadoM();
-                emple.setIdEmpl(rs.getString("idEmpl"));
-                emple.setDNI(rs.getString("DNI"));
-                emple.setNom(rs.getString("Nom"));
-                emple.setApelPate(rs.getString("ApelPate"));
-                emple.setApelMate(rs.getString("ApelMate"));
-                emple.setRUC(rs.getString("RUC"));
-                emple.setEmail(rs.getString("Email"));
-                emple.setTelf(rs.getString("Telf"));
-                emple.setCel(rs.getString("Cel"));
-                emple.setFecNac(rs.getString("FecNac"));
-                emple.setGrupSang(rs.getString("GrupSang"));
-                emple.setEstCiv(rs.getString("EstCiv"));
-                emple.setConLab(rs.getString("ConLab"));
-                emple.setCarnAseg(rs.getString("CarnAseg"));
-                emple.setRefe(rs.getString("Refe"));
-                emple.setLeye(rs.getString("Leye"));
-                emple.setFecIng(rs.getString("FecIng"));
-                emple.setFecNom(rs.getString("FecNom"));
-                emple.setDatCony(rs.getString("DatCony"));
-                emple.setUbigActu(rs.getString("UbigActu"));
-                emple.setEst(rs.getString("Est"));
-                emple.setOrigen(rs.getString("Origen"));
+                emple.setIdEmpl(rs.getString("CODEMPL"));
+                emple.setDNI(rs.getString("DNIEMPL"));
+                emple.setNom(rs.getString("NOMEMPL"));
+                emple.setApelPate(rs.getString("APEPATEEMPL"));
+                emple.setApelMate(rs.getString("APEMATEEMPL"));
+                emple.setRUC(rs.getString("RUCEMPL"));
+                emple.setEmail(rs.getString("EMAILEMPL"));
+                emple.setTelf(rs.getString("TELEMPL"));
+                emple.setCel(rs.getString("CELEMPL"));
+                emple.setFecNac(rs.getString("FECNACEMPL"));
+                emple.setGrupSang(rs.getString("GRUPSANGEMPL"));
+                emple.setEstCiv(rs.getString("ESTCIVEMPL"));
+                emple.setConLab(rs.getString("CONLABEMPL"));
+                emple.setCarnAseg(rs.getString("CARASEEMPL"));
+                emple.setRefe(rs.getString("REFEEMPL"));
+                emple.setLeye(rs.getString("LEYEMPL"));
+                emple.setFecIng(rs.getString("FEUNGEMPL"));
+                emple.setFecNom(rs.getString("FECNONEMPL"));
+                emple.setDatCony(rs.getString("DATCONYEMPL"));
+                emple.setUbigActu(rs.getString("UBIGEMPL"));
+                emple.setEst(rs.getString("ESTEMPL"));
+                emple.setOrigen(rs.getString("ORIEMPL"));
             }
         } catch (SQLException e) {
             throw e;

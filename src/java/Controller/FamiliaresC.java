@@ -35,7 +35,7 @@ public class FamiliaresC implements Serializable {
         }
     }
 
-    public List<String> completeText(String query) throws SQLException {
+    public List<String> completeText(String query) throws SQLException, Exception {
         ImplFamiliaresD ImplDAO = new ImplFamiliaresD();
         return ImplDAO.autocompleteEmpleado(query);
     }

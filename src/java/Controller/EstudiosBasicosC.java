@@ -37,7 +37,7 @@ public class EstudiosBasicosC implements Serializable {
         }
     }
 
-    public List<String> completeText(String query) throws SQLException {
+    public List<String> completeText(String query) throws SQLException, Exception {
         ImplEstudiosBasicosD ImplDAO = new ImplEstudiosBasicosD();
         return ImplDAO.autocompleteEmpleado(query);
     }

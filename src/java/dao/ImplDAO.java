@@ -12,7 +12,7 @@ public class ImplDAO {
         try {
             if (cn == null) {
                 Class.forName("oracle.jdbc.OracleDriver");
-                cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "LEGAJO", "root");
+                cn = DriverManager.getConnection("jdbc:oracle:thin:@35.237.73.4:1521:XE", "Legajo", "vallegrande2018");
             }
         } catch (ClassNotFoundException | SQLException e) {
             throw e;

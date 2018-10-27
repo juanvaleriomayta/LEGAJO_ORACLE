@@ -15,17 +15,17 @@ public class ImplUsuarioD extends ImplDAO {
         ResultSet rs;
         UsuarioM usuario = null;
         try {
-            String sql = "Select IdUsuario,Nombre,Estado,Nivel from Usuario where Usuario like ? and Pass like ? and Estado like 'A'";
+            String sql = "Select CODUSU,NOMUSU,ESTUSU,LEVUSU FROM USUARIO WHERE USUUSU LIKE ? AND PWSUSU LIKE ? AND ESTUSU LIKE 'A'";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, User);
             ps.setString(2, Encriptar.encriptar(Passw));
             rs = ps.executeQuery();
             if (rs.next()) {
                 usuario = new UsuarioM();
-                usuario.setIdUsuario(rs.getString("IdUsuario"));
-                usuario.setNombre(rs.getString("Nombre"));
-                usuario.setEstado(rs.getString("Estado"));
-                usuario.setNivel(rs.getString("Nivel"));
+                usuario.setIdUsuario(rs.getString("CODUSU"));
+                usuario.setNombre(rs.getString("NOMUSU"));
+                usuario.setEstado(rs.getString("ESTUSU"));
+                usuario.setNivel(rs.getString("LEVUSU"));
                 usuario.setUsuario(User);
                 usuario.setPass(Passw);
             }
@@ -40,7 +40,7 @@ public class ImplUsuarioD extends ImplDAO {
     public void Registrar(UsuarioM user) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Usuario (Usuario,Pass,Nombre,Estado,Nivel) VALUES(?,?,?,?,?)";
+            String sql = "INSERT INTO USUARIO (USUUSU,PWSUSU,NOMUSU,ESTUSU,LEVUSU) VALUES (?,?,?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, user.getUsuario());
             st.setString(2, Encriptar.encriptar(user.getPass()));
@@ -60,19 +60,19 @@ public class ImplUsuarioD extends ImplDAO {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "select * from VW_USUARIO";
+            String sql = "SELECT * FROM VW_USUARIO";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             UsuarioM user;
             while (rs.next()) {
                 user = new UsuarioM();
-                user.setIdUsuario(rs.getString("IdUsuario"));
-                user.setUsuario(rs.getString("Usuario"));
-                user.setPass(rs.getString("Pass"));
-                user.setNombre(rs.getString("Nombre"));
-                user.setEstado(rs.getString("Estado"));
-                user.setNivel(rs.getString("Nivel"));
+                user.setIdUsuario(rs.getString("CODUSU"));
+                user.setUsuario(rs.getString("USUUSU"));
+                user.setPass(rs.getString("PSWUSU"));
+                user.setNombre(rs.getString("NOMUSU"));
+                user.setEstado(rs.getString("ESTUSU"));
+                user.setNivel(rs.getString("LEVUSU"));
                 lista.add(user);
             }
         } catch (SQLException e) {
@@ -88,19 +88,19 @@ public class ImplUsuarioD extends ImplDAO {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "select * from VW_USUARIO_INACTIVOS";
+            String sql = "SELECT * FROM VW_USUARIO_INACTIVOS";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             UsuarioM user;
             while (rs.next()) {
                 user = new UsuarioM();
-                user.setIdUsuario(rs.getString("IdUsuario"));
-                user.setUsuario(rs.getString("Usuario"));
-                user.setPass(rs.getString("Pass"));
-                user.setNombre(rs.getString("Nombre"));
-                user.setEstado(rs.getString("Estado"));
-                user.setNivel(rs.getString("Nivel"));
+                user.setIdUsuario(rs.getString("CODUSU"));
+                user.setUsuario(rs.getString("USUUSU"));
+                user.setPass(rs.getString("PSWUSU"));
+                user.setNombre(rs.getString("NOMUSU"));
+                user.setEstado(rs.getString("ESTUSU"));
+                user.setNivel(rs.getString("LEVUSU"));
                 lista.add(user);
             }
         } catch (SQLException e) {
@@ -116,18 +116,18 @@ public class ImplUsuarioD extends ImplDAO {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "select IdUsuario, Usuario,Pass,Nombre,Estado,Nivel FROM Usuario WHERE IdUsuario=?";
+            String sql = "SELECT CODUSU,USUUSU,PWSUSU,NOMUSU,ESTUSU,LEVUSU FROM USUARIO WHERE CODUSU LIKE ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, Codigo);
             rs = st.executeQuery();
             if (rs.next()) {
                 user = new UsuarioM();
-                user.setIdUsuario(rs.getString("IdUsuario"));
-                user.setUsuario(rs.getString("Usuario"));
-                user.setPass(rs.getString("Pass"));
-                user.setNombre(rs.getString("Nombre"));
-                user.setEstado(rs.getString("Estado"));
-                user.setNivel(rs.getString("Nivel"));
+                user.setIdUsuario(rs.getString("CODUSU"));
+                user.setUsuario(rs.getString("USUUSU"));
+                user.setPass(rs.getString("PWSUSU"));
+                user.setNombre(rs.getString("NOMUSU"));
+                user.setEstado(rs.getString("ESTUSU"));
+                user.setNivel(rs.getString("LEVUSU"));
             }
         } catch (SQLException e) {
             throw e;
@@ -140,7 +140,7 @@ public class ImplUsuarioD extends ImplDAO {
     public void Modificar(UsuarioM user) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE Usuario SET Usuario=?,Pass=?,Nombre=?,Estado=?,Nivel=? where IdUsuario=?";
+            String sql = "UPDATE USUARIO SET USUUSU=?,PWSUSU=?,NOMUSU=?,ESTUSU=?,LEVUSU=? WHERE CODUSU LIKE ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
            
             st.setString(1, user.getUsuario());
@@ -160,7 +160,7 @@ public class ImplUsuarioD extends ImplDAO {
     public void Eliminar(UsuarioM user) throws Exception {
         try {
             this.Conexion();
-            String sql = "Update Usuario set Estado='I' WHERE IdUsuario=?";
+            String sql = "UPDATE USUARIO SET ESTUSU='I' WHERE CODUSU=?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, user.getIdUsuario());
             st.executeUpdate();

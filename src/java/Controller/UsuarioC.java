@@ -7,6 +7,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import lombok.Data;
@@ -16,7 +17,7 @@ import services.SessionUtils;
 import services.Encriptar;
 
 @Data
-@Named(value = "Login")
+@Named(value = "usuarioC")
 @SessionScoped
 public class UsuarioC implements Serializable {
 
@@ -51,7 +52,7 @@ public class UsuarioC implements Serializable {
 
             if (getUsuario() != null) {
                 intentos = 0;
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario", getUsuario());
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("UsuarioM", getUsuario());
                 switch (usuario.getNivel()) {
                     case "admin":
                         FacesContext.getCurrentInstance().getExternalContext().redirect("/Legajo/Vistas/template/MensajeUsuario.xhtml");
@@ -103,10 +104,10 @@ public class UsuarioC implements Serializable {
     }
 
     public void registrar() throws Exception {
-        ImplUsuarioD dao;
+        ImplUsuarioD ImplDAO;
         try {
-            dao = new ImplUsuarioD();
-            dao.Registrar(getUsuario());
+            ImplDAO = new ImplUsuarioD();
+            ImplDAO.Registrar(getUsuario());
             limpiar();
             listar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("AGREGADO"));
@@ -116,6 +117,16 @@ public class UsuarioC implements Serializable {
         }
     }
 
+    @PostConstruct
+    public void iniciar() {
+        try {
+            listar();
+
+        } catch (Exception e) {
+        }
+    }
+    
+    
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
@@ -132,30 +143,30 @@ public class UsuarioC implements Serializable {
     }
 
     public void listar() throws Exception {
-        ImplUsuarioD dao;
+        ImplUsuarioD ImplDAO;
         try {
-            dao = new ImplUsuarioD();
-            lstUsuario = dao.Listar();
+            ImplDAO = new ImplUsuarioD();
+            lstUsuario = ImplDAO.Listar();
         } catch (Exception e) {
             throw e;
         }
     }
 
     public void listarInactivos() throws Exception {
-        ImplUsuarioD dao;
+        ImplUsuarioD ImplDAO;
         try {
-            dao = new ImplUsuarioD();
-            lstUsuario = dao.ListarInactivos();
+            ImplDAO = new ImplUsuarioD();
+            lstUsuario = ImplDAO.ListarInactivos();
         } catch (Exception e) {
             throw e;
         }
     }
 
     public void modificar() throws Exception {
-        ImplUsuarioD dao;
+        ImplUsuarioD ImplDAO;
         try {
-            dao = new ImplUsuarioD();
-            dao.Modificar(usuario);
+            ImplDAO = new ImplUsuarioD();
+            ImplDAO.Modificar(usuario);
             listar();
             limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ACTUALIZADO", "CORRECTAMENTE"));

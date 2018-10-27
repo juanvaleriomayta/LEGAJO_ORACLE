@@ -20,7 +20,7 @@ public class DialectoC {
     private String accion;
     
     
-    public List<String> completeTextDialecto(String query) throws SQLException {               
+    public List<String> completeTextDialecto(String query) throws SQLException, Exception {               
         ImplDialectoD ImplDAO = new ImplDialectoD();
         return ImplDAO.autocompleteDialecto(query);
     }
