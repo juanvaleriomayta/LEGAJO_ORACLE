@@ -33,7 +33,7 @@ public class EstudiosSuperiorC implements Serializable {
         }
     }
 
-    public List<String> completeText(String query) throws SQLException {
+    public List<String> completeText(String query) throws SQLException, Exception {
         ImplEstudiosSuperiorD ImplDAO = new ImplEstudiosSuperiorD();
         return ImplDAO.autocompleteEmpleado(query);
     }

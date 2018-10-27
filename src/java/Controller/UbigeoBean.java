@@ -19,7 +19,7 @@ public class UbigeoBean implements Serializable{
     private List<UbigeoM> lstUbigeo;
     private String accion;
     
-    public List<String> completeText(String query) throws SQLException {               
+    public List<String> completeText(String query) throws SQLException, Exception {               
         ImplUbigeoD ImplDAO = new ImplUbigeoD();
         return ImplDAO.autocompleteUbigeo(query);
     }

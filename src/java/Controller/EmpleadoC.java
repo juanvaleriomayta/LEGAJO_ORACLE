@@ -36,7 +36,7 @@ public class EmpleadoC implements Serializable {
         }
     }
 
-    public List<String> completeText(String query) throws SQLException {
+    public List<String> completeText(String query) throws SQLException, Exception {
         ImplEmpleadoD ImplDAO = new ImplEmpleadoD();
         return ImplDAO.autocompleteEmpleado(query);
     }

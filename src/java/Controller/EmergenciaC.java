@@ -35,7 +35,7 @@ public class EmergenciaC implements Serializable {
         }
     }
 
-    public List<String> completeText(String query) throws SQLException {
+    public List<String> completeText(String query) throws SQLException, Exception {
         ImplEmergenciaD ImplDAO = new ImplEmergenciaD();
         return ImplDAO.autocompleteEmpleado(query);
 

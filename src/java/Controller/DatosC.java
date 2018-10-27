@@ -66,7 +66,7 @@ public class DatosC implements Serializable {
         }
     }
 
-    public List<String> completeText(String query) throws SQLException {
+    public List<String> completeText(String query) throws SQLException, Exception {
         ImplDatosD ImplDAO = new ImplDatosD();
         return ImplDAO.autocompleteEmpleado(query);
     }

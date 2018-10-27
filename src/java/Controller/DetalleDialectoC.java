@@ -73,7 +73,7 @@ public class DetalleDialectoC implements Serializable {
         }
     }
 
-    public List<String> completText(String query) throws SQLException {
+    public List<String> completText(String query) throws SQLException, Exception {
         ImplDetalleDialectoD ImplDAO = new ImplDetalleDialectoD();
         return ImplDAO.autocompleteEmpleado(query);
     }
