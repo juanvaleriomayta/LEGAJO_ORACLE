@@ -5,13 +5,12 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
- 
+
     <h:body>
         <ui:composition template="./../template/Template.xhtml">
             <ui:define name="contenido">
-                
 
-                <f:event type="preRenderView" listener="#{usuarioC.listar()}"/>
+                <f:event type="preRenderView" listener="#{LoginC.listar()}"/>
 
 
                 <p:growl autoUpdate="true" />
@@ -19,7 +18,7 @@
 
 
                     <p:dataTable id="data" 
-                                 value="#{usuarioC.lstUsuario}" 
+                                 value="#{LoginC.lstUsuario}" 
                                  var="usuario" 
                                  rows="10"
                                  paginator="true"
@@ -28,7 +27,7 @@
                         <f:facet name="header">
                             <h1>USUARIOS</h1> 
 
-                            <p:commandButton icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" style="float: left" actionListener="#{usuarioC.setAccion('Registrar')}" update=":dlgDatos"/>
+                            <p:commandButton icon="fa fa-user-plus" value="Nuevo" oncomplete="PF('wdlgDatos').show();" style="float: left" actionListener="#{LoginC.setAccion('Registrar')}" update=":dlgDatos"/>
                             <p:commandButton id="toggler" type="button" value="Columnas" style="float:right" icon="ui-icon-calculator" />
                             <p:columnToggler datasource="data" trigger="toggler"/>
                         </f:facet>
@@ -50,12 +49,12 @@
                         </p:column>
 
                         <p:column style="width:50px"  exportable="false">
-                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{usuarioC.leerID(usuario.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
+                            <p:commandButton title="MODIFICAR" icon="ui-icon-pencil" actionListener="#{LoginC.leerID(usuario.idUsuario)}" oncomplete="PF('wdlgDatos').show();" update=":dlgDatos">
                             </p:commandButton>
                         </p:column> 
                         <p:column style="width:54px">
                             <p:growl id="message" showDetail="true" />
-                            <p:commandButton title="ELIMINAR USUARIO" icon="ui-icon-circle-close" actionListener="#{usuarioC.eliminar(usuario)}" update="data" style="background-color:red;color:red;">
+                            <p:commandButton title="ELIMINAR USUARIO" icon="ui-icon-circle-close" actionListener="#{LoginC.eliminar(usuario)}" update="data" style="background-color:red;color:red;">
                                 <p:confirm header="Confirmación" message="¿Deseas Eliminar? " icon="ui-icon-alert" />
                                 <p:tooltip trackMouse="true"/>
                             </p:commandButton>
@@ -65,7 +64,7 @@
                             </p:confirmDialog>
                         </p:column>
                         <f:facet name="footer">
-                            EN TOTAL HAY #{usuarioC.lstUsuario.size()} REGISTRADOS.
+                            EN TOTAL HAY #{LoginC.lstUsuario.size()} REGISTRADOS.
                         </f:facet>
                     </p:dataTable>
                 </h:form>
@@ -73,17 +72,17 @@
                     <h:form>
                         <p:panelGrid columns="1">
                             <p:outputLabel for="txtUsuario" value="Usuario"><br/>
-                                <p:inputText id="txtUsuario" value="#{usuarioC.usuario.usuario}"/>
+                                <p:inputText id="txtUsuario" value="#{LoginC.usuario.usuario}"/>
                             </p:outputLabel>
                             <p:outputLabel for="txtPassword" value="Password"><br/>
-                                <p:inputText id="txtPassword" value="#{usuarioC.usuario.pass}"/>
+                                <p:inputText id="txtPassword" value="#{LoginC.usuario.pass}"/>
                             </p:outputLabel>
                             <p:outputLabel for="txtNombre" value="Nombre"><br/>
-                                <p:inputText id="txtNombre" value="#{usuarioC.usuario.nombre}"/>
+                                <p:inputText id="txtNombre" value="#{LoginC.usuario.nombre}"/>
                             </p:outputLabel>
 
                             <p:outputLabel value="Nivel" ><br/>
-                                <p:selectOneMenu id="GrupoSanguineo" value="#{usuarioC.usuario.nivel}" required="true" requiredMessage="Seleccione el Nivel de Usuario ">
+                                <p:selectOneMenu id="GrupoSanguineo" value="#{LoginC.usuario.nivel}" required="true" requiredMessage="Seleccione el Nivel de Usuario ">
                                     <f:selectItem itemLabel="Seleccione"/>
                                     <f:selectItem itemLabel="admin" itemValue="admin" />
                                     <f:selectItem itemLabel="user" itemValue="user" />
@@ -92,7 +91,7 @@
 
 
 
-                            <p:commandButton icon="fa fa-user-plus" value="#{usuarioC.accion}" actionListener="#{usuarioC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
+                            <p:commandButton icon="fa fa-user-plus" value="#{LoginC.accion}" actionListener="#{LoginC.operar()}" oncomplete="PF('wdlgDatos').hide();" update="dlgDatos :frm:data"/>
                             <p:commandButton value="CANCELAR" immediate="true" oncomplete="PF('wdlgDatos').hide();" icon="fa fa-close"/>
 
                         </p:panelGrid>

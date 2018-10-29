@@ -17,7 +17,7 @@ import services.SessionUtils;
 import services.Encriptar;
 
 @Data
-@Named(value = "usuarioC")
+@Named(value = "LoginC")
 @SessionScoped
 public class UsuarioC implements Serializable {
 

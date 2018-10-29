@@ -60,7 +60,7 @@ public class ImplUsuarioD extends ImplDAO {
         ResultSet rs;
         try {
             this.Conexion();
-            String sql = "SELECT * FROM VW_USUARIO";
+            String sql = "SELECT * FROM USUARIO";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -69,7 +69,7 @@ public class ImplUsuarioD extends ImplDAO {
                 user = new UsuarioM();
                 user.setIdUsuario(rs.getString("CODUSU"));
                 user.setUsuario(rs.getString("USUUSU"));
-                user.setPass(rs.getString("PSWUSU"));
+                user.setPass(rs.getString("PWSUSU"));
                 user.setNombre(rs.getString("NOMUSU"));
                 user.setEstado(rs.getString("ESTUSU"));
                 user.setNivel(rs.getString("LEVUSU"));

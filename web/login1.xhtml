@@ -25,7 +25,7 @@
                             <!--Control de Ayuda al Usuario-->
                             <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
                             <center>
-                                <p:panel rendered="#{usuarioC.intentos >= 3 ? true:false}" id="basic" header=" ¿ NECESITAS AYUDA ? " style="margin-bottom:50px">
+                                <p:panel rendered="#{LoginC.intentos >= 3 ? true:false}" id="basic" header=" ¿ NECESITAS AYUDA ? " style="margin-bottom:50px">
                                     <h:panelGrid columns="1" cellpadding="10" >
                                         Correos y Números de Celular:<br/>
                                         jvaleriom@vallegrande.edu.pe - 986595248<br/>
@@ -33,7 +33,7 @@
                                     </h:panelGrid>
                                 </p:panel>
                             </center>
-                            <h:panelGroup style="background-color: #000000;" rendered="#{usuarioC.intentos >= 3 ? false:true}">
+                            <h:panelGroup style="background-color: #000000;" rendered="#{LoginC.intentos >= 3 ? false:true}">
 
                                 <div class="login__row">
                                     <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
@@ -41,14 +41,14 @@
                                     </svg>
 
                                     <!--<input type="text" class="login__input name" placeholder="Username"/>-->
-                                    <p:inputText value="#{usuarioC.nombreUsuario}" style="background: #000000; color: #ffffff;height: 35px; width: 210px;"  placeholder="Usuario" disabled="#{usuarioC.intentos le 2 ? false:true}" required="true" requiredMessage="USUARIO INCORRECTO"/>
+                                    <p:inputText value="#{LoginC.nombreUsuario}" style="background: #000000; color: #ffffff;height: 35px; width: 210px;"  placeholder="Usuario" disabled="#{LoginC.intentos le 2 ? false:true}" required="true" requiredMessage="USUARIO INCORRECTO"/>
                                 </div>
                                 <div class="login__row">
                                     <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
                                         <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
                                     </svg>
                                     <!--<input type="password" class="login__input pass" placeholder="Password"/>-->
-                                    <p:password value="#{usuarioC.pass}" style="background: #000000; color: #ffffff ; height: 35px; width: 210px;" placeholder="Contraseña" disabled="#{usuarioC.intentos le 2 ? false:true}" required="true" requiredMessage="CONTRASEÑA INCORRECTA"/>
+                                    <p:password value="#{LoginC.pass}" style="background: #000000; color: #ffffff ; height: 35px; width: 210px;" placeholder="Contraseña" disabled="#{LoginC.intentos le 2 ? false:true}" required="true" requiredMessage="CONTRASEÑA INCORRECTA"/>
                                 </div>
                                 <!--<button type="button" class="login__submit">Sign in</button>-->
                                 <br/>
@@ -56,7 +56,7 @@
                                 <br/>
                                 <br/>
                                 <div class="buttons">
-                                    <p:commandButton style="color: #002e44; border-bottom: 2px dotted #002e44; height: 40px; width: 230px; background: #00aa00;" id="BtnIniciarSesion" value="INGRESAR" actionListener="#{usuarioC.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{usuarioC.intentos le 2 ? false:true}"/>
+                                    <p:commandButton style="color: #002e44; border-bottom: 2px dotted #002e44; height: 40px; width: 230px; background: #00aa00;" id="BtnIniciarSesion" value="INGRESAR" actionListener="#{LoginC.startSessionEmpleado()}" update="form" oncomplete="refresh();" disabled="#{LoginC.intentos le 2 ? false:true}"/>
                                     <p:blockUI block="form" trigger="BtnIniciarSesion" >
                                         <img src="resources/icon/loading.gif" alt="" style="width: 100px;"/>
                                         <!--<img src="resources/icon/loader_seq.gif" alt=""/>-->
@@ -64,9 +64,9 @@
                                     </p:blockUI>
                                 </div><!--<p class="login__signup">Don't have an account? <a>Sign up</a></p>-->
                             </h:panelGroup>
-                            <h:panelGroup rendered="#{usuarioC.intentos >= 3 ? true:false}">
-                                <h:outputText id="txt_count" value="#{usuarioC.number}" />
-                                <p:poll interval="3" listener="#{usuarioC.increment}" update="form" oncomplete="refresh();" />
+                            <h:panelGroup rendered="#{LoginC.intentos >= 3 ? true:false}">
+                                <h:outputText id="txt_count" value="#{LoginC.number}" />
+                                <p:poll interval="3" listener="#{LoginC.increment}" update="form" oncomplete="refresh();" />
                             </h:panelGroup>
                             <p:remoteCommand name="refresh" update="form"/>
                         </h:form>

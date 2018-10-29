@@ -14,12 +14,12 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
         this.Conexion();
         ResultSet rs;
         try {
-            String sql = "select CodUbi from Ubigeo where concat(Dep,',',Pro,',',Dis) like ?";
+            String sql = "SELECT CODUBI FROM UBIGEO WHERE DEPUBI| |PROUBI| |DISUBI LIKE ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, Ubigeo);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getString("CodUbi");
+                return rs.getString("CODUBI");
             }
             return null;
         } catch (SQLException e) {
@@ -32,14 +32,14 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
         ResultSet rs;
         List<String> Lista;
         try {
-            String sql = "select concat(Dep,',',Pro,',',Dis) AS Dis from Ubigeo where Dis like upper(?)";
+            String sql = "SELECT DEPUBI||' '||PROUBI||' '||DISUBI AS DISUBI FROM UBIGEO WHERE DISUBI LIKE ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, "%" + Consulta + "%");
             Lista = new ArrayList<>();
             rs = ps.executeQuery();
             while (rs.next()) {
 
-                Lista.add(rs.getString("Dis"));
+                Lista.add(rs.getString("DISUBI"));
             }
             return Lista;
         } catch (SQLException e) {
@@ -51,7 +51,7 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
     public void registrar(UbigeoM ubi) throws Exception {
         try {
             this.Conexion();
-            String sql = "INSERT INTO Ubigeo (Dep,Pro,Dis) values(?,?,?)";
+            String sql = "INSERT INTO UBIGEO (DEPUBI,PROUBI,DISUBI) VALUES(?,?,?)";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, ubi.getDepartamento());
             st.setString(2, ubi.getProvincia());
