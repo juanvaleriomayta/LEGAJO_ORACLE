@@ -32,7 +32,7 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
         ResultSet rs;
         List<String> Lista;
         try {
-            String sql = "SELECT DEPUBI||' '||PROUBI||' '||DISUBI AS DISUBI FROM UBIGEO WHERE DISUBI LIKE ?";
+            String sql = "SELECT UPPER(DEPUBI||' '||PROUBI||' '||DISUBI) AS DISUBI FROM UBIGEO WHERE DISUBI LIKE ?";
             PreparedStatement ps = this.getCn().prepareCall(sql);
             ps.setString(1, "%" + Consulta + "%");
             Lista = new ArrayList<>();
@@ -72,17 +72,17 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
 
         try {
             this.Conexion();
-            String sql = "SELECT * FROM VIEW VW_UBIGEO";
+            String sql = "SELECT * FROM  VW_UBIGEO";
 //            String sql = "select * from Ubigeo";
             PreparedStatement st = this.getCn().prepareCall(sql);
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 UbigeoM ubi = new UbigeoM();
-                ubi.setCodigoUbigeo(rs.getInt("CodUbi"));
-                ubi.setDepartamento(rs.getString("Dep"));
-                ubi.setProvincia(rs.getString("Pro"));
-                ubi.setDistrito(rs.getString("Dis"));
+                ubi.setCodigoUbigeo(rs.getInt("CODUBI"));
+                ubi.setDepartamento(rs.getString("DEPUBI"));
+                ubi.setProvincia(rs.getString("PROUBI"));
+                ubi.setDistrito(rs.getString("DISUBI"));
                 lista.add(ubi);
             }
         } catch (SQLException e) {
@@ -100,16 +100,16 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
 
         try {
             this.Conexion();
-            String sql = "SELECT CodUbi,Dep,Pro,Dis FROM Ubigeo WHERE CodUbi=?";
+            String sql = "SELECT CODUBI,DEPUBI,PROUBI,DISUBI FROM UBIGEO WHERE CODUBI LIKE ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, ubi.getCodigoUbigeo());
             rs = st.executeQuery();
             while (rs.next()) {
                 ubig = new UbigeoM();
-                ubig.setCodigoUbigeo(rs.getInt("CodUbi"));
-                ubig.setDepartamento(rs.getString("Dep"));
-                ubig.setProvincia(rs.getString("Pro"));
-                ubig.setDistrito(rs.getString("Dis"));
+                ubig.setCodigoUbigeo(rs.getInt("CODUBI"));
+                ubig.setDepartamento(rs.getString("DEPUBI"));
+                ubig.setProvincia(rs.getString("PROUBI"));
+                ubig.setDistrito(rs.getString("DISUBI"));
             }
         } catch (SQLException e) {
             throw e;
@@ -123,7 +123,7 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
     public void modificar(UbigeoM ubi) throws Exception {
         try {
             this.Conexion();
-            String sql = "UPDATE Ubigeo SET Dep = ?,Pro = ?, Dis = ? WHERE CodUbi = ?";
+            String sql = "UPDATE UBIGEO SET DEPUBI = ?,PROUBI = ?, DISUBI = ? WHERE CODUBI LIKE ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setString(1, ubi.getDepartamento());
             st.setString(2, ubi.getProvincia());
@@ -140,7 +140,7 @@ public class ImplUbigeoD extends ImplDAO implements UbigeoI {
     public void eliminar(UbigeoM ubi) throws Exception {
         try {
             this.Conexion();
-            String sql = "DELETE FROM Ubigeo WHERE CodUbi = ?";
+            String sql = "DELETE FROM UBIGEO WHERE CODUBI LIKE ?";
             PreparedStatement st = this.getCn().prepareStatement(sql);
             st.setInt(1, ubi.getCodigoUbigeo());
             st.executeUpdate();
